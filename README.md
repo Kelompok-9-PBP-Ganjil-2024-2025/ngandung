@@ -19,7 +19,7 @@
 
 ### 2. Deskripsi aplikasi
 
-TBA
+Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang makanan dan toko-toko di kota tertentu. Aplikasi ini dirancang untuk memudahkan pengguna yang baru pindah atau berkunjung ke kota tersebut dalam menemukan berbagai jenis makanan dan tempat membelinya. Pengguna dapat mencari makanan berdasarkan kategori, melihat daftar rekomendasi, memberikan rating serta ulasan untuk toko, dan menyimpan toko favorit mereka. Admin memiliki kemampuan untuk menambahkan dan mengelola data makanan dan toko yang tersedia, sementara pengguna biasa dapat mengakses informasi dan memberikan ulasan. Ngandung bertujuan untuk memberikan solusi praktis dalam mencari makanan di kota baru dengan mudah dan cepat.
 
 ### 3. Daftar modul aplikasi
 
