@@ -83,4 +83,4 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
 
 ### URL _deployment_ PWS
 
-TBA
+http://daffa-abhipraya-ngandung.pbp.cs.ui.ac.id/
