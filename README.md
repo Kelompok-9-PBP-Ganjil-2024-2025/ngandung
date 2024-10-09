@@ -33,27 +33,32 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
 -   **Daftar Makanan Rekomendasi**  
     Modul ini berfungsi untuk menampilkan daftar makanan yang tersedia. Pengguna dapat melihat informasi makanan yang diinginkan.
 
-    **_Dikerjakan oleh:_** ...
+    **_Dikerjakan oleh:_** Daffa Abhipraya Putra
 
 -   **_Rating_ & _Review_ Toko**  
     Modul ini berfungsi untuk memberikan _rating_ & _review_ ke toko yang tersedia.
 
-    **_Dikerjakan oleh:_** ...
+    **_Dikerjakan oleh:_** Daffa Abhipraya Putra
 
 -   **Toko Favorit**  
     Modul ini berfungsi untuk menyimpan toko yang disukai oleh pengguna.
 
-    **_Dikerjakan oleh:_** ...
-
--   **Pencarian Makanan**  
-    Modul ini berfungsi untuk mencari makanan yang diinginkan oleh pengguna.
-
-    **_Dikerjakan oleh:_** ...
+    **_Dikerjakan oleh:_** Rayhan Syahdira Putra
 
 -   **Tambah Toko & Makannya**  
     Modul ini berfungsi untuk menambahkan toko dan makanan yang tersedia di toko tersebut.
 
-    **_Dikerjakan oleh:_** ...
+    **_Dikerjakan oleh:_** Muhammad Radhiya Arshq
+
+-   **Forum Diskusi Makanan**  
+    Modul ini berfungsi untuk memberikan ruang diskusi global kepada pengguna untuk berbagi informasi tentang makanan.
+
+    **_Dikerjakan oleh:_** Ahmad Dzulfikar As Shavy
+
+-   **Polling Makanan Terenak**
+    Modul ini berfungsi untuk memberikan polling makanan terenak yang ada di Kota Bandung.
+
+    **_Dikerjakan oleh:_** Christian Raphael Heryanto
 
 ### 4. Sumber _intial_ dataset
 
@@ -61,13 +66,14 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
 
 ### 5. **Role** pengguna (_User_ dan _Admin_)
 
-| No. | Modul                      | _Permission User_                                                                                             | _Permission Admin_                                                                                                                   |
-| --- | -------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | Daftar Makanan Rekomendasi | Pengguna dapat mengakses informasi makanan yang tersedia di aplikasi, tanpa dapat mengubah atau menghapusnya. | Admin dapat mengakses informasi makanan yang tersedia di aplikasi, dan dapat menambahkan, mengubah, atau menghapus makanan tersebut. |
-| 2   | Rating & Review Toko       | Pengguna dapat memberikan rating dengan range 1-5 dan review berupa teks singkat ke toko yang tersedia.       | Admin dapat melihat rating dan review dari toko yang tersedia.                                                                       |
-| 3   | Toko Favorit               | Pengguna dapat menyimpan toko yang disukai ke 'Toko Favorit' yang dimiliki setiap akun pengguna.              | Admin tidak dapat menyimpan toko yang disukai ke 'Toko Favorit'.                                                                     |
-| 4   | Pencarian Makanan          | Pengguna dapat mencari makanan yang diinginkan di aplikasi melalui search bar.                                | Admin dapat mencari makanan yang diinginkan di aplikasi melalui search bar.                                                          |
-| 5   | Tambah Toko & Makannya     | Pengguna tidak dapat menambahkan toko dan makanan yang tersedia di toko tersebut.                             | Admin dapat menambahkan toko dan makanan yang tersedia di toko tersebut.                                                             |
+| No. | Modul                      | _Permission User_                                                                                             | _Permission Admin_                                                                                                                                  |
+| --- | -------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Daftar Makanan Rekomendasi | Pengguna dapat mengakses informasi makanan yang tersedia di aplikasi, tanpa dapat mengubah atau menghapusnya. | Admin memiliki permission sama seperti user.                                                                                                        |
+| 2   | Rating & Review Toko       | Pengguna dapat memberikan rating dengan range 1-5 dan review berupa teks singkat ke toko yang tersedia.       | Admin memiliki permission sama seperti user, ditambah admin juga dapat menghapus rating dan review yang tidak sesuai dengan ketentuan yang berlaku. |
+| 3   | Toko Favorit               | Pengguna dapat menyimpan toko yang disukai ke 'Toko Favorit' yang dimiliki setiap akun pengguna.              | Admin memiliki permission sama seperti user.                                                                                                        |
+| 4   | Tambah Toko & Makannya     | -                                                                                                             | Admin dapat menambahkan toko dan makanan yang tersedia di toko tersebut.                                                                            |
+| 5   | Forum Diskusi Makanan      | Pengguna dapat menggunakan ruang diskusi global untuk berdiskusi tentang makanan. Pengguna juga bisa mengedit, menghapus       | Admin memiliki permission sama seperti user, ditambah admin dapat menghapus diskusi yang tidak sesuai dengan ketentuan yang berlaku.                |
+| 6   | Polling Makanan Terenak    | Pengguna dapat memberikan suaranya untuk sebuah makanan.                                                      | Admin memiliki permission sama seperti user.                                                                                                        |
 
 ### 6. URL _deployment_ PWS
 
