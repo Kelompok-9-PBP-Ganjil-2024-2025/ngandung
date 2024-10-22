@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'livereload'
+    'livereload',
+    'tambah_toko_makanan',
 ]
 
 MIDDLEWARE = [
