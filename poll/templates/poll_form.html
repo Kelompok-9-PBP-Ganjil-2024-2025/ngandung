@@ -1,0 +1,47 @@
+<h3>Create Poll</h3>
+{% csrf_token %}
+{{poll_form.as_p}}
+{{ formset.management_form }}
+<div id="form_set">
+    {% for form in formset.forms %}
+        <table class='no_error'>
+        <tr>
+            <td>{{ form.as_p }}</td>
+            <td><input type="button" value="Delete" class="delete_choice" disabled></td>
+        </tr>
+        </table>
+    {% endfor %}
+</div>
+<input type="button" value="Add Choice" id="add_choice">
+<input type="submit" value="Submit">
+<div id="empty_form" style="display:none">
+    <table class='no_error'>
+        <tr>
+            <td>{{ formset.empty_form.as_p }}</td>
+            <td><input type="button" value="Delete" class="delete_choice" disabled></td>
+        </tr>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $('#add_choice').click(function() {
+        var form_idx = $('#id_form-TOTAL_FORMS').val();
+        $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+        if (parseInt(form_idx) + 1 >= 5) {
+            $('#add_choice').prop('disabled', true);
+            return;
+        } else {
+            $('#add_choice').prop('disabled', false);
+        }
+        
+        if (parseInt(form_idx) + 1 > 2) {
+            $('.delete_choice').prop('disabled', false);
+        }
+    });
+
+    $('.delete_choice').click(() => {
+        console.log('hola amigo')
+    });
+</script>
