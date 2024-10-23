@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from tambah_toko_makanan.models import Toko, Makanan
+from toko_makanan.models import Toko, Makanan
 
 class FormToko(ModelForm):
     class Meta:

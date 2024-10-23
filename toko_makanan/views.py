@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from tambah_toko_makanan.models import Toko, Makanan
-from tambah_toko_makanan.forms import FormToko, FormMakanan
+from toko_makanan.models import Toko, Makanan
+from toko_makanan.forms import FormToko, FormMakanan
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 #*=========================================================================================================================================

@@ -1,5 +1,5 @@
 from django.urls import path
-from tambah_toko_makanan.views import *
+from toko_makanan.views import *
 
 app_name = 'tambah_toko_makanan'
 
