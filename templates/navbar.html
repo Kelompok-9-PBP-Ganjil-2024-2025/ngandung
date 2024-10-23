@@ -8,5 +8,6 @@
 		<a href="/toko-favorit" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'toko-favorit' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Toko Favorit</a>
 		<a href="/forum-diskusi" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'forum-diskusi' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Forum Diskusi</a>
 		<a href="/polling-makanan" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'polling-makanan' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Polling Makanan</a>
+		<a href="{% url 'authentication:logout' %}"class="px-2 py-1 hover:bg-[#FF0000] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'polling-makanan' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}" ><button>Logout</button></a>
 	</div>
 </nav>
