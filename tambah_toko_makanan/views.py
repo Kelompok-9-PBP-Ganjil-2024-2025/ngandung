@@ -1,7 +1,5 @@
-import datetime
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from django.core import serializers
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from tambah_toko_makanan.models import Toko, Makanan
 from tambah_toko_makanan.forms import FormToko, FormMakanan
