@@ -7,6 +7,7 @@
 {% block content %}
 <div class="login">
     <h1>Login</h1>
+    <a href="{% url 'authentication:register' %}">Register Now</a>
 
     <form method="POST" action="">
         {% csrf_token %}
@@ -25,8 +26,10 @@
         <li>{{ message }}</li>
         {% endfor %}
     </ul>
-    {% endif %} Don't have an account yet?
-    <a href="{% url 'main:register' %}">Register Now</a>
+    {% endif %} 
+    <span>Dont have an account yet?</span>
+
 </div>
+
 
 {% endblock content %}

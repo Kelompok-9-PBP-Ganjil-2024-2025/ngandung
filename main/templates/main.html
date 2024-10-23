@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Ngandung Main Page</title>
+{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='home' %}
+
+<div class="w-full flex flex-col items-center">
+	<p>{{ test }}</p>
+	<div class="w-1/2">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate, quos, quod, quibusdam quae quia voluptatum quas quidem doloremque nemo autem ipsam. Quisquam, voluptate, quos, quod, quibusdam quae quia voluptatum quas quidem doloremque nemo autem ipsam.</p>
+	</div>
+</div>
+
+{% endblock content %}
