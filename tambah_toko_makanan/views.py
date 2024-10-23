@@ -5,8 +5,10 @@ from django.core import serializers
 from django.urls import reverse
 from tambah_toko_makanan.models import Toko, Makanan
 from tambah_toko_makanan.forms import FormToko, FormMakanan
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 #*=========================================================================================================================================
+@login_required(login_url='/login')
 def create_toko(req):
     form = FormToko(req.POST or None, req.FILES)
 
@@ -18,6 +20,7 @@ def create_toko(req):
     context = {'form': form}
     return render(req, "addToko/index.html", context)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
 def edit_toko(req, id):
     toko = Toko.objects.get(pk=id)
 
@@ -30,6 +33,7 @@ def edit_toko(req, id):
     context = {'form': form}
     return render(req, "editToko/index.html", context)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
 def delete_toko(req, id):
     toko = Toko.objects.get(pk=id)
     toko.delete()
@@ -40,6 +44,7 @@ def detail_toko(req, id):
     context = {'toko': toko}
     return render(req, 'detailToko/index.html', context)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
 def create_makanan(req):
     form = FormMakanan(req.POST or None, req.FILES)
 
@@ -51,6 +56,7 @@ def create_makanan(req):
     context = {'form': form}
     return render(req, "addMakanan/index.html", context)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
 def edit_makanan(req, id):
     makanan = Makanan.objects.get(pk=id)
 
@@ -63,6 +69,7 @@ def edit_makanan(req, id):
     context = {'form': form}
     return render(req, "editMakanan/index.html", context)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
 def delete_makanan(req, id):
     makanan = Makanan.objects.get(pk=id)
     makanan.delete()
