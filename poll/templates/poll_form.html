@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <h3>Create Poll</h3>
 {% csrf_token %}
 {{poll_form.as_p}}
@@ -45,3 +48,5 @@
         console.log('hola amigo')
     });
 </script>
+
+{% endblock content %}
