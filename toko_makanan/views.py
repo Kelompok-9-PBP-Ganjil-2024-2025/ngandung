@@ -5,6 +5,13 @@ from toko_makanan.models import Toko, Makanan
 from toko_makanan.forms import FormToko, FormMakanan
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+#*=========================================================================================================================================
+def show_main(request):
+    context = {
+        'test' : 'Test'
+    }
+    return render(request, "mainPage/index.html", context)
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 def create_toko(req):
