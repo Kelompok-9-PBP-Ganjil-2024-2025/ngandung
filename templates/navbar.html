@@ -4,10 +4,10 @@
 		<p class="text-4xl font-extrabold">Ngandung</p>
 	</div>
 	<div class="flex flex-row space-x-4">
-		<a href="/" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'home' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Home</a>
-		<a href="/toko-favorit" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'toko-favorit' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Toko Favorit</a>
-		<a href="/forum-diskusi" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'forum-diskusi' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Forum Diskusi</a>
-		<a href="/polling-makanan" class="px-2 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'polling-makanan' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Polling Makanan</a>
-		<a href="{% url 'authentication:logout' %}"class="px-2 py-1 hover:bg-[#FF0000] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'polling-makanan' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}" ><button>Logout</button></a>
+		<a href="/" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'home' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Home</a>
+		<a href="/toko-favorit" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'toko-favorit' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Toko Favorit</a>
+		<a href="/forum-diskusi" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'forum-diskusi' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Forum Diskusi</a>
+		<a href="/polling-makanan" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'polling-makanan' %}bg-[#ff9900] border-2 border-[#c77700]{% endif %}">Polling Makanan</a>
+		<a href="{% url 'authentication:logout' %}" class="px-3 py-1 hover:bg-[#ff0000] transition-all duration-200 flex items-center justify-center rounded" >Logout</a>
 	</div>
 </nav>

@@ -1,35 +1,69 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Login to Ngandung</title>
+{% endblock meta %} {% block content %}
+<div class="login flex flex-row w-full bg-[#ff9900] h-screen text-white">
+	<div class="bg-[#111111] h-full w-1/2 max-w-[45rem] flex items-center justify-center flex-col space-y-8">
+		<p class="text-5xl font-extrabold">Ngandung</p>
 
-{% block meta %}
-<title>Login</title>
-{% endblock meta %}
+		<h2 class="mt-6 text-center text-3xl font-extrabold">Login to your account</h2>
 
-{% block content %}
-<div class="login">
-    <h1>Login</h1>
-    <a href="{% url 'authentication:register' %}">Register Now</a>
+		<form class="mt-8 space-y-6 w-1/2" method="POST" action="">
+			{% csrf_token %}
+			<input type="hidden" name="remember" value="true" />
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td><input class="btn login_btn" type="submit" value="Login" /></td>
-        </tr>
-        </table>
-    </form>
+			<div class="rounded-md shadow-sm space-y-2">
+				<div>
+					<label for="username" class="mb-2 font-semibold">Username</label>
+					<div class="relative mt-1">
+						<input id="username" name="username" type="text" required class="border-2 appearance-none relative block w-full px-3 py-2 border-[#202020] bg-[#242424] placeholder-gray-500 rounded-lg focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm" placeholder="Username" />
+						<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+					</div>
+					<!-- Error handling for the username -->
+					{% if form.username.errors %}
+					<p class="mt-1 text-sm text-red-600">{{ form.username.errors.0 }}</p>
+					{% endif %}
+				</div>
+				<div class="mt-4">
+					<label for="password" class="mb-2 font-semibold">Password</label>
+					<div class="relative mt-1">
+						<input id="password" name="password" type="password" required class="border-2 appearance-none relative block w-full px-3 py-2 border-[#202020] bg-[#242424] placeholder-gray-500 rounded-lg focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm" placeholder="Password" />
+						<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+					</div>
+					<!-- Error handling for the password -->
+					{% if form.password.errors %}
+					<p class="mt-1 text-sm text-red-600">{{ form.password.errors.0 }}</p>
+					{% endif %}
+				</div>
+			</div>
 
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} 
-    <span>Dont have an account yet?</span>
+			<div>
+				<button type="submit" value="Login" class="group relative w-full bg-[#0b79f7] hover:bg-opacity-100 hover:text-white bg-opacity-10 text-[#0b79f7] border border-[#0b79f7] font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform flex-row space-x-2 flex items-center justify-center">Sign in</button>
+			</div>
+		</form>
 
+		<p class="text-center">Dont have an account yet? <br /><a href="{% url 'authentication:register' %}" class='text-[#ff9900] underline underline-offset-3'>Register now</a></p>
+	</div>
+
+	<div class="flex-grow flex items-start">
+		<svg width="100%" viewBox="0 0 810 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<mask id="mask0_240_354" style="mask-type: luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="810" height="512">
+				<path d="M810 0H0V512H810V0Z" fill="white" />
+			</mask>
+			<g mask="url(#mask0_240_354)">
+				<path d="M810 0H0V512H810V0Z" fill="white" />
+				<path d="M266.511 0L186.511 80H-39.989V386.5L266.511 80V0Z" fill="#FEC123" />
+				<path d="M266.511 80H346.511V0L266.511 80Z" fill="#FF9900" />
+				<path d="M137.837 55.4986L23.6884 -58.6496L-204 169.039L-89.8518 283.187L137.837 55.4986Z" fill="#FF9900" />
+				<path d="M23.5529 55.7663C54.9901 87.2035 105.96 87.2035 137.397 55.7663C168.834 24.3291 168.834 -26.6407 137.397 -58.0779C105.96 -89.5151 54.9901 -89.5151 23.5529 -58.0779C-7.88432 -26.6407 -7.88432 24.3291 23.5529 55.7663Z" fill="#FEC123" />
+				<path d="M630.26 438.538L538.848 347.126L356.511 529.463L447.923 620.875L630.26 438.538Z" fill="#FF9900" />
+				<path d="M538.74 438.752C563.915 463.928 604.733 463.928 629.908 438.752C655.084 413.577 655.084 372.759 629.908 347.584C604.733 322.408 563.915 322.408 538.74 347.584C513.564 372.759 513.564 413.577 538.74 438.752Z" fill="#FEC123" />
+				<path d="M810.511 352C993.317 352 1141.51 203.806 1141.51 21C1141.51 -161.806 993.317 -310 810.511 -310C627.705 -310 479.511 -161.806 479.511 21C479.511 203.806 627.705 352 810.511 352Z" fill="#FEC123" />
+				<path d="M810.511 231C926.491 231 1020.51 136.98 1020.51 21C1020.51 -94.9798 926.491 -189 810.511 -189C694.531 -189 600.511 -94.9798 600.511 21C600.511 136.98 694.531 231 810.511 231Z" fill="#FF9900" />
+				<path d="M600.443 142.347L508.096 50L46.5108 511.585L138.857 603.932L600.443 142.347Z" fill="#FEC123" />
+				<path d="M810.511 442H740.511V512H810.511V442Z" fill="#FF9900" />
+			</g>
+		</svg>
+	</div>
 </div>
-
 
 {% endblock content %}

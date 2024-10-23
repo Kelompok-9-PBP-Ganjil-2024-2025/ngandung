@@ -7,12 +7,10 @@ from django.contrib.auth import logout
 
 # Create your views here.
 
-# Create your views here.
-
 @login_required(login_url='/login')
 def show_main(request):
     context = {
-        'title': 'NGAN DUNK',
+        'test': 'NGAN DUNK',
     }
 
     return render(request, "main.html", context)
