@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 #*=========================================================================================================================================
 def show_main(req):
+    makanan = Makanan.objects.all()
     context = {
-        'test' : 'Test'
+        'makanan': makanan
     }
     return render(req, "mainPage/index.html", context)
 #*=========================================================================================================================================
