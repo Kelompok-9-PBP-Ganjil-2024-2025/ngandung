@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def show_main(req):
     makanan = Makanan.objects.all()
     context = {
-        'makanan': makanan
+        'list_makanan': makanan
     }
     return render(req, "mainPage/index.html", context)
 #*=========================================================================================================================================
