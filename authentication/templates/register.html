@@ -3,6 +3,7 @@
 {% endblock meta %} {% block content %}
 <div class="register flex flex-row w-full bg-[#ff9900] h-screen text-white">
 	<div class="flex-grow flex items-start">
+		{% comment %} Can't use static somehow {% endcomment %}
 		<svg width="100%" viewBox="0 0 810 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<mask id="mask0_240_354" style="mask-type: luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="810" height="512">
 				<path d="M810 0H0V512H810V0Z" fill="white" />
@@ -58,7 +59,7 @@
 			</div>
 		</form>
 
-		{% if messages %}
+		{% comment %} {% if messages %}
 		<div class="mt-4">
 			{% for message in messages %}
 			<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -66,11 +67,11 @@
 			</div>
 			{% endfor %}
 		</div>
-		{% endif %}
+		{% endif %} {% endcomment %}
 
 		<p class="text-center mt-4">
 			Already have an account? <br />
-			<a href="{% url 'authentication:login' %}" class="text-[#ff9900] underline underline-offset-3">Sign in</a>
+			<a href="{% url 'authentication:login' %}" class="text-[#ff9900] underline underline-offset-3">Sign in here</a>
 		</p>
 	</div>
 
@@ -79,17 +80,13 @@
             border-width: 2px;
             border-color: #202020;
             background-color: #242424;
-            color: #cccccc;
+            color: #ffffff;
             width: 100%;
             padding: 0.5rem 0.75rem;
             border-radius: 0.5rem;
             appearance: none;
             outline: none;
             font-size: 0.875rem;
-        }
-
-        input::placeholder {
-            color: #6b7280; /* placeholder-gray-500 */
         }
 
         input:focus {

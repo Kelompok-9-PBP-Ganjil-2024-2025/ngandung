@@ -7,14 +7,6 @@ from django.contrib.auth import logout
 
 # Create your views here.
 
-@login_required(login_url='/login')
-def show_main(request):
-    context = {
-        'test': 'NGAN DUNK',
-    }
-
-    return render(request, "main.html", context)
-
 def register(request):
     form = UserCreationForm()
 
