@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Register to Ngandung</title>
+{% endblock meta %} {% block content %}
+<div class="register flex flex-row w-full bg-[#ff9900] h-screen text-white">
+	<div class="flex-grow flex items-start">
+		<svg width="100%" viewBox="0 0 810 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<mask id="mask0_240_354" style="mask-type: luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="810" height="512">
+				<path d="M810 0H0V512H810V0Z" fill="white" />
+			</mask>
+			<g mask="url(#mask0_240_354)">
+				<path d="M810 0H0V512H810V0Z" fill="white" />
+				<path d="M266.511 0L186.511 80H-39.989V386.5L266.511 80V0Z" fill="#FEC123" />
+				<path d="M266.511 80H346.511V0L266.511 80Z" fill="#FF9900" />
+				<path d="M137.837 55.4986L23.6884 -58.6496L-204 169.039L-89.8518 283.187L137.837 55.4986Z" fill="#FF9900" />
+				<path d="M23.5529 55.7663C54.9901 87.2035 105.96 87.2035 137.397 55.7663C168.834 24.3291 168.834 -26.6407 137.397 -58.0779C105.96 -89.5151 54.9901 -89.5151 23.5529 -58.0779C-7.88432 -26.6407 -7.88432 24.3291 23.5529 55.7663Z" fill="#FEC123" />
+				<path d="M630.26 438.538L538.848 347.126L356.511 529.463L447.923 620.875L630.26 438.538Z" fill="#FF9900" />
+				<path d="M538.74 438.752C563.915 463.928 604.733 463.928 629.908 438.752C655.084 413.577 655.084 372.759 629.908 347.584C604.733 322.408 563.915 322.408 538.74 347.584C513.564 372.759 513.564 413.577 538.74 438.752Z" fill="#FEC123" />
+				<path d="M810.511 352C993.317 352 1141.51 203.806 1141.51 21C1141.51 -161.806 993.317 -310 810.511 -310C627.705 -310 479.511 -161.806 479.511 21C479.511 203.806 627.705 352 810.511 352Z" fill="#FEC123" />
+				<path d="M810.511 231C926.491 231 1020.51 136.98 1020.51 21C1020.51 -94.9798 926.491 -189 810.511 -189C694.531 -189 600.511 -94.9798 600.511 21C600.511 136.98 694.531 231 810.511 231Z" fill="#FF9900" />
+				<path d="M600.443 142.347L508.096 50L46.5108 511.585L138.857 603.932L600.443 142.347Z" fill="#FEC123" />
+				<path d="M810.511 442H740.511V512H810.511V442Z" fill="#FF9900" />
+			</g>
+		</svg>
+	</div>
+
+	<div class="bg-[#111111] h-full w-1/2 max-w-[45rem] flex items-center justify-center flex-col space-y-8">
+		<p class="text-5xl font-extrabold">Ngandung</p>
+
+		<h2 class="mt-6 text-center text-3xl font-extrabold">Create your account</h2>
+
+		<form class="mt-8 space-y-6 w-1/2" method="POST">
+			{% csrf_token %}
+			<input type="hidden" name="remember" value="true" />
+
+			<div class="rounded-md shadow-sm space-y-2">
+				{% for field in form %}
+				<div class="{% if not forloop.first %}mt-4{% endif %}">
+					<label for="{{ field.id_for_label }}" class="mb-2 font-semibold">{{ field.label }}</label>
+					<div class="relative mt-1">
+						{{ field }}
+						<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+							{% if field.errors %}
+							<svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+							</svg>
+							{% endif %}
+						</div>
+					</div>
+					{% if field.errors %} {% for error in field.errors %}
+					<p class="mt-1 text-sm text-red-600">{{ error }}</p>
+					{% endfor %} {% endif %}
+				</div>
+				{% endfor %}
+			</div>
+
+			<div>
+				<button type="submit" class="group relative w-full bg-[#0b79f7] hover:bg-opacity-100 hover:text-white bg-opacity-10 text-[#0b79f7] border border-[#0b79f7] font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform flex-row space-x-2 flex items-center justify-center">Register</button>
+			</div>
+		</form>
+
+		{% if messages %}
+		<div class="mt-4">
+			{% for message in messages %}
+			<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+				<span class="block sm:inline">{{ message }}</span>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		<p class="text-center mt-4">
+			Already have an account? <br />
+			<a href="{% url 'authentication:login' %}" class="text-[#ff9900] underline underline-offset-3">Sign in</a>
+		</p>
+	</div>
+
+    <style>
+        input {
+            border-width: 2px;
+            border-color: #202020;
+            background-color: #242424;
+            color: #cccccc;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            appearance: none;
+            outline: none;
+            font-size: 0.875rem;
+        }
+
+        input::placeholder {
+            color: #6b7280; /* placeholder-gray-500 */
+        }
+
+        input:focus {
+            border-color: #0b79f7;
+            box-shadow: 0 0 0 3px rgba(11, 121, 247, 0.5);
+        }
+    </style>
+</div>
+
+{% endblock content %}
