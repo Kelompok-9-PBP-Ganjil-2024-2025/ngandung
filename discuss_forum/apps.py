@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FoodDiscussionForumConfig(AppConfig):
+class DiscussForumConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'food_discussion_forum'
+    name = 'discuss_forum'

@@ -12,7 +12,7 @@ class Discussion(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.title
     
 class Comment(models.Model):
@@ -22,5 +22,5 @@ class Comment(models.Model):
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def _str_(self):
         return f"Comment by (self.user) on (self.discussion.title)"
