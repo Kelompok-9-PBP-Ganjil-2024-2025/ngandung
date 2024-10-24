@@ -41,14 +41,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "main",
     "authentication",
-    "livereload",
-    'toko_makanan',
+    "toko_makanan",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "livereload.middleware.LiveReloadScript",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

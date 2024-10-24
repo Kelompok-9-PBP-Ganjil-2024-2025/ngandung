@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.core import serializers
 from toko_makanan.models import Toko, Makanan
@@ -29,8 +29,6 @@ def create_toko(req):
     context = {'form': form}
     return render(req, "addToko/index.html", context)
 
-@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
-@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 def edit_toko(req, id):
@@ -60,22 +58,35 @@ def detail_toko(req, id):
 @csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
 @require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
 def add_makanan_ajax(req):
-    #mengambil data yang dikirimkan pengguna melalui POST request secara manual
-    nama = strip_tags(req.POST.get("nama")) # strip HTML tags!
-    harga = req.POST.get("harga")
-    toko = req.POST.get('toko')
-    description = req.POST.get("description")
+    try:
+        # Ambil data dari request POST
+        nama = strip_tags(req.POST.get("nama"))
+        harga = req.POST.get("harga")
+        toko_id = req.POST.get('toko')
+        description = req.POST.get("description")
 
-    #membuat objek product baru
-    new_product = Makanan(
-        nama=nama, 
-        harga=harga,
-        toko=toko,
-        description=description, 
-    )
-    new_product.save() #save product yang dibuat
+        # Cari toko berdasarkan ID
+        try:
+            toko = Toko.objects.get(id=toko_id)
+        except Toko.DoesNotExist:
+            return JsonResponse({"error": "Toko tidak ditemukan"}, status=400)
 
-    return HttpResponse(b"CREATED", status=201)
+        # Buat objek Makanan baru
+        new_product = Makanan(
+            nama=nama,
+            harga=harga,
+            toko=toko,  # masukkan instance Toko, bukan hanya ID
+            description=description
+        )
+
+        # Simpan produk baru
+        new_product.save()
+
+        return JsonResponse({"message": "Makanan berhasil ditambahkan"}, status=201)
+
+    except Exception as e:
+        # Menangani error tak terduga
+        return JsonResponse({"error": str(e)}, status=500)
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 def edit_makanan(req, id):
@@ -102,5 +113,5 @@ def detail_makanan(req, id):
     return render(req, 'detailMakanan/index.html', context)
 #*=========================================================================================================================================
 def makanan_json(req):
-    data = Makanan.objects.filter(user=req.user)
+    data = Makanan.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")

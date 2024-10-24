@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block meta %}
 <title>Ngandung Main Page</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='home' %}
 
 <div class="pt-32 overflow-y-auto flex flex-col h-screen">
@@ -9,7 +10,7 @@
 	</div>
 	<div class="w-full px-3 md:px-8 pb-8 pt-16">
 		<div class="flex justify-end mb-6 gap-x-2">
-			<button data-modal-target="crudModal" data-modal-toggle="crudModal" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();"> Add Makanan </button>
+			<button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Add Makanan </button>
 			<a href="{% url 'toko_makanan:add_toko' %}" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Add Toko </a>
 		</div>
 	</div>
@@ -71,133 +72,137 @@
 			</div>
 		</div>
 	</div>
+</div>
+<script>
+	console.log("HELLO WORLD");
+	async function getMakanan() {
+		return fetch("{% url 'toko_makanan:makanan_json' %}").then((res) => res.json());
+		//menggunakan fetch() API ke data JSON secara asynchronous.
+		//Setelah data di-fetch, fungsi then() digunakan untuk melakukan parse pada data JSON menjadi objek JavaScript.
+	}
 
-	<script>
-		async function getMakanan() {
-			return fetch("{% url 'toko_makanan:makanan_json' %}").then((res) => res.json());
-			//menggunakan fetch() API ke data JSON secara asynchronous.
-			//Setelah data di-fetch, fungsi then() digunakan untuk melakukan parse pada data JSON menjadi objek JavaScript.
+	async function refreshMakanan() {
+		document.getElementById('display_makanan').innerHTML = '';
+		document.getElementById('display_makanan').className = '';
+		const list_makanan = await getMakanan();
+		let htmlString = '';
+		let classNameString = '';
+
+		if (list_makanan.length === 0) {
+			classNameString = 'flex flex-col items-center justify-center h-screen p-6';
+			htmlString = `<p>Belum ada data disini.</p>`;
+		} else {
+			classNameString = 'grid grid-cols-1 md:grid-cols-3 gap-6 justify-center';
+			list_makanan.forEach((makanan) => {
+				const nama = DOMPurify.sanitize(makanan.fields.nama);
+				htmlString += `
+						<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+						<!-- Placeholder Image -->
+						<img src="https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-s.png" alt="placeholder" class="w-full h-48 object-cover rounded-t-lg">
+						
+						<!-- Card Content -->
+						<div class="p-4">
+							<!-- Nama Makanan -->
+							<h3 class="font-bold text-xl mb-4 text-center">${nama}</h3>
+						</div>
+
+						<!-- Button Group -->
+						<div class="p-4 flex justify-between items-center">
+							<!-- Detail Button (Pojok Kiri) -->
+							<a href="/detail_makanan/${makanan.pk}" class="bg-[#ff9900] text-white rounded-full px-4 py-2 transition duration-300 shadow-md">
+								Detail...
+							</a>
+
+							<!-- Edit & Delete Buttons (Pojok Kanan) -->
+							<div class="flex space-x-2">
+								<!-- Edit Button -->
+								<a href="edit-makanan/${makanan.pk}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+									</svg>
+								</a>
+
+								<!-- Delete Button -->
+								<a href="delete-makanan/${makanan.pk}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+										<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+					`;
+			});
 		}
+		document.getElementById('display_makanan').className = classNameString;
+		document.getElementById('display_makanan').innerHTML = htmlString;
+	}
+	refreshMakanan();
 
-		async function refreshMakanan() {
-			document.getElementById('display_makanan').innerHTML = '';
-			document.getElementById('display_makanan').className = '';
-			const list_makanan = await getMakanan();
-			let htmlString = '';
-			let classNameString = '';
+	
+	const modal = document.getElementById('crudModal');
+	const modalContent = document.getElementById('crudModalContent');
 
-			if (list_makanan.length === 0) {
-				classNameString = 'flex flex-col items-center justify-center h-screen p-6';
-				htmlString = `<p>Belum ada data disini.</p>`;
-			} else {
-				classNameString = 'grid grid-cols-1 md:grid-cols-3 gap-6 justify-center';
-				list_makanan.forEach((makanan) => {
-					const nama = DOMPurify.sanitize(makanan.fields.nama);
-					htmlString += `
-                            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <!-- Placeholder Image -->
-                            <img src="https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-s.png" alt="placeholder" class="w-full h-48 object-cover rounded-t-lg">
-                            
-                            <!-- Card Content -->
-                            <div class="p-4">
-                                <!-- Nama Makanan -->
-                                <h3 class="font-bold text-xl mb-4 text-center">${nama}</h3>
-                            </div>
-
-                            <!-- Button Group -->
-                            <div class="p-4 flex justify-between items-center">
-                                <!-- Detail Button (Pojok Kiri) -->
-                                <a href="/detail_makanan/${makanan.pk}" class="bg-[#ff9900] text-white rounded-full px-4 py-2 transition duration-300 shadow-md">
-                                    Detail...
-                                </a>
-
-                                <!-- Edit & Delete Buttons (Pojok Kanan) -->
-                                <div class="flex space-x-2">
-                                    <!-- Edit Button -->
-                                    <a href="/edit_makanan/${item.pk}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                        </svg>
-                                    </a>
-
-                                    <!-- Delete Button -->
-                                    <a href="/delete_product/${item.pk}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-				});
-			}
-			document.getElementById('display_makanan').className = classNameString;
-			document.getElementById('display_makanan').innerHTML = htmlString;
-		}
-		refreshMakanan();
-
+	function showModal() {
 		const modal = document.getElementById('crudModal');
 		const modalContent = document.getElementById('crudModalContent');
 
-		function showModal() {
-			const modal = document.getElementById('crudModal');
-			const modalContent = document.getElementById('crudModalContent');
+		modal.classList.remove('hidden');
+		setTimeout(() => {
+			modalContent.classList.remove('opacity-0', 'scale-95');
+			modalContent.classList.add('opacity-100', 'scale-100');
+		}, 50);
+	}
 
-			modal.classList.remove('hidden');
-			setTimeout(() => {
-				modalContent.classList.remove('opacity-0', 'scale-95');
-				modalContent.classList.add('opacity-100', 'scale-100');
-			}, 50);
+	function hideModal() {
+		const modal = document.getElementById('crudModal');
+		const modalContent = document.getElementById('crudModalContent');
+
+		modalContent.classList.remove('opacity-100', 'scale-100');
+		modalContent.classList.add('opacity-0', 'scale-95');
+
+		setTimeout(() => {
+			modal.classList.add('hidden');
+		}, 150);
+	}
+
+	modal.addEventListener('click', (event) => {
+		// Check if the click is outside the modal content
+		if (!modalContent.contains(event.target)) {
+			hideModal(); // Close the modal
 		}
+	});
 
-		function hideModal() {
-			const modal = document.getElementById('crudModal');
-			const modalContent = document.getElementById('crudModalContent');
+	document.getElementById("cancelButton").addEventListener("click", hideModal);
+	document.getElementById("closeModalBtn").addEventListener("click", hideModal);
 
-			modalContent.classList.remove('opacity-100', 'scale-100');
-			modalContent.classList.add('opacity-0', 'scale-95');
+	function addMakanan() {
+		fetch("{% url 'toko_makanan:add_makanan' %}", {
+			method: 'POST',
+			body: new FormData(document.querySelector('#makananForm')), //membuat sebuah FormData baru yang datanya diambil dari form pada modal
+		}) //FormData dapat digunakan untuk mengirimkan data form tersebut ke server.
+			.then((response) => {
+				if (response.ok) {
+					refreshMakanan(); // Refresh the products list
+					hideModal(); // Close the modal after product creation
+				} else {
+					console.error('Product creation failed.');
+				}
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
 
-			setTimeout(() => {
-				modal.classList.add('hidden');
-			}, 150);
-		}
+		document.getElementById('makananForm').reset(); //mengosongkan isi field form modal setelah di-submit.
+		document.querySelector("[data-modal-toggle='crudModal']").click();
 
-		modal.addEventListener('click', (event) => {
-			// Check if the click is outside the modal content
-			if (!modalContent.contains(event.target)) {
-				hideModal(); // Close the modal
-			}
-		});
+		return false;
+	}
 
-		function addMakanan() {
-			fetch("{% url 'toko_makanan:add_makanan' %}", {
-				method: 'POST',
-				body: new FormData(document.querySelector('#makananForm')), //membuat sebuah FormData baru yang datanya diambil dari form pada modal
-			}) //FormData dapat digunakan untuk mengirimkan data form tersebut ke server.
-				.then((response) => {
-					if (response.ok) {
-						refreshMakanan(); // Refresh the products list
-						hideModal(); // Close the modal after product creation
-					} else {
-						console.error('Product creation failed.');
-					}
-				})
-				.catch((error) => {
-					console.error('Error:', error);
-				});
+	document.getElementById("makananForm").addEventListener("submit", (e) => {
+		e.preventDefault();
+		addMakanan();
+	})
+</script>
 
-			document.getElementById('makananForm').reset(); //mengosongkan isi field form modal setelah di-submit.
-			document.querySelector("[data-modal-toggle='crudModal']").click();
-
-			return false;
-		}
-
-        document.getElementById("makananForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            addMakanan();
-        })
-	</script>
-
-	{% endblock content %}
-</div>
+{% endblock content %}
