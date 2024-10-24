@@ -5,12 +5,15 @@ from django.core import serializers
 from toko_makanan.models import Toko, Makanan
 from toko_makanan.forms import FormToko, FormMakanan
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 # Create your views here.
 #*=========================================================================================================================================
 def show_main(req):
-    makanan = Makanan.objects.all()
+    toko = Toko.objects.all()
     context = {
-        'list_makanan': makanan
+        'list_toko': toko
     }
     return render(req, "mainPage/index.html", context)
 #*=========================================================================================================================================
@@ -25,6 +28,9 @@ def create_toko(req):
 
     context = {'form': form}
     return render(req, "addToko/index.html", context)
+
+@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
+@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 def edit_toko(req, id):
@@ -51,16 +57,25 @@ def detail_toko(req, id):
     return render(req, 'detailToko/index.html', context)
 #*=========================================================================================================================================
 @login_required(login_url='/login')
-def create_makanan(req):
-    form = FormMakanan(req.POST or None, req.FILES)
+@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
+@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
+def add_makanan_ajax(req):
+    #mengambil data yang dikirimkan pengguna melalui POST request secara manual
+    nama = strip_tags(req.POST.get("nama")) # strip HTML tags!
+    harga = req.POST.get("harga")
+    toko = req.POST.get('toko')
+    description = req.POST.get("description")
 
-    if form.is_valid() and req.method == "POST":
-        makanan = form.save(commit=False)
-        makanan.save()
-        return redirect('toko_makanan:show_main')
+    #membuat objek product baru
+    new_product = Makanan(
+        nama=nama, 
+        harga=harga,
+        toko=toko,
+        description=description, 
+    )
+    new_product.save() #save product yang dibuat
 
-    context = {'form': form}
-    return render(req, "addMakanan/index.html", context)
+    return HttpResponse(b"CREATED", status=201)
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 def edit_makanan(req, id):
