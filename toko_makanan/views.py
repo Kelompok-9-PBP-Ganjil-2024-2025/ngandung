@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.core import serializers
 from toko_makanan.models import Toko, Makanan
 from toko_makanan.forms import FormToko, FormMakanan
 from django.contrib.auth.decorators import login_required
@@ -84,3 +85,7 @@ def detail_makanan(req, id):
     makanan = get_object_or_404(Makanan, pk=id)
     context = {'makanan': makanan}
     return render(req, 'detailMakanan/index.html', context)
+#*=========================================================================================================================================
+def makanan_json(req):
+    data = Makanan.objects.filter(user=req.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
