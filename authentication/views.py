@@ -8,6 +8,10 @@ from django.contrib.auth import logout
 # Create your views here.
 
 def register(request):
+    # Return to the "/" if the user is already authenticated
+    if request.user.is_authenticated:
+        return redirect('/')
+
     form = UserCreationForm()
 
     if request.method == "POST":
@@ -20,13 +24,17 @@ def register(request):
     return render(request, 'register.html', context)
 
 def login_user(request):
+    # Return to the "/" if the user is already authenticated
+    if request.user.is_authenticated:
+        return redirect('/')
+
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
 
         if form.is_valid():
                 user = form.get_user()
                 login(request, user)
-                return redirect('authentication:show_main')
+                return redirect('/')
 
     else:
         form = AuthenticationForm(request)
