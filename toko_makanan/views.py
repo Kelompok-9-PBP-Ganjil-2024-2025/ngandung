@@ -89,12 +89,10 @@ def add_makanan_ajax(req):
 @login_required(login_url='/login')
 def edit_makanan(req, id):
     makanan = Makanan.objects.get(pk=id)
-
-    if req.method == "POST":
-        form = FormMakanan(req.POST or None, req.FILES or None, instance=makanan)
-        if form.is_valid() :
-            form.save()
-            return HttpResponseRedirect(reverse('toko_makanan:show_main'))
+    form = FormMakanan(req.POST or None, req.FILES or None, instance=makanan)
+    if form.is_valid() and req.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('toko_makanan:show_main'))
     
     context = {'form': form}
     return render(req, "editMakanan/index.html", context)
