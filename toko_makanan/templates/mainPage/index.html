@@ -51,8 +51,8 @@
 						<label for="makananToko" class="block text-sm font-medium text-zinc-50">Toko</label>
 						<select id="makananToko" name="toko" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" required>
 							<option value="" disabled selected>Makanan terdapat di toko:</option>
-							{% for toko in list_toko %}
-							<option value="{{ toko.id }}">{{ toko.nama }}</option>
+							{% for rumah_makan in list_rumah_makan %}
+							<option value="{{ rumah_makan.id }}">{{ rumah_makan.nama_rumah_makan }}</option>
 							{% endfor %}
 						</select>
 					</div>
@@ -83,14 +83,14 @@
 		let classNameString = '';
 
 		if (list_makanan.length === 0) {
-			classNameString = 'flex flex-col items-center justify-center h-screen p-6';
+			classNameString = 'flex flex-col items-center justify-center h-screen p-8';
 			htmlString = `<p>Belum ada data disini.</p>`;
 		} else {
-			classNameString = 'grid grid-cols-1 md:grid-cols-4 gap-6 justify-center mx-auto';
+			classNameString = 'grid grid-cols-1 md:grid-cols-4 gap-6 justify-center mx-auto px-6';
 			list_makanan.forEach((makanan) => {
-				const nama = DOMPurify.sanitize(makanan.fields.nama);
+				const name = DOMPurify.sanitize(makanan.fields.name);
 				htmlString += `
-				<div class="relative top-5 bg-black shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-4 border-black transform hover:scale-105 transition-transform duration-300 max-w-lg w-full">
+				<div class="relative top-5 bg-black shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-4 border-black transform hover:scale-105 transition-transform duration-300">
 					<div class="bg-black shadow-lg rounded-lg overflow-hidden">
 					<!-- Placeholder Image -->
 					<img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg border-2 border-black">
@@ -98,7 +98,7 @@
 					<!-- Card Content -->
 					<div class="p-4">
 						<!-- Nama Makanan -->
-						<h3 class="font-bold text-xl mb-4 text-center text-stone-200">${nama}</h3>
+						<h3 class="font-bold text-xl mb-4 text-center text-stone-200">${name}</h3>
 					</div>
 
 					<!-- Button Group -->
