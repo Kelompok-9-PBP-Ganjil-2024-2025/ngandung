@@ -12,10 +12,10 @@
 ### 1. Nama-nama anggota kelompok
 
 -   Ahmad Dzulfikar As Shavy (2306152374) - `AhmadDzulfikar`
--   Muhammad Radhiya Arshq (2306275885) - `arshqiii`
 -   Christian Raphael Heryanto (2306152323) - `papaChick`
--   Rayhan Syahdira Putra (2306275903) - `RayhanSP`
 -   Daffa Abhipraya Putra (2306245131) - `absolutepraya`
+-   Muhammad Radhiya Arshq (2306275885) - `arshqiii`
+-   Rayhan Syahdira Putra (2306275903) - `RayhanSP`
 
 ### 2. Deskripsi aplikasi
 
@@ -23,17 +23,20 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
 
 ### 3. Daftar modul aplikasi
 
-#### a. Modul wajib:
+#### a. Modul/fitur wajib:
 
 -   _**Authentication**_ **and** _**Authorization**_
     Modul ini berfungsi untuk mengatur _authentication_ pengguna. Pengguna dapat mendaftar, masuk, dan keluar dari aplikasi.
 
+-   **Implementasi fixture data toko, makanan, dan admin**
+    Modul ini berfungsi untuk mengisi data awal ke dalam database. Data awal yang dimasukkan berupa data makanan dan data toko.
+
 #### b. Modul/fitur aplikasi:
 
--   **Daftar Makanan Rekomendasi**  
-    Modul ini berfungsi untuk menampilkan daftar makanan yang tersedia. Pengguna dapat melihat informasi makanan yang diinginkan.
+-   **Daftar Makanan & Toko**  
+    Modul ini berfungsi untuk menampilkan daftar makanan yang tersedia, menambahkan makanan baru, dan menambahkan toko baru.
 
-    **_Dikerjakan oleh:_** Daffa Abhipraya Putra
+    **_Dikerjakan oleh:_** Muhammad Radhiya Arshq
 
 -   **_Rating_ & _Review_ Toko**  
     Modul ini berfungsi untuk memberikan _rating_ & _review_ ke toko yang tersedia.
@@ -44,11 +47,6 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
     Modul ini berfungsi untuk menyimpan toko yang disukai oleh pengguna.
 
     **_Dikerjakan oleh:_** Rayhan Syahdira Putra
-
--   **Tambah Toko & Makannya**  
-    Modul ini berfungsi untuk menambahkan toko dan makanan yang tersedia di toko tersebut.
-
-    **_Dikerjakan oleh:_** Muhammad Radhiya Arshq
 
 -   **Forum Diskusi Makanan**  
     Modul ini berfungsi untuk memberikan ruang diskusi global kepada pengguna untuk berbagi informasi tentang makanan.
@@ -66,14 +64,13 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
 
 ### 5. **Role** pengguna (_User_ dan _Admin_)
 
-| No. | Modul                      | _Permission User_                                                                                                        | _Permission Admin_                                                                                                                                  |
-| --- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Daftar Makanan Rekomendasi | Pengguna dapat mengakses informasi makanan yang tersedia di aplikasi, tanpa dapat mengubah atau menghapusnya.            | Admin memiliki permission sama seperti user.                                                                                                        |
-| 2   | Rating & Review Toko       | Pengguna dapat memberikan rating dengan range 1-5 dan review berupa teks singkat ke toko yang tersedia.                  | Admin memiliki permission sama seperti user, ditambah admin juga dapat menghapus rating dan review yang tidak sesuai dengan ketentuan yang berlaku. |
-| 3   | Toko Favorit               | Pengguna dapat menyimpan toko yang disukai ke 'Toko Favorit' yang dimiliki setiap akun pengguna.                         | Admin memiliki permission sama seperti user.                                                                                                        |
-| 4   | Tambah Toko & Makannya     | -                                                                                                                        | Admin dapat menambahkan toko dan makanan yang tersedia di toko tersebut.                                                                            |
-| 5   | Forum Diskusi Makanan      | Pengguna dapat menggunakan ruang diskusi global untuk berdiskusi tentang makanan. Pengguna juga bisa mengedit, menghapus | Admin memiliki permission sama seperti user, ditambah admin dapat menghapus diskusi yang tidak sesuai dengan ketentuan yang berlaku.                |
-| 6   | Polling Makanan Terenak    | Pengguna dapat memberikan suaranya untuk sebuah makanan.                                                                 | Admin memiliki permission sama seperti user.                                                                                                        |
+| No. | Modul                   | _Permission User_                                                                                                                                       | _Permission Admin_                                                                                                                                  |
+| --- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Daftar Makanan & Toko   | Pengguna dapat mengakses informasi makanan yang tersedia di aplikasi, serta toko yang menjual makanan tersebut, tanpa dapat mengubah atau menghapusnya. | Admin memiliki permission sama seperti user, ditambah admin juga dapat menghapus dan menambah toko & makanannya                                     |
+| 2   | Rating & Review Toko    | Pengguna dapat memberikan rating dengan range 1-5 dan review berupa teks singkat ke toko yang tersedia.                                                 | Admin memiliki permission sama seperti user, ditambah admin juga dapat menghapus rating dan review yang tidak sesuai dengan ketentuan yang berlaku. |
+| 3   | Toko Favorit            | Pengguna dapat menyimpan toko yang disukai ke 'Toko Favorit' yang dimiliki setiap akun pengguna.                                                        | Admin memiliki permission sama seperti user.                                                                                                        |
+| 4   | Forum Diskusi Makanan   | Pengguna dapat menggunakan ruang diskusi global untuk berdiskusi tentang makanan. Pengguna juga bisa mengedit, menghapus                                | Admin memiliki permission sama seperti user, ditambah admin dapat menghapus diskusi yang tidak sesuai dengan ketentuan yang berlaku.                |
+| 5   | Polling Makanan Terenak | Pengguna dapat memberikan suaranya untuk sebuah makanan.                                                                                                | Admin memiliki permission sama seperti user.                                                                                                        |
 
 ### 6. URL _deployment_ PWS
 
