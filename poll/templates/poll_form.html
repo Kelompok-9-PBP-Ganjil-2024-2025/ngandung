@@ -1,52 +1,73 @@
-{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 <h3>Create Poll</h3>
-{% csrf_token %}
-{{poll_form.as_p}}
-{{ formset.management_form }}
-<div id="form_set">
-    {% for form in formset.forms %}
+<form method="post">
+    {% csrf_token %}
+    {{poll_form.as_p}}
+    {{ formset.management_form }}
+    <div id="form_set">
+        {% for form in formset.forms %}
+            <table class='no_error'>
+            <tr>
+                <td>{{ form.as_p }}</td>
+                <td><input type="button" value="Delete" class="delete_choice" disabled></td>
+            </tr>
+            </table>
+        {% endfor %}
+    </div>
+    <input type="button" value="Add Choice" id="add_choice">
+    <input type="submit" value="Submit">
+    <div id="empty_form" style="display:none">
         <table class='no_error'>
-        <tr>
-            <td>{{ form.as_p }}</td>
-            <td><input type="button" value="Delete" class="delete_choice" disabled></td>
-        </tr>
+            <tr>
+                <td>{{ formset.empty_form.as_p }}</td>
+                <td><input type="button" value="Delete" class="delete_choice" disabled></td>
+            </tr>
         </table>
-    {% endfor %}
-</div>
-<input type="button" value="Add Choice" id="add_choice">
-<input type="submit" value="Submit">
-<div id="empty_form" style="display:none">
-    <table class='no_error'>
-        <tr>
-            <td>{{ formset.empty_form.as_p }}</td>
-            <td><input type="button" value="Delete" class="delete_choice" disabled></td>
-        </tr>
-    </table>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </div>
+</form>
+{% endblock content %}
+{% block meta %}
 <script>
-    $('#add_choice').click(function() {
-        var form_idx = $('#id_form-TOTAL_FORMS').val();
-        $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
-        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
-        if (parseInt(form_idx) + 1 >= 5) {
-            $('#add_choice').prop('disabled', true);
-            return;
-        } else {
-            $('#add_choice').prop('disabled', false);
-        }
-        
-        if (parseInt(form_idx) + 1 > 2) {
-            $('.delete_choice').prop('disabled', false);
-        }
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('add_choice').addEventListener('click', function() {
+            var form_idx = document.getElementById('id_form-TOTAL_FORMS').value;
+            var formSet = document.getElementById('form_set');
+            var newForm = document.getElementById('empty_form').innerHTML.replace(/__prefix__/g, form_idx);
+            
+            formSet.insertAdjacentHTML('beforeend', newForm);
+            document.getElementById('id_form-TOTAL_FORMS').value = parseInt(form_idx) + 1;
 
-    $('.delete_choice').click(() => {
-        console.log('hola amigo')
+            if (parseInt(form_idx) + 1 >= 5) {
+                document.getElementById('add_choice').disabled = true;
+                return;
+            } else {
+                document.getElementById('add_choice').disabled = false;
+            }
+
+            if (parseInt(form_idx) + 1 > 2) {
+                var deleteButtons = document.getElementsByClassName('delete_choice');
+                for (var i = 0; i < deleteButtons.length; i++) {
+                    deleteButtons[i].disabled = false;
+                }
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete_choice')) {
+                event.target.closest('table').remove();
+                var form_idx = document.getElementById('id_form-TOTAL_FORMS').value;
+                document.getElementById('id_form-TOTAL_FORMS').value = parseInt(form_idx) - 1;
+                document.getElementById('add_choice').disabled = false;
+                if (parseInt(form_idx) - 1 <= 2) {
+                    var deleteButtons = document.getElementsByClassName('delete_choice');
+                    for (var i = 0; i < deleteButtons.length; i++) {
+                        deleteButtons[i].disabled = true;
+                    }
+                }
+            }
+        });
     });
 </script>
 
-{% endblock content %}
+{% endblock meta %}

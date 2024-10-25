@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "main",
     "authentication",
     "livereload",
-    "poll"
+    "poll",
 ]
 
 MIDDLEWARE = [

@@ -7,7 +7,16 @@ from django.forms.widgets import HiddenInput
 class PollForm(ModelForm):
     class Meta:
         model = Poll
-        fields = ['question']
+        fields = ['question', 'is_active']
+        
+class VoteForm(forms.Form):
+    choice = forms.ModelChoiceField(queryset=Choice.objects.none(), widget=forms.RadioSelect)
+    
+    def __init__(self, *args, **kwargs):
+        poll = kwargs.pop('poll', None)
+        super().__init__(*args, **kwargs)
+        if poll:
+            self.fields['choice'].queryset = Choice.objects.filter(poll=poll)
         
 class BaseChoiceFormSet(BaseFormSet):
     def get_deletion_widget(self):
