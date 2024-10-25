@@ -63,7 +63,6 @@ def add_makanan_ajax(req):
         nama = strip_tags(req.POST.get("nama"))
         harga = req.POST.get("harga")
         toko_id = req.POST.get('toko')
-        description = req.POST.get("description")
 
         # Cari toko berdasarkan ID
         try:
@@ -71,12 +70,11 @@ def add_makanan_ajax(req):
         except Toko.DoesNotExist:
             return JsonResponse({"error": "Toko tidak ditemukan"}, status=400)
 
-        # Buat objek Makanan baru
+        # Buat Makanan baru
         new_product = Makanan(
             nama=nama,
             harga=harga,
-            toko=toko,  # masukkan instance Toko, bukan hanya ID
-            description=description
+            toko=toko, 
         )
 
         # Simpan produk baru

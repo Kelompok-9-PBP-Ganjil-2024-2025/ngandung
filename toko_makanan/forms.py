@@ -9,4 +9,4 @@ class FormToko(ModelForm):
 class FormMakanan(ModelForm):
     class Meta:
         model = Makanan
-        fields = ['nama', 'harga', 'toko', 'description']
+        fields = ['nama', 'harga', 'toko']
