@@ -18,11 +18,11 @@
 	<div id="display_makanan"></div>
 
 	<div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-black bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
-		<div id="crudModalContent" class="relative bg-gradient-to-r from-lime-100 to-blue-100 rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+		<div id="crudModalContent" class="relative bg-black rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
 			<!-- Modal header -->
 			<div class="flex flex items-center justify-center p-4 border-b border-gray-800 rounded-t">
 				<div class="w-full flex justify-center">
-					<h3 class="text-xl font-semibold text-gray-900 text-center">Add Makanan</h3>
+					<h3 class="text-xl font-semibold text-zinc-50 text-center">Add Makanan</h3>
 				</div>
 				<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
 					<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -37,24 +37,24 @@
 				<form id="makananForm" enctype="multipart/form-data">
 					<!-- Product Name -->
 					<div class="mb-4">
-						<label for="makananName" class="block text-sm font-medium text-gray-700">Nama Makanan</label>
+						<label for="makananName" class="block text-sm font-medium text-zinc-50">Nama Makanan</label>
 						<input type="text" id="makananName" name="nama" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan nama makanan" required />
 					</div>
 
 					<!-- Product Price -->
 					<div class="mb-4">
-						<label for="makananPrice" class="block text-sm font-medium text-gray-700">Price (IDR)</label>
+						<label for="makananPrice" class="block text-sm font-medium text-zinc-50">Price (IDR)</label>
 						<input type="number" id="makananPrice" name="harga" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan harga makanan dalam IDR" step="0.01" min="0" required />
 					</div>
 
 					<!-- Product Description -->
 					<div class="mb-4">
-						<label for="makananDescription" class="block text-sm font-medium text-gray-700">Description</label>
+						<label for="makananDescription" class="block text-sm font-medium text-zinc-50">Description</label>
 						<textarea id="makananDescription" name="description" rows="4" class="mt-1 block w-full h-52 resize-none border border-gray-400 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan deskripsi makanan" required></textarea>
 					</div>
 
 					<div class="mb-4">
-						<label for="makananToko" class="block text-sm font-medium text-gray-700">Toko</label>
+						<label for="makananToko" class="block text-sm font-medium text-zinc-50">Toko</label>
 						<select id="makananToko" name="toko" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" required>
 							<option value="" disabled selected>Makanan terdapat di toko:</option>
 							{% for toko in list_toko %}
@@ -68,7 +68,7 @@
 			<!-- Modal footer -->
 			<div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t rounded-b justify-center md:justify-end">
 				<button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
-				<button type="submit" id="submitProductEntry" form="makananForm" class="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-lg">Add Product</button>
+				<button type="submit" id="submitProductEntry" form="makananForm" class="bg-[#ff9900] hover:bg-[#c48321] text-white font-bold py-2 px-4 rounded-lg">Add Makanan</button>
 			</div>
 		</div>
 	</div>
@@ -92,18 +92,18 @@
 			classNameString = 'flex flex-col items-center justify-center h-screen p-6';
 			htmlString = `<p>Belum ada data disini.</p>`;
 		} else {
-			classNameString = 'grid grid-cols-1 md:grid-cols-3 gap-6 justify-center';
+			classNameString = 'grid grid-cols-1 md:grid-cols-4 gap-6 justify-center max-w-screen-3xl mx-auto';
 			list_makanan.forEach((makanan) => {
 				const nama = DOMPurify.sanitize(makanan.fields.nama);
 				htmlString += `
-						<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+						<div class="bg-black shadow-lg rounded-lg overflow-hidden">
 						<!-- Placeholder Image -->
-						<img src="https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-s.png" alt="placeholder" class="w-full h-48 object-cover rounded-t-lg">
+						<img src="https://hds.hel.fi/images/foundation/visual-assets/placeholders/image-s.png" alt="placeholder" class="w-full object-cover  h-48 rounded-t-lg">
 						
 						<!-- Card Content -->
 						<div class="p-4">
 							<!-- Nama Makanan -->
-							<h3 class="font-bold text-xl mb-4 text-center">${nama}</h3>
+							<h3 class="font-bold text-xl mb-4 text-center text-stone-200">${nama}</h3>
 						</div>
 
 						<!-- Button Group -->
