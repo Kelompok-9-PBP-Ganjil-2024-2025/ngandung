@@ -1,0 +1,3594 @@
+[
+	{
+		"model": "yourapp.makanan",
+		"pk": 1,
+		"fk": 1,
+		"fields": {
+			"name": "BREW & CHEW Nasi Goreng Special",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 2,
+		"fk": 1,
+		"fields": {
+			"name": "Spaghetti Carbonara",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 3,
+		"fk": 1,
+		"fields": {
+			"name": "Chicken Wings Spicy",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 4,
+		"fk": 1,
+		"fields": {
+			"name": "Classic Cheeseburger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 5,
+		"fk": 2,
+		"fields": {
+			"name": "Nasi Campur Bali",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 6,
+		"fk": 2,
+		"fields": {
+			"name": "Gado-Gado CAFE BALI",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 7,
+		"fk": 2,
+		"fields": {
+			"name": "Sate Lilit",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 8,
+		"fk": 2,
+		"fields": {
+			"name": "Mie Goreng Seafood",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 9,
+		"fk": 2,
+		"fields": {
+			"name": "Pancakes with Honey",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 10,
+		"fk": 3,
+		"fields": {
+			"name": "ANJIS COFFEE Beef Steak",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 11,
+		"fk": 3,
+		"fields": {
+			"name": "Club Sandwich Deluxe",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 12,
+		"fk": 3,
+		"fields": {
+			"name": "Sushi Roll Platter",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 13,
+		"fk": 4,
+		"fields": {
+			"name": "HEADKLIN Special Omelette",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 14,
+		"fk": 4,
+		"fields": {
+			"name": "Chicken Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 15,
+		"fk": 4,
+		"fields": {
+			"name": "French Fries with Dip",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 16,
+		"fk": 4,
+		"fields": {
+			"name": "Chocolate Waffles",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 17,
+		"fk": 5,
+		"fields": {
+			"name": "Garden Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 18,
+		"fk": 5,
+		"fields": {
+			"name": "GARDEN COFFEE Pancakes",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 19,
+		"fk": 5,
+		"fields": {
+			"name": "Vegetable Quiche",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 20,
+		"fk": 6,
+		"fields": {
+			"name": "BERASA Nasi Goreng Kampung",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 21,
+		"fk": 6,
+		"fields": {
+			"name": "Bakso Spesial",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 22,
+		"fk": 6,
+		"fields": {
+			"name": "Soto Ayam BERASA",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 23,
+		"fk": 6,
+		"fields": {
+			"name": "Mie Goreng Jawa",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 24,
+		"fk": 6,
+		"fields": {
+			"name": "Rendang Beef Plate",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 25,
+		"fk": 7,
+		"fields": {
+			"name": "LULA Signature Croissant",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 26,
+		"fk": 7,
+		"fields": {
+			"name": "Egg Benedict",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 27,
+		"fk": 7,
+		"fields": {
+			"name": "Avocado Toast",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 28,
+		"fk": 7,
+		"fields": {
+			"name": "Blueberry Muffin",
+			"price": 30000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 29,
+		"fk": 8,
+		"fields": {
+			"name": "JARDIN Club Sandwich",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 30,
+		"fk": 8,
+		"fields": {
+			"name": "Grilled Chicken Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 31,
+		"fk": 8,
+		"fields": {
+			"name": "Mushroom Soup",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 32,
+		"fk": 9,
+		"fields": {
+			"name": "4EAT Special Burger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 33,
+		"fk": 9,
+		"fields": {
+			"name": "Pepperoni Pizza",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 34,
+		"fk": 9,
+		"fields": {
+			"name": "Fish and Chips",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 35,
+		"fk": 9,
+		"fields": {
+			"name": "Chicken Tacos",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 36,
+		"fk": 9,
+		"fields": {
+			"name": "Nachos Grande",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 37,
+		"fk": 10,
+		"fields": {
+			"name": "ROGER'S Rib Eye Steak",
+			"price": 95000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 38,
+		"fk": 10,
+		"fields": {
+			"name": "Lamb Chops",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 39,
+		"fk": 10,
+		"fields": {
+			"name": "Seafood Paella",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 40,
+		"fk": 11,
+		"fields": {
+			"name": "PLEASE Signature Pasta",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 41,
+		"fk": 11,
+		"fields": {
+			"name": "Vegan Burger",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 42,
+		"fk": 11,
+		"fields": {
+			"name": "Quinoa Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 43,
+		"fk": 11,
+		"fields": {
+			"name": "Fruit Smoothie Bowl",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 44,
+		"fk": 12,
+		"fields": {
+			"name": "HONGER Fried Rice Special",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 45,
+		"fk": 12,
+		"fields": {
+			"name": "Sate Ayam Madura",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 46,
+		"fk": 12,
+		"fields": {
+			"name": "Chicken Katsu Curry",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 47,
+		"fk": 13,
+		"fields": {
+			"name": "LOY Breakfast Platter",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 48,
+		"fk": 13,
+		"fields": {
+			"name": "Panini Sandwich",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 49,
+		"fk": 13,
+		"fields": {
+			"name": "Eggs Florentine",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 50,
+		"fk": 13,
+		"fields": {
+			"name": "Mango Smoothie",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 51,
+		"fk": 13,
+		"fields": {
+			"name": "Banana Bread",
+			"price": 30000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 52,
+		"fk": 14,
+		"fields": {
+			"name": "FAREL Chocolate Eclair",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 53,
+		"fk": 14,
+		"fields": {
+			"name": "Strawberry Tart",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 54,
+		"fk": 14,
+		"fields": {
+			"name": "Almond Croissant",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 55,
+		"fk": 15,
+		"fields": {
+			"name": "KAHVE Signature Latte",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 56,
+		"fk": 15,
+		"fields": {
+			"name": "Baklava Delight",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 57,
+		"fk": 15,
+		"fields": {
+			"name": "Turkish Delight Platter",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 58,
+		"fk": 15,
+		"fields": {
+			"name": "Pide (Turkish Pizza)",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 59,
+		"fk": 16,
+		"fields": {
+			"name": "TAEUN Korean Fried Chicken",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 60,
+		"fk": 16,
+		"fields": {
+			"name": "Bibimbap Bowl",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 61,
+		"fk": 16,
+		"fields": {
+			"name": "Kimchi Fried Rice",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 62,
+		"fk": 17,
+		"fields": {
+			"name": "2 GRAMS Special Burger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 63,
+		"fk": 17,
+		"fields": {
+			"name": "Grilled Chicken Panini",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 64,
+		"fk": 17,
+		"fields": {
+			"name": "Spaghetti Aglio e Olio",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 65,
+		"fk": 17,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 66,
+		"fk": 18,
+		"fields": {
+			"name": "GIGGLEBOX Fish and Chips",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 67,
+		"fk": 18,
+		"fields": {
+			"name": "Chicken Parmigiana",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 68,
+		"fk": 18,
+		"fields": {
+			"name": "Beef Lasagna",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 69,
+		"fk": 18,
+		"fields": {
+			"name": "Mixed Berry Pancakes",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 70,
+		"fk": 18,
+		"fields": {
+			"name": "Vegetarian Quesadilla",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 71,
+		"fk": 19,
+		"fields": {
+			"name": "KAKA Nasi Goreng Spesial",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 72,
+		"fk": 19,
+		"fields": {
+			"name": "Mie Ayam KAKA",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 73,
+		"fk": 19,
+		"fields": {
+			"name": "Sate Ayam Madura",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 74,
+		"fk": 20,
+		"fields": {
+			"name": "Croque Monsieur",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 75,
+		"fk": 20,
+		"fields": {
+			"name": "PARIS VAN JAVA Quiche Lorraine",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 76,
+		"fk": 20,
+		"fields": {
+			"name": "Escargot à la Bourguignonne",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 77,
+		"fk": 20,
+		"fields": {
+			"name": "French Onion Soup",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 78,
+		"fk": 20,
+		"fields": {
+			"name": "Creme Brulee",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 79,
+		"fk": 21,
+		"fields": {
+			"name": "CHAPLIN'S Beef Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 80,
+		"fk": 21,
+		"fields": {
+			"name": "Shawarma Wrap",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 81,
+		"fk": 21,
+		"fields": {
+			"name": "Chicken Tikka Masala",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 82,
+		"fk": 21,
+		"fields": {
+			"name": "Mediterranean Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 83,
+		"fk": 22,
+		"fields": {
+			"name": "HERITAGE Club Sandwich",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 84,
+		"fk": 22,
+		"fields": {
+			"name": "Beef Rendang",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 85,
+		"fk": 22,
+		"fields": {
+			"name": "Nasi Uduk",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 86,
+		"fk": 22,
+		"fields": {
+			"name": "Pasta Marinara",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 87,
+		"fk": 22,
+		"fields": {
+			"name": "Mango Pudding",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 88,
+		"fk": 23,
+		"fields": {
+			"name": "FOURPLAY Signature Pizza",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 89,
+		"fk": 23,
+		"fields": {
+			"name": "Grilled Salmon Steak",
+			"price": 95000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 90,
+		"fk": 23,
+		"fields": {
+			"name": "Lamb Shank",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 91,
+		"fk": 24,
+		"fields": {
+			"name": "BELLAMIE Almond Croissant",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 92,
+		"fk": 24,
+		"fields": {
+			"name": "Blueberry Danish",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 93,
+		"fk": 24,
+		"fields": {
+			"name": "Chicken Pot Pie",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 94,
+		"fk": 24,
+		"fields": {
+			"name": "Chocolate Lava Cake",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 95,
+		"fk": 25,
+		"fields": {
+			"name": "SYDWIC Special Fried Rice",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 96,
+		"fk": 25,
+		"fields": {
+			"name": "Pad Thai Noodles",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 97,
+		"fk": 25,
+		"fields": {
+			"name": "Chicken Satay",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 98,
+		"fk": 25,
+		"fields": {
+			"name": "Tom Yum Soup",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 99,
+		"fk": 25,
+		"fields": {
+			"name": "Green Curry",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 100,
+		"fk": 26,
+		"fields": {
+			"name": "PANASDALAM Nasi Liwet",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 101,
+		"fk": 26,
+		"fields": {
+			"name": "Gulai Kambing",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 102,
+		"fk": 26,
+		"fields": {
+			"name": "Es Cendol",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 103,
+		"fk": 27,
+		"fields": {
+			"name": "PAPATONG Chicken Wrap",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 104,
+		"fk": 27,
+		"fields": {
+			"name": "Beef Nachos",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 105,
+		"fk": 27,
+		"fields": {
+			"name": "Spicy Tuna Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 106,
+		"fk": 27,
+		"fields": {
+			"name": "Greek Salad",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 107,
+		"fk": 28,
+		"fields": {
+			"name": "BOBER Pancake Stack",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 108,
+		"fk": 28,
+		"fields": {
+			"name": "Chocolate Brownie",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 109,
+		"fk": 28,
+		"fields": {
+			"name": "Fruit Salad",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 110,
+		"fk": 28,
+		"fields": {
+			"name": "Chicken Nuggets",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 111,
+		"fk": 28,
+		"fields": {
+			"name": "Spaghetti Bolognese",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 112,
+		"fk": 29,
+		"fields": {
+			"name": "BUTTERCUP Brioche Bread",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 113,
+		"fk": 29,
+		"fields": {
+			"name": "Ham and Cheese Croissant",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 114,
+		"fk": 29,
+		"fields": {
+			"name": "Spinach Quiche",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 115,
+		"fk": 30,
+		"fields": {
+			"name": "SEJIWA Avocado Toast",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 116,
+		"fk": 30,
+		"fields": {
+			"name": "Eggs Benedict",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 117,
+		"fk": 30,
+		"fields": {
+			"name": "Grilled Cheese Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 118,
+		"fk": 30,
+		"fields": {
+			"name": "Blueberry Pancakes",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 119,
+		"fk": 31,
+		"fields": {
+			"name": "HUMMINGBIRD Pancake Delight",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 120,
+		"fk": 31,
+		"fields": {
+			"name": "Avocado Toast Special",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 121,
+		"fk": 31,
+		"fields": {
+			"name": "Eggs Benedict Hummingbird Style",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 122,
+		"fk": 31,
+		"fields": {
+			"name": "Nasi Goreng Kampung",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 123,
+		"fk": 31,
+		"fields": {
+			"name": "Beef Steak with Mushroom Sauce",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 124,
+		"fk": 32,
+		"fields": {
+			"name": "ROAD Special Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 125,
+		"fk": 32,
+		"fields": {
+			"name": "Chicken Wings Spicy",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 126,
+		"fk": 32,
+		"fields": {
+			"name": "Fish and Chips",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 127,
+		"fk": 32,
+		"fields": {
+			"name": "Pasta Carbonara",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 128,
+		"fk": 33,
+		"fields": {
+			"name": "SONOMA Signature Pizza",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 129,
+		"fk": 33,
+		"fields": {
+			"name": "Golden Chicken Schnitzel",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 130,
+		"fk": 33,
+		"fields": {
+			"name": "Creamy Mushroom Soup",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 131,
+		"fk": 33,
+		"fields": {
+			"name": "Salmon Steak with Lemon Sauce",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 132,
+		"fk": 33,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 133,
+		"fk": 34,
+		"fields": {
+			"name": "EVERJOY Club Sandwich",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 134,
+		"fk": 34,
+		"fields": {
+			"name": "Beef Rendang Platter",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 135,
+		"fk": 34,
+		"fields": {
+			"name": "Nasi Goreng Seafood",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 136,
+		"fk": 34,
+		"fields": {
+			"name": "Spaghetti Aglio e Olio",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 137,
+		"fk": 35,
+		"fields": {
+			"name": "CISANGKUY Fried Rice Special",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 138,
+		"fk": 35,
+		"fields": {
+			"name": "Chicken Satay with Peanut Sauce",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 139,
+		"fk": 35,
+		"fields": {
+			"name": "Soto Ayam",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 140,
+		"fk": 35,
+		"fields": {
+			"name": "Grilled Salmon Salad",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 141,
+		"fk": 35,
+		"fields": {
+			"name": "Banana Split Ice Cream",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 142,
+		"fk": 36,
+		"fields": {
+			"name": "BUIH KOPI Nasi Uduk",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 143,
+		"fk": 36,
+		"fields": {
+			"name": "Gado-Gado",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 144,
+		"fk": 36,
+		"fields": {
+			"name": "Pancake with Honey",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 145,
+		"fk": 37,
+		"fields": {
+			"name": "GERM Classic Burger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 146,
+		"fk": 37,
+		"fields": {
+			"name": "Fish and Chips",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 147,
+		"fk": 37,
+		"fields": {
+			"name": "Spaghetti Bolognese",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 148,
+		"fk": 37,
+		"fields": {
+			"name": "Chicken Caesar Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 149,
+		"fk": 38,
+		"fields": {
+			"name": "DENNY'S Grand Slam Breakfast",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 150,
+		"fk": 38,
+		"fields": {
+			"name": "Moons Over My Hammy",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 151,
+		"fk": 38,
+		"fields": {
+			"name": "Chicken Noodle Soup",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 152,
+		"fk": 38,
+		"fields": {
+			"name": "Double Cheeseburger",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 153,
+		"fk": 38,
+		"fields": {
+			"name": "Chocolate Lava Cake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 154,
+		"fk": 39,
+		"fields": {
+			"name": "EATERS.COM Special Pizza",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 155,
+		"fk": 39,
+		"fields": {
+			"name": "Grilled Chicken Panini",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 156,
+		"fk": 39,
+		"fields": {
+			"name": "Vegetarian Lasagna",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 157,
+		"fk": 40,
+		"fields": {
+			"name": "TJIHAPIT Nasi Liwet",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 158,
+		"fk": 40,
+		"fields": {
+			"name": "Sop Buntut",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 159,
+		"fk": 40,
+		"fields": {
+			"name": "Ayam Goreng Tjap Rumah",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 160,
+		"fk": 40,
+		"fields": {
+			"name": "Es Teler",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 161,
+		"fk": 41,
+		"fields": {
+			"name": "TREA Chicken Wrap",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 162,
+		"fk": 41,
+		"fields": {
+			"name": "Quinoa Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 163,
+		"fk": 41,
+		"fields": {
+			"name": "Chocolate Brownie",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 164,
+		"fk": 42,
+		"fields": {
+			"name": "PIETRO Spaghetti Carbonara",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 165,
+		"fk": 42,
+		"fields": {
+			"name": "Margherita Pizza",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 166,
+		"fk": 42,
+		"fields": {
+			"name": "Tiramisu",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 167,
+		"fk": 42,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 168,
+		"fk": 43,
+		"fields": {
+			"name": "INFINITO Signature Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 169,
+		"fk": 43,
+		"fields": {
+			"name": "Seafood Paella",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 170,
+		"fk": 43,
+		"fields": {
+			"name": "Mie Goreng Spesial",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 171,
+		"fk": 43,
+		"fields": {
+			"name": "Rendang Beef Burger",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 172,
+		"fk": 43,
+		"fields": {
+			"name": "Cheesecake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 173,
+		"fk": 44,
+		"fields": {
+			"name": "FIFTEEN Fish and Chips",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 174,
+		"fk": 44,
+		"fields": {
+			"name": "Chicken Quesadilla",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 175,
+		"fk": 44,
+		"fields": {
+			"name": "Blueberry Pancakes",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 176,
+		"fk": 45,
+		"fields": {
+			"name": "LE BISTROT Escargots",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 177,
+		"fk": 45,
+		"fields": {
+			"name": "Coq au Vin",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 178,
+		"fk": 45,
+		"fields": {
+			"name": "French Onion Soup",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 179,
+		"fk": 45,
+		"fields": {
+			"name": "Crème Brûlée",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 180,
+		"fk": 45,
+		"fields": {
+			"name": "Boeuf Bourguignon",
+			"price": 95000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 181,
+		"fk": 46,
+		"fields": {
+			"name": "SEMENTARA Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 182,
+		"fk": 46,
+		"fields": {
+			"name": "Blueberry Muffin",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 183,
+		"fk": 46,
+		"fields": {
+			"name": "Avocado Toast",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 184,
+		"fk": 46,
+		"fields": {
+			"name": "SEMENTARA Signature Sandwich",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 185,
+		"fk": 47,
+		"fields": {
+			"name": "EQUATOR Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 186,
+		"fk": 47,
+		"fields": {
+			"name": "French Croissant",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 187,
+		"fk": 47,
+		"fields": {
+			"name": "Eggs Benedict",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 188,
+		"fk": 47,
+		"fields": {
+			"name": "Grilled Cheese Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 189,
+		"fk": 47,
+		"fields": {
+			"name": "Chocolate Brownie",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 190,
+		"fk": 48,
+		"fields": {
+			"name": "MYLOC Latte",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 191,
+		"fk": 48,
+		"fields": {
+			"name": "Chicken Caesar Salad",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 192,
+		"fk": 48,
+		"fields": {
+			"name": "Banana Pancakes",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 193,
+		"fk": 49,
+		"fields": {
+			"name": "THE SHADOWS Special Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 194,
+		"fk": 49,
+		"fields": {
+			"name": "Spaghetti Bolognese",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 195,
+		"fk": 49,
+		"fields": {
+			"name": "Fish and Chips",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 196,
+		"fk": 49,
+		"fields": {
+			"name": "Apple Pie",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 197,
+		"fk": 50,
+		"fields": {
+			"name": "RUMPOET Nachos Grande",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 198,
+		"fk": 50,
+		"fields": {
+			"name": "Chicken Quesadilla",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 199,
+		"fk": 50,
+		"fields": {
+			"name": "Beef Tacos",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 200,
+		"fk": 50,
+		"fields": {
+			"name": "Salsa Dip with Chips",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 201,
+		"fk": 50,
+		"fields": {
+			"name": "Chocolate Lava Cake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 202,
+		"fk": 51,
+		"fields": {
+			"name": "PAKARANGAN Nasi Goreng",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 203,
+		"fk": 51,
+		"fields": {
+			"name": "Gado-Gado",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 204,
+		"fk": 51,
+		"fields": {
+			"name": "Sate Ayam",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 205,
+		"fk": 52,
+		"fields": {
+			"name": "NINETIES Club Sandwich",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 206,
+		"fk": 52,
+		"fields": {
+			"name": "Pepperoni Pizza",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 207,
+		"fk": 52,
+		"fields": {
+			"name": "Cheeseburger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 208,
+		"fk": 52,
+		"fields": {
+			"name": "Vanilla Milkshake",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 209,
+		"fk": 53,
+		"fields": {
+			"name": "SINIYU Special Fried Rice",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 210,
+		"fk": 53,
+		"fields": {
+			"name": "Chicken Satay",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 211,
+		"fk": 53,
+		"fields": {
+			"name": "Es Cendol",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 212,
+		"fk": 54,
+		"fields": {
+			"name": "CAFE BELIMBING Pancake Stack",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 213,
+		"fk": 54,
+		"fields": {
+			"name": "Strawberry Waffle",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 214,
+		"fk": 54,
+		"fields": {
+			"name": "Avocado Smoothie",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 215,
+		"fk": 54,
+		"fields": {
+			"name": "Grilled Chicken Salad",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 216,
+		"fk": 55,
+		"fields": {
+			"name": "MUCHO Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 217,
+		"fk": 55,
+		"fields": {
+			"name": "Spanish Omelette",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 218,
+		"fk": 55,
+		"fields": {
+			"name": "Churros with Chocolate Sauce",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 219,
+		"fk": 55,
+		"fields": {
+			"name": "Paella Valenciana",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 220,
+		"fk": 55,
+		"fields": {
+			"name": "Gazpacho Soup",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 221,
+		"fk": 56,
+		"fields": {
+			"name": "CHINOOK Beef Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 222,
+		"fk": 56,
+		"fields": {
+			"name": "Grilled Salmon",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 223,
+		"fk": 56,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 224,
+		"fk": 56,
+		"fields": {
+			"name": "Mushroom Soup",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 225,
+		"fk": 57,
+		"fields": {
+			"name": "CHINGU Bibimbap",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 226,
+		"fk": 57,
+		"fields": {
+			"name": "Korean Fried Chicken",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 227,
+		"fk": 57,
+		"fields": {
+			"name": "Kimchi Stew",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 228,
+		"fk": 57,
+		"fields": {
+			"name": "Bulgogi Beef",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 229,
+		"fk": 57,
+		"fields": {
+			"name": "Tteokbokki",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 230,
+		"fk": 58,
+		"fields": {
+			"name": "ZIE Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 231,
+		"fk": 58,
+		"fields": {
+			"name": "Chicken Panini",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 232,
+		"fk": 58,
+		"fields": {
+			"name": "Chocolate Muffin",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 233,
+		"fk": 59,
+		"fields": {
+			"name": "BRAGA Special Pizza",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 234,
+		"fk": 59,
+		"fields": {
+			"name": "Pasta Alfredo",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 235,
+		"fk": 59,
+		"fields": {
+			"name": "Greek Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 236,
+		"fk": 59,
+		"fields": {
+			"name": "Tiramisu",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 237,
+		"fk": 60,
+		"fields": {
+			"name": "DACOSTA Nasi Goreng Special",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 238,
+		"fk": 60,
+		"fields": {
+			"name": "Mie Goreng Jawa",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 239,
+		"fk": 60,
+		"fields": {
+			"name": "Soto Ayam",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 240,
+		"fk": 61,
+		"fields": {
+			"name": "CAFE PAOPA Pancake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 241,
+		"fk": 61,
+		"fields": {
+			"name": "Fruit Salad",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 242,
+		"fk": 61,
+		"fields": {
+			"name": "Grilled Cheese Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 243,
+		"fk": 61,
+		"fields": {
+			"name": "Latte",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 244,
+		"fk": 62,
+		"fields": {
+			"name": "Unicorn Rainbow Cake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 245,
+		"fk": 62,
+		"fields": {
+			"name": "Cotton Candy Milkshake",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 246,
+		"fk": 62,
+		"fields": {
+			"name": "Pink Waffles",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 247,
+		"fk": 62,
+		"fields": {
+			"name": "Unicorn Burger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 248,
+		"fk": 62,
+		"fields": {
+			"name": "Magic Fruit Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 249,
+		"fk": 63,
+		"fields": {
+			"name": "VANDEL Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 250,
+		"fk": 63,
+		"fields": {
+			"name": "Ham and Cheese Croissant",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 251,
+		"fk": 63,
+		"fields": {
+			"name": "Mango Smoothie",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 252,
+		"fk": 64,
+		"fields": {
+			"name": "88 GARAGE Burger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 253,
+		"fk": 64,
+		"fields": {
+			"name": "Chicken Wings",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 254,
+		"fk": 64,
+		"fields": {
+			"name": "Onion Rings",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 255,
+		"fk": 64,
+		"fields": {
+			"name": "Chocolate Milkshake",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 256,
+		"fk": 65,
+		"fields": {
+			"name": "KAMAIA Nasi Campur",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 257,
+		"fk": 65,
+		"fields": {
+			"name": "Sate Lilit",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 258,
+		"fk": 65,
+		"fields": {
+			"name": "Es Teh Manis",
+			"price": 30000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 259,
+		"fk": 66,
+		"fields": {
+			"name": "AIRPLANE Chicken Wings",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 260,
+		"fk": 66,
+		"fields": {
+			"name": "Pilot's Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 261,
+		"fk": 66,
+		"fields": {
+			"name": "Runway Salad",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 262,
+		"fk": 66,
+		"fields": {
+			"name": "Flight Smoothie",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 263,
+		"fk": 67,
+		"fields": {
+			"name": "BANKTENDER Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 264,
+		"fk": 67,
+		"fields": {
+			"name": "Grilled Salmon",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 265,
+		"fk": 67,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 266,
+		"fk": 67,
+		"fields": {
+			"name": "Chocolate Mousse",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 267,
+		"fk": 68,
+		"fields": {
+			"name": "SEVENTH DOSE Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 268,
+		"fk": 68,
+		"fields": {
+			"name": "Eggs Benedict",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 269,
+		"fk": 68,
+		"fields": {
+			"name": "Blueberry Muffin",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 270,
+		"fk": 69,
+		"fields": {
+			"name": "DAGO YUI Sushi Platter",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 271,
+		"fk": 69,
+		"fields": {
+			"name": "Chicken Katsu Curry",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 272,
+		"fk": 69,
+		"fields": {
+			"name": "Ramen Noodle Soup",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 273,
+		"fk": 69,
+		"fields": {
+			"name": "Matcha Ice Cream",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 274,
+		"fk": 70,
+		"fields": {
+			"name": "TRENDS Pepperoni Pizza",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 275,
+		"fk": 70,
+		"fields": {
+			"name": "BBQ Chicken Wings",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 276,
+		"fk": 70,
+		"fields": {
+			"name": "Pasta Marinara",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 277,
+		"fk": 70,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 278,
+		"fk": 70,
+		"fields": {
+			"name": "Chocolate Brownie",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 279,
+		"fk": 71,
+		"fields": {
+			"name": "Cereal Bowl Deluxe",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 280,
+		"fk": 71,
+		"fields": {
+			"name": "Fruit Parfait",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 281,
+		"fk": 71,
+		"fields": {
+			"name": "Milkshake Variety",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 282,
+		"fk": 72,
+		"fields": {
+			"name": "TIGA Grilled Chicken",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 283,
+		"fk": 72,
+		"fields": {
+			"name": "Outdoor Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 284,
+		"fk": 72,
+		"fields": {
+			"name": "French Fries",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 285,
+		"fk": 72,
+		"fields": {
+			"name": "Iced Tea",
+			"price": 30000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 286,
+		"fk": 73,
+		"fields": {
+			"name": "SHAKIRA Paella",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 287,
+		"fk": 73,
+		"fields": {
+			"name": "Chicken Enchiladas",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 288,
+		"fk": 73,
+		"fields": {
+			"name": "Beef Burrito",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 289,
+		"fk": 73,
+		"fields": {
+			"name": "Nachos Supreme",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 290,
+		"fk": 73,
+		"fields": {
+			"name": "Churros with Caramel",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 291,
+		"fk": 74,
+		"fields": {
+			"name": "BLACK GROUND Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 292,
+		"fk": 74,
+		"fields": {
+			"name": "Steak Sandwich",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 293,
+		"fk": 74,
+		"fields": {
+			"name": "Chocolate Cake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 294,
+		"fk": 75,
+		"fields": {
+			"name": "Victoria Croissant",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 295,
+		"fk": 75,
+		"fields": {
+			"name": "Blueberry Muffin",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 296,
+		"fk": 75,
+		"fields": {
+			"name": "Ham and Cheese Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 297,
+		"fk": 75,
+		"fields": {
+			"name": "Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 298,
+		"fk": 76,
+		"fields": {
+			"name": "URBAN STORY Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 299,
+		"fk": 76,
+		"fields": {
+			"name": "Salmon Teriyaki",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 300,
+		"fk": 76,
+		"fields": {
+			"name": "Pasta Alfredo",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 301,
+		"fk": 76,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 302,
+		"fk": 76,
+		"fields": {
+			"name": "Tiramisu",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 303,
+		"fk": 77,
+		"fields": {
+			"name": "Milkshake Deluxe",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 304,
+		"fk": 77,
+		"fields": {
+			"name": "Cheeseburger",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 305,
+		"fk": 77,
+		"fields": {
+			"name": "French Fries",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 306,
+		"fk": 77,
+		"fields": {
+			"name": "Ice Cream Sundae",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 307,
+		"fk": 78,
+		"fields": {
+			"name": "SVBLIMINAL Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 308,
+		"fk": 78,
+		"fields": {
+			"name": "Chicken Wrap",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 309,
+		"fk": 78,
+		"fields": {
+			"name": "Fruit Salad",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 310,
+		"fk": 79,
+		"fields": {
+			"name": "GRIND JOE Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 311,
+		"fk": 79,
+		"fields": {
+			"name": "Bagel with Cream Cheese",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 312,
+		"fk": 79,
+		"fields": {
+			"name": "Chocolate Muffin",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 313,
+		"fk": 79,
+		"fields": {
+			"name": "Iced Latte",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 314,
+		"fk": 80,
+		"fields": {
+			"name": "Ben's Special Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 315,
+		"fk": 80,
+		"fields": {
+			"name": "Grilled Chicken",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 316,
+		"fk": 80,
+		"fields": {
+			"name": "Pasta Carbonara",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 317,
+		"fk": 80,
+		"fields": {
+			"name": "Garden Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 318,
+		"fk": 80,
+		"fields": {
+			"name": "Chocolate Brownie",
+			"price": 40000
+		}
+	},
+
+	{
+		"model": "yourapp.makanan",
+		"pk": 319,
+		"fk": 81,
+		"fields": {
+			"name": "BYRON Signature Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 320,
+		"fk": 81,
+		"fields": {
+			"name": "Grilled Chicken Salad",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 321,
+		"fk": 81,
+		"fields": {
+			"name": "Seafood Pasta",
+			"price": 75000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 322,
+		"fk": 81,
+		"fields": {
+			"name": "Mushroom Soup",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 323,
+		"fk": 81,
+		"fields": {
+			"name": "Chocolate Lava Cake",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 324,
+		"fk": 82,
+		"fields": {
+			"name": "YUMAJU Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 325,
+		"fk": 82,
+		"fields": {
+			"name": "Blueberry Muffin",
+			"price": 30000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 326,
+		"fk": 82,
+		"fields": {
+			"name": "Croissant Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 327,
+		"fk": 82,
+		"fields": {
+			"name": "Avocado Toast",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 328,
+		"fk": 83,
+		"fields": {
+			"name": "U&KL Special Fried Rice",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 329,
+		"fk": 83,
+		"fields": {
+			"name": "Chicken Satay",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 330,
+		"fk": 83,
+		"fields": {
+			"name": "Beef Rendang",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 331,
+		"fk": 83,
+		"fields": {
+			"name": "Spaghetti Carbonara",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 332,
+		"fk": 83,
+		"fields": {
+			"name": "Garden Salad",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 333,
+		"fk": 84,
+		"fields": {
+			"name": "Amore Gelato Selection",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 334,
+		"fk": 84,
+		"fields": {
+			"name": "Affogato",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 335,
+		"fk": 84,
+		"fields": {
+			"name": "Pancake with Gelato",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 336,
+		"fk": 84,
+		"fields": {
+			"name": "Coffee Latte",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 337,
+		"fk": 85,
+		"fields": {
+			"name": "NAKED Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 338,
+		"fk": 85,
+		"fields": {
+			"name": "Chocolate Croissant",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 339,
+		"fk": 85,
+		"fields": {
+			"name": "Avocado Toast",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 340,
+		"fk": 86,
+		"fields": {
+			"name": "PREANGER Nasi Goreng Special",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 341,
+		"fk": 86,
+		"fields": {
+			"name": "Mie Goreng Jawa",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 342,
+		"fk": 86,
+		"fields": {
+			"name": "Chicken Curry",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 343,
+		"fk": 86,
+		"fields": {
+			"name": "Beef Steak",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 344,
+		"fk": 86,
+		"fields": {
+			"name": "Fruit Salad",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 345,
+		"fk": 87,
+		"fields": {
+			"name": "WHATEVER Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 346,
+		"fk": 87,
+		"fields": {
+			"name": "Chicken Wings",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 347,
+		"fk": 87,
+		"fields": {
+			"name": "Nachos with Salsa",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 348,
+		"fk": 87,
+		"fields": {
+			"name": "Cheese Platter",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 349,
+		"fk": 88,
+		"fields": {
+			"name": "SALATRI Signature Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 350,
+		"fk": 88,
+		"fields": {
+			"name": "Grilled Chicken Sandwich",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 351,
+		"fk": 88,
+		"fields": {
+			"name": "Fruit Smoothie Bowl",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 352,
+		"fk": 89,
+		"fields": {
+			"name": "ETC Rib Eye Steak",
+			"price": 90000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 353,
+		"fk": 89,
+		"fields": {
+			"name": "Sirloin Steak",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 354,
+		"fk": 89,
+		"fields": {
+			"name": "Grilled Salmon",
+			"price": 80000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 355,
+		"fk": 89,
+		"fields": {
+			"name": "Chicken Steak",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 356,
+		"fk": 89,
+		"fields": {
+			"name": "Mashed Potatoes",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 357,
+		"fk": 90,
+		"fields": {
+			"name": "CUPS Latte",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 358,
+		"fk": 90,
+		"fields": {
+			"name": "Pancake with Maple Syrup",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 359,
+		"fk": 90,
+		"fields": {
+			"name": "Eggs Benedict",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 360,
+		"fk": 90,
+		"fields": {
+			"name": "Chicken Caesar Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 361,
+		"fk": 91,
+		"fields": {
+			"name": "SMASH Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 362,
+		"fk": 91,
+		"fields": {
+			"name": "Chicken Nuggets",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 363,
+		"fk": 91,
+		"fields": {
+			"name": "Milkshake Variety",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 364,
+		"fk": 91,
+		"fields": {
+			"name": "French Fries",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 365,
+		"fk": 91,
+		"fields": {
+			"name": "Ice Cream Sundae",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 366,
+		"fk": 92,
+		"fields": {
+			"name": "ALLURE Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 367,
+		"fk": 92,
+		"fields": {
+			"name": "Blueberry Cheesecake",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 368,
+		"fk": 92,
+		"fields": {
+			"name": "Club Sandwich",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 369,
+		"fk": 92,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 370,
+		"fk": 93,
+		"fields": {
+			"name": "HAWAYU Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 371,
+		"fk": 93,
+		"fields": {
+			"name": "Ham and Cheese Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 372,
+		"fk": 93,
+		"fields": {
+			"name": "Chocolate Muffin",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 373,
+		"fk": 94,
+		"fields": {
+			"name": "Durian Pancake",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 374,
+		"fk": 94,
+		"fields": {
+			"name": "Es Durian",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 375,
+		"fk": 94,
+		"fields": {
+			"name": "Durian Goreng",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 376,
+		"fk": 94,
+		"fields": {
+			"name": "Nasi Goreng Durian",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 377,
+		"fk": 94,
+		"fields": {
+			"name": "Durian Juice",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 378,
+		"fk": 95,
+		"fields": {
+			"name": "Blackpepper Steak",
+			"price": 85000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 379,
+		"fk": 95,
+		"fields": {
+			"name": "Grilled Chicken with Blackpepper Sauce",
+			"price": 70000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 380,
+		"fk": 95,
+		"fields": {
+			"name": "Blackpepper Pasta",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 381,
+		"fk": 95,
+		"fields": {
+			"name": "Caesar Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 382,
+		"fk": 96,
+		"fields": {
+			"name": "ICUP Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 383,
+		"fk": 96,
+		"fields": {
+			"name": "Chocolate Donut",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 384,
+		"fk": 96,
+		"fields": {
+			"name": "Ham and Cheese Sandwich",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 385,
+		"fk": 97,
+		"fields": {
+			"name": "French Fries",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 386,
+		"fk": 97,
+		"fields": {
+			"name": "Chicken Nuggets",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 387,
+		"fk": 97,
+		"fields": {
+			"name": "Milkshake",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 388,
+		"fk": 97,
+		"fields": {
+			"name": "Ice Cream Sundae",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 389,
+		"fk": 98,
+		"fields": {
+			"name": "SPADAA Espresso",
+			"price": 35000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 390,
+		"fk": 98,
+		"fields": {
+			"name": "Blueberry Muffin",
+			"price": 30000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 391,
+		"fk": 98,
+		"fields": {
+			"name": "Chocolate Croissant",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 392,
+		"fk": 99,
+		"fields": {
+			"name": "Tree House Burger",
+			"price": 65000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 393,
+		"fk": 99,
+		"fields": {
+			"name": "Grilled Chicken Salad",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 394,
+		"fk": 99,
+		"fields": {
+			"name": "Spaghetti Bolognese",
+			"price": 60000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 395,
+		"fk": 99,
+		"fields": {
+			"name": "Chocolate Brownie",
+			"price": 45000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 396,
+		"fk": 100,
+		"fields": {
+			"name": "MARKA Cappuccino",
+			"price": 40000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 397,
+		"fk": 100,
+		"fields": {
+			"name": "Eggs Benedict",
+			"price": 55000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 398,
+		"fk": 100,
+		"fields": {
+			"name": "Avocado Toast",
+			"price": 50000
+		}
+	},
+	{
+		"model": "yourapp.makanan",
+		"pk": 399,
+		"fk": 100,
+		"fields": {
+			"name": "Blueberry Pancakes",
+			"price": 50000
+		}
+	}
+]
