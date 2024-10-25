@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Daftar Toko Favorit{% endblock %}
+
+{% block content %}
+
+<!-- Include Navbar -->
+{% include 'navbar.html' %}
+
+<div class="container">
+    <h2>Daftar Toko Favorit Anda</h2>
+    <ul class="favorit-list">
+        {% for toko in favorit_toko %}
+            <li class="favorit-item">
+                <h3>{{ toko.nama }}</h3>
+                <p>{{ toko.alamat }}</p>
+                <a href="{% url 'hapus_dari_favorit' toko.id %}" class="btn btn-danger">Hapus dari Favorit</a>
+            </li>
+        {% empty %}
+            <p>Anda belum menambahkan toko ke daftar favorit.</p>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+/* Ensure content starts below the navbar */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 120px; /* Adjusted this value to move content lower */
+    box-sizing: border-box;
+}
+
+/* Responsive Padding for Smaller Screens */
+@media (max-width: 768px) {
+    .container {
+        padding-top: 140px; /* Extra padding for smaller screens */
+    }
+}
+
+/* H2 Titles */
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Favorit List */
+.favorit-list {
+    list-style: none;
+    padding: 0;
+}
+.favorit-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.favorit-item:hover {
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+.favorit-item h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+.favorit-item p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #e69500;
+}
+.btn-danger {
+    background-color: #e74c3c;
+}
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+</style>
+
+{% endblock %}
