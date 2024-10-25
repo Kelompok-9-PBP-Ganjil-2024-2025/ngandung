@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
 {% block content %}
-
 <h1>Edit Makanan</h1>
-
 <form method="POST">
     {% csrf_token %}
     <table>
@@ -18,5 +14,4 @@
         </tr>
     </table>
 </form>
-
 {% endblock %}

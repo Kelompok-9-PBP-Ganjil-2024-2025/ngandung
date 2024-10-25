@@ -1,18 +1,56 @@
-{% extends 'base.html' %} 
-{% block content %}
-<h1>Add Toko</h1>
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Ngandung | Add Toko</title>
+{% endblock meta %} {% block content %} {% include 'navbar.html' %}
 
-<form method="POST">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-    <tr>
-      <td></td>
-      <td>
-        <input type="submit" value="Add new Toko" />
-      </td>
-    </tr>
-  </table>
-</form>
+<div class="overflow-y-auto flex flex-col h-screen bg-[#c48321]">
+  <div class="bg-[#111111] h-full w-1/2 max-w-[45rem] flex items-center justify-center flex-col border-r-4 border-r-white">
+    <h1 class="mt-6 text-center text-black text-5xl font-extrabold text-zinc-50 mb-8">Add Toko</h1>
+    
+    <form class="mt-8 space-y-6 w-3/4" method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="flex flex-col">
+          <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-white">
+              {{ field.label }}
+          </label>
+          <div class="w-full">
+              {{ field }}
+          </div>
+          {% if field.help_text %}
+          <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
+          {% endif %}
+          {% for error in field.errors %}
+          <p class="mt-1 text-sm text-blue-600">{{ error }}</p>
+          {% endfor %}
+      </div>
+      {% endfor %}
+      <div class="flex justify-center mt-6">
+        <button type="submit"
+        class="group relative w-full bg-[#0b79f7] hover:bg-opacity-100 hover:text-white bg-opacity-10 text-[#0b79f7] border border-[#0b79f7] font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform flex-row space-x-2 flex items-center justify-center">
+            Add Toko
+        </button>
+      </div>
+    </form>
+  </div>
+  <style>
+    input {
+        border-width: 2px;
+        border-color: #202020;
+        background-color: #242424;
+        color: #ffffff;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        appearance: none;
+        outline: none;
+        font-size: 0.875rem;
+    }
+  
+    input:focus {
+        border-color: #0b79f7;
+        box-shadow: 0 0 0 3px rgba(11, 121, 247, 0.5);
+    }
+  </style>
+</div>
 
 {% endblock %}
