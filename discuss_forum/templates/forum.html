@@ -2,26 +2,55 @@
 {% load static %}
 {% block content %}
 {% include 'navbar.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
-    <h1>{{ title }}</h1>
 
+<!-- Tampilkan tombol "Add New Mood Entry" hanya jika user sudah login -->
+{% if user.is_authenticated %}
+    <div class="flex justify-end mb-4">
+        <a href="{% url 'discuss_forum:create_discussion_forum' %}">
+            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+                Add Topic
+            </button>
+        </a>
+    </div>
+{% else %}
+    <div class="flex justify-end mb-4">
+        <a href="{% url 'login' %}">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Login to Add New Mood Entry
+            </button>
+        </a>
+    </div>
+{% endif %}
 
+<!-- Jika belum ada forum, tampilkan pesan -->
+{% if not forums %}
+    <p class="text-gray-500">Belum ada data mood pada mental health tracker.</p>
+{% else %}
+    <!-- Grid untuk menampilkan forum dalam bentuk card -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {% for forum in forums %}
+        <div class="bg-gray-900 shadow-lg rounded-lg p-4 text-white" style="width: 316px; height: 260px;">
+            <!-- Icon pesan di atas judul -->
+            <div class="flex items-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-yellow-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m2 0a9 9 0 100-12.01A9 9 0 0021 10.11z" />
+                </svg>
+                <span class="ml-2 text-yellow-500 font-bold">{{ forum.title }}</span>
+            </div>
 
-</body>
-</html>
+            <!-- Konten forum -->
+            <p class="text-gray-400 mb-4">{{ forum.content }}</p>
+
+            <!-- Bagian waktu dibuat dengan icon jam -->
+            <div class="absolute bottom-4 flex items-center text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6 1a9 9 0 11-6-8.73" />
+                </svg>
+                <p>{{ forum.date_created|date:"d-m-Y" }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
 {% endblock content %}
