@@ -25,10 +25,10 @@ Ngandung adalah aplikasi berbasis web yang menyediakan informasi lengkap tentang
 
 #### a. Modul/fitur wajib:
 
--   _**Authentication**_ **and** _**Authorization**_
+-   _**Authentication**_ **and** _**Authorization**_  
     Modul ini berfungsi untuk mengatur _authentication_ pengguna. Pengguna dapat mendaftar, masuk, dan keluar dari aplikasi.
 
--   **Implementasi fixture data toko, makanan, dan admin**
+-   **Implementasi fixture data toko, makanan, dan admin**  
     Modul ini berfungsi untuk mengisi data awal ke dalam database. Data awal yang dimasukkan berupa data makanan dan data toko.
 
 #### b. Modul/fitur aplikasi:
