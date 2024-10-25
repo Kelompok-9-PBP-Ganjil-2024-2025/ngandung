@@ -9,7 +9,7 @@
 5. [_Role_ pengguna berdasarkan deskripsinya](#5-_Role_-pengguna-berdasarkan-deskripsinya)
 6. [URL _deployment_ PWS](#6-url-deployment-pws)
 
-### 1. Nama-nama anggota kelom pok
+### 1. Nama-nama anggota kelompok
 
 -   Ahmad Dzulfikar As Shavy (2306152374) - `AhmadDzulfikar`
 -   Muhammad Radhiya Arshq (2306275885) - `arshqiii`
