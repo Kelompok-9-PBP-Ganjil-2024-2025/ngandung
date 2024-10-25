@@ -1,6 +1,6 @@
 [
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 1,
     "fields": {
       "name": "BREW & CHEW Nasi Goreng Special",
@@ -9,7 +9,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 2,
     "fields": {
       "name": "Spaghetti Carbonara",
@@ -18,7 +18,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 3,
     "fields": {
       "name": "Chicken Wings Spicy",
@@ -27,7 +27,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 4,
     "fields": {
       "name": "Classic Cheeseburger",
@@ -36,7 +36,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 5,
     "fields": {
       "name": "Nasi Campur Bali",
@@ -45,7 +45,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 6,
     "fields": {
       "name": "Gado-Gado CAFE BALI",
@@ -54,7 +54,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 7,
     "fields": {
       "name": "Sate Lilit",
@@ -63,7 +63,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 8,
     "fields": {
       "name": "Mie Goreng Seafood",
@@ -72,7 +72,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 9,
     "fields": {
       "name": "Pancakes with Honey",
@@ -81,7 +81,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 10,
     "fields": {
       "name": "ANJIS COFFEE Beef Steak",
@@ -90,7 +90,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 11,
     "fields": {
       "name": "Club Sandwich Deluxe",
@@ -99,7 +99,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 12,
     "fields": {
       "name": "Sushi Roll Platter",
@@ -108,7 +108,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 13,
     "fields": {
       "name": "HEADKLIN Special Omelette",
@@ -117,7 +117,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 14,
     "fields": {
       "name": "Chicken Salad",
@@ -126,7 +126,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 15,
     "fields": {
       "name": "French Fries with Dip",
@@ -135,7 +135,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 16,
     "fields": {
       "name": "Chocolate Waffles",
@@ -144,7 +144,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 17,
     "fields": {
       "name": "Garden Salad",
@@ -153,7 +153,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 18,
     "fields": {
       "name": "GARDEN COFFEE Pancakes",
@@ -162,7 +162,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 19,
     "fields": {
       "name": "Vegetable Quiche",
@@ -171,7 +171,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 20,
     "fields": {
       "name": "BERASA Nasi Goreng Kampung",
@@ -180,7 +180,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 21,
     "fields": {
       "name": "Bakso Spesial",
@@ -189,7 +189,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 22,
     "fields": {
       "name": "Soto Ayam BERASA",
@@ -198,7 +198,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 23,
     "fields": {
       "name": "Mie Goreng Jawa",
@@ -207,7 +207,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 24,
     "fields": {
       "name": "Rendang Beef Plate",
@@ -216,7 +216,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 25,
     "fields": {
       "name": "LULA Signature Croissant",
@@ -225,7 +225,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 26,
     "fields": {
       "name": "Egg Benedict",
@@ -234,7 +234,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 27,
     "fields": {
       "name": "Avocado Toast",
@@ -243,7 +243,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 28,
     "fields": {
       "name": "Blueberry Muffin",
@@ -252,7 +252,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 29,
     "fields": {
       "name": "JARDIN Club Sandwich",
@@ -261,7 +261,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 30,
     "fields": {
       "name": "Grilled Chicken Salad",
@@ -270,7 +270,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 31,
     "fields": {
       "name": "Mushroom Soup",
@@ -279,7 +279,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 32,
     "fields": {
       "name": "4EAT Special Burger",
@@ -288,7 +288,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 33,
     "fields": {
       "name": "Pepperoni Pizza",
@@ -297,7 +297,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 34,
     "fields": {
       "name": "Fish and Chips",
@@ -306,7 +306,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 35,
     "fields": {
       "name": "Chicken Tacos",
@@ -315,7 +315,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 36,
     "fields": {
       "name": "Nachos Grande",
@@ -324,7 +324,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 37,
     "fields": {
       "name": "ROGER'S Rib Eye Steak",
@@ -333,7 +333,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 38,
     "fields": {
       "name": "Lamb Chops",
@@ -342,7 +342,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 39,
     "fields": {
       "name": "Seafood Paella",
@@ -351,7 +351,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 40,
     "fields": {
       "name": "PLEASE Signature Pasta",
@@ -360,7 +360,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 41,
     "fields": {
       "name": "Vegan Burger",
@@ -369,7 +369,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 42,
     "fields": {
       "name": "Quinoa Salad",
@@ -378,7 +378,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 43,
     "fields": {
       "name": "Fruit Smoothie Bowl",
@@ -387,7 +387,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 44,
     "fields": {
       "name": "HONGER Fried Rice Special",
@@ -396,7 +396,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 45,
     "fields": {
       "name": "Sate Ayam Madura",
@@ -405,7 +405,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 46,
     "fields": {
       "name": "Chicken Katsu Curry",
@@ -414,7 +414,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 47,
     "fields": {
       "name": "LOY Breakfast Platter",
@@ -423,7 +423,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 48,
     "fields": {
       "name": "Panini Sandwich",
@@ -432,7 +432,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 49,
     "fields": {
       "name": "Eggs Florentine",
@@ -441,7 +441,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 50,
     "fields": {
       "name": "Mango Smoothie",
@@ -450,7 +450,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 51,
     "fields": {
       "name": "Banana Bread",
@@ -459,7 +459,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 52,
     "fields": {
       "name": "FAREL Chocolate Eclair",
@@ -468,7 +468,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 53,
     "fields": {
       "name": "Strawberry Tart",
@@ -477,7 +477,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 54,
     "fields": {
       "name": "Almond Croissant",
@@ -486,7 +486,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 55,
     "fields": {
       "name": "KAHVE Signature Latte",
@@ -495,7 +495,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 56,
     "fields": {
       "name": "Baklava Delight",
@@ -504,7 +504,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 57,
     "fields": {
       "name": "Turkish Delight Platter",
@@ -513,7 +513,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 58,
     "fields": {
       "name": "Pide (Turkish Pizza)",
@@ -522,7 +522,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 59,
     "fields": {
       "name": "TAEUN Korean Fried Chicken",
@@ -531,7 +531,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 60,
     "fields": {
       "name": "Bibimbap Bowl",
@@ -540,7 +540,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 61,
     "fields": {
       "name": "Kimchi Fried Rice",
@@ -549,7 +549,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 62,
     "fields": {
       "name": "2 GRAMS Special Burger",
@@ -558,7 +558,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 63,
     "fields": {
       "name": "Grilled Chicken Panini",
@@ -567,7 +567,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 64,
     "fields": {
       "name": "Spaghetti Aglio e Olio",
@@ -576,7 +576,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 65,
     "fields": {
       "name": "Caesar Salad",
@@ -585,7 +585,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 66,
     "fields": {
       "name": "GIGGLEBOX Fish and Chips",
@@ -594,7 +594,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 67,
     "fields": {
       "name": "Chicken Parmigiana",
@@ -603,7 +603,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 68,
     "fields": {
       "name": "Beef Lasagna",
@@ -612,7 +612,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 69,
     "fields": {
       "name": "Mixed Berry Pancakes",
@@ -621,7 +621,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 70,
     "fields": {
       "name": "Vegetarian Quesadilla",
@@ -630,7 +630,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 71,
     "fields": {
       "name": "KAKA Nasi Goreng Spesial",
@@ -639,7 +639,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 72,
     "fields": {
       "name": "Mie Ayam KAKA",
@@ -648,7 +648,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 73,
     "fields": {
       "name": "Sate Ayam Madura",
@@ -657,7 +657,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 74,
     "fields": {
       "name": "Croque Monsieur",
@@ -666,7 +666,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 75,
     "fields": {
       "name": "PARIS VAN JAVA Quiche Lorraine",
@@ -675,7 +675,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 76,
     "fields": {
       "name": "Escargot \u00e0 la Bourguignonne",
@@ -684,7 +684,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 77,
     "fields": {
       "name": "French Onion Soup",
@@ -693,7 +693,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 78,
     "fields": {
       "name": "Creme Brulee",
@@ -702,7 +702,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 79,
     "fields": {
       "name": "CHAPLIN'S Beef Burger",
@@ -711,7 +711,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 80,
     "fields": {
       "name": "Shawarma Wrap",
@@ -720,7 +720,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 81,
     "fields": {
       "name": "Chicken Tikka Masala",
@@ -729,7 +729,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 82,
     "fields": {
       "name": "Mediterranean Salad",
@@ -738,7 +738,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 83,
     "fields": {
       "name": "HERITAGE Club Sandwich",
@@ -747,7 +747,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 84,
     "fields": {
       "name": "Beef Rendang",
@@ -756,7 +756,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 85,
     "fields": {
       "name": "Nasi Uduk",
@@ -765,7 +765,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 86,
     "fields": {
       "name": "Pasta Marinara",
@@ -774,7 +774,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 87,
     "fields": {
       "name": "Mango Pudding",
@@ -783,7 +783,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 88,
     "fields": {
       "name": "FOURPLAY Signature Pizza",
@@ -792,7 +792,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 89,
     "fields": {
       "name": "Grilled Salmon Steak",
@@ -801,7 +801,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 90,
     "fields": {
       "name": "Lamb Shank",
@@ -810,7 +810,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 91,
     "fields": {
       "name": "BELLAMIE Almond Croissant",
@@ -819,7 +819,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 92,
     "fields": {
       "name": "Blueberry Danish",
@@ -828,7 +828,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 93,
     "fields": {
       "name": "Chicken Pot Pie",
@@ -837,7 +837,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 94,
     "fields": {
       "name": "Chocolate Lava Cake",
@@ -846,7 +846,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 95,
     "fields": {
       "name": "SYDWIC Special Fried Rice",
@@ -855,7 +855,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 96,
     "fields": {
       "name": "Pad Thai Noodles",
@@ -864,7 +864,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 97,
     "fields": {
       "name": "Chicken Satay",
@@ -873,7 +873,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 98,
     "fields": {
       "name": "Tom Yum Soup",
@@ -882,7 +882,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 99,
     "fields": {
       "name": "Green Curry",
@@ -891,7 +891,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 100,
     "fields": {
       "name": "PANASDALAM Nasi Liwet",
@@ -900,7 +900,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 101,
     "fields": {
       "name": "Gulai Kambing",
@@ -909,7 +909,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 102,
     "fields": {
       "name": "Es Cendol",
@@ -918,7 +918,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 103,
     "fields": {
       "name": "PAPATONG Chicken Wrap",
@@ -927,7 +927,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 104,
     "fields": {
       "name": "Beef Nachos",
@@ -936,7 +936,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 105,
     "fields": {
       "name": "Spicy Tuna Sandwich",
@@ -945,7 +945,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 106,
     "fields": {
       "name": "Greek Salad",
@@ -954,7 +954,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 107,
     "fields": {
       "name": "BOBER Pancake Stack",
@@ -963,7 +963,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 108,
     "fields": {
       "name": "Chocolate Brownie",
@@ -972,7 +972,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 109,
     "fields": {
       "name": "Fruit Salad",
@@ -981,7 +981,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 110,
     "fields": {
       "name": "Chicken Nuggets",
@@ -990,7 +990,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 111,
     "fields": {
       "name": "Spaghetti Bolognese",
@@ -999,7 +999,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 112,
     "fields": {
       "name": "BUTTERCUP Brioche Bread",
@@ -1008,7 +1008,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 113,
     "fields": {
       "name": "Ham and Cheese Croissant",
@@ -1017,7 +1017,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 114,
     "fields": {
       "name": "Spinach Quiche",
@@ -1026,7 +1026,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 115,
     "fields": {
       "name": "SEJIWA Avocado Toast",
@@ -1035,7 +1035,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 116,
     "fields": {
       "name": "Eggs Benedict",
@@ -1044,7 +1044,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 117,
     "fields": {
       "name": "Grilled Cheese Sandwich",
@@ -1053,7 +1053,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 118,
     "fields": {
       "name": "Blueberry Pancakes",
@@ -1062,7 +1062,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 119,
     "fields": {
       "name": "HUMMINGBIRD Pancake Delight",
@@ -1071,7 +1071,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 120,
     "fields": {
       "name": "Avocado Toast Special",
@@ -1080,7 +1080,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 121,
     "fields": {
       "name": "Eggs Benedict Hummingbird Style",
@@ -1089,7 +1089,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 122,
     "fields": {
       "name": "Nasi Goreng Kampung",
@@ -1098,7 +1098,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 123,
     "fields": {
       "name": "Beef Steak with Mushroom Sauce",
@@ -1107,7 +1107,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 124,
     "fields": {
       "name": "ROAD Special Burger",
@@ -1116,7 +1116,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 125,
     "fields": {
       "name": "Chicken Wings Spicy",
@@ -1125,7 +1125,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 126,
     "fields": {
       "name": "Fish and Chips",
@@ -1134,7 +1134,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 127,
     "fields": {
       "name": "Pasta Carbonara",
@@ -1143,7 +1143,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 128,
     "fields": {
       "name": "SONOMA Signature Pizza",
@@ -1152,7 +1152,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 129,
     "fields": {
       "name": "Golden Chicken Schnitzel",
@@ -1161,7 +1161,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 130,
     "fields": {
       "name": "Creamy Mushroom Soup",
@@ -1170,7 +1170,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 131,
     "fields": {
       "name": "Salmon Steak with Lemon Sauce",
@@ -1179,7 +1179,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 132,
     "fields": {
       "name": "Caesar Salad",
@@ -1188,7 +1188,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 133,
     "fields": {
       "name": "EVERJOY Club Sandwich",
@@ -1197,7 +1197,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 134,
     "fields": {
       "name": "Beef Rendang Platter",
@@ -1206,7 +1206,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 135,
     "fields": {
       "name": "Nasi Goreng Seafood",
@@ -1215,7 +1215,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 136,
     "fields": {
       "name": "Spaghetti Aglio e Olio",
@@ -1224,7 +1224,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 137,
     "fields": {
       "name": "CISANGKUY Fried Rice Special",
@@ -1233,7 +1233,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 138,
     "fields": {
       "name": "Chicken Satay with Peanut Sauce",
@@ -1242,7 +1242,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 139,
     "fields": {
       "name": "Soto Ayam",
@@ -1251,7 +1251,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 140,
     "fields": {
       "name": "Grilled Salmon Salad",
@@ -1260,7 +1260,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 141,
     "fields": {
       "name": "Banana Split Ice Cream",
@@ -1269,7 +1269,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 142,
     "fields": {
       "name": "BUIH KOPI Nasi Uduk",
@@ -1278,7 +1278,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 143,
     "fields": {
       "name": "Gado-Gado",
@@ -1287,7 +1287,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 144,
     "fields": {
       "name": "Pancake with Honey",
@@ -1296,7 +1296,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 145,
     "fields": {
       "name": "GERM Classic Burger",
@@ -1305,7 +1305,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 146,
     "fields": {
       "name": "Fish and Chips",
@@ -1314,7 +1314,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 147,
     "fields": {
       "name": "Spaghetti Bolognese",
@@ -1323,7 +1323,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 148,
     "fields": {
       "name": "Chicken Caesar Salad",
@@ -1332,7 +1332,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 149,
     "fields": {
       "name": "DENNY'S Grand Slam Breakfast",
@@ -1341,7 +1341,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 150,
     "fields": {
       "name": "Moons Over My Hammy",
@@ -1350,7 +1350,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 151,
     "fields": {
       "name": "Chicken Noodle Soup",
@@ -1359,7 +1359,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 152,
     "fields": {
       "name": "Double Cheeseburger",
@@ -1368,7 +1368,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 153,
     "fields": {
       "name": "Chocolate Lava Cake",
@@ -1377,7 +1377,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 154,
     "fields": {
       "name": "EATERS.COM Special Pizza",
@@ -1386,7 +1386,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 155,
     "fields": {
       "name": "Grilled Chicken Panini",
@@ -1395,7 +1395,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 156,
     "fields": {
       "name": "Vegetarian Lasagna",
@@ -1404,7 +1404,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 157,
     "fields": {
       "name": "TJIHAPIT Nasi Liwet",
@@ -1413,7 +1413,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 158,
     "fields": {
       "name": "Sop Buntut",
@@ -1422,7 +1422,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 159,
     "fields": {
       "name": "Ayam Goreng Tjap Rumah",
@@ -1431,7 +1431,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 160,
     "fields": {
       "name": "Es Teler",
@@ -1440,7 +1440,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 161,
     "fields": {
       "name": "TREA Chicken Wrap",
@@ -1449,7 +1449,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 162,
     "fields": {
       "name": "Quinoa Salad",
@@ -1458,7 +1458,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 163,
     "fields": {
       "name": "Chocolate Brownie",
@@ -1467,7 +1467,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 164,
     "fields": {
       "name": "PIETRO Spaghetti Carbonara",
@@ -1476,7 +1476,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 165,
     "fields": {
       "name": "Margherita Pizza",
@@ -1485,7 +1485,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 166,
     "fields": {
       "name": "Tiramisu",
@@ -1494,7 +1494,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 167,
     "fields": {
       "name": "Caesar Salad",
@@ -1503,7 +1503,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 168,
     "fields": {
       "name": "INFINITO Signature Steak",
@@ -1512,7 +1512,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 169,
     "fields": {
       "name": "Seafood Paella",
@@ -1521,7 +1521,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 170,
     "fields": {
       "name": "Mie Goreng Spesial",
@@ -1530,7 +1530,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 171,
     "fields": {
       "name": "Rendang Beef Burger",
@@ -1539,7 +1539,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 172,
     "fields": {
       "name": "Cheesecake",
@@ -1548,7 +1548,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 173,
     "fields": {
       "name": "FIFTEEN Fish and Chips",
@@ -1557,7 +1557,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 174,
     "fields": {
       "name": "Chicken Quesadilla",
@@ -1566,7 +1566,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 175,
     "fields": {
       "name": "Blueberry Pancakes",
@@ -1575,7 +1575,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 176,
     "fields": {
       "name": "LE BISTROT Escargots",
@@ -1584,7 +1584,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 177,
     "fields": {
       "name": "Coq au Vin",
@@ -1593,7 +1593,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 178,
     "fields": {
       "name": "French Onion Soup",
@@ -1602,7 +1602,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 179,
     "fields": {
       "name": "Cr\u00e8me Br\u00fbl\u00e9e",
@@ -1611,7 +1611,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 180,
     "fields": {
       "name": "Boeuf Bourguignon",
@@ -1620,7 +1620,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 181,
     "fields": {
       "name": "SEMENTARA Cappuccino",
@@ -1629,7 +1629,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 182,
     "fields": {
       "name": "Blueberry Muffin",
@@ -1638,7 +1638,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 183,
     "fields": {
       "name": "Avocado Toast",
@@ -1647,7 +1647,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 184,
     "fields": {
       "name": "SEMENTARA Signature Sandwich",
@@ -1656,7 +1656,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 185,
     "fields": {
       "name": "EQUATOR Espresso",
@@ -1665,7 +1665,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 186,
     "fields": {
       "name": "French Croissant",
@@ -1674,7 +1674,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 187,
     "fields": {
       "name": "Eggs Benedict",
@@ -1683,7 +1683,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 188,
     "fields": {
       "name": "Grilled Cheese Sandwich",
@@ -1692,7 +1692,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 189,
     "fields": {
       "name": "Chocolate Brownie",
@@ -1701,7 +1701,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 190,
     "fields": {
       "name": "MYLOC Latte",
@@ -1710,7 +1710,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 191,
     "fields": {
       "name": "Chicken Caesar Salad",
@@ -1719,7 +1719,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 192,
     "fields": {
       "name": "Banana Pancakes",
@@ -1728,7 +1728,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 193,
     "fields": {
       "name": "THE SHADOWS Special Burger",
@@ -1737,7 +1737,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 194,
     "fields": {
       "name": "Spaghetti Bolognese",
@@ -1746,7 +1746,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 195,
     "fields": {
       "name": "Fish and Chips",
@@ -1755,7 +1755,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 196,
     "fields": {
       "name": "Apple Pie",
@@ -1764,7 +1764,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 197,
     "fields": {
       "name": "RUMPOET Nachos Grande",
@@ -1773,7 +1773,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 198,
     "fields": {
       "name": "Chicken Quesadilla",
@@ -1782,7 +1782,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 199,
     "fields": {
       "name": "Beef Tacos",
@@ -1791,7 +1791,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 200,
     "fields": {
       "name": "Salsa Dip with Chips",
@@ -1800,7 +1800,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 201,
     "fields": {
       "name": "Chocolate Lava Cake",
@@ -1809,7 +1809,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 202,
     "fields": {
       "name": "PAKARANGAN Nasi Goreng",
@@ -1818,7 +1818,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 203,
     "fields": {
       "name": "Gado-Gado",
@@ -1827,7 +1827,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 204,
     "fields": {
       "name": "Sate Ayam",
@@ -1836,7 +1836,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 205,
     "fields": {
       "name": "NINETIES Club Sandwich",
@@ -1845,7 +1845,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 206,
     "fields": {
       "name": "Pepperoni Pizza",
@@ -1854,7 +1854,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 207,
     "fields": {
       "name": "Cheeseburger",
@@ -1863,7 +1863,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 208,
     "fields": {
       "name": "Vanilla Milkshake",
@@ -1872,7 +1872,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 209,
     "fields": {
       "name": "SINIYU Special Fried Rice",
@@ -1881,7 +1881,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 210,
     "fields": {
       "name": "Chicken Satay",
@@ -1890,7 +1890,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 211,
     "fields": {
       "name": "Es Cendol",
@@ -1899,7 +1899,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 212,
     "fields": {
       "name": "CAFE BELIMBING Pancake Stack",
@@ -1908,7 +1908,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 213,
     "fields": {
       "name": "Strawberry Waffle",
@@ -1917,7 +1917,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 214,
     "fields": {
       "name": "Avocado Smoothie",
@@ -1926,7 +1926,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 215,
     "fields": {
       "name": "Grilled Chicken Salad",
@@ -1935,7 +1935,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 216,
     "fields": {
       "name": "MUCHO Espresso",
@@ -1944,7 +1944,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 217,
     "fields": {
       "name": "Spanish Omelette",
@@ -1953,7 +1953,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 218,
     "fields": {
       "name": "Churros with Chocolate Sauce",
@@ -1962,7 +1962,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 219,
     "fields": {
       "name": "Paella Valenciana",
@@ -1971,7 +1971,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 220,
     "fields": {
       "name": "Gazpacho Soup",
@@ -1980,7 +1980,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 221,
     "fields": {
       "name": "CHINOOK Beef Steak",
@@ -1989,7 +1989,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 222,
     "fields": {
       "name": "Grilled Salmon",
@@ -1998,7 +1998,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 223,
     "fields": {
       "name": "Caesar Salad",
@@ -2007,7 +2007,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 224,
     "fields": {
       "name": "Mushroom Soup",
@@ -2016,7 +2016,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 225,
     "fields": {
       "name": "CHINGU Bibimbap",
@@ -2025,7 +2025,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 226,
     "fields": {
       "name": "Korean Fried Chicken",
@@ -2034,7 +2034,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 227,
     "fields": {
       "name": "Kimchi Stew",
@@ -2043,7 +2043,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 228,
     "fields": {
       "name": "Bulgogi Beef",
@@ -2052,7 +2052,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 229,
     "fields": {
       "name": "Tteokbokki",
@@ -2061,7 +2061,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 230,
     "fields": {
       "name": "ZIE Cappuccino",
@@ -2070,7 +2070,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 231,
     "fields": {
       "name": "Chicken Panini",
@@ -2079,7 +2079,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 232,
     "fields": {
       "name": "Chocolate Muffin",
@@ -2088,7 +2088,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 233,
     "fields": {
       "name": "BRAGA Special Pizza",
@@ -2097,7 +2097,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 234,
     "fields": {
       "name": "Pasta Alfredo",
@@ -2106,7 +2106,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 235,
     "fields": {
       "name": "Greek Salad",
@@ -2115,7 +2115,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 236,
     "fields": {
       "name": "Tiramisu",
@@ -2124,7 +2124,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 237,
     "fields": {
       "name": "DACOSTA Nasi Goreng Special",
@@ -2133,7 +2133,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 238,
     "fields": {
       "name": "Mie Goreng Jawa",
@@ -2142,7 +2142,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 239,
     "fields": {
       "name": "Soto Ayam",
@@ -2151,7 +2151,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 240,
     "fields": {
       "name": "CAFE PAOPA Pancake",
@@ -2160,7 +2160,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 241,
     "fields": {
       "name": "Fruit Salad",
@@ -2169,7 +2169,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 242,
     "fields": {
       "name": "Grilled Cheese Sandwich",
@@ -2178,7 +2178,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 243,
     "fields": {
       "name": "Latte",
@@ -2187,7 +2187,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 244,
     "fields": {
       "name": "Unicorn Rainbow Cake",
@@ -2196,7 +2196,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 245,
     "fields": {
       "name": "Cotton Candy Milkshake",
@@ -2205,7 +2205,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 246,
     "fields": {
       "name": "Pink Waffles",
@@ -2214,7 +2214,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 247,
     "fields": {
       "name": "Unicorn Burger",
@@ -2223,7 +2223,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 248,
     "fields": {
       "name": "Magic Fruit Salad",
@@ -2232,7 +2232,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 249,
     "fields": {
       "name": "VANDEL Espresso",
@@ -2241,7 +2241,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 250,
     "fields": {
       "name": "Ham and Cheese Croissant",
@@ -2250,7 +2250,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 251,
     "fields": {
       "name": "Mango Smoothie",
@@ -2259,7 +2259,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 252,
     "fields": {
       "name": "88 GARAGE Burger",
@@ -2268,7 +2268,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 253,
     "fields": {
       "name": "Chicken Wings",
@@ -2277,7 +2277,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 254,
     "fields": {
       "name": "Onion Rings",
@@ -2286,7 +2286,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 255,
     "fields": {
       "name": "Chocolate Milkshake",
@@ -2295,7 +2295,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 256,
     "fields": {
       "name": "KAMAIA Nasi Campur",
@@ -2304,7 +2304,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 257,
     "fields": {
       "name": "Sate Lilit",
@@ -2313,7 +2313,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 258,
     "fields": {
       "name": "Es Teh Manis",
@@ -2322,7 +2322,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 259,
     "fields": {
       "name": "AIRPLANE Chicken Wings",
@@ -2331,7 +2331,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 260,
     "fields": {
       "name": "Pilot's Burger",
@@ -2340,7 +2340,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 261,
     "fields": {
       "name": "Runway Salad",
@@ -2349,7 +2349,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 262,
     "fields": {
       "name": "Flight Smoothie",
@@ -2358,7 +2358,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 263,
     "fields": {
       "name": "BANKTENDER Steak",
@@ -2367,7 +2367,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 264,
     "fields": {
       "name": "Grilled Salmon",
@@ -2376,7 +2376,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 265,
     "fields": {
       "name": "Caesar Salad",
@@ -2385,7 +2385,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 266,
     "fields": {
       "name": "Chocolate Mousse",
@@ -2394,7 +2394,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 267,
     "fields": {
       "name": "SEVENTH DOSE Cappuccino",
@@ -2403,7 +2403,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 268,
     "fields": {
       "name": "Eggs Benedict",
@@ -2412,7 +2412,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 269,
     "fields": {
       "name": "Blueberry Muffin",
@@ -2421,7 +2421,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 270,
     "fields": {
       "name": "DAGO YUI Sushi Platter",
@@ -2430,7 +2430,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 271,
     "fields": {
       "name": "Chicken Katsu Curry",
@@ -2439,7 +2439,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 272,
     "fields": {
       "name": "Ramen Noodle Soup",
@@ -2448,7 +2448,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 273,
     "fields": {
       "name": "Matcha Ice Cream",
@@ -2457,7 +2457,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 274,
     "fields": {
       "name": "TRENDS Pepperoni Pizza",
@@ -2466,7 +2466,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 275,
     "fields": {
       "name": "BBQ Chicken Wings",
@@ -2475,7 +2475,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 276,
     "fields": {
       "name": "Pasta Marinara",
@@ -2484,7 +2484,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 277,
     "fields": {
       "name": "Caesar Salad",
@@ -2493,7 +2493,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 278,
     "fields": {
       "name": "Chocolate Brownie",
@@ -2502,7 +2502,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 279,
     "fields": {
       "name": "Cereal Bowl Deluxe",
@@ -2511,7 +2511,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 280,
     "fields": {
       "name": "Fruit Parfait",
@@ -2520,7 +2520,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 281,
     "fields": {
       "name": "Milkshake Variety",
@@ -2529,7 +2529,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 282,
     "fields": {
       "name": "TIGA Grilled Chicken",
@@ -2538,7 +2538,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 283,
     "fields": {
       "name": "Outdoor Burger",
@@ -2547,7 +2547,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 284,
     "fields": {
       "name": "French Fries",
@@ -2556,7 +2556,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 285,
     "fields": {
       "name": "Iced Tea",
@@ -2565,7 +2565,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 286,
     "fields": {
       "name": "SHAKIRA Paella",
@@ -2574,7 +2574,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 287,
     "fields": {
       "name": "Chicken Enchiladas",
@@ -2583,7 +2583,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 288,
     "fields": {
       "name": "Beef Burrito",
@@ -2592,7 +2592,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 289,
     "fields": {
       "name": "Nachos Supreme",
@@ -2601,7 +2601,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 290,
     "fields": {
       "name": "Churros with Caramel",
@@ -2610,7 +2610,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 291,
     "fields": {
       "name": "BLACK GROUND Espresso",
@@ -2619,7 +2619,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 292,
     "fields": {
       "name": "Steak Sandwich",
@@ -2628,7 +2628,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 293,
     "fields": {
       "name": "Chocolate Cake",
@@ -2637,7 +2637,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 294,
     "fields": {
       "name": "Victoria Croissant",
@@ -2646,7 +2646,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 295,
     "fields": {
       "name": "Blueberry Muffin",
@@ -2655,7 +2655,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 296,
     "fields": {
       "name": "Ham and Cheese Sandwich",
@@ -2664,7 +2664,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 297,
     "fields": {
       "name": "Cappuccino",
@@ -2673,7 +2673,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 298,
     "fields": {
       "name": "URBAN STORY Steak",
@@ -2682,7 +2682,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 299,
     "fields": {
       "name": "Salmon Teriyaki",
@@ -2691,7 +2691,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 300,
     "fields": {
       "name": "Pasta Alfredo",
@@ -2700,7 +2700,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 301,
     "fields": {
       "name": "Caesar Salad",
@@ -2709,7 +2709,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 302,
     "fields": {
       "name": "Tiramisu",
@@ -2718,7 +2718,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 303,
     "fields": {
       "name": "Milkshake Deluxe",
@@ -2727,7 +2727,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 304,
     "fields": {
       "name": "Cheeseburger",
@@ -2736,7 +2736,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 305,
     "fields": {
       "name": "French Fries",
@@ -2745,7 +2745,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 306,
     "fields": {
       "name": "Ice Cream Sundae",
@@ -2754,7 +2754,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 307,
     "fields": {
       "name": "SVBLIMINAL Cappuccino",
@@ -2763,7 +2763,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 308,
     "fields": {
       "name": "Chicken Wrap",
@@ -2772,7 +2772,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 309,
     "fields": {
       "name": "Fruit Salad",
@@ -2781,7 +2781,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 310,
     "fields": {
       "name": "GRIND JOE Espresso",
@@ -2790,7 +2790,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 311,
     "fields": {
       "name": "Bagel with Cream Cheese",
@@ -2799,7 +2799,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 312,
     "fields": {
       "name": "Chocolate Muffin",
@@ -2808,7 +2808,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 313,
     "fields": {
       "name": "Iced Latte",
@@ -2817,7 +2817,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 314,
     "fields": {
       "name": "Ben's Special Steak",
@@ -2826,7 +2826,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 315,
     "fields": {
       "name": "Grilled Chicken",
@@ -2835,7 +2835,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 316,
     "fields": {
       "name": "Pasta Carbonara",
@@ -2844,7 +2844,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 317,
     "fields": {
       "name": "Garden Salad",
@@ -2853,7 +2853,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 318,
     "fields": {
       "name": "Chocolate Brownie",
@@ -2862,7 +2862,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 319,
     "fields": {
       "name": "BYRON Signature Steak",
@@ -2871,7 +2871,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 320,
     "fields": {
       "name": "Grilled Chicken Salad",
@@ -2880,7 +2880,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 321,
     "fields": {
       "name": "Seafood Pasta",
@@ -2889,7 +2889,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 322,
     "fields": {
       "name": "Mushroom Soup",
@@ -2898,7 +2898,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 323,
     "fields": {
       "name": "Chocolate Lava Cake",
@@ -2907,7 +2907,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 324,
     "fields": {
       "name": "YUMAJU Espresso",
@@ -2916,7 +2916,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 325,
     "fields": {
       "name": "Blueberry Muffin",
@@ -2925,7 +2925,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 326,
     "fields": {
       "name": "Croissant Sandwich",
@@ -2934,7 +2934,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 327,
     "fields": {
       "name": "Avocado Toast",
@@ -2943,7 +2943,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 328,
     "fields": {
       "name": "U&KL Special Fried Rice",
@@ -2952,7 +2952,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 329,
     "fields": {
       "name": "Chicken Satay",
@@ -2961,7 +2961,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 330,
     "fields": {
       "name": "Beef Rendang",
@@ -2970,7 +2970,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 331,
     "fields": {
       "name": "Spaghetti Carbonara",
@@ -2979,7 +2979,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 332,
     "fields": {
       "name": "Garden Salad",
@@ -2988,7 +2988,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 333,
     "fields": {
       "name": "Amore Gelato Selection",
@@ -2997,7 +2997,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 334,
     "fields": {
       "name": "Affogato",
@@ -3006,7 +3006,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 335,
     "fields": {
       "name": "Pancake with Gelato",
@@ -3015,7 +3015,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 336,
     "fields": {
       "name": "Coffee Latte",
@@ -3024,7 +3024,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 337,
     "fields": {
       "name": "NAKED Espresso",
@@ -3033,7 +3033,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 338,
     "fields": {
       "name": "Chocolate Croissant",
@@ -3042,7 +3042,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 339,
     "fields": {
       "name": "Avocado Toast",
@@ -3051,7 +3051,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 340,
     "fields": {
       "name": "PREANGER Nasi Goreng Special",
@@ -3060,7 +3060,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 341,
     "fields": {
       "name": "Mie Goreng Jawa",
@@ -3069,7 +3069,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 342,
     "fields": {
       "name": "Chicken Curry",
@@ -3078,7 +3078,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 343,
     "fields": {
       "name": "Beef Steak",
@@ -3087,7 +3087,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 344,
     "fields": {
       "name": "Fruit Salad",
@@ -3096,7 +3096,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 345,
     "fields": {
       "name": "WHATEVER Cappuccino",
@@ -3105,7 +3105,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 346,
     "fields": {
       "name": "Chicken Wings",
@@ -3114,7 +3114,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 347,
     "fields": {
       "name": "Nachos with Salsa",
@@ -3123,7 +3123,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 348,
     "fields": {
       "name": "Cheese Platter",
@@ -3132,7 +3132,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 349,
     "fields": {
       "name": "SALATRI Signature Salad",
@@ -3141,7 +3141,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 350,
     "fields": {
       "name": "Grilled Chicken Sandwich",
@@ -3150,7 +3150,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 351,
     "fields": {
       "name": "Fruit Smoothie Bowl",
@@ -3159,7 +3159,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 352,
     "fields": {
       "name": "ETC Rib Eye Steak",
@@ -3168,7 +3168,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 353,
     "fields": {
       "name": "Sirloin Steak",
@@ -3177,7 +3177,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 354,
     "fields": {
       "name": "Grilled Salmon",
@@ -3186,7 +3186,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 355,
     "fields": {
       "name": "Chicken Steak",
@@ -3195,7 +3195,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 356,
     "fields": {
       "name": "Mashed Potatoes",
@@ -3204,7 +3204,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 357,
     "fields": {
       "name": "CUPS Latte",
@@ -3213,7 +3213,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 358,
     "fields": {
       "name": "Pancake with Maple Syrup",
@@ -3222,7 +3222,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 359,
     "fields": {
       "name": "Eggs Benedict",
@@ -3231,7 +3231,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 360,
     "fields": {
       "name": "Chicken Caesar Salad",
@@ -3240,7 +3240,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 361,
     "fields": {
       "name": "SMASH Burger",
@@ -3249,7 +3249,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 362,
     "fields": {
       "name": "Chicken Nuggets",
@@ -3258,7 +3258,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 363,
     "fields": {
       "name": "Milkshake Variety",
@@ -3267,7 +3267,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 364,
     "fields": {
       "name": "French Fries",
@@ -3276,7 +3276,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 365,
     "fields": {
       "name": "Ice Cream Sundae",
@@ -3285,7 +3285,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 366,
     "fields": {
       "name": "ALLURE Cappuccino",
@@ -3294,7 +3294,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 367,
     "fields": {
       "name": "Blueberry Cheesecake",
@@ -3303,7 +3303,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 368,
     "fields": {
       "name": "Club Sandwich",
@@ -3312,7 +3312,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 369,
     "fields": {
       "name": "Caesar Salad",
@@ -3321,7 +3321,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 370,
     "fields": {
       "name": "HAWAYU Espresso",
@@ -3330,7 +3330,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 371,
     "fields": {
       "name": "Ham and Cheese Sandwich",
@@ -3339,7 +3339,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 372,
     "fields": {
       "name": "Chocolate Muffin",
@@ -3348,7 +3348,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 373,
     "fields": {
       "name": "Durian Pancake",
@@ -3357,7 +3357,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 374,
     "fields": {
       "name": "Es Durian",
@@ -3366,7 +3366,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 375,
     "fields": {
       "name": "Durian Goreng",
@@ -3375,7 +3375,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 376,
     "fields": {
       "name": "Nasi Goreng Durian",
@@ -3384,7 +3384,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 377,
     "fields": {
       "name": "Durian Juice",
@@ -3393,7 +3393,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 378,
     "fields": {
       "name": "Blackpepper Steak",
@@ -3402,7 +3402,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 379,
     "fields": {
       "name": "Grilled Chicken with Blackpepper Sauce",
@@ -3411,7 +3411,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 380,
     "fields": {
       "name": "Blackpepper Pasta",
@@ -3420,7 +3420,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 381,
     "fields": {
       "name": "Caesar Salad",
@@ -3429,7 +3429,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 382,
     "fields": {
       "name": "ICUP Cappuccino",
@@ -3438,7 +3438,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 383,
     "fields": {
       "name": "Chocolate Donut",
@@ -3447,7 +3447,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 384,
     "fields": {
       "name": "Ham and Cheese Sandwich",
@@ -3456,7 +3456,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 385,
     "fields": {
       "name": "French Fries",
@@ -3465,7 +3465,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 386,
     "fields": {
       "name": "Chicken Nuggets",
@@ -3474,7 +3474,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 387,
     "fields": {
       "name": "Milkshake",
@@ -3483,7 +3483,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 388,
     "fields": {
       "name": "Ice Cream Sundae",
@@ -3492,7 +3492,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 389,
     "fields": {
       "name": "SPADAA Espresso",
@@ -3501,7 +3501,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 390,
     "fields": {
       "name": "Blueberry Muffin",
@@ -3510,7 +3510,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 391,
     "fields": {
       "name": "Chocolate Croissant",
@@ -3519,7 +3519,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 392,
     "fields": {
       "name": "Tree House Burger",
@@ -3528,7 +3528,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 393,
     "fields": {
       "name": "Grilled Chicken Salad",
@@ -3537,7 +3537,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 394,
     "fields": {
       "name": "Spaghetti Bolognese",
@@ -3546,7 +3546,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 395,
     "fields": {
       "name": "Chocolate Brownie",
@@ -3555,7 +3555,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 396,
     "fields": {
       "name": "MARKA Cappuccino",
@@ -3564,7 +3564,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 397,
     "fields": {
       "name": "Eggs Benedict",
@@ -3573,7 +3573,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 398,
     "fields": {
       "name": "Avocado Toast",
@@ -3582,7 +3582,7 @@
     }
   },
   {
-    "model": "yourapp.makanan",
+    "model": "main.makanan",
     "pk": 399,
     "fields": {
       "name": "Blueberry Pancakes",
