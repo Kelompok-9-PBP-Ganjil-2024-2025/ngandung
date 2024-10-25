@@ -140,3 +140,5 @@ CSRF_TRUSTED_ORIGINS = [
     "http://daffa-abhipraya-ngandung.pbp.cs.ui.ac.id",
     "https://daffa-abhipraya-ngandung.pbp.cs.ui.ac.id",
 ]
+
+AUTH_USER_MODEL = 'authentication.User'
