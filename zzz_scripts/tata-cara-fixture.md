@@ -43,3 +43,5 @@ class MainConfig(AppConfig):
 ```python
 default_app_config = 'main.apps.MainConfig'
 ```
+
+5. Jangan lupa run `python manage.py makemigrations` dan `python manage.py migrate`, karena fixture itu kepanggil pas migrate database
