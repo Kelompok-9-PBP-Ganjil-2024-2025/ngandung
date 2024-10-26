@@ -2,17 +2,40 @@
 {% load static %}
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>MAHAI</h1>
-    {{ content }}
-</body>
-</html>
+<div class="discussion-page" style="padding: 20px;">
+    <!-- Header Diskusi -->
+    <div class="discussion-header" style="margin-bottom: 20px;">
+        <h1>{{ discussion.title }}</h1>
+        <p style="color: #6E6E6E;">Dibuat oleh {{ discussion.user.username }} pada {{ discussion.date_created|date:"d-m-Y H:i" }}</p>
+    </div>
+
+    <!-- Konten Diskusi -->
+    <div class="discussion-content" style="margin-bottom: 40px;">
+        <p>{{ discussion.content }}</p>
+    </div>
+
+    <!-- Formulir Komentar (Opsional) -->
+    {% if user.is_authenticated %}
+        <div class="add-comment" style="margin-bottom: 40px;">
+            <h2>Tambah Komentar</h2>
+            <h3>ini adalah comments section</h3>
+        </div>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> untuk menambahkan komentar.</p>
+    {% endif %}
+
+    <!-- Daftar Komentar -->
+    <div class="comments-section">
+        <h2>Komentar</h2>
+        {% for comment in comments %}
+            <div class="comment" style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+                <p>{{ comment.content }}</p>
+                <p style="color: #6E6E6E; font-size: 0.9rem;">Dikirim oleh {{ comment.user.username }} pada {{ comment.date_created|date:"d-m-Y H:i" }}</p>
+            </div>
+        {% empty %}
+            <p>Belum ada komentar. Jadilah yang pertama untuk berkomentar!</p>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock content %}

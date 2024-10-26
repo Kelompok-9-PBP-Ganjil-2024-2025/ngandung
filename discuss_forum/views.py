@@ -1,18 +1,13 @@
-from django.shortcuts import render, redirect
-from discuss_forum.models import Discussion
-from discuss_forum.models import Comment
+from django.shortcuts import render, redirect, get_object_or_404
+from discuss_forum.models import Discussion, Comment
 from discuss_forum.forms import DiscussionForm
 from django.http import HttpResponse
 from django.core import serializers
-
-
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
-
 # Create your views here.
-
 
 def forum_main(request):
     forums = Discussion.objects.all()
@@ -24,12 +19,17 @@ def forum_main(request):
 
     return render(request, "forum.html", context)
 
-def discussion_main(request):
-    discuss = Comment.objects.all()
+def discussion_main(request, id):
+
+    # Mengambil diskusi berdasarkan ID dan akan mengembalikan 404 jika ID tidak ditemukan.
+    discussion = get_object_or_404(Discussion, pk=id)
+
+    discuss = Comment.objects.all().order_by('-date_created') # Komentar terbaru
 
     context = {
         'content': "WOI GUA SETUJU BANGET, ITU ENAK BANGET",
-        'discuss': discuss
+        'discuss': discuss,
+        'discussion': discussion,
     }
 
     return render(request, "discussion.html", context)
