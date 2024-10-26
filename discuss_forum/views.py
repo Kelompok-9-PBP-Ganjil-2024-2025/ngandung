@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from discuss_forum.models import Discussion
+from discuss_forum.models import Comment
 from discuss_forum.forms import DiscussionForm
 from django.http import HttpResponse
 from django.core import serializers
@@ -7,6 +8,7 @@ from django.core import serializers
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -22,6 +24,17 @@ def forum_main(request):
 
     return render(request, "forum.html", context)
 
+def discussion_main(request):
+    discuss = Comment.objects.all()
+
+    context = {
+        'content': "WOI GUA SETUJU BANGET, ITU ENAK BANGET",
+        'discuss': discuss
+    }
+
+    return render(request, "discussion.html", context)
+
+@login_required
 def create_discussion_forum(request):
     form = DiscussionForm(request.POST or None)
 
@@ -36,6 +49,7 @@ def create_discussion_forum(request):
 
     context = {'form': form}
     return render(request, "create_discuss_forum.html", context)
+
 
 def show_json(request):
     data = Discussion.objects.all()
