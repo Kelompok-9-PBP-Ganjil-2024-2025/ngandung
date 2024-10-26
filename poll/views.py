@@ -79,28 +79,6 @@ def vote(request, poll_id):
     return render(request, 'vote_form.html', {'form': form, 'poll': poll})
 
 @login_required(login_url='/login')
-def results(request, poll_id): 
-    poll = get_object_or_404(Poll, pk=poll_id)
-    choices = Choice.objects.filter(poll=poll)
-    vote = Vote.objects.filter(poll=poll, user=request.user).first()
-
-    if not vote and poll.author != request.user and poll.is_active:
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            return JsonResponse({'error': 'You need to vote before viewing the results.'}, status=403)
-        else:
-            return redirect('poll:vote', poll_id=poll_id)
-
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        choices_data = [{'choice_text': choice.choice_text, 'vote_count': choice.vote_count} for choice in choices]
-        data = {
-            'poll': poll.question,
-            'choices': choices_data
-        }
-        return JsonResponse(data)
-
-    return render(request, 'results.html', {'poll': poll, 'choices': choices})
-
-@login_required(login_url='/login')
 def delete(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     if request.user == poll.author:

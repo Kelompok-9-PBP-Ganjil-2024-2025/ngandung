@@ -1,31 +1,45 @@
+{% extends 'base.html'%}
 {% load static %}
 {% block content %}
-<h3>Create Poll</h3>
-<form method="post">
-    {% csrf_token %}
-    {{poll_form.as_p}}
-    {{ formset.management_form }}
-    <div id="form_set">
-        {% for form in formset.forms %}
-            <table class='no_error'>
-            <tr>
-                <td>{{ form.as_p }}</td>
-                <td><input type="button" value="Delete" class="delete_choice" disabled></td>
-            </tr>
-            </table>
-        {% endfor %}
+{% include 'navbar.html' %}
+<div class="min-h-screen bg-gray-50 max-h-[100vh] overflow-y-auto">
+    <div class="flex flex-col gap-y-2 justify-center items-center mt-20 sm:mt-32 mx-auto w-fit max-w-7xl bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+        <h3 class="font-bold text-2xl">Create Poll</h3>
+        <form method="post" class="flex flex-col">
+            {% csrf_token %}
+            <label for="question" class="font-semibold">Question</label>
+				<div class="relative mt-1">
+					<input id="question" name="question" type="text" required class="border-2 appearance-none relative block w-full px-3 py-2 border-[#202020] bg-[#ffffff] placeholder-gray-500 rounded-lg focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm" placeholder="Question" />
+					<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+				</div>
+            <br/>
+            <span> Is active  {{ poll_form.is_active }} </span>
+  
+  
+            {{ formset.management_form }}
+            <div id="form_set" class="flex flex-col gap-y-2">
+                {% for form in formset.forms %}
+                    <table class='no_error'>
+                    <tr>
+                        <td>{{ form.as_p }}</td>
+                        <td><input type="button" value="Delete" disabled class="text-sm text-white delete_choice rounded bg-red-500 px-4 p-2 disabled:bg-neutral-400 hover:bg-red-600 transition duration-300"></td>
+                    </tr>
+                    </table>
+                {% endfor %}
+            </div>
+            <input type="button" value="Add choice" id="add_choice" class="w-full rounded text-sm py-2 mt-2 font-bold text-[#FF9900] hover:text-[#E48900] border-2 border-[#FF9900] hover:border-[#E48900] transition ease-out duration-300">
+            <input type="submit" value="Submit" class="w-full rounded text-sm py-2 mt-2 font-bold text-white bg-[#FF9900] hover:bg-[#E48900] transition duration-300">
+            <div id="empty_form" style="display:none">
+                <table class='no_error'>
+                    <tr>
+                        <td>{{ formset.empty_form.as_p }}</td>
+                        <td><input type="button" value="Delete" disabled class="text-sm text-white delete_choice rounded bg-red-500 px-4 p-2 disabled:bg-neutral-400 hover:bg-red-600 transition duration-300"></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
     </div>
-    <input type="button" value="Add Choice" id="add_choice">
-    <input type="submit" value="Submit">
-    <div id="empty_form" style="display:none">
-        <table class='no_error'>
-            <tr>
-                <td>{{ formset.empty_form.as_p }}</td>
-                <td><input type="button" value="Delete" class="delete_choice" disabled></td>
-            </tr>
-        </table>
-    </div>
-</form>
+</div>                                    
 {% endblock content %}
 {% block meta %}
 <script>
@@ -68,6 +82,6 @@
             }
         });
     });
-</script>
+</script>             
 
 {% endblock meta %}
