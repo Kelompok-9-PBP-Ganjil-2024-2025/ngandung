@@ -20,8 +20,25 @@ def get_all_toko(request):
     return HttpResponse(rumah_makan_json, content_type="application/json")
 
 
-def get_all_ratings_page(request):
-    return render(request, "toko_specific.html")
+def get_toko(request, id_rumah_makan):
+    rumah_makan = RumahMakan.objects.get(pk=id_rumah_makan)
+    rumah_makan_json = serializers.serialize("json", [rumah_makan])
+
+    return HttpResponse(rumah_makan_json, content_type="application/json")
+
+
+def get_all_ratings_page(request, id_rumah_makan):
+    rumah_makan = RumahMakan.objects.get(pk=id_rumah_makan)
+    context = {
+        "id_rumah_makan": id_rumah_makan,
+        "nama_rumah_makan": rumah_makan.nama_rumah_makan,
+        "alamat": rumah_makan.alamat,
+        "kota": rumah_makan.bps_nama_kabupaten_kota,
+        "tahun": rumah_makan.tahun,
+        "asal_masakan": rumah_makan.masakan_dari_mana,
+    }
+
+    return render(request, "toko_specific.html", context)
 
 
 def get_all_ratings(request, id_rumah_makan):

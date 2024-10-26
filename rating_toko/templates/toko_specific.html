@@ -1,3 +1,57 @@
 {% extends 'base.html' %} {% load static %} {% block meta %}
-<title>Ngandung Main Page</title>
+<title>Rating Toko {{ nama_rumah_makan }}</title>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		async function refreshRatings() {
+			const response = await fetch('{% url "rating_toko:get_toko" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+			const data = await response.json();
+			return data;
+		}
+
+		async function renderRatings() {
+			const data = await refreshRatings();
+			document.getElementById('average_rating').innerText = data[0].fields.average_rating;
+		}
+
+		renderRatings();
+
+		async function getRating() {
+			const response = await fetch('{% url "rating_toko:get_all_ratings" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+			const data = await response.json();
+			console.log(data);
+			return data;
+		}
+
+		getRating();
+	});
+</script>
 {% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
+
+<div class="w-full flex flex-col items-center pt-40 space-y-16 px-[10%]">
+	<div class="flex flex-row space-x-6 w-full">
+		<div class="bg-[#111111] w-[20rem] h-[30rem] rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md">
+			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
+			<div class="flex flex-col space-y-1 px-1 py-4">
+				<div class="bg-white rounded font-bold text-xl px-2 w-fit">
+					<p>{{ nama_rumah_makan }}</p>
+				</div>
+			</div>
+		</div>
+		<div class="w-auto flex-grow flex flex-col space-y-6">
+			<div class="w-full border h-20 rounded-xl flex flex-row justify-around shadow-md relative">
+				<div class="rounded-lg flex flex-row space-x-2 items-center absolute -top-4 bg-white border-l-8 border-r-8 border-white left-4">
+					<i class="ti ti-star-filled text-yellow-400 text-2xl"></i>
+					<p class="text-2xl font-bold" id="average_rating"></p>
+				</div>
+			</div>
+
+			<div class="w-full flex justify-end">
+				<button class="w-fit">Create rating</button>
+			</div>
+		</div>
+	</div>
+	<p>Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish</p>
+</div>
+
+{% endblock content %}

@@ -15,7 +15,7 @@ class RumahMakan(models.Model):
     tahun = models.IntegerField()
     masakan_dari_mana = models.CharField(max_length=50)
     makanan_berat_ringan = models.CharField(max_length=50)
-    average_rating = models.FloatField(decimal_places=1, default=0.0)
+    average_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     number_of_ratings = models.IntegerField(default=0)
 
     def __str__(self):
