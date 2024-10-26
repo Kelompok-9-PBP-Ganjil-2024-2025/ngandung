@@ -14,11 +14,16 @@
         <p>{{ discussion.content }}</p>
     </div>
 
+
     <!-- Formulir Komentar (Opsional) -->
     {% if user.is_authenticated %}
         <div class="add-comment" style="margin-bottom: 40px;">
             <h2>Tambah Komentar</h2>
-            <h3>ini adalah comments section</h3>
+            <form method="POST" action="{% url 'discuss_forum:add_comment' discussion.id %}">
+                {% csrf_token %}
+                <textarea name="content" rows="4" style="width: 100%;" required></textarea>
+                <button type="submit" style="background-color: #FF9900; color: #FFFFFF; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Kirim</button>
+            </form>
         </div>
     {% else %}
         <p><a href="{% url 'login' %}">Login</a> untuk menambahkan komentar.</p>

@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from discuss_forum.models import Discussion, Comment
-from discuss_forum.forms import DiscussionForm
-from django.http import HttpResponse
+from discuss_forum.forms import DiscussionForm, CommentForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -20,18 +20,39 @@ def forum_main(request):
     return render(request, "forum.html", context)
 
 def discussion_main(request, id):
-
-    # Mengambil diskusi berdasarkan ID dan akan mengembalikan 404 jika ID tidak ditemukan.
+    # Mengambil diskusi berdasarkan ID atau mengembalikan 404 jika tidak ditemukan
     discussion = get_object_or_404(Discussion, pk=id)
-
-    discuss = Comment.objects.all().order_by('-date_created') # Komentar terbaru
+    
+    # Mengambil semua komentar terkait diskusi, urutkan terbaru terlebih dahulu
+    comments = discussion.comments.all().order_by('-date_created')
 
     context = {
-        'content': "WOI GUA SETUJU BANGET, ITU ENAK BANGET",
-        'discuss': discuss,
         'discussion': discussion,
+        'comments': comments,
     }
 
+    return render(request, "discussion.html", context)
+
+# Jika Anda menambahkan fitur komentar
+@login_required
+def add_comment(request, id):
+    discussion = get_object_or_404(Discussion, pk=id)
+    
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.discussion = discussion
+            new_comment.save()
+            return redirect('discuss_forum:discussion_main', id=discussion.id)
+    else:
+        form = CommentForm()
+    
+    context = {
+        'discussion': discussion,
+        'form': form,
+    }
     return render(request, "discussion.html", context)
 
 @login_required
@@ -49,7 +70,6 @@ def create_discussion_forum(request):
 
     context = {'form': form}
     return render(request, "create_discuss_forum.html", context)
-
 
 def show_json(request):
     data = Discussion.objects.all()
@@ -73,3 +93,19 @@ def add_forum_topic_ajax(request):
     new_forum.save()
 
     return HttpResponse(b"CREATED", status=201)
+
+@login_required
+def edit_forum(request, id):
+    # Get mood entry berdasarkan id
+    mood = Discussion.objects.get(pk = id)
+
+    # Set mood entry sebagai instance dari form
+    form = Discussion(request.POST or None, instance=mood)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('discuss_forum:forum_main'))
+
+    context = {'form': form}
+    return render(request, "edit_forum.html", context)
