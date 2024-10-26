@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dev_favorite_store",
+    "main",
     "authentication",
     "livereload",
 ]

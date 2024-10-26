@@ -7,19 +7,19 @@
 <!-- Include Navbar -->
 {% include 'navbar.html' %}
 
-<div class="container">
+<div class="container daftar-favorit-container">
     <h2>Daftar Toko Favorit Anda</h2>
-    <ul class="favorit-list">
+    <div class="favorit-grid">
         {% for toko in favorit_toko %}
-            <li class="favorit-item">
-                <h3>{{ toko.nama }}</h3>
+            <div class="favorit-card">
+                <h3>{{ toko.nama_rumah_makan }}</h3>
                 <p>{{ toko.alamat }}</p>
-                <a href="{% url 'hapus_dari_favorit' toko.id %}" class="btn btn-danger">Hapus dari Favorit</a>
-            </li>
+                <a href="{% url 'dev_favorite_store:hapus_dari_favorit' toko.id %}" class="btn btn-danger">Hapus dari Favorit</a>
+            </div>
         {% empty %}
             <p>Anda belum menambahkan toko ke daftar favorit.</p>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 
 <style>
@@ -27,71 +27,73 @@
 .container {
     width: 80%;
     margin: 0 auto;
-    padding-top: 120px; /* Adjusted this value to move content lower */
+    padding-top: 120px;
     box-sizing: border-box;
+}
+
+/* Grid layout for the favorite cards */
+.favorit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+}
+
+/* Style for the favorite cards */
+.favorit-card {
+    background-color: #222;
+    color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pastikan jarak diatur otomatis */
+}
+
+.favorit-card h3 {
+    font-size: 18px;
+    color: #ffa500;
+    margin-bottom: 10px;
+}
+
+.favorit-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+/* Button styling */
+.btn-danger {
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    display: inline-block;
+    align-self: flex-start; /* Pastikan tombol tetap di kiri */
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Hover effect on cards */
+.favorit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Padding for Smaller Screens */
 @media (max-width: 768px) {
     .container {
-        padding-top: 140px; /* Extra padding for smaller screens */
+        padding-top: 140px;
     }
-}
-
-/* H2 Titles */
-h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Favorit List */
-.favorit-list {
-    list-style: none;
-    padding: 0;
-}
-.favorit-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-.favorit-item:hover {
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
-}
-.favorit-item h3 {
-    margin: 0;
-    font-size: 20px;
-    color: #333;
-}
-.favorit-item p {
-    margin: 10px 0 0;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Buttons */
-.btn {
-    padding: 10px 20px;
-    background-color: #ffa500;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 14px;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-.btn:hover {
-    background-color: #e69500;
-}
-.btn-danger {
-    background-color: #e74c3c;
-}
-.btn-danger:hover {
-    background-color: #c0392b;
 }
 </style>
 
