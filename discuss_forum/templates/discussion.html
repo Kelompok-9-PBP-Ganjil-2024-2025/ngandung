@@ -14,23 +14,22 @@
         <p>{{ discussion.content }}</p>
     </div>
 
-    <!-- Tombol Edit -->
-    <tr>
-        <td>
+    <!-- Tombol Edit dan Delete Hanya untuk Pemilik -->
+    {% if user.is_authenticated and user == discussion.user %}
+        <div class="forum-actions" style="margin-bottom: 20px;">
             <a href="{% url 'discuss_forum:edit_forum' discussion.id %}">
-                <button>
+                <button style="margin-right: 10px;">
                     Edit
                 </button>
             </a>
-        </td>
-        <td>
-            <a href="{% url 'discuss_forum:delete_forum' discussion.id %}">
-                <button>
+            <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
                     Delete
                 </button>
-            </a>
-        </td>
-    </tr>
+            </form>
+        </div>
+    {% endif %}
 
     <!-- Formulir Komentar (Opsional) -->
     {% if user.is_authenticated %}

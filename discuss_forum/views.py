@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from discuss_forum.models import Discussion, Comment
 from discuss_forum.forms import DiscussionForm, CommentForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -96,24 +96,33 @@ def add_forum_topic_ajax(request):
 
 @login_required
 def edit_forum(request, id):
-    # Get mood entry berdasarkan id
-    discussion = Discussion.objects.get(pk = id)
-
-    # Set mood entry sebagai instance dari form
+    # Ambil diskusi berdasarkan id atau kembalikan 404 jika tidak ditemukan
+    discussion = get_object_or_404(Discussion, pk=id)
+    
+    # Periksa apakah pengguna saat ini adalah pemilik diskusi
+    if discussion.user != request.user:
+        return HttpResponseForbidden("Anda tidak diizinkan untuk mengedit diskusi ini.")
+    
+    # Gunakan DiscussionForm untuk membuat form
     form = DiscussionForm(request.POST or None, instance=discussion)
-
+    
     if form.is_valid() and request.method == "POST":
-        # Simpan form dan kembali ke halaman awal
         form.save()
-        return HttpResponseRedirect(reverse('discuss_forum:forum_main'))
-
+        return redirect('discuss_forum:forum_main')
+    
     context = {'form': form}
     return render(request, "edit_forum.html", context)
 
+@login_required
 def delete_forum(request, id):
-    # Get mood berdasarkan id
-    discussion = Discussion.objects.get(pk = id)
-    # Hapus discussion
-    discussion.delete()
-    # Kembali ke halaman awal
-    return HttpResponseRedirect(reverse('discuss_forum:forum_main'))
+    discussion = get_object_or_404(Discussion, pk=id)
+    
+    if discussion.user != request.user:
+        return HttpResponseForbidden("Anda tidak diizinkan untuk menghapus diskusi ini.")
+    
+    if request.method == "POST":
+        discussion.delete()
+        return redirect('discuss_forum:forum_main')
+    
+    context = {'discussion': discussion}
+    return render(request, "confirm_delete.html", context)
