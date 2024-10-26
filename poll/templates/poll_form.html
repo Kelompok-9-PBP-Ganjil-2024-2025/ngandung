@@ -17,18 +17,18 @@
   
   
             {{ formset.management_form }}
-            <div id="form_set" class="flex flex-col gap-y-2">
+            <div id="form_set" class="flex flex-col">
                 {% for form in formset.forms %}
                     <table class='no_error'>
                     <tr>
-                        <td>{{ form.as_p }}</td>
+                        <td class="mb-2">{{ form.as_p }}</td>
                         <td><input type="button" value="Delete" disabled class="text-sm text-white delete_choice rounded bg-red-500 px-4 p-2 disabled:bg-neutral-400 hover:bg-red-600 transition duration-300"></td>
                     </tr>
                     </table>
                 {% endfor %}
             </div>
-            <input type="button" value="Add choice" id="add_choice" class="w-full rounded text-sm py-2 mt-2 font-bold text-[#FF9900] hover:text-[#E48900] border-2 border-[#FF9900] hover:border-[#E48900] transition ease-out duration-300">
-            <input type="submit" value="Submit" class="w-full rounded text-sm py-2 mt-2 font-bold text-white bg-[#FF9900] hover:bg-[#E48900] transition duration-300">
+            <input type="button" value="Add choice" id="add_choice" class="w-full rounded text-sm py-2 font-bold text-[#FF9900] hover:text-[#E48900] border-2 border-[#FF9900] hover:border-[#E48900] transition ease-out duration-300">
+            <input type="submit" value="Submit" class="w-full rounded text-sm py-2 font-bold text-white bg-[#FF9900] hover:bg-[#E48900] transition duration-300">
             <div id="empty_form" style="display:none">
                 <table class='no_error'>
                     <tr>

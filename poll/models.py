@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+from main.models import Makanan
 
 # Create your models here.
 class Poll(models.Model):

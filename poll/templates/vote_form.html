@@ -1,10 +1,18 @@
-
-
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h3>{{ poll.question }}</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Vote">
-</form>
+{% include 'navbar.html' %}
+<div class="min-h-screen bg-gray-50 max-h-[100vh] overflow-y-auto">
+    <div class="flex flex-col gap-y-2 justify-center items-center mt-20 sm:mt-32 mx-auto w-fit max-w-7xl bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+        <h3 class="font-bold text-2xl">{{poll.question}}</h3>
+        <form method="post" class="flex flex-col">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="flex flex-col">
+                <input type="button" value="Vote" id="vote" class="w-full mt-2 rounded text-sm py-2 font-bold text-white bg-[#FF9900] hover:bg-[#E48900] transition duration-300">  
+                <input type="button" value="Back" onclick=window.location.replace("{% url 'poll:home' %}") class="w-full rounded text-sm py-2 mt-2 font-bold text-white bg-red-500 hover:bg-red-600 transition duration-300">
+            </div>     
+        </form>
+    </div>
+</div>                            
 {% endblock content %}

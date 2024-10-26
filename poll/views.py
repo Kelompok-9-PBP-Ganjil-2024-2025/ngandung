@@ -56,7 +56,7 @@ def update(request, poll_id):
         return HttpResponseRedirect(reverse('poll:home'))
     else:
         form = PollForm(instance=poll)
-        return render(request, 'poll_form.html', {'poll_form': form})
+        return render(request, 'poll_update_form.html', {'poll_form': form})
 
 
 @login_required(login_url='/login')
