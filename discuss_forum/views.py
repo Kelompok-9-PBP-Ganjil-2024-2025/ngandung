@@ -101,7 +101,7 @@ def edit_forum(request, id):
     
     # Periksa apakah pengguna saat ini adalah pemilik diskusi
     if discussion.user != request.user:
-        return HttpResponseForbidden("Anda tidak diizinkan untuk mengedit diskusi ini.")
+        return HttpResponseForbidden("Anda tidak diizinkan untuk mengedit forum ini.")
     
     # Gunakan DiscussionForm untuk membuat form
     form = DiscussionForm(request.POST or None, instance=discussion)
@@ -118,7 +118,7 @@ def delete_forum(request, id):
     discussion = get_object_or_404(Discussion, pk=id)
     
     if discussion.user != request.user:
-        return HttpResponseForbidden("Anda tidak diizinkan untuk menghapus diskusi ini.")
+        return HttpResponseForbidden("Anda tidak diizinkan untuk menghapus forum ini.")
     
     if request.method == "POST":
         discussion.delete()
@@ -126,3 +126,37 @@ def delete_forum(request, id):
     
     context = {'discussion': discussion}
     return render(request, "confirm_delete.html", context)
+
+@login_required
+def edit_comment(request, id):
+    # Ambil komentar berdasarkan id atau kembalikan 404 jika tidak ditemukan
+    comment = get_object_or_404(Comment, pk=id)
+    
+    # Periksa apakah pengguna saat ini adalah pemilik komentar
+    if comment.user != request.user:
+        return HttpResponseForbidden("Anda tidak diizinkan untuk mengedit komentar ini.")
+    
+    # Gunakan CommentForm untuk membuat form
+    form = CommentForm(request.POST or None, instance=comment)
+    
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('discuss_forum:discussion_main', id=comment.discussion.id)
+    
+    context = {'form': form}
+    return render(request, "edit_comment.html", context)
+
+@login_required
+def delete_comment(request, id):
+    comment = get_object_or_404(Comment, pk=id)
+    
+    if comment.user != request.user:
+        return HttpResponseForbidden("Anda tidak diizinkan untuk menghapus komentar ini.")
+    
+    if request.method == "POST":
+        discussion_id = comment.discussion.id
+        comment.delete()
+        return redirect('discuss_forum:discussion_main', id=discussion_id)
+    
+    context = {'comment': comment}
+    return render(request, "delete_comment.html", context)

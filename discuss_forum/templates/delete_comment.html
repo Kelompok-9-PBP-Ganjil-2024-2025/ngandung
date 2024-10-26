@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="confirm-delete" style="padding: 20px;">
+    <h2>Konfirmasi Penghapusan Komentar</h2>
+    <p>Apakah Anda yakin ingin menghapus komentar berikut?</p>
+    <blockquote>{{ comment.content }}</blockquote>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #FF0000; color: #FFFFFF; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Ya, Hapus</button>
+        <a href="{% url 'discuss_forum:discussion_main' comment.discussion.id %}" style="margin-left: 10px;">
+            <button type="button" style="padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Batal</button>
+        </a>
+    </form>
+</div>
+
+{% endblock content %}

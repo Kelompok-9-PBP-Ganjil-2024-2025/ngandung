@@ -51,6 +51,21 @@
         {% for comment in comments %}
             <div class="comment" style="border-bottom: 1px solid #ccc; padding: 10px 0;">
                 <p>{{ comment.content }}</p>
+                {% if user.is_authenticated and user == comment.user %}
+                    <div class="forum-actions" style="margin-bottom: 20px;">
+                        <a href="{% url 'discuss_forum:edit_comment' comment.id %}">
+                            <button style="margin-right: 10px;">
+                                Edit
+                            </button>
+                        </a>
+                        <form method="POST" action="{% url 'discuss_forum:delete_comment' comment.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
                 <p style="color: #6E6E6E; font-size: 0.9rem;">Dikirim oleh {{ comment.user.username }} pada {{ comment.date_created|date:"d-m-Y H:i" }}</p>
             </div>
         {% empty %}

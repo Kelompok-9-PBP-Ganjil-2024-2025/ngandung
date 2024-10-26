@@ -8,7 +8,9 @@ from discuss_forum.views import (
     discussion_main,
     add_comment,
     edit_forum,
-    delete_forum
+    delete_forum,
+    edit_comment,
+    delete_comment
 )
 app_name = "discuss_forum"
 
@@ -24,4 +26,8 @@ urlpatterns = [
     path('create-forum-topic-ajax', add_forum_topic_ajax, name='add_forum_topic_ajax'),
     path('edit-forum/<uuid:id>', edit_forum, name='edit_forum'),
     path('delete/<uuid:id>', delete_forum, name='delete_forum'),
+
+    path('edit-comment/<uuid:id>/', edit_comment, name='edit_comment'),
+    path('delete-comment/<uuid:id>', delete_comment, name='delete_comment'),
+
 ]
