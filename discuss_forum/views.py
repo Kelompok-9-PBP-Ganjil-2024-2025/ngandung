@@ -97,10 +97,10 @@ def add_forum_topic_ajax(request):
 @login_required
 def edit_forum(request, id):
     # Get mood entry berdasarkan id
-    mood = Discussion.objects.get(pk = id)
+    discussion = Discussion.objects.get(pk = id)
 
     # Set mood entry sebagai instance dari form
-    form = Discussion(request.POST or None, instance=mood)
+    form = DiscussionForm(request.POST or None, instance=discussion)
 
     if form.is_valid() and request.method == "POST":
         # Simpan form dan kembali ke halaman awal
@@ -109,3 +109,11 @@ def edit_forum(request, id):
 
     context = {'form': form}
     return render(request, "edit_forum.html", context)
+
+def delete_forum(request, id):
+    # Get mood berdasarkan id
+    discussion = Discussion.objects.get(pk = id)
+    # Hapus discussion
+    discussion.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('discuss_forum:forum_main'))

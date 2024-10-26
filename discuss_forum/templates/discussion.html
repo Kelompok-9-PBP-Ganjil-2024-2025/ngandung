@@ -14,6 +14,23 @@
         <p>{{ discussion.content }}</p>
     </div>
 
+    <!-- Tombol Edit -->
+    <tr>
+        <td>
+            <a href="{% url 'discuss_forum:edit_forum' discussion.id %}">
+                <button>
+                    Edit
+                </button>
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'discuss_forum:delete_forum' discussion.id %}">
+                <button>
+                    Delete
+                </button>
+            </a>
+        </td>
+    </tr>
 
     <!-- Formulir Komentar (Opsional) -->
     {% if user.is_authenticated %}
