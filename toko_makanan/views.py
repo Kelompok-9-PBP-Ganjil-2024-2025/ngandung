@@ -28,7 +28,6 @@ def create_toko(req):
 
     context = {'form': form}
     return render(req, "addRumahMakan/index.html", context)
-
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 def edit_toko(req, id):
@@ -48,11 +47,6 @@ def delete_toko(req, id):
     toko = RumahMakan.objects.get(pk=id)
     toko.delete()
     return HttpResponseRedirect(reverse('toko_makanan:show_main'))
-#*=========================================================================================================================================
-def detail_toko(req, id):
-    toko = get_object_or_404(Makanan, pk=id)
-    context = {'toko': toko}
-    return render(req, 'detailRumahMakan/index.html', context)
 #*=========================================================================================================================================
 @login_required(login_url='/login')
 @csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
@@ -98,10 +92,10 @@ def delete_makanan(req, id):
     makanan.delete()
     return HttpResponseRedirect(reverse('toko_makanan:show_main'))
 #*=========================================================================================================================================
-def detail_makanan(req, id):
+def detail_rumah_makan(req, id):
     makanan = get_object_or_404(Makanan, pk=id)
-    context = {'makanan': makanan}
-    return render(req, 'detailMakanan/index.html', context)
+    context = {'makanan': makanan.rumah_makan}
+    return render(req, 'detailRumahMakan/index.html', context)
 #*=========================================================================================================================================
 def makanan_json(req):
     data = Makanan.objects.all()
