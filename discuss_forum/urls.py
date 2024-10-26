@@ -10,8 +10,12 @@ from discuss_forum.views import (
     edit_forum,
     delete_forum,
     edit_comment,
-    delete_comment
+    delete_comment,
+    like_comment
 )
+
+from . import views
+
 app_name = "discuss_forum"
 
 urlpatterns = [
@@ -29,5 +33,7 @@ urlpatterns = [
 
     path('edit-comment/<uuid:id>/', edit_comment, name='edit_comment'),
     path('delete-comment/<uuid:id>', delete_comment, name='delete_comment'),
+    path('comment/<uuid:comment_id>/like/', views.like_comment, name='like_comment'),
 
+    path('comment/<int:comment_id>/like/', views.like_comment, name='like_comment'),
 ]

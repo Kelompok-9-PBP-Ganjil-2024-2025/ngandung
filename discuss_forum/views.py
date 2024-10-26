@@ -6,6 +6,10 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
+from django.http import JsonResponse
+
+
 
 # Create your views here.
 
@@ -24,7 +28,7 @@ def discussion_main(request, id):
     discussion = get_object_or_404(Discussion, pk=id)
     
     # Mengambil semua komentar terkait diskusi, urutkan terbaru terlebih dahulu
-    comments = discussion.comments.all().order_by('-date_created')
+    comments = discussion.comments.annotate(num_likes=Count('likes')).order_by('-num_likes', '-date_created')
 
     context = {
         'discussion': discussion,
@@ -160,3 +164,13 @@ def delete_comment(request, id):
     
     context = {'comment': comment}
     return render(request, "delete_comment.html", context)
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.user in comment.likes.all():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+    # Mengarahkan ulang ke halaman diskusi yang sama
+    return redirect(reverse('discuss_forum:discussion_main', args=[comment.discussion.id]))
