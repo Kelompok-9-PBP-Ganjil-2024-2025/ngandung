@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.core import serializers
 from toko_makanan.models import RumahMakan, Makanan
 from toko_makanan.forms import FormRumahMakan, FormMakanan
+from django.db.models import Min, Max
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -32,12 +33,10 @@ def create_toko(req):
 @login_required(login_url='/login')
 def edit_toko(req, id):
     toko = RumahMakan.objects.get(pk=id)
-
-    if req.method == "POST":
-        form = FormRumahMakan(req.POST or None, req.FILES or None, instance=toko)
-        if form.is_valid() :
-            form.save()
-            return HttpResponseRedirect(reverse('toko_makanan:show_main'))
+    form = FormRumahMakan(req.POST or None, req.FILES or None, instance=toko)
+    if req.method == "POST" and form.is_valid() :
+        form.save()
+        return HttpResponseRedirect(reverse('toko_makanan:show_main'))
     
     context = {'form': form}
     return render(req, "editRumahMakan/index.html", context)
@@ -94,7 +93,19 @@ def delete_makanan(req, id):
 #*=========================================================================================================================================
 def detail_rumah_makan(req, id):
     makanan = get_object_or_404(Makanan, pk=id)
-    context = {'makanan': makanan.rumah_makan}
+    rumah_makan = makanan.rumah_makan
+    list_makanan = rumah_makan.makanan.all()
+    price_range = list_makanan.aggregate(min_price=Min('price'), max_price=Max('price'))
+    tipe_makanan = rumah_makan.makanan_berat_ringan
+    gmap_url = f"https://maps.google.com/?ll={rumah_makan.latitude},{rumah_makan.longitude}"
+    context = {
+        'rumah_makan': rumah_makan,
+        'list_makanan': list_makanan,
+        'min_price' : price_range['min_price'],
+        'max_price': price_range['max_price'],
+        'tipe_makanan': tipe_makanan,
+        'gmap_url': gmap_url,
+        }
     return render(req, 'detailRumahMakan/index.html', context)
 #*=========================================================================================================================================
 def makanan_json(req):
