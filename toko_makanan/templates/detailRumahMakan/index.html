@@ -1,0 +1,151 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Detail Rumah Makan | Ngandung</title>
+{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='home' %}
+
+<div class="pt-32 overflow-y-auto flex flex-col h-screen">
+	<div class="w-full flex flex-col items-center gap-5 pb-5">
+		<img src="https://cdn-icons-png.flaticon.com/256/695/695992.png" alt="resto-placeholder" class="rounded-full w-32" />
+		<h1 class="text-2xl md:text-3xl font-bold text-black pb-5">{{ rumah_makan.nama_rumah_makan }}</h1>
+	</div>
+    <div id="crudModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center bg-gray-800 bg-opacity-75">
+        <div id="crudModalContent" class="bg-white w-full max-w-md mx-auto p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-900">Delete Confirmation</h3>
+            <p class="mt-2 text-[13px] text-gray-500">Deleting {{rumah_makan.nama_rumah_makan}} will also delete all of its related Makanan! This action cannot be undone.</p>
+            
+            <div class="mt-4 flex justify-end gap-x-2">
+                <button onclick="closeModal();" class="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded-lg transition duration-300">Cancel</button>
+                
+                <form method="POST" action="{% url 'toko_makanan:delete_toko' rumah_makan.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="relative w-full md:px-8 mx-auto">
+        {% if request.user.is_superuser %}
+        <div class="w-full md:px-8 pt-5 mx-auto">
+            <div class="flex mb-6 gap-x-2 justify-center items-center">
+                <a href="{% url 'toko_makanan:edit_toko' rumah_makan.pk %}" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Edit </a>
+                <button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Delete </button>
+            </div>
+        </div>
+        {% endif %}
+        <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-4 w-4/5 mx-auto">
+            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300">
+                <svg class="w-[50px] h-[50px] fill-[#ff9900]" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path
+                        d="
+                    M416 0C400 0 288 32 288 176V288c0 35.3 
+                    28.7 64 64 64h32V480c0 17.7 14.3 32 32 32s32-14.3 
+                    32-32V352 240 32c0-17.7-14.3-32-32-32zM64 16C64 7.8 
+                    57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 
+                    0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7V480c0 17.7 
+                    14.3 32 32 32s32-14.3 32-32V255.6c44.9-4.1 80-41.8 
+                    80-87.7c0-6.4-.7-12.8-2.1-19.1L191.6 12.5c-1.8-8-9.3-13.3-17.4-12.4S160 
+                    7.8 160 16V150.2c0 5.4-4.4 9.8-9.8 9.8c-5.1 0-9.3-3.9-9.8-9L127.9 14.6C127.2 
+                    6.3 120.3 0 112 0s-15.2 6.3-15.9 14.6L83.7 151c-.5 5.1-4.7 9-9.8 9c-5.4 0-9.8-4.4-9.8-9.8V16zm48.3 
+                    152l-.3 0-.3 0 .3-.7 .3 .7z
+                    "
+                    ></path>
+                </svg>
+                <p>{% if tipe_makanan == ringan %} Makanan Ringan {% elif tipe_makanan == berat %} Makanan Berat {% else %} Makanan Berat & Ringan {% endif %}</p>
+            </div>
+            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300">
+                <svg class="w-[50px] h-[50px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9900">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="
+                    M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 
+                    0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 
+                    12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 
+                    0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                </svg>
+                <p>{% if min_price != max_price %} Rp {{ min_price }} - Rp {{ max_price }} {% else %} Rp {{ max_price }} {% endif %}</p>
+            </div>
+            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300">
+                <svg class="w-[50px] h-[50px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9900" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+                <p>{{ rumah_makan.alamat }}</p>
+            </div>
+        </div>
+    </div>
+	<div class="flex items-center justify-center pt-5">
+		<div class="flex flex-row bg-black text-white font-bold py-1 px-3 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105">
+			<a class="flex items-center gap-2" href="{{ gmap_url }}" target="_blank">
+				<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+					<path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path>
+					<path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path>
+					<path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path>
+					<path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3L19.83,14.92z"></path>
+					<path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"></path>
+				</svg>
+				<span>View in Google Maps</span>
+			</a>
+		</div>
+	</div>
+    <div class="p-10 flex flex-col mx-auto">
+        <h2 class="px-6 text-2xl md:text-3xl font-bold text-black pb-5">List Makanan</h2>
+        
+        {% if list_makanan %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mx-auto px-6">
+                {% for makanan in list_makanan %}
+                    <div class="relative top-5 bg-white shadow-md rounded-lg mb-6 flex flex-col transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <!-- Placeholder Image -->
+                            <img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg " />
+                            
+                            <!-- Card Content -->
+                            <div class="p-4 flex-grow min-h-[100px]">
+                                <!-- Nama Makanan -->
+                                <h3 class="font-bold text-lg mb-4 text-center text-[#ff9900] truncate">{{ makanan.name }}</h3>
+                                <p class="text-center text-gray-800">Rp {{ makanan.price }}</p>
+                            </div>
+                            
+                            <!-- Button Group for Admin -->
+                            {% if request.user.is_superuser %}
+                                <div class="flex space-x-2 flex-row md:space-y-0 md:space-x-2 p-6 rounded-b justify-center ">
+                                        <!-- Edit Button -->
+                                        <a href="{% url 'toko_makanan:edit_makanan' makanan.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md w-10 h-10 flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                            </svg>
+                                        </a>
+                                        
+                                        <!-- Delete Button -->
+                                        <a href="{% url 'toko_makanan:delete_makanan' makanan.pk %}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md w-10 h-10 flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="flex flex-col items-center justify-center h-screen p-8 text-center">
+                Belum Terdapat Data Makanan
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        const modal = document.getElementById('crudModal');
+        const modalContent = document.getElementById('crudModalContent');
+
+        function showModal() {
+            document.getElementById('crudModal').classList.remove('hidden');
+        }
+    
+        function closeModal() {
+            document.getElementById('crudModal').classList.add('hidden');
+        }
+    </script>
+
+{% endblock content %}

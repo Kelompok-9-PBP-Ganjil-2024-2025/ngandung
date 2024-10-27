@@ -24,20 +24,22 @@ def register(request):
     return render(request, 'register.html', context)
 
 def login_user(request):
-    # Return to the "/" if the user is already authenticated
+    # Redirect jika user sudah terautentikasi
     if request.user.is_authenticated:
         return redirect('/')
 
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
-
         if form.is_valid():
-                user = form.get_user()
-                login(request, user)
-                return redirect('/')
-
+            user = form.get_user()
+            login(request, user)
+            return redirect('/')
+        else:
+            # Opsional: Tambahkan pesan menggunakan messages framework
+            messages.error(request, 'Username atau password salah.')
     else:
         form = AuthenticationForm(request)
+    
     context = {'form': form}
     return render(request, 'login.html', context)
 

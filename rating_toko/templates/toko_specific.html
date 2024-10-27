@@ -1,0 +1,397 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Rating Toko {{ nama_rumah_makan }}</title>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		async function refreshRatings() {
+			const response = await fetch('{% url "rating_toko:get_toko" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+			const data = await response.json();
+			return data;
+		}
+
+		async function renderRatings() {
+			const data = await refreshRatings();
+			document.getElementById('average_rating').innerText = `${data[0].fields.average_rating}`;
+		}
+
+		renderRatings();
+
+		async function getRating() {
+			const response = await fetch('{% url "rating_toko:get_all_ratings" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+			const data = await response.json();
+
+			// Process the ratings data
+			processRatingsData(data);
+
+			// Render the list of ratings
+			renderRatingsList(data);
+		}
+
+		getRating();
+
+		function processRatingsData(data) {
+			// Initialize counts for each rating level (1 to 5)
+			const counts = {
+				1: 0,
+				2: 0,
+				3: 0,
+				4: 0,
+				5: 0,
+			};
+
+			// Total number of ratings
+			const totalRatings = data.length;
+
+			// Count the number of ratings per rating value
+			data.forEach((item) => {
+				const ratingValue = item.fields.rating;
+				if (counts.hasOwnProperty(ratingValue)) {
+					counts[ratingValue] += 1;
+				}
+			});
+
+			// Update the DOM elements for each rating level
+			for (let i = 1; i <= 5; i++) {
+				const count = counts[i];
+				const percentage = totalRatings > 0 ? (count / totalRatings) * 100 : 0;
+
+				// Update the rating number
+				const ratingNumberElement = document.getElementById(`rating_number_${i}`);
+				if (ratingNumberElement) {
+					ratingNumberElement.textContent = `(${count})`;
+				}
+
+				// Update the rating fill bar width
+				const ratingFillElement = document.getElementById(`rating_fill_${i}`);
+				if (ratingFillElement) {
+					ratingFillElement.style.width = `${percentage}%`;
+				}
+			}
+		}
+
+		async function fetchUsername(userId) {
+			const response = await fetch('{% url "rating_toko:get_user" 0 %}'.replace('0', userId));
+			const data = await response.json();
+			return data;
+		}
+
+		async function renderRatingsList(data) {
+			const listRating = document.getElementById('list_rating');
+
+			// Clear any existing content
+			listRating.innerHTML = '';
+
+			// Loop through the data and create rating items
+			for (const item of data) {
+				const ratingValue = item.fields.rating;
+				const reviewText = item.fields.review || '(No review)';
+				const userId = item.fields.user;
+				let username = 'Anonymous';
+
+				if (userId) {
+					try {
+						const userData = await fetchUsername(userId);
+						if (userData) {
+							username = '@' + userData[0].fields.username;
+						}
+					} catch (error) {
+						console.error('Error fetching username:', error);
+					}
+				}
+
+				// Create the rating item element
+				const ratingItem = document.createElement('div');
+				ratingItem.className = 'border bg-white rounded-xl flex flex-col space-y-2 items-start shadow-md relative px-4 pt-3 pb-4';
+
+				// Edit and delete button
+				const editButton = document.createElement('a');
+				editButton.className = 'text-[#ff9900] hover:text-white bg-[#ff9900] bg-opacity-20 hover:bg-opacity-100 transition duration-300 border border-[#ff9900] font-bold rounded-lg px-2 py-1';
+				editButton.innerHTML = '<i class="ti ti-edit"></i>';
+				editButton.href = '{% url "rating_toko:edit_rating" 0 1 %}'.replace('0', item.pk).replace('1', '{{ id_rumah_makan }}');
+
+				const deleteButton = document.createElement('a');
+				deleteButton.className = 'text-red-600 hover:text-white bg-red-600 bg-opacity-20 hover:bg-opacity-100 transition duration-300 border border-red-600 font-bold rounded-lg px-2 py-1';
+				deleteButton.innerHTML = '<i class="ti ti-trash"></i>';
+				deleteButton.href = '{% url "rating_toko:delete_rating" 0 1 %}'.replace('0', item.pk).replace('1', '{{ id_rumah_makan }}');
+
+				const editDeleteDiv = document.createElement('div');
+				editDeleteDiv.className = 'flex flex-row space-x-2 items-center justify-end w-full';
+				editDeleteDiv.appendChild(editButton);
+				editDeleteDiv.appendChild(deleteButton);
+
+				// User info and rating
+				const userInfoDiv = document.createElement('div');
+				userInfoDiv.className = 'flex flex-row space-x-2 items-center';
+
+				// User avatar/icon
+				const userAvatarDiv = document.createElement('div');
+				userAvatarDiv.className = 'w-5 h-5 bg-gray-400 rounded-full flex items-center justify-center overflow-hidden';
+
+				const userIcon = document.createElement('i');
+				userIcon.className = 'ti ti-user-filled text-gray-200';
+
+				userAvatarDiv.appendChild(userIcon);
+
+				// Username
+				const usernameP = document.createElement('p');
+				usernameP.className = 'text-sm font-semibold';
+				usernameP.textContent = username;
+
+				// Rating value
+				const ratingValueDiv = document.createElement('div');
+				ratingValueDiv.className = 'border rounded px-1 flex flex-row space-x-1';
+
+				const ratingIcon = document.createElement('i');
+				ratingIcon.className = 'ti ti-star-filled text-yellow-400 text-sm';
+
+				const ratingValueP = document.createElement('p');
+				ratingValueP.className = 'text-sm font-semibold';
+				ratingValueP.textContent = ratingValue;
+
+				ratingValueDiv.appendChild(ratingIcon);
+				ratingValueDiv.appendChild(ratingValueP);
+
+				// Assemble user info
+				userInfoDiv.appendChild(userAvatarDiv);
+				userInfoDiv.appendChild(usernameP);
+				userInfoDiv.appendChild(ratingValueDiv);
+
+				// Review text
+				const reviewP = document.createElement('p');
+				reviewP.className = 'text-sm';
+				reviewP.textContent = reviewText;
+
+				// Append to rating item
+				ratingItem.appendChild(userInfoDiv);
+				ratingItem.appendChild(reviewP);
+
+				// If the user is the owner of the rating, show the edit and delete buttons
+				if (userId == '{{ id_user_session }}') {
+					ratingItem.appendChild(editDeleteDiv);
+				}
+
+				// Append rating item to the list
+				listRating.appendChild(ratingItem);
+			}
+		}
+
+		// Show the modal and overlay
+		const modal = document.getElementById('rating-form');
+		const overlay = document.getElementById('modal-overlay');
+
+		document.getElementById('show-form').addEventListener('click', function () {
+			modal.classList.remove('hidden');
+			overlay.classList.remove('hidden');
+		});
+
+		// Close the modal and overlay
+		function closeModal() {
+			modal.classList.add('hidden');
+			overlay.classList.add('hidden');
+		}
+
+		document.getElementById('close-modal').addEventListener('click', closeModal);
+		overlay.addEventListener('click', closeModal);
+
+		// Star rating functionality
+		const stars = document.querySelectorAll('#star-rating i');
+		const ratingInput = document.getElementById('rating');
+
+		stars.forEach((star, index) => {
+			star.addEventListener('click', () => {
+				const ratingValue = index + 1;
+				ratingInput.value = ratingValue;
+
+				// Update the stars' colors
+				stars.forEach((s, i) => {
+					if (i < ratingValue) {
+						s.classList.remove('text-[#242424]');
+						s.classList.add('text-yellow-400');
+					} else {
+						s.classList.remove('text-yellow-400');
+						s.classList.add('text-[#242424]');
+					}
+				});
+			});
+		});
+
+		const ratingForm = document.getElementById('rating-form-element');
+
+		ratingForm.addEventListener('submit', function (event) {
+			event.preventDefault(); // Prevent the default form submission
+			addRating();
+		});
+
+		function addRating() {
+			fetch("{% url 'rating_toko:add_rating' %}", {
+				method: 'POST',
+				body: new FormData(ratingForm),
+			})
+				.then((response) => {
+					if (response.ok) {
+						// Refresh the ratings overview and list
+						getRating();
+
+						// Close the modal
+						closeModal();
+
+						// Reset the form
+						ratingForm.reset();
+						ratingInput.value = 0;
+
+						// Reset the star rating UI
+						stars.forEach((s) => {
+							s.classList.remove('text-yellow-400');
+							s.classList.add('text-[#242424]');
+						});
+					} else {
+						console.error('Failed to submit rating');
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+		}
+	});
+</script>
+
+{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
+
+<img src="{% static 'images/garpu.png' %}" class="opacity-20 fixed -right-16 top-60 -z-20 scale-[90%]" />
+<img src="{% static 'images/sendok.png' %}" class="opacity-20 fixed -left-20 top-96 -z-20 scale-[80%]" />
+<img src="{% static 'images/telur.png' %}" class="opacity-20 fixed left-1/4 md:left-1/2 top-32 -z-20 scale-[80%]" />
+
+<!-- Overlay -->
+<div class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden" id="modal-overlay"></div>
+
+<!-- Modal -->
+<div class="fixed w-full max-w-[24rem] px-4 py-4 bg-[#111111] text-white z-20 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 rounded-xl shadow-lg border-2 border-[#202020] hidden" id="rating-form">
+	<div class="w-full h-full flex flex-col items-center justify-center space-y-2 relative">
+		<!-- Close Button -->
+		<button class="absolute top-0 right-2 text-white hover:text-gray-300" id="close-modal">
+			<i class="ti ti-x"></i>
+		</button>
+		<p class="font-extrabold text-2xl">Create Rating</p>
+		<form action="{% url 'rating_toko:add_rating' %}" method="POST" class="w-full flex flex-col space-y-4" id="rating-form-element">
+			<input type="hidden" name="id_rumah_makan" value="{{ id_rumah_makan }}" />
+			{% csrf_token %}
+			<div class="w-full flex flex-col space-y-2">
+				<label for="rating" class="font-semibold">Rating</label>
+				<div id="star-rating" class="flex space-x-1 text-4xl w-full justify-center">
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="1"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="2"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="3"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="4"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="5"></i>
+				</div>
+				<input type="hidden" name="rating" id="rating" value="0" />
+			</div>
+			<div class="w-full flex flex-col space-y-2">
+				<label for="review" class="font-semibold">Review</label>
+				<textarea name="review" id="review" class="w-full border-2 border-[#202020] bg-[#242424] text-white placeholder-gray-500 rounded-lg px-3 py-2 focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm"></textarea>
+			</div>
+			<div class="w-full flex justify-end">
+				<button type="submit" class="px-4 py-2 bg-[#0b79f7] bg-opacity-10 text-[#0b79f7] hover:bg-opacity-100 hover:text-white transition duration-300 border border-[#0b79f7] font-bold rounded-lg">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="w-full flex flex-col items-center pt-40 pb-24 justify-center space-y-16 px-[10%]">
+	<div class="flex md:flex-row md:space-x-6 flex-col space-y-12 md:space-y-0 w-fit">
+		<div class="bg-[#111111] w-full md:w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
+			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
+			<div class="flex flex-col space-y-3 px-2 py-4">
+				<p class="font-bold text-2xl">{{ nama_rumah_makan }}</p>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Alamat</p>
+					<p class="text-sm">{{ alamat }} {{ kota }}</p>
+				</div>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Tahun</p>
+					<p class="text-sm">{{ tahun }}</p>
+				</div>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Asal Masakan</p>
+					<p class="text-sm">{% if asal_masakan == 'semua' %} Lokal dan Luar Negeri {% elif asal_masakan == 'dalam negeri' %} Lokal {% else %} Luar Negeri {% endif %}</p>
+				</div>
+			</div>
+		</div>
+		<div class="md:w-[50rem] flex flex-col space-y-6">
+			<div class="w-full border h-20 rounded-xl flex flex-row justify-around shadow-md relative bg-white">
+				<div class="rounded-lg flex flex-row space-x-2 items-center absolute -top-4 bg-white border-l-8 border-r-8 border-white left-4">
+					<i class="ti ti-star-filled text-yellow-400 text-2xl"></i>
+					<p class="text-2xl font-bold" id="average_rating"></p>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">5</p>
+						<p class="text-sm text-gray-400" id="rating_number_5"></p>
+					</div>
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_5"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">4</p>
+						<p class="text-sm text-gray-400" id="rating_number_4"></p>
+					</div>
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_4"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">3</p>
+						<p class="text-sm text-gray-400" id="rating_number_3"></p>
+					</div>
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_3"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">2</p>
+						<p class="text-sm text-gray-400" id="rating_number_2"></p>
+					</div>
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_2"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">1</p>
+						<p class="text-sm text-gray-400" id="rating_number_1"></p>
+					</div>
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_1"></div>
+					</div>
+				</div>
+			</div>
+
+			{% if id_user_session %}
+			<div class="w-full flex justify-end">
+				<button class="w-fit px-3 py-1 bg-[#ff9900] bg-opacity-20 hover:bg-opacity-100 hover:text-white transition-all duration-200 border border-[#ff9900] rounded-md text-[#ff9900] backdrop-blur">
+					<p class="font-semibold" id="show-form">Create rating</p>
+				</button>
+			</div>
+			{% endif %}
+
+			<div class="grid md:grid-cols-2 grid-cols-1 gap-4 w-full" id="list_rating">
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+{% endblock content %}

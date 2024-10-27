@@ -7,11 +7,17 @@
 		{% block meta %} {% endblock meta %}
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 		<link rel="stylesheet" href="{% static 'css/global.css' %}" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 		<link rel="preload" href="{% static 'fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf' %}" as="font" type="font/ttf" crossorigin="anonymous" />
 		<link rel="preload" href="{% static 'fonts/PlusJakartaSans-VariableFont_wght.ttf' %}" as="font" type="font/ttf" crossorigin="anonymous" />
+		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="preload" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" as="style" />
 	</head>
 	<body>
-		<div class="relative">{% block content %} {% endblock content %}</div>
+		<div class="relative overflow-x-hidden min-h-screen">{% block content %} {% endblock content %}</div>
 	</body>
 </html>

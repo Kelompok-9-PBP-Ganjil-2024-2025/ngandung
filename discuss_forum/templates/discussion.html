@@ -1,0 +1,966 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+{% include 'navbar.html' %}
+
+<style>
+    /* Styling dasar */
+    .main-content {
+        position: relative;  /* Tambahkan ini */
+        padding: 150px 150px;
+        min-height: 100vh;
+        background-color: rgba(255, 255, 255, 0.2);  /* Ubah ke semi-transparan */
+        transition: background-color 0.3s ease;
+        overflow-y: auto;
+        height: 100vh;
+    }
+
+    .decoration-image {
+    position: fixed;  /* Gunakan fixed alih-alih absolute */
+    z-index: -1;     /* Gunakan z-index negatif yang lebih kecil */
+    pointer-events: none;  /* Agar gambar tidak menghalangi interaksi */
+    opacity: 0.6;    /* Buat sedikit transparan */
+    will-change: transform;  /* Optimasi performa */
+    transform-style: preserve-3d;
+}
+
+    .back-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        width: 50px; /* Sesuaikan ukuran sesuai kebutuhan */
+        height: 50px;
+    }
+
+    .back-button svg {
+        width: 100%;
+        height: 100%;
+        fill: #FF9900; /* Warna panah */
+        transition: transform 0.3s ease, fill 0.3s ease;
+    }
+
+    .back-button:hover svg {
+        transform: scale(1.1);
+        fill: #e68a00; /* Warna panah saat hover */
+    }
+
+    /* Header Diskusi */
+    .discussion-header {
+        background-color: #111111;
+        color: #FFFFFF;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        animation: fadeInDown 0.8s ease-out;
+    }
+
+    .discussion-header h1 {
+        color: #FF9900;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-shadow: 0 0 5px rgba(255, 153, 0, 0.3);
+    }
+
+    .discussion-header p {
+        color: #CCCCCC;
+        font-size: 1rem;
+        margin-top: 0;
+        letter-spacing: 1px;
+    }
+
+    /* Container Diskusi dan Komentar */
+    .discussion-container {
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        margin-bottom: 40px;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .discussion-container:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .discussion-content p {
+        color: #333333;
+        line-height: 1.6;
+        font-size: 1.1rem;
+    }
+
+    /* Tombol Edit dan Delete */
+    .forum-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .forum-actions button {
+        background: #FF9900;
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 153, 0, 0.2);
+    }
+
+    .forum-actions button:hover {
+        background: #e68a00;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 153, 0, 0.3);
+    }
+
+    /* Formulir Komentar */
+    .add-comment {
+        background-color: #F9F9F9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .add-comment h2 {
+        color: #FF9900;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .add-comment textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        resize: vertical;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .add-comment textarea:focus {
+        border-color: #FF9900;
+        outline: none;
+    }
+
+    .add-comment button {
+        background-color: #FF9900;
+        color: #FFFFFF;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(255, 153, 0, 0.2);
+    }
+
+    .add-comment button:hover {
+        background-color: #e68a00;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 153, 0, 0.3);
+    }
+
+    /* Komentar */
+    .comments-section h2 {
+        color: #FF9900;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .comment {
+        border-bottom: 1px solid #EEEEEE;
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .comment:last-child {
+        border-bottom: none;
+    }
+
+    .comment p {
+        color: #333333;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .comment-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .comment-author p {
+        color: #6E6E6E;
+        font-size: 0.9rem;
+    }
+
+    /* Tombol Like */
+    .like-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .like-count {
+        color: #FF9900;
+        font-size: 0.9rem;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+        .main-content {
+            padding: 120px 20px 40px 20px;
+        }
+
+        .decoration-image {
+        opacity: 0.3;  /* Lebih transparan di mobile */
+        transform: scale(0.7);  /* Lebih kecil di mobile */
+    }
+
+        .discussion-header {
+            padding: 15px;
+        }
+
+        .discussion-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .add-comment h2, .comments-section h2 {
+            font-size: 1.3rem;
+        }
+
+        .forum-actions button {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        .add-comment textarea {
+            font-size: 0.9rem;
+        }
+
+        .add-comment button {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Animasi */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Loading Animation */
+    .loading {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .loaded {
+        opacity: 1;
+    }
+
+    .btn-delete {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Tambahkan ini */
+    background: #e62222;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-delete, .btn-delete span {
+    transition: all 200ms ease; /* Tambahkan 'all' dan 'ease' */
+}
+
+.btn-delete .text {
+    transform: translateX(0); /* Ubah dari 35px ke 0 */
+    color: white;
+    font-weight: bold;
+    z-index: 2; /* Tambahkan ini */
+    position: relative; /* Tambahkan ini */
+}
+
+.btn-delete .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 100%; /* Ubah dari 40px ke 100% */
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease; /* Tambahkan transition yang sama */
+}
+
+.btn-delete svg {
+    width: 15px;
+    height: 15px; /* Tambahkan ini */
+    fill: #eee;
+    transition: transform 200ms ease; /* Tambahkan transition */
+}
+
+.btn-delete:hover {
+    background: #ff3636;
+}
+
+.btn-delete:hover .text {
+    opacity: 0; /* Ganti color: transparent dengan opacity */
+}
+
+.btn-delete:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+    background: #ff3636; /* Tambahkan ini */
+}
+
+.btn-delete:hover svg {
+    transform: scale(1.2); /* Tambahkan efek scale saat hover */
+}
+
+.btn-delete:focus {
+    outline: none;
+}
+
+.btn-delete:active .icon svg {
+    transform: scale(0.8);
+}
+
+.replies {
+        margin-left: 30px; /* Indentasi untuk balasan */
+        margin-top: 15px;
+    }
+
+    .reply-form-container textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        resize: vertical;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .reply-form-container textarea:focus {
+        border-color: #FF9900;
+        outline: none;
+    }
+
+    .reply-form-container button {
+        background-color: #FF9900;
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .reply-button {
+        background: none;
+        border: none;
+        color: #FF9900;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+</style>
+
+<div class="main-content">
+    <img src="{% static 'images/garpu.png' %}" class="decoration-image -right-16 top-60 scale-[90%]" />
+    <img src="{% static 'images/sendok.png' %}" class="decoration-image -left-20 top-96 scale-[80%]" />
+    <img src="{% static 'images/telur.png' %}" class="decoration-image left-28 top-24 scale-[80%]" />
+
+    <a href="{% url 'discuss_forum:forum_main' %}" class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff9900" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+    </a>
+
+    <div class="discussion-header">
+        <h1>{{ discussion.title }}</h1>
+        <p>Dibuat oleh {{ discussion.user.username }} pada {{ discussion.date_created|date:"d-m-Y H:i" }}</p>
+    </div>
+
+    <div class="discussion-container">
+        <div class="discussion-content">
+            <p>{{ discussion.content }}</p>
+        </div>
+
+        <!-- Tombol Edit dan Delete Hanya untuk Pemilik -->
+        {% if user.is_authenticated and user == discussion.user %}
+        <div class="forum-actions">
+            <!-- Tambahkan ID pada tombol Edit -->
+            <button type="button" id="editButton" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Edit</button>
+            <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
+                {% csrf_token %}
+                <button type="submit" class="btn-delete noselect flex items-center">
+                    <span class="text mr-2">Delete</span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                        </svg>
+                    </span>
+                </button>
+            </form>
+        </div>
+    {% endif %}
+
+        <!-- Formulir Komentar -->
+        {% if user.is_authenticated %}
+        <div class="add-comment">
+            <h2>Tambah Komentar</h2>
+            <form method="POST" action="{% url 'discuss_forum:add_comment' discussion.id %}">
+                {% csrf_token %}
+                <textarea name="content" rows="4" placeholder="Tulis komentar Anda di sini..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> untuk menambahkan komentar.</p>
+        {% endif %}
+
+        <!-- Daftar Komentar -->
+        <div class="comments-section">
+            <h2>Komentar</h2>
+            {% for comment in comments %}
+                {% if not comment.parent %}
+                    {% include 'comment.html' with comment=comment %}
+                {% endif %}
+            {% empty %}
+                <p>Belum ada komentar. Jadilah yang pertama untuk berkomentar!</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+    <!-- Modal untuk Edit Diskusi -->
+    <div id="editModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+        <div id="editModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 border-b rounded-t">
+                <h3 class="text-xl font-semibold text-gray-900">
+                Edit Discussion
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeEditModalBtn">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 
+                    011.414 1.414L11.414 10l4.293 4.293a1 1 0 
+                    01-1.414 1.414L10 11.414l-4.293 4.293a1 1 
+                    0 01-1.414-1.414L8.586 10 4.293 
+                    5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="px-6 py-4 space-y-6 form-style">
+                <form id="editForm">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="editTitle" class="block text-sm font-medium text-gray-700">Title</label>
+                        <input type="text" id="editTitle" name="title" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editContent" class="block text-sm font-medium text-gray-700">Content</label>
+                        <textarea id="editContent" name="content" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+                <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelEditButton">Cancel</button>
+                <button type="submit" id="submitEdit" form="editForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk Edit Komentar -->
+<div id="editCommentModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+    <div id="editCommentModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 border-b rounded-t">
+            <h3 class="text-xl font-semibold text-gray-900">
+                Edit Comment
+            </h3>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeEditCommentModalBtn">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 
+                    011.414 0L10 8.586l4.293-4.293a1 1 0 
+                    011.414 1.414L11.414 10l4.293 4.293a1 1 0 
+                    01-1.414 1.414L10 11.414l-4.293 4.293a1 1 
+                    0 01-1.414-1.414L8.586 10 4.293 
+                    5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+        <!-- Modal body -->
+        <div class="px-6 py-4 space-y-6 form-style">
+            <form id="editCommentForm">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="editCommentContent" class="block text-sm font-medium text-gray-700">Content</label>
+                    <textarea id="editCommentContent" name="content" rows="4" class="mt-1 block w-full h-32 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" required></textarea>
+                </div>
+            </form>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+            <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelEditCommentButton">Cancel</button>
+            <button type="submit" id="submitEditComment" form="editCommentForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Formulir Komentar -->
+    {% if user.is_authenticated %}
+        <div class="add-comment">
+            <h2>Tambah Komentar</h2>
+            <form method="POST" action="{% url 'discuss_forum:add_comment' discussion.id %}">
+                {% csrf_token %}
+                <textarea name="content" rows="4" placeholder="Tulis komentar Anda di sini..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> untuk menambahkan komentar.</p>
+    {% endif %}
+
+    <!-- Daftar Komentar -->
+    <div class="comments-section">
+        <h2>Komentar</h2>
+        {% for comment in comments %}
+        <div class="comment">
+            <p id="comment-content-{{ comment.id }}">{{ comment.content }}</p>
+
+                <!-- Tombol Edit dan Delete Hanya untuk Pemilik Komentar -->
+                {% if user.is_authenticated and user == comment.user %}
+                <div class="forum-actions">
+                    <!-- Tambahkan ID unik untuk tombol edit komentar -->
+                    <button type="button" class="edit-comment-button" data-comment-id="{{ comment.id }}">Edit</button>
+                    <!-- Tombol Delete tetap sama -->
+                    <form method="POST" action="{% url 'discuss_forum:delete_comment' comment.id %}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-delete noselect flex items-center">
+                            <span class="text mr-2">Delete</span>
+                            <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    </form>
+                </div>
+            {% endif %}
+
+                <!-- Tombol Like Berwarna Merah -->
+                {% if user.is_authenticated %}
+                    <button 
+                        class="like-button" 
+                        data-comment-id="{{ comment.id }}" 
+                        data-like-url="{% url 'discuss_forum:like_comment' comment.id %}">
+                        {% if user in comment.likes.all %}
+                            <!-- Ikon Like Terisi (Merah) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="24" height="24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 
+                                12.28 2 8.5 2 5.42 
+                                4.42 3 7.5 3c1.74 0 3.41 0.81 
+                                4.5 2.09C13.09 3.81 14.76 
+                                3 16.5 3 19.58 3 22 5.42 
+                                22 8.5c0 3.78-3.4 6.86-8.55 
+                                11.54L12 21.35z"/>
+                            </svg>
+                        {% else %}
+                            <!-- Ikon Like Berbatas (Merah) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 
+                                0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 
+                                3.75 3 5.765 3 8.25c0 7.22 9 12 9 
+                                12s9-4.78 9-12Z" />
+                            </svg>
+                        {% endif %}
+                    </button>
+                    <span id="like-count-{{ comment.id }}" class="like-count">{{ comment.total_likes }} Likes</span>
+                {% else %}
+                    <p><a href="{% url 'login' %}">Login</a> untuk menyukai komentar.</p>
+                {% endif %}
+
+                <div class="comment-author">
+                    <p>Dikirim oleh {{ comment.user.username }} pada {{ comment.date_created|date:"d-m-Y H:i" }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>Belum ada komentar. Jadilah yang pertama untuk berkomentar!</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Script untuk animasi loading dan Like Button -->
+<script>
+
+    
+    // Variabel dan fungsi global
+    let editModal;
+    let editModalContent;
+    let editTitleInput;
+    let editContentInput;
+    let editForm;
+
+    // Fungsi untuk menampilkan modal edit
+    function showEditModal() {
+        // Prefill form dengan data diskusi saat ini
+        editTitleInput.value = "{{ discussion.title|escapejs }}";
+        editContentInput.value = "{{ discussion.content|escapejs }}";
+
+        editModal.classList.remove('hidden');
+        setTimeout(() => {
+            editModalContent.classList.remove('opacity-0', 'scale-95');
+            editModalContent.classList.add('opacity-100', 'scale-100');
+        }, 50);
+    }
+
+    // Fungsi untuk menyembunyikan modal edit
+    function hideEditModal() {
+        editModalContent.classList.remove('opacity-100', 'scale-100');
+        editModalContent.classList.add('opacity-0', 'scale-95');
+
+        setTimeout(() => {
+            editModal.classList.add('hidden');
+        }, 150);
+    }
+
+    // Fungsi untuk mendapatkan CSRF Token dari cookie
+    function getCSRFToken() {
+        let cookieValue = null;
+        const name = 'csrftoken';
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Cek apakah cookie dimulai dengan nama CSRF token
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.main-content').classList.add('loaded');
+
+        // Mendapatkan elemen-elemen yang dibutuhkan
+        editModal = document.getElementById('editModal');
+        editModalContent = document.getElementById('editModalContent');
+        editTitleInput = document.getElementById('editTitle');
+        editContentInput = document.getElementById('editContent');
+        editForm = document.getElementById('editForm');
+
+        // Event listener untuk tombol Edit
+        const editButton = document.getElementById('editButton');
+        if (editButton) {
+            editButton.addEventListener('click', showEditModal);
+        }
+
+        // Event listener untuk tombol close pada modal
+        document.getElementById("cancelEditButton").addEventListener("click", hideEditModal);
+        document.getElementById("closeEditModalBtn").addEventListener("click", hideEditModal);
+
+        // Event listener untuk submit form edit
+        editForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            submitEditForm();
+        });
+
+        // Fungsi untuk mengirim permintaan AJAX untuk mengedit diskusi
+        function submitEditForm() {
+            const url = "{% url 'discuss_forum:edit_forum_ajax' discussion.id %}";
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: editTitleInput.value,
+                    content: editContentInput.value,
+                }),
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || 'Failed to edit discussion');
+                    });
+                }
+            })
+            .then(data => {
+                // Memperbarui konten diskusi di halaman tanpa merefresh
+                document.querySelector('.discussion-header h1').textContent = data.discussion.title;
+                document.querySelector('.discussion-content p').textContent = data.discussion.content;
+
+                hideEditModal();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
+        }
+
+        const replyButtons = document.querySelectorAll('.reply-button');
+
+        replyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const commentId = this.getAttribute('data-comment-id');
+                const replyForm = document.getElementById(`reply-form-${commentId}`);
+                if (replyForm.style.display === 'none') {
+                    replyForm.style.display = 'block';
+                } else {
+                    replyForm.style.display = 'none';
+                }
+            });
+        });
+
+
+        // Variabel global untuk modal edit komentar
+        let editCommentModal;
+        let editCommentModalContent;
+        let editCommentContentInput;
+        let editCommentForm;
+        let currentCommentId; // Untuk menyimpan ID komentar yang sedang diedit
+
+        // Mendapatkan elemen-elemen modal edit komentar
+        editCommentModal = document.getElementById('editCommentModal');
+        editCommentModalContent = document.getElementById('editCommentModalContent');
+        editCommentContentInput = document.getElementById('editCommentContent');
+        editCommentForm = document.getElementById('editCommentForm');
+
+        // Event listener untuk tombol Edit pada komentar
+        const editCommentButtons = document.querySelectorAll('.edit-comment-button');
+        editCommentButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                currentCommentId = this.getAttribute('data-comment-id');
+                // Dapatkan konten komentar saat ini
+                const commentContentElement = document.querySelector(`#comment-content-${currentCommentId}`);
+                const commentContent = commentContentElement.textContent.trim();
+
+                // Prefill form dengan konten komentar saat ini
+                editCommentContentInput.value = commentContent;
+
+                showEditCommentModal();
+            });
+        });
+
+        // Fungsi untuk menampilkan modal edit komentar
+        function showEditCommentModal() {
+            editCommentModal.classList.remove('hidden');
+            setTimeout(() => {
+                editCommentModalContent.classList.remove('opacity-0', 'scale-95');
+                editCommentModalContent.classList.add('opacity-100', 'scale-100');
+            }, 50);
+        }
+
+        // Fungsi untuk menyembunyikan modal edit komentar
+        function hideEditCommentModal() {
+            editCommentModalContent.classList.remove('opacity-100', 'scale-100');
+            editCommentModalContent.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                editCommentModal.classList.add('hidden');
+            }, 150);
+        }
+
+        // Event listener untuk tombol close pada modal edit komentar
+        document.getElementById("cancelEditCommentButton").addEventListener("click", hideEditCommentModal);
+        document.getElementById("closeEditCommentModalBtn").addEventListener("click", hideEditCommentModal);
+
+        // Event listener untuk submit form edit komentar
+        editCommentForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            submitEditCommentForm();
+        });
+
+        // Fungsi untuk mengirim permintaan AJAX untuk mengedit komentar
+        function submitEditCommentForm() {
+            const url = `/edit-comment-ajax/${currentCommentId}/`;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: editCommentContentInput.value,
+                }),
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || 'Failed to edit comment');
+                    });
+                }
+            })
+            .then(data => {
+                // Memperbarui konten komentar di halaman tanpa merefresh
+                const commentContentElement = document.querySelector(`#comment-content-${currentCommentId}`);
+                commentContentElement.textContent = data.comment.content;
+
+                hideEditCommentModal();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
+        }
+
+        // Fungsi untuk mendapatkan CSRF Token dari cookie (jika belum ada)
+        function getCSRFToken() {
+            let cookieValue = null;
+            const name = 'csrftoken';
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Cek apakah cookie dimulai dengan nama CSRF token
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------------
+        // Mendapatkan semua tombol like
+        const likeButtons = document.querySelectorAll('.like-button');
+
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah aksi default tombol
+
+                const commentId = this.getAttribute('data-comment-id');
+                const likeCountSpan = document.getElementById(`like-count-${commentId}`);
+                const likeUrl = this.getAttribute('data-like-url');
+
+                // Mengirim permintaan AJAX ke server
+                fetch(likeUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCSRFToken(), // Mengirim CSRF token
+                        'X-Requested-With': 'XMLHttpRequest' // Menandai sebagai AJAX
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.liked) {
+                        // Mengganti ikon like menjadi terisi (merah)
+                        this.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="24" height="24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 
+                                12.28 2 8.5 2 5.42 
+                                4.42 3 7.5 3c1.74 0 3.41 0.81 
+                                4.5 2.09C13.09 3.81 14.76 
+                                3 16.5 3 19.58 3 22 5.42 
+                                22 8.5c0 3.78-3.4 6.86-8.55 
+                                11.54L12 21.35z"/>
+                            </svg>
+                        `;
+                    } else {
+                        // Mengganti ikon like menjadi berbatas (merah)
+                        this.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 
+                                0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 
+                                3.75 3 5.765 3 8.25c0 7.22 9 12 9 
+                                12s9-4.78 9-12Z" />
+                            </svg>
+                        `;
+                    }
+
+                    // Memperbarui jumlah like
+                    likeCountSpan.textContent = `${data.total_likes} Likes`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+        // Fungsi untuk mendapatkan CSRF Token dari cookie
+        function getCSRFToken() {
+            let cookieValue = null;
+            const name = 'csrftoken';
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Cek apakah cookie dimulai dengan nama CSRF token
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+</script>
+{% endblock meta %}

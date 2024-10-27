@@ -5,6 +5,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # path("polling-makanan/", include("poll.urls")),
     path("", include("main.urls")),
+    path("", include("toko_makanan.urls")),
     path("", include("authentication.urls")),
-    path('polling-makanan/', include('poll.urls')),
+    path("", include("rating_toko.urls")),
+    path("", include("discuss_forum.urls")),
+    path("polling-makanan/", include("poll.urls")),
 ]
