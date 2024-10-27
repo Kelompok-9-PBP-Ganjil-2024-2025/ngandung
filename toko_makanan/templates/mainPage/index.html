@@ -12,14 +12,20 @@
 		<p class="text-2xl md:text-3xl font-bold text-black pb-5">Bingung mau makan apa???</p>
 		<p class="text-2xl md:text-3xl font-bold text-black pb-10">Yok cari disini!</p>
 	</div>
-	{% if request.user.is_superuser %}
 	<div class="w-full px-3 md:px-8 pb-8 pt-16">
-		<div class="flex justify-end mb-6 gap-x-2">
-			<button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Add Makanan </button>
-			<a href="{% url 'toko_makanan:add_toko' %}" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Add Toko </a>
+		<div class="flex justify-between mb-6 gap-x-2">
+			<div class="flex flex-col">
+				<label for="searchBar" class="block text-sm font-medium text-gray-800 shadow-xl">Search</label>
+				<input type="text" id="searchBar" class="border border-gray-800 rounded-lg py-2 px-4 w-full" placeholder="Search for makanan...">
+			</div>
+			{% if request.user.is_superuser %}
+			<div class="flex gap-x-2">
+				<button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 truncate"> Add Makanan </button>
+				<a href="{% url 'toko_makanan:add_toko' %}" class="bg-black hover:bg-[#ff9900] text-white text-center font-bold py-5 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 truncate"> Add Toko </a>
+			</div>
+			{% endif %}
 		</div>
 	</div>
-	{% endif %}
 
 	<div id="display_makanan"></div>
 
@@ -41,14 +47,11 @@
 			<!-- Modal body -->
 			<div class="px-6 py-4 space-y-6 form-style">
 				<form id="makananForm" enctype="multipart/form-data">
-					{% csrf_token %}
-					<!-- Product Name -->
 					<div class="mb-4">
 						<label for="makananName" class="block text-sm font-medium text-gray-800">Nama Makanan</label>
 						<input type="text" id="makananName" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan nama makanan" required />
 					</div>
 
-					<!-- Product Price -->
 					<div class="mb-4">
 						<label for="makananPrice" class="block text-sm font-medium text-gray-800">Price (IDR)</label>
 						<input type="number" id="makananPrice" name="price" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan harga makanan dalam IDR" step="0.01" min="0" required />
@@ -75,7 +78,6 @@
 	</div>
 </div>
 <script>
-	console.log("HELLO WORLD");
 	async function getMakanan() {
 		return fetch("{% url 'toko_makanan:makanan_json' %}").then((res) => res.json());
 		//menggunakan fetch() API ke data JSON secara asynchronous.
@@ -143,12 +145,29 @@
 		document.getElementById('display_makanan').innerHTML = htmlString;
 	}
 	refreshMakanan();
+	filterMakanan();
 
+	//menambah event listener ke search bar
+	document.getElementById('searchBar').addEventListener('input', filterMakanan);
+
+	function filterMakanan() { //function untuk filter makanan dengan search bar
+		const query = document.getElementById('searchBar').value.toLowerCase();
+		const makananItems = document.querySelectorAll('#display_makanan > div');
+
+		makananItems.forEach(item => {
+			const name = item.querySelector('h3').textContent.toLowerCase();
+			if (name.includes(query)) {
+				item.style.display = 'block'; //jika ada yang match dengan yang di search maka ditampilkan
+			} else {
+				item.style.display = 'none'; //jika tidak match maka tidak ditampilkan
+			}
+		});
+	}
 	
 	const modal = document.getElementById('crudModal');
 	const modalContent = document.getElementById('crudModalContent');
 
-	function showModal() {
+	function showModal() { //function untuk menampilkan modal
 		const modal = document.getElementById('crudModal');
 		const modalContent = document.getElementById('crudModalContent');
 
@@ -159,7 +178,7 @@
 		}, 50);
 	}
 
-	function hideModal() {
+	function hideModal() { //function untuk tutup/hide modal
 		const modal = document.getElementById('crudModal');
 		const modalContent = document.getElementById('crudModalContent');
 
@@ -171,10 +190,10 @@
 		}, 150);
 	}
 
+	//menambahkan event listener jika user click di luar area modal maka akan close modalnya
 	modal.addEventListener('click', (event) => {
-		// Check if the click is outside the modal content
 		if (!modalContent.contains(event.target)) {
-			hideModal(); // Close the modal
+			hideModal(); // Close modal
 		}
 	});
 
@@ -188,8 +207,8 @@
 		}) //FormData dapat digunakan untuk mengirimkan data form tersebut ke server.
 			.then((response) => {
 				if (response.ok) {
-					refreshMakanan(); // Refresh the products list
-					hideModal(); // Close the modal after product creation
+					refreshMakanan(); // Refresh list makanan
+					hideModal(); // Close modal setelah pembuatan Makanan
 				} else {
 					console.error('Creation failed.');
 				}
