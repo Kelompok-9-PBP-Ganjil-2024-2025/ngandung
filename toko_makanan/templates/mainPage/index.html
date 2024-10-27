@@ -92,16 +92,16 @@
 			list_makanan.forEach((makanan) => {
 				const name = DOMPurify.sanitize(makanan.fields.name);
 				htmlString += `
-				<div class="relative top-5 bg-black shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-4 border-black transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
-					<div class="bg-black shadow-lg rounded-lg overflow-hidden">
+				<div class="relative top-5 bg-black shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
 					<!-- Placeholder Image -->
-					<img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg border-2 border-black">
+					<img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg">
 					
 					<!-- Card Content -->
 					<div class="p-4">
 						<!-- Nama Makanan -->
-						<h3 class="font-bold text-sm mb-4 text-center text-stone-200">${name}</h3>
-						<p class="text-center text-stone-200">Rp ${makanan.fields.price}</p>
+						<h3 class="font-bold text-[15px] mb-4 text-center text-[#ff9900]">${name}</h3>
+						<p class="text-center text-gray-800 font-bold">Rp ${makanan.fields.price}</p>
 					</div>
 
 					<!-- Button Group -->
