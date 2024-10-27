@@ -7,4 +7,5 @@ urlpatterns = [
     path("", include("toko_makanan.urls")),
     path("", include("authentication.urls")),
     path("", include("rating_toko.urls")),
+    path('', include('discuss_forum.urls')),
 ]
