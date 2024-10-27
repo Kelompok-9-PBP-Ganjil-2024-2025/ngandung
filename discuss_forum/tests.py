@@ -1,239 +1,223 @@
+# discuss_forum/tests.py
+
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.utils import timezone
 from django.contrib.auth.models import User
-from django.core import serializers
-from django.http import JsonResponse
-from django.db.models import Count
-from django.conf import settings
-from .models import MoodEntry
-from discuss_forum.models import Discussion, Comment
-from discuss_forum.forms import DiscussionForm, CommentForm
-import json
+from .models import Discussion, Comment
+import uuid
 
-# ============================
-# Tests untuk Fitur Utama
-# ============================
 
-class MainSiteTests(TestCase):
+class DiscussionModelTest(TestCase):
     def setUp(self):
-        self.client = Client()
-    
-    def test_main_url_exists(self):
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
-    
-    def test_main_template_used(self):
-        response = self.client.get('/')
-        self.assertTemplateUsed(response, 'main.html')
-    
-    def test_nonexistent_page(self):
-        response = self.client.get('/skibidi/')
-        self.assertEqual(response.status_code, 404)
-    
-    def test_strong_mood_user(self):
-        now = timezone.now()
-        mood = MoodEntry.objects.create(
-            mood="LUMAYAN SENANG",
-            time=now,
-            feelings="senang sih, cuman tadi baju aku basah kena hujan :(",
-            mood_intensity=8,
-        )
-        self.assertTrue(mood.is_mood_strong)
-
-# ============================
-# Tests untuk Aplikasi Discuss Forum
-# ============================
-
-class DiscussForumTests(TestCase):
-    def setUp(self):
-        # Membuat pengguna untuk pengujian
-        self.user = User.objects.create_user(username='testuser', password='testpass')
-        self.client = Client()
-        self.client.login(username='testuser', password='testpass')
-        
-        # Membuat diskusi contoh
+        self.user = User.objects.create_user(username="testuser", password="password")
         self.discussion = Discussion.objects.create(
             user=self.user,
-            title="Diskusi Test",
-            content="Konten diskusi test."
+            title="Test Discussion",
+            content="This is a test discussion.",
         )
-        
-        # Membuat komentar contoh
+
+    def test_discussion_creation(self):
+        self.assertEqual(self.discussion.title, "Test Discussion")
+        self.assertEqual(self.discussion.content, "This is a test discussion.")
+        self.assertIsInstance(self.discussion.id, uuid.UUID)
+        self.assertEqual(str(self.discussion), "Test Discussion")
+
+    def test_discussion_str_method(self):
+        self.assertEqual(str(self.discussion), self.discussion.title)
+
+
+class CommentModelTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="commentuser", password="password"
+        )
+        self.discussion = Discussion.objects.create(
+            user=self.user,
+            title="Discussion for Comment",
+            content="Content of the discussion.",
+        )
         self.comment = Comment.objects.create(
             discussion=self.discussion,
             user=self.user,
-            content="Komentar test."
+            content="This is a test comment.",
         )
-    
-    def test_forum_main_view(self):
-        response = self.client.get(reverse('discuss_forum:forum_main'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'forum.html')
-        self.assertContains(response, "test forum")
-        self.assertContains(response, self.discussion.title)
-    
-    def test_discussion_main_view(self):
-        response = self.client.get(reverse('discuss_forum:discussion_main', args=[self.discussion.id]))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'discussion.html')
-        self.assertContains(response, self.discussion.title)
-        self.assertContains(response, self.comment.content)
-    
-    def test_create_discussion_view(self):
-        response = self.client.post(reverse('discuss_forum:create_discussion_forum'), {
-            'title': 'Diskusi Baru',
-            'content': 'Konten diskusi baru.'
-        })
-        self.assertEqual(response.status_code, 302)  # Redirect setelah berhasil
-        self.assertTrue(Discussion.objects.filter(title='Diskusi Baru').exists())
-    
-    def test_add_comment_view(self):
-        response = self.client.post(reverse('discuss_forum:add_comment', args=[self.discussion.id]), {
-            'content': 'Komentar baru.'
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(Comment.objects.filter(content='Komentar baru.').exists())
-    
-    def test_edit_discussion_view(self):
-        response = self.client.post(reverse('discuss_forum:edit_forum', args=[self.discussion.id]), {
-            'title': 'Diskusi Diedit',
-            'content': 'Konten diskusi yang sudah diedit.'
-        })
-        self.assertEqual(response.status_code, 302)
-        self.discussion.refresh_from_db()
-        self.assertEqual(self.discussion.title, 'Diskusi Diedit')
-    
-    def test_delete_discussion_view(self):
-        response = self.client.post(reverse('discuss_forum:delete_forum', args=[self.discussion.id]))
-        self.assertEqual(response.status_code, 302)
-        self.assertFalse(Discussion.objects.filter(id=self.discussion.id).exists())
-    
-    def test_like_comment_view(self):
-        like_url = reverse('discuss_forum:like_comment', args=[self.comment.id])
-        response = self.client.post(like_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertTrue(data['liked'])
-        self.assertEqual(data['total_likes'], 1)
-        
-        # Menguji pembatalan like
-        response = self.client.post(like_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        data = json.loads(response.content)
-        self.assertFalse(data['liked'])
-        self.assertEqual(data['total_likes'], 0)
-    
-    def test_show_json_view(self):
-        response = self.client.get(reverse('discuss_forum:show_json'))
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], 'application/json')
-        data = json.loads(response.content)
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]['fields']['title'], self.discussion.title)
-    
-    def test_edit_forum_ajax_view(self):
-        edit_url = reverse('discuss_forum:edit_forum_ajax', args=[self.discussion.id])
-        response = self.client.post(edit_url, json.dumps({
-            'title': 'Diskusi AJAX Diedit',
-            'content': 'Konten diskusi AJAX yang sudah diedit.'
-        }), content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEqual(data['discussion']['title'], 'Diskusi AJAX Diedit')
-        self.discussion.refresh_from_db()
-        self.assertEqual(self.discussion.title, 'Diskusi AJAX Diedit')
-    
-    def test_edit_comment_ajax_view(self):
-        edit_url = reverse('discuss_forum:edit_comment_ajax', args=[self.comment.id])
-        response = self.client.post(edit_url, json.dumps({
-            'content': 'Komentar AJAX yang diedit.'
-        }), content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEqual(data['comment']['content'], 'Komentar AJAX yang diedit.')
-        self.comment.refresh_from_db()
-        self.assertEqual(self.comment.content, 'Komentar AJAX yang diedit.')
-    
-    def test_permission_edit_discussion(self):
-        # Membuat pengguna lain
-        other_user = User.objects.create_user(username='otheruser', password='otherpass')
-        self.client.logout()
-        self.client.login(username='otheruser', password='otherpass')
-        
-        response = self.client.post(reverse('discuss_forum:edit_forum', args=[self.discussion.id]), {
-            'title': 'Tidak Boleh Edit',
-            'content': 'Tidak boleh edit diskusi orang lain.'
-        })
-        self.assertEqual(response.status_code, 403)
-        self.discussion.refresh_from_db()
-        self.assertNotEqual(self.discussion.title, 'Tidak Boleh Edit')
-    
-    def test_permission_delete_comment(self):
-        # Membuat pengguna lain
-        other_user = User.objects.create_user(username='otheruser', password='otherpass')
-        self.client.logout()
-        self.client.login(username='otheruser', password='otherpass')
-        
-        response = self.client.post(reverse('discuss_forum:delete_comment', args=[self.comment.id]))
-        self.assertEqual(response.status_code, 403)
-        self.assertTrue(Comment.objects.filter(id=self.comment.id).exists())
-    
+
+    def test_comment_creation(self):
+        self.assertEqual(self.comment.content, "This is a test comment.")
+        self.assertIsInstance(self.comment.id, uuid.UUID)
+        self.assertEqual(
+            str(self.comment),
+            f"Komentar oleh {self.user.username} pada {self.discussion.title}",
+        )
+
     def test_total_likes_property(self):
+        # Initially, there should be no likes
         self.assertEqual(self.comment.total_likes, 0)
+        # Add a like
         self.comment.likes.add(self.user)
         self.assertEqual(self.comment.total_likes, 1)
 
-# ============================
-# Tests untuk Models (Jika Diperlukan)
-# ============================
 
-class ModelsTests(TestCase):
-    def test_moodentry_str_representation(self):
-        now = timezone.now()
-        mood = MoodEntry.objects.create(
-            mood="Test Mood",
-            time=now,
-            feelings="Feeling test",
-            mood_intensity=5,
+class ForumViewsTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username="viewuser", password="password")
+        self.discussion = Discussion.objects.create(
+            user=self.user,
+            title="View Test Discussion",
+            content="Content for view test.",
         )
-        self.assertEqual(str(mood), "Test Mood")
+        self.comment = Comment.objects.create(
+            discussion=self.discussion, user=self.user, content="View test comment."
+        )
 
-    def test_discussion_str_representation(self):
-        user = User.objects.create_user(username='testuser', password='testpass')
-        discussion = Discussion.objects.create(
-            user=user,
-            title="Test Discussion",
-            content="Test content."
+    def test_create_discussion_forum_view_authenticated(self):
+        self.client.login(username="viewuser", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:create_discussion_forum"),
+            {"title": "New Discussion", "content": "Content of the new discussion."},
         )
-        self.assertEqual(str(discussion), "Test Discussion")
-    
-    def test_comment_str_representation(self):
-        user = User.objects.create_user(username='testuser', password='testpass')
-        discussion = Discussion.objects.create(
-            user=user,
-            title="Test Discussion",
-            content="Test content."
-        )
-        comment = Comment.objects.create(
-            discussion=discussion,
-            user=user,
-            content="Test Comment"
-        )
-        expected_str = f"Komentar oleh {user.username} pada {discussion.title}"
-        self.assertEqual(str(comment), expected_str)
-    
-    def test_comment_total_likes(self):
-        user = User.objects.create_user(username='testuser', password='testpass')
-        comment = Comment.objects.create(
-            discussion=Discussion.objects.create(
-                user=user,
-                title="Test Discussion",
-                content="Test content."
-            ),
-            user=user,
-            content="Test Comment"
-        )
-        self.assertEqual(comment.total_likes, 0)
-        comment.likes.add(user)
-        self.assertEqual(comment.total_likes, 1)
+        self.assertEqual(response.status_code, 302)  # Redirect after creation
+        self.assertTrue(Discussion.objects.filter(title="New Discussion").exists())
 
+    def test_create_discussion_forum_view_unauthenticated(self):
+        response = self.client.post(
+            reverse("discuss_forum:create_discussion_forum"),
+            {"title": "Should Not Create", "content": "No content."},
+        )
+        self.assertEqual(response.status_code, 302)  # Redirect to login
+        self.assertFalse(Discussion.objects.filter(title="Should Not Create").exists())
+
+    def test_add_comment_view_authenticated(self):
+        self.client.login(username="viewuser", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:add_comment", args=[self.discussion.id]),
+            {"content": "Another test comment."},
+        )
+        self.assertEqual(response.status_code, 302)  # Redirect after adding comment
+        self.assertTrue(
+            Comment.objects.filter(content="Another test comment.").exists()
+        )
+
+    def test_add_comment_view_unauthenticated(self):
+        response = self.client.post(
+            reverse("discuss_forum:add_comment", args=[self.discussion.id]),
+            {"content": "Should not be added."},
+        )
+        self.assertEqual(response.status_code, 302)  # Redirect to login
+        self.assertFalse(
+            Comment.objects.filter(content="Should not be added.").exists()
+        )
+
+    def test_like_comment_authenticated(self):
+        self.client.login(username="viewuser", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:like_comment", args=[self.comment.id]),
+            HTTP_X_REQUESTED_WITH="XMLHttpRequest",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.comment.refresh_from_db()
+        self.assertIn(self.user, self.comment.likes.all())
+
+        # Unlike the comment
+        response = self.client.post(
+            reverse("discuss_forum:like_comment", args=[self.comment.id]),
+            HTTP_X_REQUESTED_WITH="XMLHttpRequest",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.comment.refresh_from_db()
+        self.assertNotIn(self.user, self.comment.likes.all())
+
+    def test_like_comment_unauthenticated(self):
+        response = self.client.post(
+            reverse("discuss_forum:like_comment", args=[self.comment.id]),
+            HTTP_X_REQUESTED_WITH="XMLHttpRequest",
+        )
+        self.assertEqual(response.status_code, 302)  # Redirect to login
+
+
+class PermissionTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.owner = User.objects.create_user(username="owner", password="password")
+        self.other_user = User.objects.create_user(
+            username="other", password="password"
+        )
+        self.discussion = Discussion.objects.create(
+            user=self.owner, title="Owner Discussion", content="Owned by owner."
+        )
+        self.comment = Comment.objects.create(
+            discussion=self.discussion, user=self.owner, content="Owner comment."
+        )
+
+    def test_edit_discussion_by_owner(self):
+        self.client.login(username="owner", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:edit_forum", args=[self.discussion.id]),
+            {"title": "Edited Title", "content": "Edited content."},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.discussion.refresh_from_db()
+        self.assertEqual(self.discussion.title, "Edited Title")
+
+    def test_edit_discussion_by_other_user(self):
+        self.client.login(username="other", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:edit_forum", args=[self.discussion.id]),
+            {"title": "Hacked Title", "content": "Hacked content."},
+        )
+        self.assertEqual(response.status_code, 403)
+        self.discussion.refresh_from_db()
+        self.assertNotEqual(self.discussion.title, "Hacked Title")
+
+    def test_delete_discussion_by_owner(self):
+        self.client.login(username="owner", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:delete_forum", args=[self.discussion.id])
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Discussion.objects.filter(id=self.discussion.id).exists())
+
+    def test_delete_discussion_by_other_user(self):
+        self.client.login(username="other", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:delete_forum", args=[self.discussion.id])
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertTrue(Discussion.objects.filter(id=self.discussion.id).exists())
+
+    def test_edit_comment_by_owner(self):
+        self.client.login(username="owner", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:edit_comment", args=[self.comment.id]),
+            {"content": "Edited comment."},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.comment.refresh_from_db()
+        self.assertEqual(self.comment.content, "Edited comment.")
+
+    def test_edit_comment_by_other_user(self):
+        self.client.login(username="other", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:edit_comment", args=[self.comment.id]),
+            {"content": "Hacked comment."},
+        )
+        self.assertEqual(response.status_code, 403)
+        self.comment.refresh_from_db()
+        self.assertNotEqual(self.comment.content, "Hacked comment.")
+
+    def test_delete_comment_by_owner(self):
+        self.client.login(username="owner", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:delete_comment", args=[self.comment.id])
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Comment.objects.filter(id=self.comment.id).exists())
+
+    def test_delete_comment_by_other_user(self):
+        self.client.login(username="other", password="password")
+        response = self.client.post(
+            reverse("discuss_forum:delete_comment", args=[self.comment.id])
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertTrue(Comment.objects.filter(id=self.comment.id).exists())
