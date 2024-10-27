@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Rating Toko di NGANDUNG</title>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		async function getAllToko() {
+			const response = await fetch('{% url "rating_toko:get_all_toko" %}');
+			const data = await response.json();
+			return data;
+		}
+
+		async function renderToko() {
+			document.getElementById('list-toko').innerHTML = '';
+			const data = await getAllToko();
+			let htmlString = '';
+
+            data.forEach((toko) => {
+                htmlString += `
+                <a class="border rounded-lg shadow-md flex flex-col overflow-hidden hover:scale-[102%] transition-all duration-100 bg-white" href='/rating-toko/${toko.pk}'>
+                    <div class="relative">
+                        <img src="{% static 'images/placeholder_toko.jpg' %}" class='w-full'>
+                    </div>
+                    <div class='w-full px-4 py-3 flex flex-col'>
+                        <p class="text-[#ff9900] font-bold text-lg">${toko.fields.nama_rumah_makan}</p>
+                        <p class="text-sm">${toko.fields.alamat}</p>
+                        <div class='bg-white h-auto flex-grow flex items-center text-xl rounded-l flex-row space-x-1'>
+                            <i class='ti ti-star-filled text-yellow-400 text-base'></i>
+                            <p class="text-sm text-gray-400"><span class='font-bold text-black'>${toko.fields.average_rating}</span>&nbsp;&nbsp;(${toko.fields.number_of_ratings} reviewers)</p>
+                        </div>
+                    </div>
+                </a>
+                `;
+            });
+
+			document.getElementById('list-toko').innerHTML = htmlString;
+		}
+
+		renderToko();
+
+        function truncateDescription(description, n) {
+            if (description.length <= n) {
+                return description;
+            }
+            const truncated = description.substr(0, n);
+            return truncated.substr(0, truncated.lastIndexOf(' ')) + '...';
+        }
+	});
+</script>
+{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
+
+<img src="{% static 'images/garpu.png' %}" class='opacity-20 fixed -right-16 top-60 -z-20 scale-[90%]' />
+<img src="{% static 'images/sendok.png' %}" class='opacity-20 fixed -left-20 top-96 -z-20 scale-[80%]' />
+<img src="{% static 'images/telur.png' %}" class='opacity-20 fixed left-28 top-24 -z-20 scale-[80%]' />
+
+<div class="w-full flex flex-col items-center pt-40 space-y-16 px-[10%] pb-24">
+	<div class="flex flex-col space-y-2 items-center text-center">
+		<p class="md:text-4xl text-3xl font-bold">Rating dan Review Toko</p>
+		<p>Cek rating dan review toko yang ada di Ngandung, biar ga salah pilih toko!</p>
+	</div>
+
+	<div class="flex md:flex-row flex-col space-y-8 md:space-y-0 md:space-x-4 relative w-[85%] max-w-50rem text-center">
+        <div class="border md:w-1/3 w-full rounded-lg relative shadow-md flex flex-col space-y-0 pt-7 pb-4 px-2 bg-white">
+            <div class="absolute flex items-center justify-center flex-row -top-5 right-1/2 translate-x-1/2">
+				<div class="rounded-full w-8 h-8 bg-[#ff9900] -mr-1 flex items-center justify-center"><i class="ti ti-ice-cream-2 text-white text-lg"></i></div>
+				<div class="rounded-full w-12 h-12 bg-[#ff9900] border-white border-2 z-10 flex items-center justify-center"><i class="ti ti-burger text-white text-2xl"></i></div>
+				<div class="rounded-full w-8 h-8 bg-[#ff9900] -ml-1 flex items-center justify-center"><i class="ti ti-cup text-white text-lg"></i></div>
+			</div>
+			<p class="text-[#ff9900] font-bold text-lg">Tempat terenak!</p>
+			<p class="text-sm">Liat-liat disini aja bos kalo mau yang enak.</p>
+		</div>
+        <div class="border md:w-1/3 w-full rounded-lg relative shadow-md flex flex-col space-y-0 pt-7 pb-4 px-2 bg-white">
+            <div class="absolute flex items-center justify-center flex-row -top-5 right-1/2 translate-x-1/2">
+                <div class="rounded-full w-8 h-8 bg-[#ff9900] -mr-1 flex items-center justify-center overflow-hidden p-0.5"><img src='{% static 'images/shaq.jpg' %}' class='rounded-full'></img></div>
+                <div class="rounded-full w-12 h-12 bg-[#ff9900] border-white border-2 z-10 flex items-center justify-center p-0.5"><img src='{% static 'images/me.jpg' %}' class='rounded-full'></div>
+                <div class="rounded-full w-8 h-8 bg-[#ff9900] -ml-1 flex items-center justify-center overflow-hidden p-0.5 p-0.5"><img src='{% static 'images/serious.jpg' %}' class='rounded-full'></div>
+            </div>
+            <p class="text-[#ff9900] font-bold text-lg">Banyak direkomen orang!</p>
+            <p class="text-sm">Dari mas-mas, mbak-mbak, ladies, gentlemen, dan semuanya.</p>
+        </div>
+		<div class="border md:w-1/3 w-full rounded-lg relative shadow-md flex flex-col space-y-0 pt-7 pb-4 px-2 bg-white">
+            <div class="absolute flex items-center justify-center flex-row -top-5 right-1/2 translate-x-1/2">
+                <div class="rounded-full w-8 h-8 bg-[#ff9900] -mr-1 flex items-center justify-center"><i class="ti ti-map-pin text-white text-lg"></i></div>
+				<div class="rounded-full w-12 h-12 bg-[#ff9900] border-white border-2 z-10 flex items-center justify-center"><i class="ti ti-circle-dashed-check text-white text-2xl"></i></div>
+				<div class="rounded-full w-8 h-8 bg-[#ff9900] -ml-1 flex items-center justify-center"><i class="ti ti-mood-smile-beam text-lg text-white"></i></div>
+			</div>
+			<p class="text-[#ff9900] font-bold text-lg">Gaakan bingung lagi!</p>
+			<p class="text-sm">Sekarang, tiap laper langsung tau mau ke mana.</p>
+		</div>
+	</div>
+
+	<div class="grid md:grid-cols-3 grid-cols-1 gap-6 w-full" id="list-toko"></div>
+</div>
+
+{% endblock content %}

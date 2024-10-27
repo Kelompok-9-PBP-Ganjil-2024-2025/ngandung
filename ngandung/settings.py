@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "main",
     "authentication",
     "toko_makanan",
+    "rating_toko",
+    "livereload",
 ]
 
 MIDDLEWARE = [
