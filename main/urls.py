@@ -1,11 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from main.views import show_main, show_rumah_makan_json_by_id
 
 
 app_name = "main"
 
 urlpatterns = [
-    path("", show_main, name="show_main"),
     path("api/rumah-makan/<int:id>/", show_rumah_makan_json_by_id, name="show_rumah_makan_json_by_id"),
     
 ]

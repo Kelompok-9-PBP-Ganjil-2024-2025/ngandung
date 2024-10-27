@@ -125,7 +125,10 @@ def delete_rating(request, id_rating, id_rumah_makan):
     new_average_rating = 0
     for r in ratings:
         new_average_rating += r.rating
-    new_average_rating /= len(ratings)
+    if len(ratings) != 0:
+        new_average_rating /= len(ratings)
+    else:
+        new_average_rating = 0
     rumah_makan.average_rating = new_average_rating
     rumah_makan.number_of_ratings -= 1
     rumah_makan.save()

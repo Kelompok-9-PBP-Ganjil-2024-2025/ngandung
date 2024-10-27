@@ -1,0 +1,1 @@
+default_app_config = 'toko_makanan.apps.MainConfig'
