@@ -11,6 +11,14 @@
 			{% csrf_token %}
 			<input type="hidden" name="remember" value="true" />
 
+			{% if form.non_field_errors %}
+				<div class="mb-4">
+					{% for error in form.non_field_errors %}
+						<p class="text-sm text-red-600">{{ error }}</p>
+					{% endfor %}
+				</div>
+			{% endif %}
+
 			<div class="rounded-md shadow-sm space-y-2">
 				<div>
 					<label for="username" class="mb-2 font-semibold">Username</label>
