@@ -8,6 +8,7 @@ import datetime
 from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def get_all_toko_page(request):
@@ -36,7 +37,7 @@ def get_all_ratings_page(request, id_rumah_makan):
         "alamat": rumah_makan.alamat,
         "kota": rumah_makan.bps_nama_kabupaten_kota,
         "tahun": rumah_makan.tahun,
-        "asal_masakan": rumah_makan.masakan_dari_mana,
+        "asal_masakan": rumah_makan.masakan_dari_mana
     }
 
     return render(request, "toko_specific.html", context)
@@ -118,3 +119,9 @@ def delete_rating(request):
     rumah_makan.save()
 
     return HttpResponse(b"Rating deleted successfully", status=201)
+
+def get_user(request, id_user):
+    user = User.objects.get(pk=id_user)
+    user_json = serializers.serialize("json", [user])
+
+    return HttpResponse(user_json, content_type="application/json")

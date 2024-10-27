@@ -2,110 +2,201 @@
 <title>Rating Toko {{ nama_rumah_makan }}</title>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        async function refreshRatings() {
-            const response = await fetch('{% url "rating_toko:get_toko" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+	document.addEventListener('DOMContentLoaded', function () {
+		async function refreshRatings() {
+			const response = await fetch('{% url "rating_toko:get_toko" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+			const data = await response.json();
+			return data;
+		}
+
+		async function renderRatings() {
+			const data = await refreshRatings();
+			document.getElementById('average_rating').innerText = `${data[0].fields.average_rating}`;
+		}
+
+		renderRatings();
+
+		async function getRating() {
+			const response = await fetch('{% url "rating_toko:get_all_ratings" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+			const data = await response.json();
+
+			// Process the ratings data
+			processRatingsData(data);
+
+			// Render the list of ratings
+			renderRatingsList(data);
+		}
+
+		getRating();
+
+		function processRatingsData(data) {
+			// Initialize counts for each rating level (1 to 5)
+			const counts = {
+				1: 0,
+				2: 0,
+				3: 0,
+				4: 0,
+				5: 0,
+			};
+
+			// Total number of ratings
+			const totalRatings = data.length;
+
+			// Count the number of ratings per rating value
+			data.forEach((item) => {
+				const ratingValue = item.fields.rating;
+				if (counts.hasOwnProperty(ratingValue)) {
+					counts[ratingValue] += 1;
+				}
+			});
+
+			// Update the DOM elements for each rating level
+			for (let i = 1; i <= 5; i++) {
+				const count = counts[i];
+				const percentage = totalRatings > 0 ? (count / totalRatings) * 100 : 0;
+
+				// Update the rating number
+				const ratingNumberElement = document.getElementById(`rating_number_${i}`);
+				if (ratingNumberElement) {
+					ratingNumberElement.textContent = `(${count})`;
+				}
+
+				// Update the rating fill bar width
+				const ratingFillElement = document.getElementById(`rating_fill_${i}`);
+				if (ratingFillElement) {
+					ratingFillElement.style.width = `${percentage}%`;
+				}
+			}
+		}
+
+        async function fetchUsername(userId) {
+            const response = await fetch('{% url "rating_toko:get_user" 0 %}'.replace('0', userId));
             const data = await response.json();
             return data;
         }
 
-        async function renderRatings() {
-            const data = await refreshRatings();
-            document.getElementById('average_rating').innerText = `${data[0].fields.average_rating}`;
-        }
+		async function renderRatingsList(data) {
+			const listRating = document.getElementById('list_rating');
 
-        renderRatings();
+			// Clear any existing content
+			listRating.innerHTML = '';
 
-        async function getRating() {
-            const response = await fetch('{% url "rating_toko:get_all_ratings" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
-            const data = await response.json();
-            console.log(data);
+			// Loop through the data and create rating items
+			for (const item of data) {
+				const ratingValue = item.fields.rating;
+				const reviewText = item.fields.review || '(No review)';
+				const userId = item.fields.user;
+				let username = 'Anonymous';
 
-            // Process the ratings data
-            processRatingsData(data);
-        }
+				if (userId) {
+					try {
+						const userData = await fetchUsername(userId);
+						console.log('User data:', userData);
+						if (userData) {
+							username = userData[0].fields.username;
+						}
+					} catch (error) {
+						console.error('Error fetching username:', error);
+					}
+				}
 
-        getRating();
+				// Create the rating item element
+				const ratingItem = document.createElement('div');
+				ratingItem.className = 'border rounded-xl flex flex-col space-y-2 items-start shadow-md relative px-4 pt-3 pb-4';
 
-        function processRatingsData(data) {
-            // Initialize counts for each rating level (1 to 5)
-            const counts = {
-                1: 0,
-                2: 0,
-                3: 0,
-                4: 0,
-                5: 0
-            };
+				// User info and rating
+				const userInfoDiv = document.createElement('div');
+				userInfoDiv.className = 'flex flex-row space-x-2 items-center';
 
-            // Total number of ratings
-            const totalRatings = data.length;
+				// User avatar/icon
+				const userAvatarDiv = document.createElement('div');
+				userAvatarDiv.className = 'w-5 h-5 bg-gray-400 rounded-full flex items-center justify-center overflow-hidden';
 
-            // Count the number of ratings per rating value
-            data.forEach((item) => {
-                const ratingValue = item.fields.rating;
-                if (counts.hasOwnProperty(ratingValue)) {
-                    counts[ratingValue] += 1;
-                }
-            });
+				const userIcon = document.createElement('i');
+				userIcon.className = 'ti ti-user-filled text-gray-200';
 
-            // Update the DOM elements for each rating level
-            for (let i = 1; i <= 5; i++) {
-                const count = counts[i];
-                const percentage = totalRatings > 0 ? (count / totalRatings) * 100 : 0;
+				userAvatarDiv.appendChild(userIcon);
 
-                // Update the rating number
-                const ratingNumberElement = document.getElementById(`rating_number_${i}`);
-                if (ratingNumberElement) {
-                    ratingNumberElement.textContent = `(${count})`;
-                }
+				// Username
+				const usernameP = document.createElement('p');
+				usernameP.className = 'text-sm font-semibold';
+				usernameP.textContent = username;
 
-                // Update the rating fill bar width
-                const ratingFillElement = document.getElementById(`rating_fill_${i}`);
-                if (ratingFillElement) {
-                    ratingFillElement.style.width = `${percentage}%`;
-                }
-            }
-        }
+				// Rating value
+				const ratingValueDiv = document.createElement('div');
+				ratingValueDiv.className = 'border rounded px-1 flex flex-row space-x-1';
 
-        // Existing modal and star rating functionality...
+				const ratingIcon = document.createElement('i');
+				ratingIcon.className = 'ti ti-star-filled text-yellow-400 text-sm';
 
-        // Show the modal and overlay
-        document.getElementById('show-form').addEventListener('click', function () {
-            modal.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-        });
+				const ratingValueP = document.createElement('p');
+				ratingValueP.className = 'text-sm font-semibold';
+				ratingValueP.textContent = ratingValue;
 
-        // Close the modal and overlay
-        function closeModal() {
-            modal.classList.add('hidden');
-            overlay.classList.add('hidden');
-        }
+				ratingValueDiv.appendChild(ratingIcon);
+				ratingValueDiv.appendChild(ratingValueP);
 
-        document.getElementById('close-modal').addEventListener('click', closeModal);
-        overlay.addEventListener('click', closeModal);
+				// Assemble user info
+				userInfoDiv.appendChild(userAvatarDiv);
+				userInfoDiv.appendChild(usernameP);
+				userInfoDiv.appendChild(ratingValueDiv);
 
-        // Star rating functionality
-        const stars = document.querySelectorAll('#star-rating i');
-        const ratingInput = document.getElementById('rating');
+				// Review text
+				const reviewP = document.createElement('p');
+				reviewP.className = 'text-sm';
+				reviewP.textContent = reviewText;
 
-        stars.forEach((star, index) => {
-            star.addEventListener('click', () => {
-                const ratingValue = index + 1;
-                ratingInput.value = ratingValue;
+				// Append to rating item
+				ratingItem.appendChild(userInfoDiv);
+				ratingItem.appendChild(reviewP);
 
-                // Update the stars' colors
-                stars.forEach((s, i) => {
-                    if (i < ratingValue) {
-                        s.classList.remove('text-[#242424]');
-                        s.classList.add('text-yellow-400');
-                    } else {
-                        s.classList.remove('text-yellow-400');
-                        s.classList.add('text-[#242424]');
-                    }
-                });
-            });
-        });
-    });
+				// Append rating item to the list
+				listRating.appendChild(ratingItem);
+			}
+		}
+
+		// Existing modal and star rating functionality...
+
+		// Show the modal and overlay
+		const modal = document.getElementById('rating-form');
+		const overlay = document.getElementById('modal-overlay');
+
+		document.getElementById('show-form').addEventListener('click', function () {
+			modal.classList.remove('hidden');
+			overlay.classList.remove('hidden');
+		});
+
+		// Close the modal and overlay
+		function closeModal() {
+			modal.classList.add('hidden');
+			overlay.classList.add('hidden');
+		}
+
+		document.getElementById('close-modal').addEventListener('click', closeModal);
+		overlay.addEventListener('click', closeModal);
+
+		// Star rating functionality
+		const stars = document.querySelectorAll('#star-rating i');
+		const ratingInput = document.getElementById('rating');
+
+		stars.forEach((star, index) => {
+			star.addEventListener('click', () => {
+				const ratingValue = index + 1;
+				ratingInput.value = ratingValue;
+
+				// Update the stars' colors
+				stars.forEach((s, i) => {
+					if (i < ratingValue) {
+						s.classList.remove('text-[#242424]');
+						s.classList.add('text-yellow-400');
+					} else {
+						s.classList.remove('text-yellow-400');
+						s.classList.add('text-[#242424]');
+					}
+				});
+			});
+		});
+	});
 </script>
 
 {% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
@@ -148,13 +239,28 @@
 
 <div class="w-full flex flex-col items-center pt-40 space-y-16 px-[10%]">
 	<div class="flex flex-row space-x-6 w-full">
-		<div class="bg-[#111111] w-[20rem] h-[30rem] rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
+		<div class="bg-[#111111] w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
 			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
-			<div class="flex flex-col space-y-1 px-2 py-4">
+			<div class="flex flex-col space-y-3 px-2 py-4">
 				<p class="font-bold text-2xl">{{ nama_rumah_makan }}</p>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Alamat</p>
+					<p class="text-sm">{{ alamat }} {{ kota }}</p>
+				</div>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Tahun</p>
+					<p class="text-sm">{{ tahun }}</p>
+				</div>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Asal Masakan</p>
+					<p class="text-sm">{% if asal_masakan == 'semua' %} Lokal dan Luar Negeri {% elif asal_masakan == 'dalam negeri' %} Lokal {% else %} Luar Negeri {% endif %}</p>
+				</div>
 			</div>
 		</div>
-		<div class="w-auto flex-grow flex flex-col space-y-6">
+		<div class="w-[50rem] flex flex-col space-y-6">
 			<div class="w-full border h-20 rounded-xl flex flex-row justify-around shadow-md relative">
 				<div class="rounded-lg flex flex-row space-x-2 items-center absolute -top-4 bg-white border-l-8 border-r-8 border-white left-4">
 					<i class="ti ti-star-filled text-yellow-400 text-2xl"></i>
@@ -217,9 +323,33 @@
 					<p class="font-semibold" id="show-form">Create rating</p>
 				</button>
 			</div>
+
+			<div class="grid grid-cols-2 gap-4 w-full" id="list_rating">
+				<!-- Rating items will be rendered here -->
+				<div class="border rounded-xl h-32 flex flex-col space-y-2 items-start shadow-md relative px-3 py-3">
+					<div class="flex flex-row space-x-2 items-center">
+						<div class="w-5 h-5 bg-gray-400 rounded-full flex items-center justify-center overflow-hidden">
+							<i class="ti ti-user-filled text-gray-200"></i>
+						</div>
+						<p class="text-sm font-semibold">Anonymous</p>
+						<div class="border rounded px-1 flex flex-row space-x-1">
+							<i class="ti ti-star-filled text-yellow-400 text-sm"></i>
+							<p class="text-sm font-semibold">5</p>
+						</div>
+					</div>
+					<p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec...</p>
+				</div>
+				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
+				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
+				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
+				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
+			</div>
 		</div>
 	</div>
-	<p>Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish Gibberish</p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
 </div>
 
 {% endblock content %}

@@ -1,5 +1,5 @@
 from django.urls import path
-from rating_toko.views import get_all_toko_page, get_all_toko, get_all_ratings_page, get_all_ratings, add_rating, edit_rating, delete_rating, get_toko
+from rating_toko.views import get_all_toko_page, get_all_toko, get_all_ratings_page, get_all_ratings, add_rating, edit_rating, delete_rating, get_toko, get_user
 
 app_name = "rating_toko"
 
@@ -14,4 +14,6 @@ urlpatterns = [
     path("api/rating-toko/add/", add_rating, name="add_rating"),
     path("api/rating-toko/edit/<int:id_rating>/<int:id_rumah_makan>/", edit_rating, name="edit_rating"),
     path("api/rating-toko/delete/", delete_rating, name="delete_rating"),
+    # User
+    path("api/user/<int:id_user>/", get_user, name="get_user"),
 ]
