@@ -13,7 +13,7 @@ urlpatterns = [
     path("api/rating-toko/<int:id_rumah_makan>/", get_all_ratings, name="get_all_ratings"),
     path("api/rating-toko/add/", add_rating, name="add_rating"),
     path("api/rating-toko/edit/<int:id_rating>/<int:id_rumah_makan>/", edit_rating, name="edit_rating"),
-    path("api/rating-toko/delete/", delete_rating, name="delete_rating"),
+    path("api/rating-toko/delete/<int:id_rating>/<int:id_rumah_makan>/", delete_rating, name="delete_rating"),
     # User
     path("api/user/<int:id_user>/", get_user, name="get_user"),
 ]

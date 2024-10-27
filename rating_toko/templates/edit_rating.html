@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Edit Rating</title>
+
+<!-- JavaScript for Star Rating -->
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		// Initialize the star rating
+		const stars = document.querySelectorAll('#star-rating i');
+		const ratingInput = document.getElementById('rating');
+		let currentRating = parseInt('{{ form.rating.value|default_if_none:0 }}');
+
+		// Update the stars based on the current rating
+		stars.forEach((s, i) => {
+			if (i < currentRating) {
+				s.classList.remove('text-[#242424]');
+				s.classList.add('text-yellow-400');
+			} else {
+				s.classList.remove('text-yellow-400');
+				s.classList.add('text-[#242424]');
+			}
+		});
+
+		// Handle star click events
+		stars.forEach((star, index) => {
+			star.addEventListener('click', () => {
+				const ratingValue = index + 1;
+				ratingInput.value = ratingValue;
+
+				// Update the stars' colors
+				stars.forEach((s, i) => {
+					if (i < ratingValue) {
+						s.classList.remove('text-[#242424]');
+						s.classList.add('text-yellow-400');
+					} else {
+						s.classList.remove('text-yellow-400');
+						s.classList.add('text-[#242424]');
+					}
+				});
+			});
+		});
+	});
+</script>
+{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
+
+<div class="w-full flex flex-col items-center pt-40 justify-center space-y-16 px-[10%]">
+	<div class="flex flex-row space-x-6 w-fit">
+		<!-- Restaurant Information -->
+		<div class="bg-[#111111] w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
+			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
+			<div class="flex flex-col space-y-3 px-2 py-4">
+				<p class="font-bold text-2xl">{{ rumah_makan.nama_rumah_makan }}</p>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Alamat</p>
+					<p class="text-sm">{{ rumah_makan.alamat }} {{ rumah_makan.kota }}</p>
+				</div>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Tahun</p>
+					<p class="text-sm">{{ rumah_makan.tahun }}</p>
+				</div>
+				<div class="w-full h-0.5 bg-gray-300 bg-opacity-20 rounded-full"></div>
+				<div class="flex flex-col space-y-1 w-full">
+					<p class="text-sm text-[#ff9900] font-bold">Asal Masakan</p>
+					<p class="text-sm">{% if rumah_makan.asal_masakan == 'semua' %} Lokal dan Luar Negeri {% elif rumah_makan.asal_masakan == 'dalam negeri' %} Lokal {% else %} Luar Negeri {% endif %}</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Edit Rating Form -->
+		<div class="w-[50rem] flex flex-col space-y-6">
+			<div class="bg-[#111111] w-full rounded-xl px-4 py-4 shadow-md text-white border-2 border-[#202020]">
+				<p class="font-extrabold text-2xl mb-4">Edit Rating</p>
+				<form method="post" class="flex flex-col space-y-4" id="edit-rating-form">
+					{% csrf_token %}
+					<input type="hidden" name="id_rumah_makan" value="{{ rumah_makan.id }}" />
+					<div class="w-full flex flex-col space-y-2">
+						<label for="rating" class="font-semibold">Rating</label>
+						<div id="star-rating" class="flex space-x-1 text-4xl w-full justify-center">
+							<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="1"></i>
+							<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="2"></i>
+							<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="3"></i>
+							<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="4"></i>
+							<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="5"></i>
+						</div>
+						<input type="hidden" name="rating" id="rating" value="{{ form.rating.value|default_if_none:0 }}" />
+					</div>
+					<div class="w-full flex flex-col space-y-2">
+						<label for="review" class="font-semibold">Review</label>
+						<textarea name="review" id="review" class="w-full border-2 border-[#202020] bg-[#242424] text-white placeholder-gray-500 rounded-lg px-3 py-2 focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm">{{ form.review.value }}</textarea>
+					</div>
+					<div class="w-full flex justify-end">
+						<button type="submit" class="px-4 py-2 bg-[#0b79f7] bg-opacity-10 text-[#0b79f7] hover:bg-opacity-100 hover:text-white transition duration-300 border border-[#0b79f7] font-bold rounded-lg">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

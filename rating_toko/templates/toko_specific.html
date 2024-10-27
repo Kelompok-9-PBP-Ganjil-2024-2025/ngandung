@@ -91,9 +91,8 @@
 				if (userId) {
 					try {
 						const userData = await fetchUsername(userId);
-						console.log('User data:', userData);
 						if (userData) {
-							username = userData[0].fields.username;
+							username = '@' + userData[0].fields.username;
 						}
 					} catch (error) {
 						console.error('Error fetching username:', error);
@@ -103,6 +102,22 @@
 				// Create the rating item element
 				const ratingItem = document.createElement('div');
 				ratingItem.className = 'border rounded-xl flex flex-col space-y-2 items-start shadow-md relative px-4 pt-3 pb-4';
+
+				// Edit and delete button
+				const editButton = document.createElement('a');
+				editButton.className = 'text-[#ff9900] hover:text-white bg-[#ff9900] bg-opacity-20 hover:bg-opacity-100 transition duration-300 border border-[#ff9900] font-bold rounded-lg px-2 py-1';
+				editButton.innerHTML = '<i class="ti ti-edit"></i>';
+				editButton.href = '{% url "rating_toko:edit_rating" 0 1 %}'.replace('0', item.pk).replace('1', '{{ id_rumah_makan }}');
+
+				const deleteButton = document.createElement('a');
+				deleteButton.className = 'text-red-600 hover:text-white bg-red-600 bg-opacity-20 hover:bg-opacity-100 transition duration-300 border border-red-600 font-bold rounded-lg px-2 py-1';
+				deleteButton.innerHTML = '<i class="ti ti-trash"></i>';
+				deleteButton.href = '{% url "rating_toko:delete_rating" 0 1 %}'.replace('0', item.pk).replace('1', '{{ id_rumah_makan }}');
+
+				const editDeleteDiv = document.createElement('div');
+				editDeleteDiv.className = 'flex flex-row space-x-2 items-center justify-end w-full';
+				editDeleteDiv.appendChild(editButton);
+				editDeleteDiv.appendChild(deleteButton);
 
 				// User info and rating
 				const userInfoDiv = document.createElement('div');
@@ -149,6 +164,7 @@
 				// Append to rating item
 				ratingItem.appendChild(userInfoDiv);
 				ratingItem.appendChild(reviewP);
+				ratingItem.appendChild(editDeleteDiv);
 
 				// Append rating item to the list
 				listRating.appendChild(ratingItem);
