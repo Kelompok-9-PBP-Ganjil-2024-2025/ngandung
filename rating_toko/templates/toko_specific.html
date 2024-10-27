@@ -257,15 +257,15 @@
 
 {% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
 
-<img src="{% static 'images/garpu.png' %}" class='absolute -right-16 top-60 -z-20 scale-[90%]' />
-<img src="{% static 'images/sendok.png' %}" class='absolute -left-20 top-96 -z-20 scale-[80%]' />
-<img src="{% static 'images/telur.png' %}" class='absolute left-[60%] top-28 -z-20 scale-[80%]' />
+<img src="{% static 'images/garpu.png' %}" class="opacity-20 fixed -right-16 top-60 -z-20 scale-[90%]" />
+<img src="{% static 'images/sendok.png' %}" class="opacity-20 fixed -left-20 top-96 -z-20 scale-[80%]" />
+<img src="{% static 'images/telur.png' %}" class="opacity-20 fixed left-1/4 md:left-1/2 top-32 -z-20 scale-[80%]" />
 
 <!-- Overlay -->
 <div class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden" id="modal-overlay"></div>
 
 <!-- Modal -->
-<div class="fixed w-[24rem] px-4 py-4 bg-[#111111] text-white z-20 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 rounded-xl shadow-lg border-2 border-[#202020] hidden" id="rating-form">
+<div class="fixed w-full max-w-[24rem] px-4 py-4 bg-[#111111] text-white z-20 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 rounded-xl shadow-lg border-2 border-[#202020] hidden" id="rating-form">
 	<div class="w-full h-full flex flex-col items-center justify-center space-y-2 relative">
 		<!-- Close Button -->
 		<button class="absolute top-0 right-2 text-white hover:text-gray-300" id="close-modal">
@@ -298,8 +298,8 @@
 </div>
 
 <div class="w-full flex flex-col items-center pt-40 justify-center space-y-16 px-[10%]">
-	<div class="flex flex-row space-x-6 w-fit">
-		<div class="bg-[#111111] w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
+	<div class="flex md:flex-row md:space-x-6 flex-col space-y-12 md:space-y-0 w-fit">
+		<div class="bg-[#111111] w-full md:w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
 			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
 			<div class="flex flex-col space-y-3 px-2 py-4">
 				<p class="font-bold text-2xl">{{ nama_rumah_makan }}</p>
@@ -320,7 +320,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-[50rem] flex flex-col space-y-6">
+		<div class="md:w-[50rem] flex flex-col space-y-6">
 			<div class="w-full border h-20 rounded-xl flex flex-row justify-around shadow-md relative bg-white">
 				<div class="rounded-lg flex flex-row space-x-2 items-center absolute -top-4 bg-white border-l-8 border-r-8 border-white left-4">
 					<i class="ti ti-star-filled text-yellow-400 text-2xl"></i>
@@ -332,7 +332,7 @@
 						<p class="text-sm font-bold">5</p>
 						<p class="text-sm text-gray-400" id="rating_number_5"></p>
 					</div>
-					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
 						<div class="w-0 h-full bg-yellow-400" id="rating_fill_5"></div>
 					</div>
 				</div>
@@ -342,7 +342,7 @@
 						<p class="text-sm font-bold">4</p>
 						<p class="text-sm text-gray-400" id="rating_number_4"></p>
 					</div>
-					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
 						<div class="w-0 h-full bg-yellow-400" id="rating_fill_4"></div>
 					</div>
 				</div>
@@ -352,7 +352,7 @@
 						<p class="text-sm font-bold">3</p>
 						<p class="text-sm text-gray-400" id="rating_number_3"></p>
 					</div>
-					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
 						<div class="w-0 h-full bg-yellow-400" id="rating_fill_3"></div>
 					</div>
 				</div>
@@ -362,7 +362,7 @@
 						<p class="text-sm font-bold">2</p>
 						<p class="text-sm text-gray-400" id="rating_number_2"></p>
 					</div>
-					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
 						<div class="w-0 h-full bg-yellow-400" id="rating_fill_2"></div>
 					</div>
 				</div>
@@ -372,7 +372,7 @@
 						<p class="text-sm font-bold">1</p>
 						<p class="text-sm text-gray-400" id="rating_number_1"></p>
 					</div>
-					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+					<div class="md:w-20 w-10 h-1 rounded-full bg-gray-400 overflow-hidden">
 						<div class="w-0 h-full bg-yellow-400" id="rating_fill_1"></div>
 					</div>
 				</div>
@@ -386,7 +386,7 @@
 			</div>
 			{% endif %}
 
-			<div class="grid grid-cols-2 gap-4 w-full" id="list_rating">
+			<div class="grid md:grid-cols-2 grid-cols-1 gap-4 w-full" id="list_rating">
 				<!-- Rating items will be rendered here -->
 				<div class="border rounded-xl h-32 flex flex-col space-y-2 items-start shadow-md relative px-3 py-3">
 					<div class="flex flex-row space-x-2 items-center">
