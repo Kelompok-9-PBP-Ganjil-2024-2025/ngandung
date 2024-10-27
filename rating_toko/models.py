@@ -32,4 +32,4 @@ class Rating(models.Model):
         ]
     )
     review = models.TextField()
-    tanggal = models.DateField()
+    tanggal = models.DateField(auto_now_add=True)

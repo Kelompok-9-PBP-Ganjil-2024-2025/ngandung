@@ -2,40 +2,156 @@
 <title>Rating Toko {{ nama_rumah_makan }}</title>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		async function refreshRatings() {
-			const response = await fetch('{% url "rating_toko:get_toko" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
-			const data = await response.json();
-			return data;
-		}
+    document.addEventListener('DOMContentLoaded', function () {
+        async function refreshRatings() {
+            const response = await fetch('{% url "rating_toko:get_toko" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+            const data = await response.json();
+            return data;
+        }
 
-		async function renderRatings() {
-			const data = await refreshRatings();
-			document.getElementById('average_rating').innerText = data[0].fields.average_rating;
-		}
+        async function renderRatings() {
+            const data = await refreshRatings();
+            document.getElementById('average_rating').innerText = `${data[0].fields.average_rating}`;
+        }
 
-		renderRatings();
+        renderRatings();
 
-		async function getRating() {
-			const response = await fetch('{% url "rating_toko:get_all_ratings" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
-			const data = await response.json();
-			console.log(data);
-			return data;
-		}
+        async function getRating() {
+            const response = await fetch('{% url "rating_toko:get_all_ratings" 0 %}'.replace('0', '{{ id_rumah_makan }}'));
+            const data = await response.json();
+            console.log(data);
 
-		getRating();
-	});
+            // Process the ratings data
+            processRatingsData(data);
+        }
+
+        getRating();
+
+        function processRatingsData(data) {
+            // Initialize counts for each rating level (1 to 5)
+            const counts = {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0
+            };
+
+            // Total number of ratings
+            const totalRatings = data.length;
+
+            // Count the number of ratings per rating value
+            data.forEach((item) => {
+                const ratingValue = item.fields.rating;
+                if (counts.hasOwnProperty(ratingValue)) {
+                    counts[ratingValue] += 1;
+                }
+            });
+
+            // Update the DOM elements for each rating level
+            for (let i = 1; i <= 5; i++) {
+                const count = counts[i];
+                const percentage = totalRatings > 0 ? (count / totalRatings) * 100 : 0;
+
+                // Update the rating number
+                const ratingNumberElement = document.getElementById(`rating_number_${i}`);
+                if (ratingNumberElement) {
+                    ratingNumberElement.textContent = `(${count})`;
+                }
+
+                // Update the rating fill bar width
+                const ratingFillElement = document.getElementById(`rating_fill_${i}`);
+                if (ratingFillElement) {
+                    ratingFillElement.style.width = `${percentage}%`;
+                }
+            }
+        }
+
+        // Existing modal and star rating functionality...
+
+        // Show the modal and overlay
+        document.getElementById('show-form').addEventListener('click', function () {
+            modal.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        });
+
+        // Close the modal and overlay
+        function closeModal() {
+            modal.classList.add('hidden');
+            overlay.classList.add('hidden');
+        }
+
+        document.getElementById('close-modal').addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+
+        // Star rating functionality
+        const stars = document.querySelectorAll('#star-rating i');
+        const ratingInput = document.getElementById('rating');
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                const ratingValue = index + 1;
+                ratingInput.value = ratingValue;
+
+                // Update the stars' colors
+                stars.forEach((s, i) => {
+                    if (i < ratingValue) {
+                        s.classList.remove('text-[#242424]');
+                        s.classList.add('text-yellow-400');
+                    } else {
+                        s.classList.remove('text-yellow-400');
+                        s.classList.add('text-[#242424]');
+                    }
+                });
+            });
+        });
+    });
 </script>
+
 {% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='rating' %}
+
+<!-- Overlay -->
+<div class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden" id="modal-overlay"></div>
+
+<!-- Modal -->
+<div class="fixed w-[24rem] px-4 py-4 bg-[#111111] text-white z-20 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 rounded-xl shadow-lg border-2 border-[#202020] hidden" id="rating-form">
+	<div class="w-full h-full flex flex-col items-center justify-center space-y-2 relative">
+		<!-- Close Button -->
+		<button class="absolute top-0 right-2 text-white hover:text-gray-300" id="close-modal">
+			<i class="ti ti-x"></i>
+		</button>
+		<p class="font-extrabold text-2xl">Create Rating</p>
+		<form action="{% url 'rating_toko:add_rating' %}" method="POST" class="w-full flex flex-col space-y-4">
+			<input type="hidden" name="id_rumah_makan" value="{{ id_rumah_makan }}" />
+			{% csrf_token %}
+			<div class="w-full flex flex-col space-y-2">
+				<label for="rating" class="font-semibold">Rating</label>
+				<div id="star-rating" class="flex space-x-1 text-4xl w-full justify-center">
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="1"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="2"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="3"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="4"></i>
+					<i class="ti ti-star-filled text-[#242424] cursor-pointer" data-value="5"></i>
+				</div>
+				<input type="hidden" name="rating" id="rating" value="0" />
+			</div>
+			<div class="w-full flex flex-col space-y-2">
+				<label for="review" class="font-semibold">Review</label>
+				<textarea name="review" id="review" class="w-full border-2 border-[#202020] bg-[#242424] text-white placeholder-gray-500 rounded-lg px-3 py-2 focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm"></textarea>
+			</div>
+			<div class="w-full flex justify-end">
+				<button type="submit" class="px-4 py-2 bg-[#0b79f7] bg-opacity-10 text-[#0b79f7] hover:bg-opacity-100 hover:text-white transition duration-300 border border-[#0b79f7] font-bold rounded-lg">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
 
 <div class="w-full flex flex-col items-center pt-40 space-y-16 px-[10%]">
 	<div class="flex flex-row space-x-6 w-full">
-		<div class="bg-[#111111] w-[20rem] h-[30rem] rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md">
+		<div class="bg-[#111111] w-[20rem] h-[30rem] rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
 			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
-			<div class="flex flex-col space-y-1 px-1 py-4">
-				<div class="bg-white rounded font-bold text-xl px-2 w-fit">
-					<p>{{ nama_rumah_makan }}</p>
-				</div>
+			<div class="flex flex-col space-y-1 px-2 py-4">
+				<p class="font-bold text-2xl">{{ nama_rumah_makan }}</p>
 			</div>
 		</div>
 		<div class="w-auto flex-grow flex flex-col space-y-6">
@@ -44,10 +160,62 @@
 					<i class="ti ti-star-filled text-yellow-400 text-2xl"></i>
 					<p class="text-2xl font-bold" id="average_rating"></p>
 				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">5</p>
+						<p class="text-sm text-gray-400" id="rating_number_5"></p>
+					</div>
+					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_5"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">4</p>
+						<p class="text-sm text-gray-400" id="rating_number_4"></p>
+					</div>
+					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_4"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">3</p>
+						<p class="text-sm text-gray-400" id="rating_number_3"></p>
+					</div>
+					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_3"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">2</p>
+						<p class="text-sm text-gray-400" id="rating_number_2"></p>
+					</div>
+					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_2"></div>
+					</div>
+				</div>
+				<div class="flex flex-col space-y-1 items-start justify-center">
+					<div class="flex flex-row space-x-1 items-center">
+						<i class="ti ti-star-filled text-yellow-400 text-lg"></i>
+						<p class="text-sm font-bold">1</p>
+						<p class="text-sm text-gray-400" id="rating_number_1"></p>
+					</div>
+					<div class="w-16 h-1 rounded-full bg-gray-400 overflow-hidden">
+						<div class="w-0 h-full bg-yellow-400" id="rating_fill_1"></div>
+					</div>
+				</div>
 			</div>
 
 			<div class="w-full flex justify-end">
-				<button class="w-fit">Create rating</button>
+				<button class="w-fit px-3 py-1 bg-[#ff9900] bg-opacity-20 hover:bg-opacity-100 hover:text-white transition-all duration-200 border border-[#ff9900] rounded-md text-[#ff9900]">
+					<p class="font-semibold" id="show-form">Create rating</p>
+				</button>
 			</div>
 		</div>
 	</div>
