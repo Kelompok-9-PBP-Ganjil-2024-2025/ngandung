@@ -69,11 +69,11 @@
 			}
 		}
 
-        async function fetchUsername(userId) {
-            const response = await fetch('{% url "rating_toko:get_user" 0 %}'.replace('0', userId));
-            const data = await response.json();
-            return data;
-        }
+		async function fetchUsername(userId) {
+			const response = await fetch('{% url "rating_toko:get_user" 0 %}'.replace('0', userId));
+			const data = await response.json();
+			return data;
+		}
 
 		async function renderRatingsList(data) {
 			const listRating = document.getElementById('list_rating');
@@ -155,8 +155,6 @@
 			}
 		}
 
-		// Existing modal and star rating functionality...
-
 		// Show the modal and overlay
 		const modal = document.getElementById('rating-form');
 		const overlay = document.getElementById('modal-overlay');
@@ -196,6 +194,44 @@
 				});
 			});
 		});
+
+		const ratingForm = document.getElementById('rating-form-element');
+
+		ratingForm.addEventListener('submit', function (event) {
+			event.preventDefault(); // Prevent the default form submission
+			addRating();
+		});
+
+		function addRating() {
+			fetch("{% url 'rating_toko:add_rating' %}", {
+				method: 'POST',
+				body: new FormData(ratingForm),
+			})
+				.then((response) => {
+					if (response.ok) {
+						// Refresh the ratings overview and list
+						getRating();
+
+						// Close the modal
+						closeModal();
+
+						// Reset the form
+						ratingForm.reset();
+						ratingInput.value = 0;
+
+						// Reset the star rating UI
+						stars.forEach((s) => {
+							s.classList.remove('text-yellow-400');
+							s.classList.add('text-[#242424]');
+						});
+					} else {
+						console.error('Failed to submit rating');
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+		}
 	});
 </script>
 
@@ -212,7 +248,7 @@
 			<i class="ti ti-x"></i>
 		</button>
 		<p class="font-extrabold text-2xl">Create Rating</p>
-		<form action="{% url 'rating_toko:add_rating' %}" method="POST" class="w-full flex flex-col space-y-4">
+		<form action="{% url 'rating_toko:add_rating' %}" method="POST" class="w-full flex flex-col space-y-4" id="rating-form-element">
 			<input type="hidden" name="id_rumah_makan" value="{{ id_rumah_makan }}" />
 			{% csrf_token %}
 			<div class="w-full flex flex-col space-y-2">
@@ -237,8 +273,8 @@
 	</div>
 </div>
 
-<div class="w-full flex flex-col items-center pt-40 space-y-16 px-[10%]">
-	<div class="flex flex-row space-x-6 w-full">
+<div class="w-full flex flex-col items-center pt-40 justify-center space-y-16 px-[10%]">
+	<div class="flex flex-row space-x-6 w-fit">
 		<div class="bg-[#111111] w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
 			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
 			<div class="flex flex-col space-y-3 px-2 py-4">
