@@ -28,8 +28,8 @@ def discussion_main(request, id):
     # Mengambil diskusi berdasarkan ID atau mengembalikan 404 jika tidak ditemukan
     discussion = get_object_or_404(Discussion, pk=id)
     
-    # Mengambil semua komentar terkait diskusi, urutkan terbaru terlebih dahulu
-    comments = discussion.comments.annotate(num_likes=Count('likes')).order_by('-num_likes', '-date_created')
+    # Mengambil komentar tingkat atas (tanpa parent), prefetch replies dan likes
+    comments = discussion.comments.select_related('user').prefetch_related('replies', 'likes').filter(parent__isnull=True).annotate(num_likes=Count('likes')).order_by('-num_likes', '-date_created')
 
     context = {
         'discussion': discussion,
@@ -281,3 +281,28 @@ def edit_comment_ajax(request, id):
         return JsonResponse({'comment': comment_data}, status=200)
     else:
         return JsonResponse({'error': 'Content is required.'}, status=400)
+    
+@login_required
+def add_comment(request, id):
+    discussion = get_object_or_404(Discussion, pk=id)
+    
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            parent_id = request.POST.get('parent_id')  # Mengambil parent_id jika ada
+            new_comment = form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.discussion = discussion
+            if parent_id:
+                parent_comment = get_object_or_404(Comment, pk=parent_id)
+                new_comment.parent = parent_comment
+            new_comment.save()
+            return redirect('discuss_forum:discussion_main', id=discussion.id)
+    else:
+        form = CommentForm()
+    
+    context = {
+        'discussion': discussion,
+        'form': form,
+    }
+    return render(request, "discussion.html", context)

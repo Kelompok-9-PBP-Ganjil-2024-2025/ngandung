@@ -21,12 +21,13 @@ class Comment(models.Model):
     discussion = models.ForeignKey(Discussion, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)  # Field baru
     date_created = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_comments', blank=True)
 
     def __str__(self):
         return f"Komentar oleh {self.user.username} pada {self.discussion.title}"
-    
+
     @property
     def total_likes(self):
         return self.likes.count()

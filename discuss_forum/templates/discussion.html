@@ -367,6 +367,46 @@
     transform: scale(0.8);
 }
 
+.replies {
+        margin-left: 30px; /* Indentasi untuk balasan */
+        margin-top: 15px;
+    }
+
+    .reply-form-container textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        resize: vertical;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .reply-form-container textarea:focus {
+        border-color: #FF9900;
+        outline: none;
+    }
+
+    .reply-form-container button {
+        background-color: #FF9900;
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .reply-button {
+        background: none;
+        border: none;
+        color: #FF9900;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
 </style>
 
 <div class="main-content">
@@ -406,6 +446,33 @@
             </form>
         </div>
     {% endif %}
+
+        <!-- Formulir Komentar -->
+        {% if user.is_authenticated %}
+        <div class="add-comment">
+            <h2>Tambah Komentar</h2>
+            <form method="POST" action="{% url 'discuss_forum:add_comment' discussion.id %}">
+                {% csrf_token %}
+                <textarea name="content" rows="4" placeholder="Tulis komentar Anda di sini..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> untuk menambahkan komentar.</p>
+        {% endif %}
+
+        <!-- Daftar Komentar -->
+        <div class="comments-section">
+            <h2>Komentar</h2>
+            {% for comment in comments %}
+                {% if not comment.parent %}
+                    {% include 'comment.html' with comment=comment %}
+                {% endif %}
+            {% empty %}
+                <p>Belum ada komentar. Jadilah yang pertama untuk berkomentar!</p>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 
@@ -574,6 +641,8 @@
 
 <!-- Script untuk animasi loading dan Like Button -->
 <script>
+
+    
     // Variabel dan fungsi global
     let editModal;
     let editModalContent;
@@ -685,10 +754,23 @@
             });
         }
 
+        const replyButtons = document.querySelectorAll('.reply-button');
+
+        replyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const commentId = this.getAttribute('data-comment-id');
+                const replyForm = document.getElementById(`reply-form-${commentId}`);
+                if (replyForm.style.display === 'none') {
+                    replyForm.style.display = 'block';
+                } else {
+                    replyForm.style.display = 'none';
+                }
+            });
+        });
 
 
-                // Variabel global untuk modal edit komentar
-                let editCommentModal;
+        // Variabel global untuk modal edit komentar
+        let editCommentModal;
         let editCommentModalContent;
         let editCommentContentInput;
         let editCommentForm;
