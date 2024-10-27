@@ -1,15 +1,43 @@
-<nav class="flex flex-row w-full bg-[#111111] h-24 absolute top-0 justify-between px-16 items-center text-white font-semibold">
+<style>
+	/* Navbar Links Styling */
+	.nav-link {
+		position: relative;
+		padding: 0.5rem 0;
+		color: #111111; /* Updated font color */
+		font-weight: 500;
+		transition: color 0.3s ease;
+	}
+	
+	.nav-link:hover, .nav-link.active {
+		color: #FF9900;
+	}
+	
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -4px;
+		width: 0;
+		height: 2px;
+		background-color: #FF9900;
+		transition: width 0.3s ease;
+	}
+	
+	.nav-link:hover::after, .nav-link.active::after {
+		width: 100%;
+	}
+</style>
+	
+<nav class="flex flex-row w-full absolute top-0 justify-between px-16 items-center text-[#111111] font-semibold pt-6">
 	<div class="flex flex-row space-x-2 items-center justify-center">
-		<div class="bg-gray-300 w-10 h-10 rounded"></div>
-		<p class="text-4xl font-extrabold">Ngandung</p>
+		<div class="bg-[#FF9900] w-10 h-10 rounded"></div>
+		<p class="text-4xl font-extrabold text-[#111111]">Ngandung</p> <!-- Updated font color -->
 	</div>
-	<div class="flex flex-row space-x-4">
-		<a href="/" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'home' %}bg-[#ff9900]{% endif %}">Home</a>
-		<a href="/toko-favorit" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'toko-favorit' %}bg-[#ff9900]{% endif %}">Toko Favorit</a>
-		<a href="{% url 'discuss_forum:forum_main' %}" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'forum-diskusi' %}bg-[#ff9900]{% endif %}">Forum Diskusi</a>
-		<a href="/polling-makanan" class="px-3 py-1 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded {% if current_page == 'polling-makanan' %}bg-[#ff9900]{% endif %}">Polling Makanan</a>
-		<a href="{% url 'authentication:logout' %}" class="px-3 py-1 hover:bg-[#ff0000] transition-all duration-200 flex items-center justify-center rounded" >Logout</a>
+	<div class="flex flex-row space-x-6">
+		<a href="/" class="nav-link {% if current_page == 'home' %}active{% endif %}">Home</a>
+		<a href="/toko-favorit" class="nav-link {% if current_page == 'toko-favorit' %}active{% endif %}">Toko Favorit</a>
+		<a href="{% url 'discuss_forum:forum_main' %}" class="nav-link {% if current_page == 'forum-diskusi' %}active{% endif %}">Forum Diskusi</a>
+		<a href="/polling-makanan" class="nav-link {% if current_page == 'polling-makanan' %}active{% endif %}">Polling Makanan</a>
+		<a href="{% url 'authentication:logout' %}" class="nav-link text-[#FF9900]">Logout</a>
 	</div>
 </nav>
-
-

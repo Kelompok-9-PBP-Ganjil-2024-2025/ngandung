@@ -1,44 +1,317 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
+{% block meta %}
+{% include 'navbar.html' %}
 
-<div class="discussion-page" style="padding: 20px;">
-    <!-- Header Diskusi -->
-    <div class="discussion-header" style="margin-bottom: 20px;">
+<style>
+    /* Styling dasar */
+    .main-content {
+        padding: 150px 150px;
+        overflow-y: auto;
+        min-height: 100vh;
+        background-color: #FFFFFF;
+        transition: background-color 0.3s ease;
+        overflow-y: auto;
+        height: 100vh;
+    }
+
+    .back-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        background-color: #FF9900;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 153, 0, 0.2);
+    }
+
+    .back-button:hover {
+        background-color: #e68a00;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 153, 0, 0.3);
+    }
+
+    /* Header Diskusi */
+    .discussion-header {
+        background-color: #111111;
+        color: #FFFFFF;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        animation: fadeInDown 0.8s ease-out;
+    }
+
+    .discussion-header h1 {
+        color: #FF9900;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-shadow: 0 0 5px rgba(255, 153, 0, 0.3);
+    }
+
+    .discussion-header p {
+        color: #CCCCCC;
+        font-size: 1rem;
+        margin-top: 0;
+        letter-spacing: 1px;
+    }
+
+    /* Container Diskusi dan Komentar */
+    .discussion-container {
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        margin-bottom: 40px;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .discussion-container:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .discussion-content p {
+        color: #333333;
+        line-height: 1.6;
+        font-size: 1.1rem;
+    }
+
+    /* Tombol Edit dan Delete */
+    .forum-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .forum-actions button {
+        background: #FF9900;
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 153, 0, 0.2);
+    }
+
+    .forum-actions button:hover {
+        background: #e68a00;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 153, 0, 0.3);
+    }
+
+    /* Formulir Komentar */
+    .add-comment {
+        background-color: #F9F9F9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .add-comment h2 {
+        color: #FF9900;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .add-comment textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        resize: vertical;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .add-comment textarea:focus {
+        border-color: #FF9900;
+        outline: none;
+    }
+
+    .add-comment button {
+        background-color: #FF9900;
+        color: #FFFFFF;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(255, 153, 0, 0.2);
+    }
+
+    .add-comment button:hover {
+        background-color: #e68a00;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 153, 0, 0.3);
+    }
+
+    /* Komentar */
+    .comments-section h2 {
+        color: #FF9900;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .comment {
+        border-bottom: 1px solid #EEEEEE;
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .comment:last-child {
+        border-bottom: none;
+    }
+
+    .comment p {
+        color: #333333;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .comment-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .comment-author p {
+        color: #6E6E6E;
+        font-size: 0.9rem;
+    }
+
+    /* Tombol Like */
+    .like-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .like-count {
+        color: #FF9900;
+        font-size: 0.9rem;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+        .main-content {
+            padding: 120px 20px 40px 20px;
+        }
+
+        .discussion-header {
+            padding: 15px;
+        }
+
+        .discussion-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .add-comment h2, .comments-section h2 {
+            font-size: 1.3rem;
+        }
+
+        .forum-actions button {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        .add-comment textarea {
+            font-size: 0.9rem;
+        }
+
+        .add-comment button {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Animasi */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Loading Animation */
+    .loading {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .loaded {
+        opacity: 1;
+    }
+</style>
+
+<div class="main-content">
+    <a href="{% url 'discuss_forum:forum_main' %}" class="back-button">Kembali ke Forum</a>
+
+    <div class="discussion-header">
         <h1>{{ discussion.title }}</h1>
-        <p style="color: #6E6E6E;">Dibuat oleh {{ discussion.user.username }} pada {{ discussion.date_created|date:"d-m-Y H:i" }}</p>
+        <p>Dibuat oleh {{ discussion.user.username }} pada {{ discussion.date_created|date:"d-m-Y H:i" }}</p>
     </div>
 
-    <!-- Konten Diskusi -->
-    <div class="discussion-content" style="margin-bottom: 40px;">
-        <p>{{ discussion.content }}</p>
-    </div>
-
-    <!-- Tombol Edit dan Delete Hanya untuk Pemilik -->
-    {% if user.is_authenticated and user == discussion.user %}
-        <div class="forum-actions" style="margin-bottom: 20px;">
-            <a href="{% url 'discuss_forum:edit_forum' discussion.id %}">
-                <button style="margin-right: 10px;">
-                    Edit
-                </button>
-            </a>
-            <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
-                    Delete
-                </button>
-            </form>
+    <div class="discussion-container">
+        <div class="discussion-content">
+            <p>{{ discussion.content }}</p>
         </div>
-    {% endif %}
+
+        <!-- Tombol Edit dan Delete Hanya untuk Pemilik -->
+        {% if user.is_authenticated and user == discussion.user %}
+            <div class="forum-actions">
+                <a href="{% url 'discuss_forum:edit_forum' discussion.id %}">
+                    <button>Edit</button>
+                </a>
+                <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
 
     <!-- Formulir Komentar (Opsional) -->
     {% if user.is_authenticated %}
-        <div class="add-comment" style="margin-bottom: 40px;">
+        <div class="add-comment">
             <h2>Tambah Komentar</h2>
             <form method="POST" action="{% url 'discuss_forum:add_comment' discussion.id %}">
                 {% csrf_token %}
-                <textarea name="content" rows="4" style="width: 100%;" required></textarea>
-                <button type="submit" style="background-color: #FF9900; color: #FFFFFF; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Kirim</button>
+                <textarea name="content" rows="4" placeholder="Tulis komentar Anda di sini..." required></textarea>
+                <button type="submit">Kirim</button>
             </form>
         </div>
     {% else %}
@@ -49,18 +322,16 @@
     <div class="comments-section">
         <h2>Komentar</h2>
         {% for comment in comments %}
-            <div class="comment" style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+            <div class="comment">
                 <p>{{ comment.content }}</p>
 
                 <!-- Tombol Edit dan Delete Hanya untuk Pemilik Komentar -->
                 {% if user.is_authenticated and user == comment.user %}
-                    <div class="forum-actions" style="margin-bottom: 10px;">
+                    <div class="forum-actions">
                         <a href="{% url 'discuss_forum:edit_comment' comment.id %}">
-                            <button style="margin-right: 10px;">
-                                Edit
-                            </button>
+                            <button>Edit</button>
                         </a>
-                        <form method="POST" action="{% url 'discuss_forum:delete_comment' comment.id %}" style="display: inline;">
+                        <form method="POST" action="{% url 'discuss_forum:delete_comment' comment.id %}">
                             {% csrf_token %}
                             <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">
                                 Delete
@@ -69,31 +340,41 @@
                     </div>
                 {% endif %}
 
-                <!-- Tombol Like dengan Ikon SVG Hati -->
+                <!-- Tombol Like Berwarna Merah -->
                 {% if user.is_authenticated %}
-                    <form method="POST" action="{% url 'discuss_forum:like_comment' comment.id %}" style="display: inline; cursor: pointer;">
-                        {% csrf_token %}
-                        <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
-                            {% if user in comment.likes.all %}
-                                <!-- Hati Terisi (Sudah di-like) -->
-                                <!-- Hati Berbatas (Belum di-like) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                                    <path fill="#ff0000" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
-                                </svg>
-                            {% else %}
-                                <!-- Hati Berbatas (Belum di-like) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                                    <path fill="#ff0000" d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1s0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5l0 3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2l0-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/>
-                                </svg>
-                            {% endif %}
-                        </button>
-                        <span style="margin-left: 5px;">{{ comment.total_likes }} Likes</span>
-                    </form>
+                    <button 
+                        class="like-button" 
+                        data-comment-id="{{ comment.id }}" 
+                        data-like-url="{% url 'discuss_forum:like_comment' comment.id %}">
+                        {% if user in comment.likes.all %}
+                            <!-- Ikon Like Terisi (Merah) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="24" height="24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 
+                                12.28 2 8.5 2 5.42 
+                                4.42 3 7.5 3c1.74 0 3.41 0.81 
+                                4.5 2.09C13.09 3.81 14.76 
+                                3 16.5 3 19.58 3 22 5.42 
+                                22 8.5c0 3.78-3.4 6.86-8.55 
+                                11.54L12 21.35z"/>
+                            </svg>
+                        {% else %}
+                            <!-- Ikon Like Berbatas (Merah) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 
+                                0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 
+                                3.75 3 5.765 3 8.25c0 7.22 9 12 9 
+                                12s9-4.78 9-12Z" />
+                            </svg>
+                        {% endif %}
+                    </button>
+                    <span id="like-count-{{ comment.id }}" class="like-count">{{ comment.total_likes }} Likes</span>
                 {% else %}
                     <p><a href="{% url 'login' %}">Login</a> untuk menyukai komentar.</p>
                 {% endif %}
 
-                <p style="color: #6E6E6E; font-size: 0.9rem;">Dikirim oleh {{ comment.user.username }} pada {{ comment.date_created|date:"d-m-Y H:i" }}</p>
+                <div class="comment-author">
+                    <p>Dikirim oleh {{ comment.user.username }} pada {{ comment.date_created|date:"d-m-Y H:i" }}</p>
+                </div>
             </div>
         {% empty %}
             <p>Belum ada komentar. Jadilah yang pertama untuk berkomentar!</p>
@@ -101,4 +382,90 @@
     </div>
 </div>
 
-{% endblock content %}
+<!-- Script untuk animasi loading dan Like Button -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.main-content').classList.add('loaded');
+
+        // Mendapatkan semua tombol like
+        const likeButtons = document.querySelectorAll('.like-button');
+
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah aksi default tombol
+
+                const commentId = this.getAttribute('data-comment-id');
+                const likeCountSpan = document.getElementById(`like-count-${commentId}`);
+                const likeUrl = this.getAttribute('data-like-url');
+
+                // Mengirim permintaan AJAX ke server
+                fetch(likeUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCSRFToken(), // Mengirim CSRF token
+                        'X-Requested-With': 'XMLHttpRequest' // Menandai sebagai AJAX
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.liked) {
+                        // Mengganti ikon like menjadi terisi (merah)
+                        this.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="24" height="24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 
+                                12.28 2 8.5 2 5.42 
+                                4.42 3 7.5 3c1.74 0 3.41 0.81 
+                                4.5 2.09C13.09 3.81 14.76 
+                                3 16.5 3 19.58 3 22 5.42 
+                                22 8.5c0 3.78-3.4 6.86-8.55 
+                                11.54L12 21.35z"/>
+                            </svg>
+                        `;
+                    } else {
+                        // Mengganti ikon like menjadi berbatas (merah)
+                        this.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 
+                                0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 
+                                3.75 3 5.765 3 8.25c0 7.22 9 12 9 
+                                12s9-4.78 9-12Z" />
+                            </svg>
+                        `;
+                    }
+
+                    // Memperbarui jumlah like
+                    likeCountSpan.textContent = `${data.total_likes} Likes`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+        // Fungsi untuk mendapatkan CSRF Token dari cookie
+        function getCSRFToken() {
+            let cookieValue = null;
+            const name = 'csrftoken';
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Cek apakah cookie dimulai dengan nama CSRF token
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+</script>
+{% endblock meta %}

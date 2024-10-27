@@ -170,7 +170,19 @@ def like_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     if request.user in comment.likes.all():
         comment.likes.remove(request.user)
+        liked = False
     else:
         comment.likes.add(request.user)
-    # Mengarahkan ulang ke halaman diskusi yang sama
-    return redirect(reverse('discuss_forum:discussion_main', args=[comment.discussion.id]))
+        liked = True
+    
+    # Menghitung total likes setelah perubahan
+    total_likes = comment.likes.count()
+    
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse({
+            'liked': liked,
+            'total_likes': total_likes
+        })
+    else:
+        # Redirect ke halaman diskusi yang sama jika bukan AJAX
+        return redirect(reverse('discuss_forum:discussion_main', args=[comment.discussion.id]))

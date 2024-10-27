@@ -35,5 +35,5 @@ urlpatterns = [
     path('delete-comment/<uuid:id>', delete_comment, name='delete_comment'),
     path('comment/<uuid:comment_id>/like/', views.like_comment, name='like_comment'),
 
-    path('comment/<int:comment_id>/like/', views.like_comment, name='like_comment'),
+
 ]
