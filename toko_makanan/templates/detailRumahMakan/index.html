@@ -155,32 +155,30 @@
             document.getElementById('crudModal').classList.add('hidden');
         }
 
-        function addFavorite() {
-        const csrfToken = getCookie('csrftoken'); // Mengambil CSRF token dari cookie
+        async function addFavorite() {
+            const csrfToken = getCookie('csrftoken'); // Mengambil CSRF token dari cookie
 
-        fetch("{% url 'dev_favorite_store:tambah_ke_favorit' rumah_makan.pk %}", {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': csrfToken,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ rumah_makan_id: "{{ rumah_makan.id }}" }) // Mengirim ID rumah makan
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "added") {
-                alert("Restoran berhasil ditambahkan ke favorit!");
-            } else if (data.status === "removed") {
-                alert("Restoran berhasil dihapus dari favorit!");
-            } else {
-                alert("Terjadi kesalahan: " + data.message);
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Terjadi kesalahan saat mengubah status favorit.");
-        });
-    }
+            const a = await fetch("{% url 'dev_favorite_store:tambah_ke_favorit' rumah_makan.pk %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "added") {
+                    alert("Restoran berhasil ditambahkan ke favorit!");
+                } else if (data.status === "removed") {
+                    alert("Restoran berhasil dihapus dari favorit!");
+                } else {
+                    alert("Terjadi kesalahan: " + data.message);
+                }
+            })
+            
+
+            console.log(a)
+        }
 
     // Fungsi untuk mengambil CSRF token dari cookie
     function getCookie(name) {

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from toko_makanan.models import *
+from main.models import *
 from .models import Favorite
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -30,12 +30,9 @@ def show_main(request):
 
 @csrf_exempt
 @login_required(login_url="/login/")
-def tambah_ke_favorite(request):
+def tambah_ke_favorite(request, rumah_makan_id):
     if request.method == 'POST':
         try:
-            # Parsing JSON body
-            data = json.loads(request.body)
-            rumah_makan_id = data.get("rumah_makan_id")
 
             if not rumah_makan_id:
                 return JsonResponse({"status": "error", "message": "ID rumah makan tidak ditemukan"}, status=400)
