@@ -37,21 +37,22 @@
 			<!-- Modal body -->
 			<div class="px-6 py-4 space-y-6 form-style">
 				<form id="makananForm" enctype="multipart/form-data">
+					{% csrf_token %}
 					<!-- Product Name -->
 					<div class="mb-4">
 						<label for="makananName" class="block text-sm font-medium text-gray-800">Nama Makanan</label>
-						<input type="text" id="makananName" name="nama" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan nama makanan" required />
+						<input type="text" id="makananName" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan nama makanan" required />
 					</div>
 
 					<!-- Product Price -->
 					<div class="mb-4">
 						<label for="makananPrice" class="block text-sm font-medium text-gray-800">Price (IDR)</label>
-						<input type="number" id="makananPrice" name="harga" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan harga makanan dalam IDR" step="0.01" min="0" required />
+						<input type="number" id="makananPrice" name="price" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan harga makanan dalam IDR" step="0.01" min="0" required />
 					</div>
 
 					<div class="mb-4">
 						<label for="makananToko" class="block text-sm font-medium text-gray-800">Toko</label>
-						<select id="makananToko" name="toko" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" required>
+						<select id="makananToko" name="toko_id" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" required>
 							<option value="" disabled selected>Makanan terdapat di toko:</option>
 							{% for rumah_makan in list_rumah_makan %}
 							<option value="{{ rumah_makan.id }}">{{ rumah_makan.nama_rumah_makan }}</option>
@@ -92,7 +93,7 @@
 			list_makanan.forEach((makanan) => {
 				const name = DOMPurify.sanitize(makanan.fields.name);
 				htmlString += `
-				<div class="relative top-5 bg-black shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+				<div class="relative top-5 bg-white shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
 					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
 					<!-- Placeholder Image -->
 					<img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg">
