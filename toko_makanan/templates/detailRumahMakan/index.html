@@ -88,6 +88,14 @@
 				<span>View in Google Maps</span>
 			</a>
 		</div>
+
+        <button onclick="addFavorite()" class="flex flex-row bg-red-500 text-white font-bold py-1 px-3 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105">
+            <svg class="w-6 h-6 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+            </svg>
+            <span class="ml-2">Add to Favorite</span>
+        </button>
+
 	</div>
     <div class="p-10 flex flex-col mx-auto">
         <h2 class="px-6 text-2xl md:text-3xl font-bold text-black pb-5">List Makanan</h2>
@@ -146,6 +154,50 @@
         function closeModal() {
             document.getElementById('crudModal').classList.add('hidden');
         }
+
+        function addFavorite() {
+        const csrfToken = getCookie('csrftoken'); // Mengambil CSRF token dari cookie
+
+        fetch("{% url 'dev_favorite_store:tambah_ke_favorit' rumah_makan.pk %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ rumah_makan_id: "{{ rumah_makan.id }}" }) // Mengirim ID rumah makan
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "added") {
+                alert("Restoran berhasil ditambahkan ke favorit!");
+            } else if (data.status === "removed") {
+                alert("Restoran berhasil dihapus dari favorit!");
+            } else {
+                alert("Terjadi kesalahan: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Terjadi kesalahan saat mengubah status favorit.");
+        });
+    }
+
+    // Fungsi untuk mengambil CSRF token dari cookie
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Memeriksa apakah cookie ini cocok dengan nama yang kita cari
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
     </script>
 
 {% endblock content %}
