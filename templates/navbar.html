@@ -17,7 +17,11 @@
 		<a href="/rating-toko" class="px-3 py-1 md:py-2 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded-lg {% if current_page == 'rating' %}bg-[#ff9900]{% endif %}">Rating Toko</a>
 		<a href="/forum" class="px-3 py-1 md:py-2 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded-lg {% if current_page == 'forum-diskusi' %}bg-[#ff9900]{% endif %}">Forum Diskusi</a>
 		<a href="/polling-makanan" class="px-3 py-1 md:py-2 hover:bg-[#ff9900] transition-all duration-200 flex items-center justify-center rounded-lg {% if current_page == 'polling-makanan' %}bg-[#ff9900]{% endif %}">Polling Makanan</a>
-		<a href="{% url 'authentication:logout' %}" class="px-3 py-1 md:py-2 bg-red-600 hover:bg-opacity-100 hover:text-white bg-opacity-20 text-red-600 transition duration-300 border border-red-600 flex items-center justify-center rounded-lg ">Logout</a>
+		{% if user.is_authenticated %}
+            <a href="{% url 'authentication:logout' %}" class="px-3 py-1 md:py-2 bg-red-600 hover:bg-opacity-100 hover:text-white bg-opacity-20 text-red-600 transition duration-300 border border-red-600 flex items-center justify-center rounded-lg">Logout</a>
+        {% else %}
+            <a href="{% url 'authentication:login' %}" class="py-2 px-4 bg-[#0b79f7] hover:bg-opacity-100 hover:text-white bg-opacity-10 text-[#0b79f7] font-bold transition duration-300 border border-[#0b79f7] flex items-center justify-center rounded-lg">Login</a>
+        {% endif %}
 	</div>
 </nav>
 
