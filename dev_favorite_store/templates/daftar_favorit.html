@@ -26,6 +26,7 @@
             const deleteButtons = document.querySelectorAll('.delete-favorite-btn');
             deleteButtons.forEach(function(button) {
                 button.addEventListener('click', function(event) {
+                    event.stopPropagation();
                     event.preventDefault();
                     selectedDeleteUrl = this.getAttribute('data-url');
                     selectedCardElement = document.getElementById('toko-' + this.getAttribute('data-id'));

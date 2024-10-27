@@ -77,8 +77,8 @@ def hapus_dari_favorit(request, toko_id):
             toko = get_object_or_404(RumahMakan, id=toko_id)
             
             # Cari favorite yang sesuai dan hapus jika ada
-            favorite = Favorite.objects.filter(user=user, rumah_makan=toko)
-            if favorite.exists():
+            favorite = Favorite.objects.filter(user=user, rumah_makan=toko)[:1].get()
+            if favorite:
                 favorite.delete()
                 return JsonResponse({'status': 'success', 'message': 'Toko berhasil dihapus dari favorit.'}, status=200)
             else:
