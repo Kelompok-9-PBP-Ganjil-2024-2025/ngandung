@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "rating_toko",
     "discuss_forum",
     "livereload",
+    "poll",
 ]
 
 MIDDLEWARE = [
