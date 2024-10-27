@@ -8,6 +8,8 @@ urlpatterns = [
     path("", include("toko_makanan.urls")),
     path("", include("authentication.urls")),
     path("", include("rating_toko.urls")),
+    path("", include("dev_favorite_store.urls")),
     path("", include("discuss_forum.urls")),
+    path("", include("dev_favorite_store.urls")),
     path("polling-makanan/", include("poll.urls")),
 ]
