@@ -97,7 +97,7 @@ def detail_rumah_makan(req, id):
     list_makanan = rumah_makan.makanan.all()
     price_range = list_makanan.aggregate(min_price=Min('price'), max_price=Max('price'))
     tipe_makanan = rumah_makan.makanan_berat_ringan
-    gmap_url = f"https://maps.google.com/?ll={rumah_makan.latitude},{rumah_makan.longitude}"
+    gmap_url = f"https://maps.google.com/?q={rumah_makan.latitude},{rumah_makan.longitude}"
     context = {
         'rumah_makan': rumah_makan,
         'list_makanan': list_makanan,
