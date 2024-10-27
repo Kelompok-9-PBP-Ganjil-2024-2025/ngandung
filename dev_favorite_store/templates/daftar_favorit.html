@@ -28,7 +28,7 @@
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
                     selectedDeleteUrl = this.getAttribute('data-url');
-                    selectedCardElement = this.closest('.favorit-card');
+                    selectedCardElement = document.getElementById('toko-' + this.getAttribute('data-id'));
                     document.getElementById('confirmModal').classList.remove('hidden');
                 });
             });
@@ -71,30 +71,36 @@
     {% block content %}
 
     <!-- Include Navbar -->
-    {% include 'navbar.html' %}
-
+    {% include 'navbar.html' with current_page='daftar-favorit' %}
+    <img src="{% static 'images/garpu.png' %}" class='opacity-20 fixed -right-16 top-60 -z-20 scale-[90%]' />
+    <img src="{% static 'images/sendok.png' %}" class='opacity-20 fixed -left-20 top-96 -z-20 scale-[80%]' />
+    <img src="{% static 'images/telur.png' %}" class='opacity-20 fixed left-28 top-24 -z-20 scale-[80%]' />
     <div class="container daftar-favorit-container">
         <h2>Daftar Toko Favorit Anda</h2>
         <div class="favorit-grid">
             {% for toko in favorit_toko %}
-                <div class="favorit-card">
-                    <div class="image-container">
-                        <img src="{% static 'images/restaurant.jpg' %}" alt="Gambar Toko" class="restaurant-image">
-                    </div>
-                    <div class="details-container">
-                        <h3>{{ toko.nama_rumah_makan }}</h3>
-                        <p>{{ toko.alamat }}</p>
-                        <div class="bottom-section">
-                            <p class="rating">⭐ {{ toko.rating|default:"0.0" }} ({{ toko.jumlah_reviewer|default:"0" }} reviewers)</p>
-                            <a href="#" data-url="{% url 'dev_favorite_store:hapus_dari_favorit' toko.id %}" class="btn btn-danger delete-favorite-btn">Hapus dari Favorit</a>
-                        </div>
+            <div class="border rounded-lg shadow-md flex flex-col overflow-hidden hover:scale-[102%] transition-all duration-100 bg-white" href='/rating-toko/${toko.pk}' id="toko-{{ toko.id }}">
+                <div class="relative">
+                    <img src="{% static 'images/placeholder_toko.jpg' %}" class='w-full'>
+                </div>
+                <div class='w-full px-4 py-3 flex flex-col'>
+                    <p class="text-[#ff9900] font-bold text-lg">{{toko.nama_rumah_makan}}</p>
+                    <p class="text-sm">{{toko.alamat}}</p>
+                    <a href="#" data-id={{toko.id}} data-url="{% url 'dev_favorite_store:hapus_dari_favorit' toko.id %}" class="btn btn-danger delete-favorite-btn">Hapus dari Favorit</a>
+                    <div class='bg-white h-auto flex-grow flex items-center text-xl rounded-l flex-row space-x-1'>
+                    
+                        
                     </div>
                 </div>
+                
+            </div>
+            
             {% empty %}
                 <p>Anda belum menambahkan toko ke daftar favorit.</p>
             {% endfor %}
         </div>
     </div>
+    
 
     <!-- Modal Popup Konfirmasi -->
     <div id="confirmModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -113,16 +119,9 @@
 
     <style>
     /* Styling untuk modal popup */
-    .hidden {
-        display: none;
-    }
+    
 
-    .navbar {
-        position: fixed; /* Agar navbar tetap di atas saat scroll */
-        top: 0;
-        width: 100%;
-        z-index: 1000; /* Pastikan z-index cukup tinggi untuk di atas elemen lain */
-    }
+
 
     #confirmModal .bg-opacity-50 {
         background-color: rgba(0, 0, 0, 0.5);
@@ -139,95 +138,81 @@
     }
     /* Styling untuk favorit card */
     .container {
-    width: 90%; /* Atur lebar container menjadi 90% dari lebar halaman untuk memberi jarak */
-    margin: 0 auto; /* Otomatis memberi jarak kiri dan kanan */
+    width: 90%; /* Sesuaikan jarak dari tepi */
+    margin: 0 auto;
     padding-top: 120px;
     box-sizing: border-box;
 }
 
-        .favorit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Lebar minimum card jadi lebih kecil */
-            gap: 20px;
-            padding-top: 20px;
-        }
+.favorit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding-top: 20px;
+}
 
-/* Pastikan tinggi card seragam */
 .favorit-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background-color: #111; /* Warna background card */
-    color: #f1f1f1;
-    padding: 20px;
+    background-color: #fff;
+    color: #333;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    min-height: 350px; /* Pastikan tinggi card konsisten */
+    /* overflow: hidden; */
+    transition: box-shadow 0.3s;
+    min-height: 350px;
 }
 
-/* Responsive padding dan layout */
+.favorit-card:hover {
+    transform: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
 
+.image-container {
+    height: 150px;
+    /* overflow: hidden; */
+}
 
+.restaurant-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    /* Image section */
-    .image-container {
-        height: 120px;
-        overflow: hidden;
-    }
-
-    .restaurant-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* Details section */
-    .details-container {
+.details-container {
     padding: 12px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Pastikan container ini mengisi ruang vertikal yang tersedia */
-    }
+    flex-grow: 1;
+}
 
-    .details-container h3 {
-        font-size: 16px;
-        color: #ffa500;
-        margin-bottom: 8px;
-    }
+.details-container p {
+    margin: 4px 0;
+}
 
-    .details-container p {
-        font-size: 13px;
-        color: #ddd;
-        margin: 4px 0;
-    }
+.text-lg {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffa500;
+}
 
-    .bottom-section {
-        margin-top: auto; /* Pastikan ini berada di bagian bawah container */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.bottom-section {
+    margin-top: auto;
+}
 
-    .rating {
-        font-weight: bold;
-        color: #FFD700;
-        margin-bottom: 5px; /* Beri sedikit jarak antara rating dan tombol */
-    }
+.btn-danger {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 13px;
+    transition: background-color 0.3s;
+}
 
-    .btn-danger {
-        background-color: #e74c3c;
-        color: #fff;
-        padding: 6px 12px;
-        border-radius: 5px;
-        font-size: 13px;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    .btn-danger:hover {
-        background-color: #c0392b;
-    }
+.btn-danger:hover {
+    background-color: #c0392b;
+}
     </style>
 
     {% endblock %}

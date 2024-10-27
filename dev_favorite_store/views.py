@@ -29,7 +29,7 @@ def hapus_dari_favorit(request, toko_id):
             user_profile = get_object_or_404(UserProfile, user=request.user)
             toko = get_object_or_404(RumahMakan, id=toko_id)
             user_profile.favorit_toko.remove(toko)
-            return JsonResponse({'status': 'success', 'message': 'Toko berhasil dihapus dari favorit.'})
+            return JsonResponse({'status': 'success', 'message': 'Toko berhasil dihapus dari favorit.'}, status=200)
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
     else:
