@@ -1,6 +1,7 @@
+import uuid
 from django.db import models
 
-
+# Create your models here.
 class RumahMakan(models.Model):
     kode_provinsi = models.IntegerField()
     nama_provinsi = models.CharField(max_length=100)

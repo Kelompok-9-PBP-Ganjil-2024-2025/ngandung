@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>Edit Rumah Makan | Ngandung</title>
+{% endblock meta %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="pt-32 pb-20 overflow-y-auto h-screen flex flex-col bg-gradient-to-r from-[#ebaa49] via-gray-400 to-[#ebaa49]">
+    <div class="container mx-auto px-4 py-4 mt-4 max-w-xl bg-white rounded-lg">
+        <h1 class="mt-6 text-center text-black text-5xl font-extrabold text-gray-800 mb-8">Add Rumah Makan</h1>
+        <form method="POST" class="space-y-6" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="flex flex-col">
+                <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-800 text-2xl">
+                    {{ field.label }}
+                </label>
+                <div class="w-full text-2xl">
+                    {{ field }}
+                </div>
+                {% if field.help_text %}
+                <p class="mt-1 text-sm text-gray-100">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                <p class="mt-1 text-sm text-blue-600">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <div class="flex justify-center mt-6 pb-2">
+                <button type="submit"
+                    class="group relative w-full bg-[#0b79f7] hover:bg-opacity-100 hover:text-white bg-opacity-10 text-[#0b79f7] border border-[#0b79f7] font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform flex-row space-x-2 flex items-center justify-center">
+                    Edit Rumah Makan
+                </button>
+            </div>
+        </form>
+    </div>
+    <style>
+        input, select {
+            border-width: 2px;
+            border-color: #202020;
+            background-color: white;
+            color: black;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            appearance: none;
+            outline: none;
+            font-size: 0.875rem;
+        }
+    
+        input:focus, select:focus {
+            border-color: #0b79f7;
+            box-shadow: 0 0 0 3px rgba(11, 121, 247, 0.5);
+        }
+    </style>
+</div>
+{% endblock %}

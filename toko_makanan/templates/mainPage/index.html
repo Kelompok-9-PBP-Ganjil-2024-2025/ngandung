@@ -1,0 +1,232 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Ngandung Main Page</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='home' %}
+
+<img src="{% static 'images/garpu.png' %}" class='opacity-20 fixed -right-16 top-60 -z-20 scale-[90%]' />
+<img src="{% static 'images/sendok.png' %}" class='opacity-20 fixed -left-20 top-96 -z-20 scale-[80%]' />
+<img src="{% static 'images/telur.png' %}" class='opacity-20 fixed left-28 top-24 -z-20 scale-[80%]' />
+
+<div class="pt-32 overflow-y-auto flex flex-col h-screen">
+	<div class="w-full flex flex-col items-center">
+		<p class="text-2xl md:text-3xl font-bold text-black pb-5">Bingung mau makan apa???</p>
+		<p class="text-2xl md:text-3xl font-bold text-black pb-10">Yok cari disini!</p>
+	</div>
+	<div class="w-full px-3 md:px-8 pb-8 pt-16">
+		<div class="flex justify-between mb-6 gap-x-2">
+			<div class="flex flex-col">
+				<label for="searchBar" class="block text-sm font-medium text-gray-800 shadow-xl">Search</label>
+				<input type="text" id="searchBar" class="border border-gray-800 rounded-lg py-2 px-4 w-full" placeholder="Search for makanan...">
+			</div>
+			{% if request.user.is_superuser %}
+			<div class="flex gap-x-2">
+				<button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 truncate"> Add Makanan </button>
+				<a href="{% url 'toko_makanan:add_toko' %}" class="bg-black hover:bg-[#ff9900] text-white text-center font-bold py-5 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 truncate"> Add Toko </a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<div id="display_makanan"></div>
+
+	<div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-black bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+		<div id="crudModalContent" class="relative bg-zinc-50 rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+			<!-- Modal header -->
+			<div class="flex flex items-center justify-center p-4 border-b border-gray-800 rounded-t">
+				<div class="w-full flex justify-center">
+					<h3 class="text-xl font-semibold text-gray-800 text-center">Add Makanan</h3>
+				</div>
+				<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+					<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+					</svg>
+					<span class="sr-only">Close modal</span>
+				</button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="px-6 py-4 space-y-6 form-style">
+				<form id="makananForm" enctype="multipart/form-data">
+					<div class="mb-4">
+						<label for="makananName" class="block text-sm font-medium text-gray-800">Nama Makanan</label>
+						<input type="text" id="makananName" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan nama makanan" required />
+					</div>
+
+					<div class="mb-4">
+						<label for="makananPrice" class="block text-sm font-medium text-gray-800">Price (IDR)</label>
+						<input type="number" id="makananPrice" name="price" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan harga makanan dalam IDR" step="0.01" min="0" required />
+					</div>
+
+					<div class="mb-4">
+						<label for="makananToko" class="block text-sm font-medium text-gray-800">Toko</label>
+						<select id="makananToko" name="toko_id" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" required>
+							<option value="" disabled selected>Makanan terdapat di toko:</option>
+							{% for rumah_makan in list_rumah_makan %}
+							<option value="{{ rumah_makan.id }}">{{ rumah_makan.nama_rumah_makan }}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</form>
+			</div>
+
+			<!-- Modal footer -->
+			<div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t rounded-b justify-center md:justify-end">
+				<button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
+				<button type="submit" id="submitProductEntry" form="makananForm" class="bg-[#ff9900] hover:bg-[#c48321] text-white font-bold py-2 px-4 rounded-lg">Add Makanan</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	async function getMakanan() {
+		return fetch("{% url 'toko_makanan:makanan_json' %}").then((res) => res.json());
+		//menggunakan fetch() API ke data JSON secara asynchronous.
+		//Setelah data di-fetch, fungsi then() digunakan untuk melakukan parse pada data JSON menjadi objek JavaScript.
+	}
+
+	async function refreshMakanan() {
+		document.getElementById('display_makanan').innerHTML = '';
+		document.getElementById('display_makanan').className = '';
+		const list_makanan = await getMakanan();
+		let htmlString = '';
+		let classNameString = '';
+
+		if (list_makanan.length === 0) {
+			classNameString = 'flex flex-col items-center justify-center h-screen p-8';
+			htmlString = `<p>Belum ada data disini.</p>`;
+		} else {
+			classNameString = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mx-auto px-6';
+			list_makanan.forEach((makanan) => {
+				const name = DOMPurify.sanitize(makanan.fields.name);
+				htmlString += `
+				<div class="relative top-5 bg-white shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+					<!-- Placeholder Image -->
+					<img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg">
+					
+					<!-- Card Content -->
+					<div class="p-4 flex-grow min-h-[100px]">
+						<!-- Nama Makanan -->
+						<h3 class="font-bold text-lg mb-4 text-center text-[#ff9900] truncate">${name}</h3>
+						<p class="text-center text-gray-800 font-bold">Rp ${makanan.fields.price}</p>
+					</div>
+
+					<!-- Button Group -->
+					<div class="p-4 flex justify-between items-center">
+
+						<a href="detail-rumah-makan/${makanan.pk}" class="bg-[#ff9900] text-white rounded-full px-4 py-2 transition duration-300 shadow-md">
+							Detail...
+						</a>
+
+						{% if request.user.is_superuser %}
+						<div class="flex space-x-2">
+							<!-- Edit Button -->
+							<a href="edit-makanan/${makanan.pk}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+									<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+								</svg>
+							</a>
+
+							<!-- Delete Button -->
+							<a href="delete-makanan/${makanan.pk}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+									<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+								</svg>
+							</a>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				</div>
+					`;
+			});
+		}
+		document.getElementById('display_makanan').className = classNameString;
+		document.getElementById('display_makanan').innerHTML = htmlString;
+	}
+	refreshMakanan();
+	filterMakanan();
+
+	//menambah event listener ke search bar
+	document.getElementById('searchBar').addEventListener('input', filterMakanan);
+
+	function filterMakanan() { //function untuk filter makanan dengan search bar
+		const query = document.getElementById('searchBar').value.toLowerCase();
+		const makananItems = document.querySelectorAll('#display_makanan > div');
+
+		makananItems.forEach(item => {
+			const name = item.querySelector('h3').textContent.toLowerCase();
+			if (name.includes(query)) {
+				item.style.display = 'block'; //jika ada yang match dengan yang di search maka ditampilkan
+			} else {
+				item.style.display = 'none'; //jika tidak match maka tidak ditampilkan
+			}
+		});
+	}
+	
+	const modal = document.getElementById('crudModal');
+	const modalContent = document.getElementById('crudModalContent');
+
+	function showModal() { //function untuk menampilkan modal
+		const modal = document.getElementById('crudModal');
+		const modalContent = document.getElementById('crudModalContent');
+
+		modal.classList.remove('hidden');
+		setTimeout(() => {
+			modalContent.classList.remove('opacity-0', 'scale-95');
+			modalContent.classList.add('opacity-100', 'scale-100');
+		}, 50);
+	}
+
+	function hideModal() { //function untuk tutup/hide modal
+		const modal = document.getElementById('crudModal');
+		const modalContent = document.getElementById('crudModalContent');
+
+		modalContent.classList.remove('opacity-100', 'scale-100');
+		modalContent.classList.add('opacity-0', 'scale-95');
+
+		setTimeout(() => {
+			modal.classList.add('hidden');
+		}, 150);
+	}
+
+	//menambahkan event listener jika user click di luar area modal maka akan close modalnya
+	modal.addEventListener('click', (event) => {
+		if (!modalContent.contains(event.target)) {
+			hideModal(); // Close modal
+		}
+	});
+
+	document.getElementById("cancelButton").addEventListener("click", hideModal);
+	document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+
+	function addMakanan() {
+		fetch("{% url 'toko_makanan:add_makanan' %}", {
+			method: 'POST',
+			body: new FormData(document.querySelector('#makananForm')), //membuat sebuah FormData baru yang datanya diambil dari form pada modal
+		}) //FormData dapat digunakan untuk mengirimkan data form tersebut ke server.
+			.then((response) => {
+				if (response.ok) {
+					refreshMakanan(); // Refresh list makanan
+					hideModal(); // Close modal setelah pembuatan Makanan
+				} else {
+					console.error('Creation failed.');
+				}
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+
+		document.getElementById('makananForm').reset(); //mengosongkan isi field form modal setelah di-submit.
+		document.querySelector("[data-modal-toggle='crudModal']").click();
+
+		return false;
+	}
+
+	document.getElementById("makananForm").addEventListener("submit", (e) => {
+		e.preventDefault();
+		addMakanan();
+	})
+</script>
+
+{% endblock content %}
