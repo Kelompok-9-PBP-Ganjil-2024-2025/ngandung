@@ -1,14 +1,84 @@
-{% extends 'base.html' %} {% load static %} {% block meta %}
-<title>Detail Rumah Makan</title>
-{% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='home' %}
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>Detail Rumah Makan | Ngandung</title>
+{% endblock meta %}
+{% block content %}
+{% include 'navbar.html' with current_page='home' %}
 
-<div class="pt-32 overflow-y-auto flex flex-col h-screen">
-	<div class="w-full flex flex-col items-center gap-5 pb-5">
-		<img src="https://cdn-icons-png.flaticon.com/256/695/695992.png" alt="resto-placeholder" class="rounded-full w-32" />
-		<h1 class="text-2xl md:text-3xl font-bold text-black pb-5">{{ rumah_makan.nama_rumah_makan }}</h1>
-	</div>
-    <div id="crudModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center bg-gray-800 bg-opacity-75">
-        <div id="crudModalContent" class="bg-white w-full max-w-md mx-auto p-6 rounded-lg shadow-lg">
+<!-- Dekorasi Gambar -->
+<img src="{% static 'images/garpu.png' %}" class="decoration-image -right-16 top-60 scale-[90%] animate-float -z-20" />
+<img src="{% static 'images/sendok.png' %}" class="decoration-image -left-20 top-96 scale-[80%] animate-float-reverse -z-20" />
+<img src="{% static 'images/telur.png' %}" class="decoration-image left-28 top-24 scale-[80%] animate-float -z-20" />
+
+<!-- Tambahkan Gaya CSS untuk Animasi dan Dekorasi -->
+<style>
+    @keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float-reverse {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(20px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-reverse {
+        animation: float-reverse 6s ease-in-out infinite;
+    }
+
+    .animate-fade-in {
+        animation: fade-in 2s ease-in-out forwards;
+    }
+
+    .animate-slide-in {
+        animation: slide-in 1s ease-out forwards;
+    }
+
+    /* Dekorasi Gambar Styles */
+    .decoration-image {
+    position: absolute; /* ganti dari fixed ke absolute */
+    z-index: 0; /* ganti dari -1 ke 0 atau nilai positif */
+    pointer-events: none;
+    opacity: 0.6;
+    will-change: transform;
+    transform-style: preserve-3d;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+    @media (max-width: 768px) {
+        .decoration-image {
+            opacity: 0.3;
+            transform: scale(0.7);
+        }
+    }
+</style>
+
+<div class="pt-32 overflow-y-auto flex flex-col h-screen bg-gradient-to-b from-white to-gray-100">
+    <div class="w-full flex flex-col items-center gap-5 pb-5">
+        <img src="https://cdn-icons-png.flaticon.com/256/695/695992.png" alt="resto-placeholder" class="rounded-full w-32 z-10" />
+        <h1 class="text-4xl font-extrabold text-[#FF9900] bg-clip-text text-transparent bg-gradient-to-r from-[#FF9900] to-[#FF6600] animate-slide-in text-center pb-4 z-10">{{ rumah_makan.nama_rumah_makan }}</h1>
+    </div>
+    <div id="crudModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center bg-gray-800 bg-opacity-75 transition-opacity duration-300">
+        <div id="crudModalContent" class="bg-white w-full max-w-md mx-auto p-6 rounded-lg shadow-lg transform transition-transform duration-300 scale-95">
             <h3 class="text-lg font-semibold text-gray-900">Delete Confirmation</h3>
             <p class="mt-2 text-[13px] text-gray-500">Deleting {{rumah_makan.nama_rumah_makan}} will also delete all of its related Makanan! This action cannot be undone.</p>
             
@@ -26,13 +96,18 @@
         {% if request.user.is_superuser %}
         <div class="w-full md:px-8 pt-5 mx-auto">
             <div class="flex mb-6 gap-x-2 justify-center items-center">
-                <a href="{% url 'toko_makanan:edit_toko' rumah_makan.pk %}" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Edit </a>
-                <button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#ff9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"> Delete </button>
+                <a href="{% url 'toko_makanan:edit_toko' rumah_makan.pk %}" class="bg-black hover:bg-[#FF9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    Edit
+                </a>
+                <button data-modal-target="crudModal" data-modal-toggle="crudModal" onclick="showModal();" class="bg-black hover:bg-[#FF9900] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    Delete
+                </button>
             </div>
         </div>
         {% endif %}
         <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-4 w-4/5 mx-auto">
-            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300">
+            <!-- Ikon Pisau Garpu (Makanan) -->
+            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300 transition-all transform hover:scale-105 border-transparent hover:border-[#FF9900]">
                 <svg class="w-[50px] h-[50px] fill-[#ff9900]" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
                     <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <path
@@ -50,24 +125,23 @@
                     "
                     ></path>
                 </svg>
-                <p>{% if tipe_makanan == ringan %} Makanan Ringan {% elif tipe_makanan == berat %} Makanan Berat {% else %} Makanan Berat & Ringan {% endif %}</p>
+                <p>{% if tipe_makanan == 'ringan' %} Makanan Ringan {% elif tipe_makanan == 'berat' %} Makanan Berat {% else %} Makanan Berat & Ringan {% endif %}</p>
             </div>
-            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300">
-                <svg class="w-[50px] h-[50px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9900">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="
-                    M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 
+            <!-- Ikon Koin (Harga) -->
+            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300 transition-all transform hover:scale-105 border-transparent hover:border-[#FF9900]">
+                <svg class="w-[50px] h-[50px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF9900">
+                    <!-- SVG Path untuk Koin -->
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 
                     0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 
                     12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 
-                    0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                    />
+                    0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                 </svg>
                 <p>{% if min_price != max_price %} Rp {{ min_price }} - Rp {{ max_price }} {% else %} Rp {{ max_price }} {% endif %}</p>
             </div>
-            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300">
-                <svg class="w-[50px] h-[50px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9900" class="size-6">
+            <!-- Ikon Lokasi -->
+            <div class="flex flex-col items-center space-y-2 text-center w-full md:w-1/2 p-3 bg-white border rounded-xl shadow-lg hover:shadow-xl duration-300 transition-all transform hover:scale-105 border-transparent hover:border-[#FF9900]">
+                <svg class="w-[50px] h-[50px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9900">
+                    <!-- SVG Path untuk Lokasi -->
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
@@ -75,50 +149,51 @@
             </div>
         </div>
     </div>
-	<div class="flex items-center justify-center pt-5">
-		<div class="flex flex-row bg-black text-white font-bold py-1 px-3 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105">
-			<a class="flex items-center gap-2" href="{{ gmap_url }}" target="_blank">
-				<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-					<path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path>
-					<path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path>
-					<path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path>
-					<path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3L19.83,14.92z"></path>
-					<path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"></path>
-				</svg>
-				<span>View in Google Maps</span>
-			</a>
-		</div>
-	</div>
+    <div class="flex items-center justify-center pt-5">
+        <div class="flex flex-row bg-black text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#FF9900]">
+            <a class="flex items-center gap-2" href="{{ gmap_url }}" target="_blank">
+                <!-- SVG Logo Google Maps -->
+                <svg class="w-6 h-6 animate-bounce" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path>
+                    <path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path>
+                    <path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path>
+                    <path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3L19.83,14.92z"></path>
+                    <path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"></path>
+                </svg>
+                <span>View in Google Maps</span>
+            </a>
+        </div>
+    </div>
     <div class="p-10 flex flex-col mx-auto">
-        <h2 class="px-6 text-2xl md:text-3xl font-bold text-black pb-5">List Makanan</h2>
+        <h2 class="px-6 text-3xl md:text-4xl font-bold text-black pb-5 z-10">List Makanan</h2>
         
         {% if list_makanan %}
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mx-auto px-6">
                 {% for makanan in list_makanan %}
-                    <div class="relative top-5 bg-white shadow-md rounded-lg mb-6 flex flex-col transform hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+                    <div class="relative top-5 bg-white shadow-md rounded-lg mb-6 flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl border-2 border-transparent hover:border-[#FF9900]">
                         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <!-- Placeholder Image -->
-                            <img src="https://theme-assets.getbento.com/sensei/b202d6f.sensei/assets/images/catering-item-placeholder-704x520.png" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg " />
+                            <!-- Gambar Placeholder -->
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/00/d2/8e/flavours-of-china.jpg" alt="placeholder" class="w-full object-cover h-48 rounded-t-lg" />
                             
-                            <!-- Card Content -->
+                            <!-- Konten Card -->
                             <div class="p-4 flex-grow min-h-[100px]">
                                 <!-- Nama Makanan -->
-                                <h3 class="font-bold text-lg mb-4 text-center text-[#ff9900] truncate">{{ makanan.name }}</h3>
+                                <h3 class="font-bold text-lg mb-2 text-center text-[#FF9900] truncate">{{ makanan.name }}</h3>
                                 <p class="text-center text-gray-800">Rp {{ makanan.price }}</p>
                             </div>
                             
-                            <!-- Button Group for Admin -->
+                            <!-- Grup Tombol untuk Admin -->
                             {% if request.user.is_superuser %}
-                                <div class="flex space-x-2 flex-row md:space-y-0 md:space-x-2 p-6 rounded-b justify-center ">
-                                        <!-- Edit Button -->
-                                        <a href="{% url 'toko_makanan:edit_makanan' makanan.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md w-10 h-10 flex items-center justify-center">
+                                <div class="flex space-x-2 flex-row md:space-y-0 md:space-x-2 p-6 rounded-b justify-center">
+                                        <!-- Tombol Edit -->
+                                        <a href="{% url 'toko_makanan:edit_makanan' makanan.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md w-10 h-10 flex items-center justify-center transform hover:rotate-12">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                             </svg>
                                         </a>
                                         
-                                        <!-- Delete Button -->
-                                        <a href="{% url 'toko_makanan:delete_makanan' makanan.pk %}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md w-10 h-10 flex items-center justify-center">
+                                        <!-- Tombol Hapus -->
+                                        <a href="{% url 'toko_makanan:delete_makanan' makanan.pk %}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md w-10 h-10 flex items-center justify-center transform hover:rotate-12">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                             </svg>
@@ -140,12 +215,40 @@
         const modalContent = document.getElementById('crudModalContent');
 
         function showModal() {
-            document.getElementById('crudModal').classList.remove('hidden');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
         }
     
         function closeModal() {
-            document.getElementById('crudModal').classList.add('hidden');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300); // Sesuaikan dengan durasi transisi
+        }
+
+        // Fungsi Toast (Opsional)
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('span').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.add('hidden');
         }
     </script>
 
+    <!-- Toast Notification (Opsional) -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hidden flex items-center">
+        <span>Action successful!</span>
+        <button onclick="hideToast()" class="ml-4">&times;</button>
+    </div>
+</div>
 {% endblock content %}

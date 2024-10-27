@@ -64,7 +64,7 @@
 	/* Decoration Images Styles */
 	.main-content {
 		position: relative;
-		padding: 150px 150px;
+		padding: 150px 10%;
 		min-height: 100vh;
 		background-color: rgba(255, 255, 255, 0.2);
 		transition: background-color 0.3s ease;
@@ -108,9 +108,9 @@
 		<div class="flex flex-col md:flex-row justify-center items-center mb-6 gap-4">
 			<!-- Search Bar -->
 			<div class="flex flex-col w-full md:w-2/3">
-				<label for="searchBar" class="block text-sm font-medium text-gray-800 mb-2">Search</label>
+				<!-- <label for="searchBar" class="block text-sm font-medium text-gray-800 mb-2">Search</label> -->
 				<div class="relative flex">
-					<input type="text" id="searchBar" class="border border-gray-300 rounded-l-lg py-2 pl-3 pr-4 focus:outline-none focus:ring-2 focus:ring-[#FF9900] transition duration-300 flex-grow" placeholder="Search for makanan..." />
+					<input type="text" id="searchBar" class="border border-gray-300 rounded-l-lg py-2 pl-3 pr-3 focus:outline-none focus:ring-2 focus:ring-[#FF9900] transition duration-300 flex-grow" placeholder="Search for makanan..." />
 					<button id="searchButton" class="bg-[#FF9900] hover:bg-[#e68a00] text-white px-4 rounded-r-lg transition duration-300 flex items-center justify-center">
 						<!-- Search Icon -->
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,8 +140,10 @@
 	</div>
 
 	<!-- Display Makanan Cards -->
-	<div id="display_makanan" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-8">
-		<!-- Makanan Cards akan dimuat di sini -->
+	<div class="flex w-full justify-center">
+		<div id="display_makanan" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+			<!-- Makanan Cards akan dimuat di sini -->
+		</div>
 	</div>
 
 	<!-- CRUD Modal -->
@@ -184,7 +186,7 @@
 			</div>
 
 			<!-- Modal Footer -->
-			<div class="flex flex-col md:flex-row md:justify-end space-y-2 md:space-y-0 md:space-x-2 p-6 border-t border-gray-200">
+			<div class="flex flex-col md:flex-row md:justify-start space-y-2 md:space-y-0 md:space-x-2 p-6 border-t border-gray-200">
 				<button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition" id="cancelButton">Cancel</button>
 				<button type="submit" id="submitProductEntry" form="makananForm" class="bg-[#FF9900] hover:bg-[#e68a00] text-white font-bold py-2 px-4 rounded-lg shadow-md transition">Add Makanan</button>
 			</div>
@@ -210,7 +212,7 @@
 			list_makanan.forEach((makanan) => {
 				const name = DOMPurify.sanitize(makanan.fields.name);
 				htmlString += `
-                <div class="bg-white border border-transparent rounded-lg shadow-md hover:shadow-2xl hover:border-[#FF9900] transition-all duration-300 transform hover:scale-105">
+                <div class="bg-white border border-transparent rounded-lg shadow-md hover:shadow-2xl max-w-[23rem] hover:border-[#FF9900] transition-all duration-300 transform hover:scale-105">
                     <div class="overflow-hidden rounded-t-lg">
                         <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/00/d2/8e/flavours-of-china.jpg" alt="placeholder" class="w-full object-cover h-48">
                     </div>
@@ -220,7 +222,7 @@
                             <p class="text-center text-gray-800 font-bold">Rp ${makanan.fields.price}</p>
                         </div>
                         <div class="mt-4 flex justify-between items-center">
-							<div class='w-full flex justify-end'>
+							<div class='w-full flex justify-between'>
 								<a href="detail-rumah-makan/${makanan.pk}" class="bg-[#FF9900] text-white rounded-lg font-semibold px-4 py-2 transition duration-300 shadow-md hover:bg-[#e68a00]">Detail</a>
 							</div>
                             {% if request.user.is_superuser %}
