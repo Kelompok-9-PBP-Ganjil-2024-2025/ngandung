@@ -5,14 +5,24 @@
 
 <style>
     /* Styling dasar */
-    .main-content {
+        .main-content {
+        position: relative;  /* Tambahkan ini */
         padding: 150px 150px;
         min-height: 100vh;
-        background-color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.2);  /* Ubah ke semi-transparan */
         transition: background-color 0.3s ease;
         overflow-y: auto;
         height: 100vh;
     }
+
+    .decoration-image {
+    position: fixed;  /* Gunakan fixed alih-alih absolute */
+    z-index: -1;     /* Gunakan z-index negatif yang lebih kecil */
+    pointer-events: none;  /* Agar gambar tidak menghalangi interaksi */
+    opacity: 0.6;    /* Buat sedikit transparan */
+    will-change: transform;  /* Optimasi performa */
+    transform-style: preserve-3d;
+}
 
     /* Header section dengan animasi */
     .forum-header {
@@ -229,6 +239,11 @@
             padding: 120px 20px 40px 20px;
         }
 
+        .decoration-image {
+        opacity: 0.3;  /* Lebih transparan di mobile */
+        transform: scale(0.7);  /* Lebih kecil di mobile */
+    }
+
         .forum-container {
             grid-template-columns: 1fr;
         }
@@ -260,6 +275,9 @@
 </style>
 
 <div class="main-content">
+    <img src="{% static 'images/garpu.png' %}" class="decoration-image -right-16 top-60 scale-[90%]" />
+    <img src="{% static 'images/sendok.png' %}" class="decoration-image -left-20 top-96 scale-[80%]" />
+    <img src="{% static 'images/telur.png' %}" class="decoration-image left-28 top-24 scale-[80%]" />
     
     <div class="forum-header">
         <h1>Ngandung Discussion</h1>

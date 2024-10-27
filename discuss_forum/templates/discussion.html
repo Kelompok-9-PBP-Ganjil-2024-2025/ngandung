@@ -6,14 +6,23 @@
 <style>
     /* Styling dasar */
     .main-content {
+        position: relative;  /* Tambahkan ini */
         padding: 150px 150px;
-        overflow-y: auto;
         min-height: 100vh;
-        background-color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.2);  /* Ubah ke semi-transparan */
         transition: background-color 0.3s ease;
         overflow-y: auto;
         height: 100vh;
     }
+
+    .decoration-image {
+    position: fixed;  /* Gunakan fixed alih-alih absolute */
+    z-index: -1;     /* Gunakan z-index negatif yang lebih kecil */
+    pointer-events: none;  /* Agar gambar tidak menghalangi interaksi */
+    opacity: 0.6;    /* Buat sedikit transparan */
+    will-change: transform;  /* Optimasi performa */
+    transform-style: preserve-3d;
+}
 
     .back-button {
         display: inline-block;
@@ -226,6 +235,11 @@
             padding: 120px 20px 40px 20px;
         }
 
+        .decoration-image {
+        opacity: 0.3;  /* Lebih transparan di mobile */
+        transform: scale(0.7);  /* Lebih kecil di mobile */
+    }
+
         .discussion-header {
             padding: 15px;
         }
@@ -279,10 +293,86 @@
     .loaded {
         opacity: 1;
     }
+
+    .btn-delete {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Tambahkan ini */
+    background: #e62222;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-delete, .btn-delete span {
+    transition: all 200ms ease; /* Tambahkan 'all' dan 'ease' */
+}
+
+.btn-delete .text {
+    transform: translateX(0); /* Ubah dari 35px ke 0 */
+    color: white;
+    font-weight: bold;
+    z-index: 2; /* Tambahkan ini */
+    position: relative; /* Tambahkan ini */
+}
+
+.btn-delete .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 100%; /* Ubah dari 40px ke 100% */
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease; /* Tambahkan transition yang sama */
+}
+
+.btn-delete svg {
+    width: 15px;
+    height: 15px; /* Tambahkan ini */
+    fill: #eee;
+    transition: transform 200ms ease; /* Tambahkan transition */
+}
+
+.btn-delete:hover {
+    background: #ff3636;
+}
+
+.btn-delete:hover .text {
+    opacity: 0; /* Ganti color: transparent dengan opacity */
+}
+
+.btn-delete:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+    background: #ff3636; /* Tambahkan ini */
+}
+
+.btn-delete:hover svg {
+    transform: scale(1.2); /* Tambahkan efek scale saat hover */
+}
+
+.btn-delete:focus {
+    outline: none;
+}
+
+.btn-delete:active .icon svg {
+    transform: scale(0.8);
+}
+
 </style>
 
 <div class="main-content">
-
+    <img src="{% static 'images/garpu.png' %}" class="decoration-image -right-16 top-60 scale-[90%]" />
+    <img src="{% static 'images/sendok.png' %}" class="decoration-image -left-20 top-96 scale-[80%]" />
+    <img src="{% static 'images/telur.png' %}" class="decoration-image left-28 top-24 scale-[80%]" />
 
     <a href="{% url 'discuss_forum:forum_main' %}" class="back-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff9900" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
@@ -303,10 +393,15 @@
         <div class="forum-actions">
             <!-- Tambahkan ID pada tombol Edit -->
             <button type="button" id="editButton" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Edit</button>
-            <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}">
+            <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
                 {% csrf_token %}
-                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
-                    Delete
+                <button type="submit" class="btn-delete noselect flex items-center">
+                    <span class="text mr-2">Delete</span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                        </svg>
+                    </span>
                 </button>
             </form>
         </div>
@@ -355,7 +450,46 @@
         </div>
     </div>
 
-    <!-- Formulir Komentar (Opsional) -->
+    <!-- Modal untuk Edit Komentar -->
+<div id="editCommentModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+    <div id="editCommentModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 border-b rounded-t">
+            <h3 class="text-xl font-semibold text-gray-900">
+                Edit Comment
+            </h3>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeEditCommentModalBtn">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 
+                    011.414 0L10 8.586l4.293-4.293a1 1 0 
+                    011.414 1.414L11.414 10l4.293 4.293a1 1 0 
+                    01-1.414 1.414L10 11.414l-4.293 4.293a1 1 
+                    0 01-1.414-1.414L8.586 10 4.293 
+                    5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+        <!-- Modal body -->
+        <div class="px-6 py-4 space-y-6 form-style">
+            <form id="editCommentForm">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="editCommentContent" class="block text-sm font-medium text-gray-700">Content</label>
+                    <textarea id="editCommentContent" name="content" rows="4" class="mt-1 block w-full h-32 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" required></textarea>
+                </div>
+            </form>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+            <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelEditCommentButton">Cancel</button>
+            <button type="submit" id="submitEditComment" form="editCommentForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Formulir Komentar -->
     {% if user.is_authenticated %}
         <div class="add-comment">
             <h2>Tambah Komentar</h2>
@@ -373,23 +507,28 @@
     <div class="comments-section">
         <h2>Komentar</h2>
         {% for comment in comments %}
-            <div class="comment">
-                <p>{{ comment.content }}</p>
+        <div class="comment">
+            <p id="comment-content-{{ comment.id }}">{{ comment.content }}</p>
 
                 <!-- Tombol Edit dan Delete Hanya untuk Pemilik Komentar -->
                 {% if user.is_authenticated and user == comment.user %}
-                    <div class="forum-actions">
-                        <a href="{% url 'discuss_forum:edit_comment' comment.id %}">
-                            <button>Edit</button>
-                        </a>
-                        <form method="POST" action="{% url 'discuss_forum:delete_comment' comment.id %}">
-                            {% csrf_token %}
-                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                {% endif %}
+                <div class="forum-actions">
+                    <!-- Tambahkan ID unik untuk tombol edit komentar -->
+                    <button type="button" class="edit-comment-button" data-comment-id="{{ comment.id }}">Edit</button>
+                    <!-- Tombol Delete tetap sama -->
+                    <form method="POST" action="{% url 'discuss_forum:delete_comment' comment.id %}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-delete noselect flex items-center">
+                            <span class="text mr-2">Delete</span>
+                            <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    </form>
+                </div>
+            {% endif %}
 
                 <!-- Tombol Like Berwarna Merah -->
                 {% if user.is_authenticated %}
@@ -545,6 +684,121 @@
                 alert(error.message);
             });
         }
+
+
+
+                // Variabel global untuk modal edit komentar
+                let editCommentModal;
+        let editCommentModalContent;
+        let editCommentContentInput;
+        let editCommentForm;
+        let currentCommentId; // Untuk menyimpan ID komentar yang sedang diedit
+
+        // Mendapatkan elemen-elemen modal edit komentar
+        editCommentModal = document.getElementById('editCommentModal');
+        editCommentModalContent = document.getElementById('editCommentModalContent');
+        editCommentContentInput = document.getElementById('editCommentContent');
+        editCommentForm = document.getElementById('editCommentForm');
+
+        // Event listener untuk tombol Edit pada komentar
+        const editCommentButtons = document.querySelectorAll('.edit-comment-button');
+        editCommentButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                currentCommentId = this.getAttribute('data-comment-id');
+                // Dapatkan konten komentar saat ini
+                const commentContentElement = document.querySelector(`#comment-content-${currentCommentId}`);
+                const commentContent = commentContentElement.textContent.trim();
+
+                // Prefill form dengan konten komentar saat ini
+                editCommentContentInput.value = commentContent;
+
+                showEditCommentModal();
+            });
+        });
+
+        // Fungsi untuk menampilkan modal edit komentar
+        function showEditCommentModal() {
+            editCommentModal.classList.remove('hidden');
+            setTimeout(() => {
+                editCommentModalContent.classList.remove('opacity-0', 'scale-95');
+                editCommentModalContent.classList.add('opacity-100', 'scale-100');
+            }, 50);
+        }
+
+        // Fungsi untuk menyembunyikan modal edit komentar
+        function hideEditCommentModal() {
+            editCommentModalContent.classList.remove('opacity-100', 'scale-100');
+            editCommentModalContent.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                editCommentModal.classList.add('hidden');
+            }, 150);
+        }
+
+        // Event listener untuk tombol close pada modal edit komentar
+        document.getElementById("cancelEditCommentButton").addEventListener("click", hideEditCommentModal);
+        document.getElementById("closeEditCommentModalBtn").addEventListener("click", hideEditCommentModal);
+
+        // Event listener untuk submit form edit komentar
+        editCommentForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            submitEditCommentForm();
+        });
+
+        // Fungsi untuk mengirim permintaan AJAX untuk mengedit komentar
+        function submitEditCommentForm() {
+            const url = `/edit-comment-ajax/${currentCommentId}/`;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: editCommentContentInput.value,
+                }),
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || 'Failed to edit comment');
+                    });
+                }
+            })
+            .then(data => {
+                // Memperbarui konten komentar di halaman tanpa merefresh
+                const commentContentElement = document.querySelector(`#comment-content-${currentCommentId}`);
+                commentContentElement.textContent = data.comment.content;
+
+                hideEditCommentModal();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
+        }
+
+        // Fungsi untuk mendapatkan CSRF Token dari cookie (jika belum ada)
+        function getCSRFToken() {
+            let cookieValue = null;
+            const name = 'csrftoken';
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Cek apakah cookie dimulai dengan nama CSRF token
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
         // --------------------------------------------------------------------------------------------------------------------------
         // Mendapatkan semua tombol like
         const likeButtons = document.querySelectorAll('.like-button');

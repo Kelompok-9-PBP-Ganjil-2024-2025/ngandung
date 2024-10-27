@@ -244,3 +244,40 @@ def edit_forum_ajax(request, id):
         return JsonResponse({'discussion': discussion_data}, status=200)
     else:
         return JsonResponse({'error': 'Title and content are required.'}, status=400)
+    
+@require_http_methods(["POST"])
+@login_required
+def edit_comment_ajax(request, id):
+    # Ambil komentar berdasarkan id
+    comment = get_object_or_404(Comment, pk=id)
+
+    # Periksa apakah pengguna saat ini adalah pemilik komentar
+    if comment.user != request.user:
+        return JsonResponse({'error': 'Anda tidak diizinkan untuk mengedit komentar ini.'}, status=403)
+
+    # Parse data JSON dari request body
+    try:
+        data = json.loads(request.body)
+        content = data.get('content', '').strip()
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Data JSON tidak valid.'}, status=400)
+
+    if content:
+        # Update komentar
+        comment.content = content
+        comment.save()
+
+        # Siapkan data untuk dikirim kembali dalam respons
+        comment_data = {
+            'id': str(comment.id),
+            'content': comment.content,
+            'user': {
+                'id': comment.user.id,
+                'username': comment.user.username,
+            },
+            'date_created': comment.date_created.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        return JsonResponse({'comment': comment_data}, status=200)
+    else:
+        return JsonResponse({'error': 'Content is required.'}, status=400)
