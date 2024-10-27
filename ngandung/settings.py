@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "dev_favorite_store",
     "main",
     "authentication",
+    "rating_toko",
     "livereload",
 ]
 
