@@ -20,11 +20,11 @@
 	<div id="display_makanan"></div>
 
 	<div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-black bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
-		<div id="crudModalContent" class="relative bg-black rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+		<div id="crudModalContent" class="relative bg-zinc-50 rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
 			<!-- Modal header -->
 			<div class="flex flex items-center justify-center p-4 border-b border-gray-800 rounded-t">
 				<div class="w-full flex justify-center">
-					<h3 class="text-xl font-semibold text-zinc-50 text-center">Add Makanan</h3>
+					<h3 class="text-xl font-semibold text-gray-800 text-center">Add Makanan</h3>
 				</div>
 				<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
 					<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -39,18 +39,18 @@
 				<form id="makananForm" enctype="multipart/form-data">
 					<!-- Product Name -->
 					<div class="mb-4">
-						<label for="makananName" class="block text-sm font-medium text-zinc-50">Nama Makanan</label>
+						<label for="makananName" class="block text-sm font-medium text-gray-800">Nama Makanan</label>
 						<input type="text" id="makananName" name="nama" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan nama makanan" required />
 					</div>
 
 					<!-- Product Price -->
 					<div class="mb-4">
-						<label for="makananPrice" class="block text-sm font-medium text-zinc-50">Price (IDR)</label>
+						<label for="makananPrice" class="block text-sm font-medium text-gray-800">Price (IDR)</label>
 						<input type="number" id="makananPrice" name="harga" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" placeholder="Masukkan harga makanan dalam IDR" step="0.01" min="0" required />
 					</div>
 
 					<div class="mb-4">
-						<label for="makananToko" class="block text-sm font-medium text-zinc-50">Toko</label>
+						<label for="makananToko" class="block text-sm font-medium text-gray-800">Toko</label>
 						<select id="makananToko" name="toko" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-lime-700" required>
 							<option value="" disabled selected>Makanan terdapat di toko:</option>
 							{% for rumah_makan in list_rumah_makan %}

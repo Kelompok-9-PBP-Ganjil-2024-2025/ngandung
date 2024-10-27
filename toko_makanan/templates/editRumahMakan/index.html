@@ -6,14 +6,14 @@
 
 {% block content %}
 {% include 'navbar.html' %}
-<div class="pt-32 pb-20 overflow-y-auto h-screen flex flex-col bg-gradient-to-r from-[#ebaa49] via-gray-500 to-[#ebaa49]">
-    <div class="container mx-auto px-4 py-4 mt-4 max-w-xl bg-black rounded-lg">
-        <h1 class="mt-6 text-center text-black text-5xl font-extrabold text-zinc-50 mb-8">Add Rumah Makan</h1>
+<div class="pt-32 pb-20 overflow-y-auto h-screen flex flex-col bg-gradient-to-r from-[#ebaa49] via-gray-400 to-[#ebaa49]">
+    <div class="container mx-auto px-4 py-4 mt-4 max-w-xl bg-white rounded-lg">
+        <h1 class="mt-6 text-center text-black text-5xl font-extrabold text-gray-800 mb-8">Add Rumah Makan</h1>
         <form method="POST" class="space-y-6" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
             <div class="flex flex-col">
-                <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-100 text-2xl">
+                <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-800 text-2xl">
                     {{ field.label }}
                 </label>
                 <div class="w-full text-2xl">
@@ -39,8 +39,8 @@
         input, select {
             border-width: 2px;
             border-color: #202020;
-            background-color: #242424;
-            color: #ffffff;
+            background-color: white;
+            color: black;
             width: 100%;
             padding: 0.5rem 0.75rem;
             border-radius: 0.5rem;
