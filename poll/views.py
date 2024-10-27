@@ -47,7 +47,6 @@ def create(request):
 @login_required(login_url='/login')
 def update(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    print(poll)
     form = PollForm(request.POST or None, instance=poll)
     if poll.author != request.user:
         return redirect('poll:home')
