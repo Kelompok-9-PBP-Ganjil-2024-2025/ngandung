@@ -83,20 +83,37 @@ def show_json_by_id(request, id):
     data = Discussion.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
-@csrf_exempt
 @require_POST
+@login_required
 def add_forum_topic_ajax(request):
-    title = request.POST.get("title")
-    content = request.POST.get("content")
-    user = request.user
+    title = request.POST.get('title', '').strip()
+    content = request.POST.get('content', '').strip()
 
-    new_forum = Discussion(
-        title=title, content=content,
-        user=user
-    )
-    new_forum.save()
+    if title and content:
+        # Create a new Discussion instance and save it to the database
+        discussion = Discussion.objects.create(
+            user=request.user,
+            title=title,
+            content=content
+        )
 
-    return HttpResponse(b"CREATED", status=201)
+        # Prepare the data to be sent back in the response
+        discussion_data = {
+            'id': str(discussion.id),  # Convert UUID to string
+            'title': discussion.title,
+            'content': discussion.content,
+            'user': {
+                'id': discussion.user.id,
+                'username': discussion.user.username,
+            },
+            'date_created': discussion.date_created.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        # Return a JSON response with the discussion data and a 201 status code
+        return JsonResponse({'discussion': discussion_data}, status=201)
+    else:
+        # Return an error if title or content is missing
+        return JsonResponse({'error': 'Title and content are required.'}, status=400)
 
 @login_required
 def edit_forum(request, id):
