@@ -146,10 +146,9 @@
 		</div>
 	</div>
 	<div class="flex items-center justify-center pt-5">
-		<div class="flex flex-row bg-black text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#FF9900]">
+		<div class="flex flex-row bg-black text-white font-bold py-1 px-3 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105">
 			<a class="flex items-center gap-2" href="{{ gmap_url }}" target="_blank">
-				<!-- SVG Logo Google Maps -->
-				<svg class="w-6 h-6 animate-bounce" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+				<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
 					<path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path>
 					<path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path>
 					<path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path>
@@ -159,6 +158,13 @@
 				<span>View in Google Maps</span>
 			</a>
 		</div>
+
+		<button onclick="addFavorite()" class="pl-4 flex flex-row bg-red-500 text-white font-bold py-1 px-3 rounded-lg transition duration-300 ease-in-out transform shadow-lg hover:shadow-xl hover:scale-105">
+			<svg class="w-6 h-6 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+			</svg>
+			<span class="ml-2">Add to Favorite</span>
+		</button>
 	</div>
 	<div class="p-10 flex flex-col mx-auto">
 		<h2 class="px-6 text-3xl md:text-4xl font-bold text-black pb-5 z-10">List Makanan</h2>
@@ -209,14 +215,52 @@
 		const modalContent = document.getElementById('crudModalContent');
 
 		function showModal() {
-			modal.classList.remove('hidden');
-			modal.classList.add('flex');
-			modalContent.classList.remove('scale-95');
-			modalContent.classList.add('scale-100');
+			document.getElementById('crudModal').classList.remove('hidden');
 		}
 
 		function closeModal() {
 			document.getElementById('crudModal').classList.add('hidden');
+		}
+
+		async function addFavorite() {
+			const csrfToken = getCookie('csrftoken'); // Mengambil CSRF token dari cookie
+
+			const a = await fetch("{% url 'dev_favorite_store:tambah_ke_favorit' rumah_makan.pk %}", {
+				method: 'POST',
+				headers: {
+					'X-CSRFToken': csrfToken,
+					'Content-Type': 'application/json',
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.status === 'added') {
+						alert('Restoran berhasil ditambahkan ke favorit!');
+					} else if (data.status === 'removed') {
+						alert('Restoran berhasil dihapus dari favorit!');
+					} else {
+						alert('Terjadi kesalahan: ' + data.message);
+					}
+				});
+
+			console.log(a);
+		}
+
+		// Fungsi untuk mengambil CSRF token dari cookie
+		function getCookie(name) {
+			let cookieValue = null;
+			if (document.cookie && document.cookie !== '') {
+				const cookies = document.cookie.split(';');
+				for (let i = 0; i < cookies.length; i++) {
+					const cookie = cookies[i].trim();
+					// Memeriksa apakah cookie ini cocok dengan nama yang kita cari
+					if (cookie.substring(0, name.length + 1) === name + '=') {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
 		}
 	</script>
 
