@@ -3,6 +3,10 @@
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %} {% block content %} {% include 'navbar.html' with current_page='home' %}
 
+<img src="{% static 'images/garpu.png' %}" class='opacity-20 fixed -right-16 top-60 -z-20 scale-[90%]' />
+<img src="{% static 'images/sendok.png' %}" class='opacity-20 fixed -left-20 top-96 -z-20 scale-[80%]' />
+<img src="{% static 'images/telur.png' %}" class='opacity-20 fixed left-28 top-24 -z-20 scale-[80%]' />
+
 <div class="pt-32 overflow-y-auto flex flex-col h-screen">
 	<div class="w-full flex flex-col items-center">
 		<p class="text-2xl md:text-3xl font-bold text-black pb-5">Bingung mau makan apa???</p>
