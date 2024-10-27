@@ -11,8 +11,10 @@ from discuss_forum.views import (
     delete_forum,
     edit_comment,
     delete_comment,
-    like_comment
+    edit_forum_ajax
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -34,6 +36,6 @@ urlpatterns = [
     path('edit-comment/<uuid:id>/', edit_comment, name='edit_comment'),
     path('delete-comment/<uuid:id>', delete_comment, name='delete_comment'),
     path('comment/<uuid:comment_id>/like/', views.like_comment, name='like_comment'),
-
+    path('edit-forum-ajax/<uuid:id>/', edit_forum_ajax, name='edit_forum_ajax'),
 
 ]

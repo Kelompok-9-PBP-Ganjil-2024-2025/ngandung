@@ -8,7 +8,8 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.http import JsonResponse
-
+import json
+from django.views.decorators.http import require_http_methods
 
 
 # Create your views here.
@@ -203,3 +204,43 @@ def like_comment(request, comment_id):
     else:
         # Redirect ke halaman diskusi yang sama jika bukan AJAX
         return redirect(reverse('discuss_forum:discussion_main', args=[comment.discussion.id]))
+
+@require_http_methods(["POST"])
+@login_required
+def edit_forum_ajax(request, id):
+    # Ambil diskusi berdasarkan id
+    discussion = get_object_or_404(Discussion, pk=id)
+
+    # Periksa apakah pengguna saat ini adalah pemilik diskusi
+    if discussion.user != request.user:
+        return JsonResponse({'error': 'Anda tidak diizinkan untuk mengedit forum ini.'}, status=403)
+
+    # Parse data JSON dari request body
+    try:
+        data = json.loads(request.body)
+        title = data.get('title', '').strip()
+        content = data.get('content', '').strip()
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Data JSON tidak valid.'}, status=400)
+
+    if title and content:
+        # Update diskusi
+        discussion.title = title
+        discussion.content = content
+        discussion.save()
+
+        # Siapkan data untuk dikirim kembali dalam respons
+        discussion_data = {
+            'id': str(discussion.id),
+            'title': discussion.title,
+            'content': discussion.content,
+            'user': {
+                'id': discussion.user.id,
+                'username': discussion.user.username,
+            },
+            'date_created': discussion.date_created.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        return JsonResponse({'discussion': discussion_data}, status=200)
+    else:
+        return JsonResponse({'error': 'Title and content are required.'}, status=400)

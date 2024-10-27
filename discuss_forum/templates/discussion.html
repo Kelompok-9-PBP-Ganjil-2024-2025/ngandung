@@ -282,6 +282,8 @@
 </style>
 
 <div class="main-content">
+
+
     <a href="{% url 'discuss_forum:forum_main' %}" class="back-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ff9900" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
     </a>
@@ -298,18 +300,59 @@
 
         <!-- Tombol Edit dan Delete Hanya untuk Pemilik -->
         {% if user.is_authenticated and user == discussion.user %}
-            <div class="forum-actions">
-                <a href="{% url 'discuss_forum:edit_forum' discussion.id %}">
-                    <button>Edit</button>
-                </a>
-                <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}">
+        <div class="forum-actions">
+            <!-- Tambahkan ID pada tombol Edit -->
+            <button type="button" id="editButton" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Edit</button>
+            <form method="POST" action="{% url 'discuss_forum:delete_forum' discussion.id %}">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
+                    Delete
+                </button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+
+
+    <!-- Modal untuk Edit Diskusi -->
+    <div id="editModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+        <div id="editModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 border-b rounded-t">
+                <h3 class="text-xl font-semibold text-gray-900">
+                Edit Discussion
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeEditModalBtn">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 
+                    011.414 1.414L11.414 10l4.293 4.293a1 1 0 
+                    01-1.414 1.414L10 11.414l-4.293 4.293a1 1 
+                    0 01-1.414-1.414L8.586 10 4.293 
+                    5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="px-6 py-4 space-y-6 form-style">
+                <form id="editForm">
                     {% csrf_token %}
-                    <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus diskusi ini?');">
-                        Delete
-                    </button>
+                    <div class="mb-4">
+                        <label for="editTitle" class="block text-sm font-medium text-gray-700">Title</label>
+                        <input type="text" id="editTitle" name="title" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editContent" class="block text-sm font-medium text-gray-700">Content</label>
+                        <textarea id="editContent" name="content" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" required></textarea>
+                    </div>
                 </form>
             </div>
-        {% endif %}
+            <!-- Modal footer -->
+            <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+                <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelEditButton">Cancel</button>
+                <button type="submit" id="submitEdit" form="editForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+            </div>
+        </div>
     </div>
 
     <!-- Formulir Komentar (Opsional) -->
@@ -392,9 +435,117 @@
 
 <!-- Script untuk animasi loading dan Like Button -->
 <script>
+    // Variabel dan fungsi global
+    let editModal;
+    let editModalContent;
+    let editTitleInput;
+    let editContentInput;
+    let editForm;
+
+    // Fungsi untuk menampilkan modal edit
+    function showEditModal() {
+        // Prefill form dengan data diskusi saat ini
+        editTitleInput.value = "{{ discussion.title|escapejs }}";
+        editContentInput.value = "{{ discussion.content|escapejs }}";
+
+        editModal.classList.remove('hidden');
+        setTimeout(() => {
+            editModalContent.classList.remove('opacity-0', 'scale-95');
+            editModalContent.classList.add('opacity-100', 'scale-100');
+        }, 50);
+    }
+
+    // Fungsi untuk menyembunyikan modal edit
+    function hideEditModal() {
+        editModalContent.classList.remove('opacity-100', 'scale-100');
+        editModalContent.classList.add('opacity-0', 'scale-95');
+
+        setTimeout(() => {
+            editModal.classList.add('hidden');
+        }, 150);
+    }
+
+    // Fungsi untuk mendapatkan CSRF Token dari cookie
+    function getCSRFToken() {
+        let cookieValue = null;
+        const name = 'csrftoken';
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Cek apakah cookie dimulai dengan nama CSRF token
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.main-content').classList.add('loaded');
 
+        // Mendapatkan elemen-elemen yang dibutuhkan
+        editModal = document.getElementById('editModal');
+        editModalContent = document.getElementById('editModalContent');
+        editTitleInput = document.getElementById('editTitle');
+        editContentInput = document.getElementById('editContent');
+        editForm = document.getElementById('editForm');
+
+        // Event listener untuk tombol Edit
+        const editButton = document.getElementById('editButton');
+        if (editButton) {
+            editButton.addEventListener('click', showEditModal);
+        }
+
+        // Event listener untuk tombol close pada modal
+        document.getElementById("cancelEditButton").addEventListener("click", hideEditModal);
+        document.getElementById("closeEditModalBtn").addEventListener("click", hideEditModal);
+
+        // Event listener untuk submit form edit
+        editForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            submitEditForm();
+        });
+
+        // Fungsi untuk mengirim permintaan AJAX untuk mengedit diskusi
+        function submitEditForm() {
+            const url = "{% url 'discuss_forum:edit_forum_ajax' discussion.id %}";
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: editTitleInput.value,
+                    content: editContentInput.value,
+                }),
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || 'Failed to edit discussion');
+                    });
+                }
+            })
+            .then(data => {
+                // Memperbarui konten diskusi di halaman tanpa merefresh
+                document.querySelector('.discussion-header h1').textContent = data.discussion.title;
+                document.querySelector('.discussion-content p').textContent = data.discussion.content;
+
+                hideEditModal();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
+        }
+        // --------------------------------------------------------------------------------------------------------------------------
         // Mendapatkan semua tombol like
         const likeButtons = document.querySelectorAll('.like-button');
 
