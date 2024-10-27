@@ -88,7 +88,7 @@
 			classNameString = 'flex flex-col items-center justify-center h-screen p-8';
 			htmlString = `<p>Belum ada data disini.</p>`;
 		} else {
-			classNameString = 'grid grid-cols-1 md:grid-cols-4 gap-6 justify-center mx-auto px-6';
+			classNameString = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mx-auto px-6';
 			list_makanan.forEach((makanan) => {
 				const name = DOMPurify.sanitize(makanan.fields.name);
 				htmlString += `
