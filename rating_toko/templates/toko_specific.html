@@ -297,7 +297,7 @@
 	</div>
 </div>
 
-<div class="w-full flex flex-col items-center pt-40 justify-center space-y-16 px-[10%]">
+<div class="w-full flex flex-col items-center pt-40 pb-24 justify-center space-y-16 px-[10%]">
 	<div class="flex md:flex-row md:space-x-6 flex-col space-y-12 md:space-y-0 w-fit">
 		<div class="bg-[#111111] w-full md:w-[20rem] h-fit rounded-xl flex flex-col overflow-hidden px-2 py-2 shadow-md text-white border-2 border-[#202020]">
 			<img src="{% static 'images/placeholder_toko.jpg' %}" class="w-full object-cover rounded-lg" />
@@ -387,31 +387,11 @@
 			{% endif %}
 
 			<div class="grid md:grid-cols-2 grid-cols-1 gap-4 w-full" id="list_rating">
-				<!-- Rating items will be rendered here -->
-				<div class="border rounded-xl h-32 flex flex-col space-y-2 items-start shadow-md relative px-3 py-3">
-					<div class="flex flex-row space-x-2 items-center">
-						<div class="w-5 h-5 bg-gray-400 rounded-full flex items-center justify-center overflow-hidden">
-							<i class="ti ti-user-filled text-gray-200"></i>
-						</div>
-						<p class="text-sm font-semibold">Anonymous</p>
-						<div class="border rounded px-1 flex flex-row space-x-1">
-							<i class="ti ti-star-filled text-yellow-400 text-sm"></i>
-							<p class="text-sm font-semibold">5</p>
-						</div>
-					</div>
-					<p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec...</p>
-				</div>
-				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
-				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
-				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
-				<div class="border h-32 rounded-xl flex flex-col space-y-2 items-start shadow-md relative"></div>
 			</div>
+
 		</div>
 	</div>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
+
 </div>
 
 {% endblock content %}
