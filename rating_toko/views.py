@@ -32,6 +32,7 @@ def get_toko(request, id_rumah_makan):
 
 def get_all_ratings_page(request, id_rumah_makan):
     rumah_makan = RumahMakan.objects.get(pk=id_rumah_makan)
+
     context = {
         "id_rumah_makan": id_rumah_makan,
         "nama_rumah_makan": rumah_makan.nama_rumah_makan,
@@ -39,6 +40,7 @@ def get_all_ratings_page(request, id_rumah_makan):
         "kota": rumah_makan.bps_nama_kabupaten_kota,
         "tahun": rumah_makan.tahun,
         "asal_masakan": rumah_makan.masakan_dari_mana,
+        "id_user_session": request.user.id,
     }
 
     return render(request, "toko_specific.html", context)
@@ -78,6 +80,7 @@ def add_rating(request):
     return HttpResponse(b"Rating added successfully", status=201)
 
 
+@login_required(login_url="/login/")
 def edit_rating(request, id_rating, id_rumah_makan):
     rating = Rating.objects.get(pk=id_rating)
     form = RatingForm(request.POST or None, instance=rating)
