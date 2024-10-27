@@ -1,0 +1,177 @@
+.main-content {
+    padding-top: 150px;
+    padding-left: 150px;
+    padding-right: 150px;
+    overflow-y: auto;
+    height: 100vh;
+    /* Updated background with purple and dark blue gradient */
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+}
+
+/* Header section dengan animasi */
+.forum-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.forum-header h1 {
+    color: #9f7aea; /* Updated to purple */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(159, 122, 234, 0.3);
+}
+
+.forum-header h5 {
+    color: #a0aec0;
+    font-size: 1.2rem;
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+/* Container forum dengan grid layout yang lebih modern */
+.forum-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Card forum dengan efek hover dan transisi */
+.forum-card {
+    width: 100%;
+    height: 300px;
+    /* Updated card background with purple tint */
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(159, 122, 234, 0.1);
+}
+
+.forum-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(159, 122, 234, 0.3);
+}
+
+.forum-title {
+    color: #9f7aea; /* Updated to purple */
+    font-size: 1.25rem;
+    margin: 10px 0 5px 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.forum-content {
+    color: #a0aec0;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6;
+}
+
+.forum-username {
+    font-size: 1rem;
+    color: #805ad5; /* Updated to darker purple */
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.forum-username:hover {
+    color: #9f7aea;
+}
+
+.message-icon {
+    width: 24px;
+    height: 24px;
+    fill: #9f7aea;
+    transition: transform 0.3s ease;
+}
+
+/* Button styling */
+.add-forum-button button {
+    background: linear-gradient(45deg, #805ad5, #9f7aea);
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(159, 122, 234, 0.2);
+}
+
+.add-forum-button button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(159, 122, 234, 0.3);
+    background: linear-gradient(45deg, #9f7aea, #805ad5);
+}
+
+.view-discussion-button button {
+    background: linear-gradient(45deg, #805ad5, #9f7aea);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(159, 122, 234, 0.2);
+}
+
+.view-discussion-button button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(159, 122, 234, 0.3);
+    background: linear-gradient(45deg, #9f7aea, #805ad5);
+}
+
+/* No forums message styling */
+.no-forums-message {
+    text-align: center;
+    color: #a0aec0;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    padding: 40px;
+    background: rgba(159, 122, 234, 0.05);
+    border-radius: 15px;
+    border: 1px dashed rgba(159, 122, 234, 0.2);
+    animation: pulseMessage 2s infinite;
+}
+
+@keyframes pulseMessage {
+    0% { background: rgba(159, 122, 234, 0.05); }
+    50% { background: rgba(159, 122, 234, 0.08); }
+    100% { background: rgba(159, 122, 234, 0.05); }
+}
