@@ -26,6 +26,7 @@
             const deleteButtons = document.querySelectorAll('.delete-favorite-btn');
             deleteButtons.forEach(function(button) {
                 button.addEventListener('click', function(event) {
+                    event.stopPropagation();
                     event.preventDefault();
                     selectedDeleteUrl = this.getAttribute('data-url');
                     selectedCardElement = document.getElementById('toko-' + this.getAttribute('data-id'));
@@ -66,6 +67,8 @@
                 selectedCardElement = null;
             }
         });
+
+        
     </script>
     {% endblock meta %}
     {% block content %}
@@ -79,7 +82,8 @@
         <h2>Daftar Toko Favorit Anda</h2>
         <div class="favorit-grid">
             {% for toko in favorit_toko %}
-            <div class="border rounded-lg shadow-md flex flex-col overflow-hidden hover:scale-[102%] transition-all duration-100 bg-white" href='/rating-toko/${toko.pk}' id="toko-{{ toko.id }}">
+            <div class="border rounded-lg shadow-md flex flex-col overflow-hidden hover:scale-[102%] transition-all duration-100 bg-white" href='/detail-rumah-makan/1/' id="toko-{{ toko.id }}"
+                onclick=window.location.replace("{% url 'toko_makanan:detail_makanan' toko.pk %}")>
                 <div class="relative">
                     <img src="{% static 'images/placeholder_toko.jpg' %}" class='w-full'>
                 </div>
