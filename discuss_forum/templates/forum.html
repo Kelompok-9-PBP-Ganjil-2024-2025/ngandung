@@ -359,8 +359,9 @@
 
                     // Tambahkan `hidden` pada pesan "Belum ada data mood pada mental health tracker."
                     const noForumsMessage = document.querySelector('.no-forums-message');
-                    noForumsMessage.classList.add('hidden');
-
+                    if (noForumsMessage) {
+                        noForumsMessage.classList.add('hidden');
+                    }
 					document.getElementById('forumForm').reset();
 					hideModal();
 				})
