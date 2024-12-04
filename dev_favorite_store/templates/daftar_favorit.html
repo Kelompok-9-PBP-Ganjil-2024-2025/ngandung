@@ -81,12 +81,12 @@
     <div class="container daftar-favorit-container">
         <h2>Daftar Toko Favorit Anda</h2>
         <div class="favorit-grid">
-            {% for toko in favorit_toko %}
+            {% for toko in favorit_toko %}+
             <div class="border rounded-lg shadow-md flex flex-col overflow-hidden hover:scale-[102%] transition-all duration-100 bg-white" href='/detail-rumah-makan/1/' id="toko-{{ toko.id }}"
-                onclick=window.location.replace("{% url 'toko_makanan:detail_makanan' toko.pk %}")>
+                onclick=window.location.replace("{% url 'toko_makanan:detail_rumah_makan' toko.pk %}")>
                 <div class="relative">
                     <img src="{% static 'images/placeholder_toko.jpg' %}" class='w-full'>
-                </div>
+                </div> 
                 <div class='w-full px-4 py-3 flex flex-col'>
                     <p class="text-[#ff9900] font-bold text-lg">{{toko.nama_rumah_makan}}</p>
                     <p class="text-sm">{{toko.alamat}}</p>
