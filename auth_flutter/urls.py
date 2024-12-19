@@ -1,7 +1,7 @@
 from django.urls import path
-from authentication.views import login_user
-from authentication.views import register
-from authentication.views import logout_user
+from auth_flutter.views import login_user
+from auth_flutter.views import register
+from auth_flutter.views import logout_user
 
 app_name = "auth_flutter"
 
