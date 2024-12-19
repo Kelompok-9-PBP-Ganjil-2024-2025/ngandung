@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-e7hd=)--b7p14nrvnmhlymls$#8#1xa6u!c_@9)=4$us7b-(0l
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "daffa-abhipraya-ngandung.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "daffa-abhipraya-ngandung.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 
 # Application definition
@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "dev_favorite_store",
     "main",
     "authentication",
     "toko_makanan",
     "rating_toko",
     "discuss_forum",
     "livereload",
+    "poll",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -58,9 +61,19 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "ngandung.urls"
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+
 
 TEMPLATES = [
     {

@@ -16,14 +16,12 @@ class RumahMakanMakananTests(TestCase):
             longitude=106.84513,
             tahun=2020,
             masakan_dari_mana="Jawa",
-            makanan_berat_ringan="Berat"
+            makanan_berat_ringan="Berat",
         )
-        
+
         # Setup makanan
         self.makanan = Makanan.objects.create(
-            name="Nasi Kimpul",
-            price=10000,
-            rumah_makan=self.rumah_makan
+            name="Nasi Kimpul", price=10000, rumah_makan=self.rumah_makan
         )
         self.client = Client()
 
@@ -32,40 +30,49 @@ class RumahMakanMakananTests(TestCase):
         self.assertEqual(self.rumah_makan.nama_provinsi, "DKI Jakarta")
 
     def test_show_main_view(self):
-        response = self.client.get(reverse('toko_makanan:show_main'))
+        response = self.client.get(reverse("toko_makanan:show_main"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'mainPage/index.html')
+        self.assertTemplateUsed(response, "mainPage/index.html")
         self.assertContains(response, self.rumah_makan.nama_rumah_makan)
-    
+
     def test_rumah_makan_by_id_exist(self):
-        response = Client().get(reverse('toko_makanan:detail_rumah_makan', args=[self.rumah_makan.pk]))
+        response = Client().get(
+            reverse("toko_makanan:detail_rumah_makan", args=[self.rumah_makan.pk])
+        )
         self.assertEqual(response.status_code, 200)
-    
+
     def test_edit_rumah_makan_by_id_without_login(self):
-        response = Client().get(reverse('toko_makanan:edit_toko', args=[self.rumah_makan.pk]))
+        response = Client().get(
+            reverse("toko_makanan:edit_toko", args=[self.rumah_makan.pk])
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_delete_rumah_makan_by_id_without_login(self):
-        response = Client().get(reverse('toko_makanan:delete_toko', args=[self.rumah_makan.pk]))
+        response = Client().get(
+            reverse("toko_makanan:delete_toko", args=[self.rumah_makan.pk])
+        )
         self.assertEqual(response.status_code, 302)
-    
+
     def test_makanan_creation(self):
         self.assertEqual(self.makanan.name, "Nasi Kimpul")
         self.assertEqual(self.makanan.price, 10000)
         self.assertEqual(self.makanan.rumah_makan, self.rumah_makan)
-    
+
     def test_add_makanan_without_login(self):
-        response = self.client.post(reverse('toko_makanan:add_makanan'), {
-            'name': 'Bakso',
-            'price': 12000,
-            'toko_id': self.rumah_makan.id
-        })
+        response = self.client.post(
+            reverse("toko_makanan:add_makanan"),
+            {"name": "Bakso", "price": 12000, "toko_id": self.rumah_makan.id},
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_edit_makanan_by_id_exist_without_login(self):
-        response = Client().get(reverse('toko_makanan:edit_makanan', args=[self.makanan.pk]))
+        response = Client().get(
+            reverse("toko_makanan:edit_makanan", args=[self.makanan.pk])
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_delete_makanan_by_id_exist_without_login(self):
-        response = Client().get(reverse('toko_makanan:delete_makanan', args=[self.makanan.pk]))
+        response = Client().get(
+            reverse("toko_makanan:delete_makanan", args=[self.makanan.pk])
+        )
         self.assertEqual(response.status_code, 302)
