@@ -111,3 +111,32 @@ def detail_rumah_makan(req, id):
 def makanan_json(req):
     data = Makanan.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+#*=========================================================================================================================================
+def rumahmakan_detail_json(req, id):
+    makanan = get_object_or_404(Makanan, pk=id)
+    rumah_makan = makanan.rumah_makan
+    list_makanan = rumah_makan.makanan.all()
+    price_range = list_makanan.aggregate(min_price=Min('price'), max_price=Max('price'))
+    gmap_url = f"https://maps.google.com/?q={rumah_makan.latitude},{rumah_makan.longitude}"
+    data = {
+        'rumah_makan': {
+            'id': rumah_makan.id,
+            'nama_rumah_makan': rumah_makan.nama_rumah_makan,
+            'alamat': rumah_makan.alamat,
+            'latitude': str(rumah_makan.latitude),  # Convert DecimalField to string
+            'longitude': str(rumah_makan.longitude),
+            'kode_provinsi': rumah_makan.kode_provinsi,
+            'nama_provinsi': rumah_makan.nama_provinsi,
+            'bps_kode_kabupaten_kota': rumah_makan.bps_kode_kabupaten_kota,
+            'bps_nama_kabupaten_kota': rumah_makan.bps_nama_kabupaten_kota,
+            'masakan_dari_mana': rumah_makan.masakan_dari_mana,
+            'makanan_berat_ringan': rumah_makan.makanan_berat_ringan,
+        },
+        'list_makanan': [
+            {'id': m.id, 'name': m.name, 'price': m.price} for m in list_makanan
+        ],
+        'min_price': price_range['min_price'],
+        'max_price': price_range['max_price'],
+        'gmap_url': gmap_url,
+    }
+    return JsonResponse(data)

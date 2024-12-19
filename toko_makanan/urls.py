@@ -13,4 +13,5 @@ urlpatterns = [
     path('detail-rumah-makan/<int:id>/', detail_rumah_makan, name='detail_rumah_makan'),
     path('delete-makanan/<int:id>/', delete_makanan, name='delete_makanan'),
     path('makanan-json/', makanan_json, name='makanan_json'),
+    path('detail-json/<int:id>/', rumahmakan_detail_json, name='rumahmakan_detail_json'),
 ]
