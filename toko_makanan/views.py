@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
@@ -236,3 +237,65 @@ def get_detail_rumahmakan(req, id):
         'makanan_berat_ringan' : rumah_makan.makanan_berat_ringan,
     }
     return JsonResponse(data)
+#*=========================================================================================================================================
+def edit_makanan_flutter(req, id):
+    try :
+        makanan = Makanan.objects.get(pk=id)
+        
+        # Ambil data JSON dari request body
+        data = json.loads(req.body.decode('utf-8'))
+        nama = data.get("name", makanan.name)
+        harga = data.get("price", makanan.price)
+        rumah_makan_id = data.get("rumah_makan", makanan.rumah_makan.id if makanan.rumah_makan else None)
+        
+        makanan.name = nama
+        makanan.price = harga
+        if rumah_makan_id:
+            rumah_makan = get_object_or_404(RumahMakan, id=rumah_makan_id)
+            makanan.rumah_makan = rumah_makan
+            
+        makanan.save()
+        
+        return JsonResponse({"success": True, "message": "Makanan berhasil diperbarui"}, status=200)
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
+#*=========================================================================================================================================
+def edit_rumah_makan_flutter(req, id):
+    try:
+        rumah_makan = RumahMakan.objects.get(pk=id)
+
+        # Ambil data JSON dari request body
+        data = json.loads(req.body.decode('utf-8'))
+        rumah_makan.kode_provinsi = data.get("kode_provinsi", rumah_makan.kode_provinsi)
+        rumah_makan.nama_provinsi = data.get("nama_provinsi", rumah_makan.nama_provinsi)
+        rumah_makan.bps_kode_kabupaten_kota = data.get("bps_kode", rumah_makan.bps_kode_kabupaten_kota)
+        rumah_makan.bps_nama_kabupaten_kota = data.get("bps_nama", rumah_makan.bps_nama_kabupaten_kota)
+        rumah_makan.nama_rumah_makan = data.get("nama_rumah_makan", rumah_makan.nama_rumah_makan)
+        rumah_makan.alamat = data.get("alamat", rumah_makan.alamat)
+        rumah_makan.latitude = data.get("latitude", rumah_makan.latitude)
+        rumah_makan.longitude = data.get("longitude", rumah_makan.longitude)
+        rumah_makan.tahun = data.get("tahun", rumah_makan.tahun)
+        rumah_makan.masakan_dari_mana = data.get("masakan_dari", rumah_makan.masakan_dari_mana)
+        rumah_makan.makanan_berat_ringan = data.get("jenis_makanan", rumah_makan.makanan_berat_ringan)
+
+        rumah_makan.save()
+
+        return JsonResponse({"success": True, "message": "Rumah makan berhasil diperbarui"}, status=200)
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
+#*=========================================================================================================================================
+def delete_makanan_flutter(req, id):
+    try :
+        makanan = Makanan.objects.get(pk=id)
+        makanan.delete()
+        return JsonResponse({"success": True, "message": "data makanan berhasil dihapus"}, status=200)
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
+#*=========================================================================================================================================
+def delete_rumahmakan_flutter(req, id):
+    try :
+        rumahmakan = RumahMakan.objects.get(pk=id)
+        rumahmakan.delete()
+        return JsonResponse({"success": True, "message": "rumah makan berhasil dihapus"}, status=200)
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
