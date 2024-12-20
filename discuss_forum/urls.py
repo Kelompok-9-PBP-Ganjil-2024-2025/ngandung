@@ -1,5 +1,8 @@
 from django.urls import path
 from discuss_forum.views import (
+    api_create_forum,
+    api_forum_by_id,
+    api_forum_main,
     forum_main, 
     add_forum_topic_ajax, 
     create_discussion_forum, 
@@ -40,4 +43,8 @@ urlpatterns = [
     path('edit-forum-ajax/<uuid:id>/', edit_forum_ajax, name='edit_forum_ajax'),
 
     path('edit-comment-ajax/<uuid:id>/', edit_comment_ajax, name='edit_comment_ajax'),
+
+    path('api/forum', api_forum_main, name='api_forum_main'),
+    path('api/<str:id>/', api_forum_by_id, name='api_forum_by_id'),
+    path('api/create_forum/', api_create_forum, name='api_create_forum'),
 ]
