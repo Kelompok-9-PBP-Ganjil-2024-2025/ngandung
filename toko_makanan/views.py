@@ -161,5 +161,10 @@ def rumahmakan_detail_json(req, id):
     }
     return JsonResponse(data)
 #*=========================================================================================================================================
+def get_list_rumahmakan(req):
+    rumah_makan = RumahMakan.objects.all()
+    data = [{"id": rm.id, "nama": rm.nama_rumah_makan} for rm in rumah_makan]
+    return JsonResponse(data, safe=False)
+#*=========================================================================================================================================
 def add_rumahmakan_flutter(req):
     pass
