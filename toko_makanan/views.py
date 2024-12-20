@@ -55,20 +55,40 @@ def add_makanan_ajax(req):
         name = strip_tags(req.POST.get("name"))
         price = req.POST.get("price")
         toko_id = req.POST.get('toko_id')
+        
+        # Validasi input kosong
+        if not name or not price or not toko_id:
+            return JsonResponse({"error": "Semua field harus diisi."}, status=400)
 
+        # Validasi angka untuk price
+        try:
+            price = int(price)
+        except ValueError:
+            return JsonResponse({"error": "Harga harus berupa angka."}, status=400)
+
+        # Validasi toko (RumahMakan)
         try:
             toko = RumahMakan.objects.get(id=toko_id)
         except RumahMakan.DoesNotExist:
             return JsonResponse({"error": "Rumah Makan tidak ditemukan"}, status=400)
 
-        new_product = Makanan(
+        new_makanan = Makanan(
             name=name,
             price=price,
             rumah_makan=toko, 
         )
-        new_product.save()
+        new_makanan.save()
 
-        return JsonResponse({"message": "Makanan berhasil ditambahkan"}, status=201)
+        return JsonResponse(
+            {
+                "message": "Makanan berhasil ditambahkan",
+                "data" : {
+                    "id": new_makanan.id,
+                    "name": new_makanan.name,
+                    "price": new_makanan.price,
+                    "rumah_makan": toko.name,
+                }
+            }, status=201)
 
     except Exception as e:
         # Menangani error tak terduga
@@ -140,3 +160,6 @@ def rumahmakan_detail_json(req, id):
         'gmap_url': gmap_url,
     }
     return JsonResponse(data)
+#*=========================================================================================================================================
+def add_rumahmakan_flutter(req):
+    pass
