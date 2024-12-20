@@ -166,5 +166,44 @@ def get_list_rumahmakan(req):
     data = [{"id": rm.id, "nama": rm.nama_rumah_makan} for rm in rumah_makan]
     return JsonResponse(data, safe=False)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
+@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
+@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
 def add_rumahmakan_flutter(req):
-    pass
+    try :
+        kode_prov = strip_tags(req.POST.get("kode_provinsi"))
+        nama_prov = strip_tags(req.POST.get("nama_provinsi"))
+        bps_kode = strip_tags(req.POST.get("bps_kode_kabupaten_kota"))
+        bps_nama = strip_tags(req.POST.get("bps_nama_kabupaten_kota"))
+        rumah_makan_name = strip_tags(req.POST.get("nama_rumah_makan"))
+        address = strip_tags(req.POST.get("alamat"))
+        lat = strip_tags(req.POST.get("latitude"))
+        lon = strip_tags(req.POST.get("longitude"))
+        year = strip_tags(req.POST.get("tahun"))
+        masakan_dari = strip_tags(req.POST.get("masakan_dari_mana"))
+        jenis_makanan = strip_tags(req.POST.get("makanan_berat_ringan"))
+        
+        if not all([kode_prov, nama_prov, bps_kode, bps_nama, rumah_makan_name, address, lat, lon, year, masakan_dari, jenis_makanan]):
+            return JsonResponse({"error": "Semua field harus diisi."}, status=400)
+        
+        new_rumahmakan = RumahMakan(
+            kode_provinsi=kode_prov,
+            nama_provinsi=nama_prov,
+            bps_kode_kabupaten_kota=bps_kode,
+            bps_nama_kabupaten_kota=bps_nama,
+            nama_rumah_makan=rumah_makan_name,
+            alamat=address,
+            latitude=lat,
+            longitude=lon,
+            tahun=year, 
+            masakan_dari_mana=masakan_dari,
+            makanan_berat_ringan=jenis_makanan
+        )
+        new_rumahmakan.save()
+        
+        return JsonResponse(
+            {"message": "Makanan berhasil ditambahkan"}, status=201)
+        
+    except Exception as e:
+        # Menangani error tak terduga
+        return JsonResponse({"error": str(e)}, status=500)
