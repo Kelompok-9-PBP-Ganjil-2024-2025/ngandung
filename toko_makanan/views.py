@@ -207,3 +207,32 @@ def add_rumahmakan_flutter(req):
     except Exception as e:
         # Menangani error tak terduga
         return JsonResponse({"error": str(e)}, status=500)
+#*=========================================================================================================================================
+def get_detail_makanan(req, id):
+    makanan = Makanan.objects.get(pk=id)
+    name = makanan.name
+    price = makanan.price
+    rumah_makan = makanan.rumah_makan
+    data = {
+        'name' : name,
+        'price': price,
+        'rumah_makan': rumah_makan,
+    }
+    return JsonResponse(data)
+#*=========================================================================================================================================
+def get_detail_rumahmakan(req, id):
+    rumah_makan = RumahMakan.objects.get(pk=id)
+    data = {
+        'kode_provinsi' : rumah_makan.kode_provinsi,
+        'nama_provinsi' : rumah_makan.nama_provinsi,
+        'bps_kode_kabupaten_kota' : rumah_makan.bps_kode_kabupaten_kota,
+        'bps_nama_kabupaten_kota' : rumah_makan.bps_nama_kabupaten_kota,
+        'nama_rumah_makan' : rumah_makan.nama_rumah_makan,
+        'alamat' : rumah_makan.alamat,
+        'latitude' : rumah_makan.latitude,
+        'longitude' : rumah_makan.longitude,
+        'tahun' : rumah_makan.tahun, 
+        'masakan_dari_mana' : rumah_makan.masakan_dari_mana,
+        'makanan_berat_ringan' : rumah_makan.makanan_berat_ringan,
+    }
+    return JsonResponse(data)
