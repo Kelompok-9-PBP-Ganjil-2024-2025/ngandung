@@ -15,7 +15,9 @@ def login_user(request):
             auth_login(request, user)
             # Status login sukses.
             return JsonResponse({
+                "id": user.id,
                 "username": user.username,
+                "is_superuser": user.is_superuser,
                 "status": True,
                 "message": "Login sukses!"
                 # Tambahkan data lainnya jika ingin mengirim data ke Flutter.
