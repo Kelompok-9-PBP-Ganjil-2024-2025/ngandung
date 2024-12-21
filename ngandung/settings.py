@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "discuss_forum",
     "livereload",
     "poll",
+    "auth_flutter",
     "corsheaders",
 ]
 

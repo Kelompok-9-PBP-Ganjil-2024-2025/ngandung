@@ -1,11 +1,28 @@
-from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth import logout as auth_logout
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-import json
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
-@csrf_exempt
+# Create your views here.
+
+def register(request):
+    # Return to the "/" if the user is already authenticated
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('authentication:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+
 def login_user(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -37,54 +54,20 @@ def login_user(request):
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        username = data['username']
-        password1 = data['password1']
-        password2 = data['password2']
-
-        # Check if the passwords match
-        if password1 != password2:
-            return JsonResponse({
-                "status": False,
-                "message": "Passwords do not match."
-            }, status=400)
-        
-        # Check if the username is already taken
-        if User.objects.filter(username=username).exists():
-            return JsonResponse({
-                "status": False,
-                "message": "Username already exists."
-            }, status=400)
-        
-        # Create the new user
-        user = User.objects.create_user(username=username, password=password1)
-        user.save()
-        
-        return JsonResponse({
-            "username": user.username,
-            "status": 'success',
-            "message": "User created successfully!"
-        }, status=200)
-    
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('/')
+        else:
+            # Opsional: Tambahkan pesan menggunakan messages framework
+            messages.error(request, 'Username atau password salah.')
     else:
-        return JsonResponse({
-            "status": False,
-            "message": "Invalid request method."
-        }, status=400)
+        form = AuthenticationForm(request)
     
-@csrf_exempt
-def logout_user(request):
-    username = request.user.username
+    context = {'form': form}
+    return render(request, 'login.html', context)
 
-    try:
-        auth_logout(request)
-        return JsonResponse({
-            "username": username,
-            "status": True,
-            "message": "Logout berhasil!"
-        }, status=200)
-    except:
-        return JsonResponse({
-        "status": False,
-        "message": "Logout gagal."
-        }, status=401)
+def logout_user(request):
+    logout(request)
+    return redirect('authentication:login')
