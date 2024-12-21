@@ -2,89 +2,129 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import PollForm, VoteForm, ChoiceFormSet
 from .models import Choice, Poll, Vote
+from django.db.models import Case, When, IntegerField
 from django.http import JsonResponse
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.core import serializers
+import json
 
-# Create your views here.
-@login_required(login_url='/login')
-def home(request):
-    my_polls = Poll.objects.filter(author=request.user)
-    other_polls = Poll.objects.exclude(author=request.user)
-    votes = Vote.objects.filter(user=request.user)
-    votes = [vote.poll_id for vote in votes]
-    return render(request, 'poll_list.html', {'my_polls': my_polls, 'other_polls': other_polls, 'votes': votes})
+@csrf_exempt
+@login_required
+def polls(request):
+    data = Poll.objects.select_related('author').all()
+    serialized_data = [
+        {
+            "id": poll.id,
+            "author": poll.author.username,
+            "question": poll.question,
+            "is_active": poll.is_active,
+            "view_results": poll.author == request.user or not poll.is_active or Vote.objects.filter(poll=poll, user=request.user).exists()
+        }
+        for poll in data
+    ]
+    return JsonResponse(serialized_data, safe=False)
 
-@login_required(login_url='/login')
-def pollsjson(request):
-    polls = Poll.objects.all()
-    return JsonResponse(list(polls.values()), safe=False)
-
-@login_required(login_url='/login')
+@csrf_exempt
+@login_required 
 def create(request):
     if request.method == 'POST':
-        poll_form = PollForm(request.POST)
-        formset = ChoiceFormSet(request.POST)
-        if poll_form.is_valid() and formset.is_valid():
-            poll = poll_form.save(commit=False)
-            poll.author = request.user
-            poll.save()
-            
-            for form in formset:
-                choice = form.save(commit=False)
-                choice.poll = poll
-                choice.save()
-            return redirect('poll:home')  # Redirect to a poll list or success page
-    else:
-        poll_form = PollForm()
-        formset = ChoiceFormSet()
+        try:
+            data = json.loads(request.body)
 
-    return render(request, 'poll_form.html', {
-        'poll_form': poll_form,
-        'formset': formset,
-    })
-    
-@login_required(login_url='/login')
+            # Extract poll data
+            question = data.get('question', '')
+            is_active = data.get('is_active', 'true').lower() == 'true'
+            choices = data.get('choices', [])
+
+            # Validate poll data
+            if not question or not choices:
+                return JsonResponse({'error': 'Invalid data: Missing question or choices'}, status=400)
+
+            # Create the poll
+            poll = Poll.objects.create(
+                question=question,
+                is_active=is_active,
+                author=request.user  # Use the authenticated user
+            )
+
+            # Create choices
+            for choice_data in choices:
+                choice_text = choice_data.get('choice_text', '')
+                if choice_text:
+                    Choice.objects.create(poll=poll, choice_text=choice_text)
+
+            return JsonResponse({'message': 'Poll created successfully!', 'status': 200}, status=200)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON format'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': f'An error occurred: {str(e)}'}, status=500)
+    else:
+        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+
+@csrf_exempt
+@login_required
 def update(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id)
-    form = PollForm(request.POST or None, instance=poll)
-    if poll.author != request.user:
-        return redirect('poll:home')
-    if form.is_valid() and request.method == "POST":
-        form.save()
-        return HttpResponseRedirect(reverse('poll:home'))
-    else:
-        form = PollForm(instance=poll)
-        return render(request, 'poll_update_form.html', {'poll_form': form})
+    try:
+        poll = Poll.objects.get(pk=poll_id)
+        poll.is_active = not poll.is_active  # Toggle the is_active field
+        poll.save()
+
+        return JsonResponse({'status': 'success'})
+    except Poll.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Poll not found'})
 
 
-@login_required(login_url='/login')
+@csrf_exempt
+@login_required
 def vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     vote = Vote.objects.filter(poll=poll, user=request.user).first()
-    if vote or poll.author == request.user or not poll.is_active:
-        return redirect('poll:results', poll_id=poll_id)
+    if vote:
+        return JsonResponse({'status': 'error', 'message': 'You have already voted.'}, status=400)
+    if poll.author == request.user:
+        return JsonResponse({'status': 'error', 'message': 'Poll author cannot vote.'}, status=400)
+    if not poll.is_active:
+        return JsonResponse({'status': 'error', 'message': 'Poll is not active.'}, status=400)
+
     if request.method == 'POST':
-        form = VoteForm(request.POST, poll=poll)
-        if form.is_valid():
-            choice = form.cleaned_data['choice']
+        try:
+            data = json.loads(request.body)
+            choice_id = data.get('choice')
+            if not choice_id:
+                return JsonResponse({'status': 'error', 'message': 'Choice is required.'}, status=400)
+
+            choice = get_object_or_404(Choice, pk=choice_id, poll=poll)
             choice.vote_count += 1
             choice.save()
             Vote.objects.create(poll=poll, choice=choice, user=request.user)
-            return redirect('poll:home')
-    else:
-        form = VoteForm(poll=poll)
+
+            return JsonResponse({'status': 'success', 'message': 'Vote recorded successfully.'})
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data.'}, status=400)
+    elif request.method == 'GET':
+        # Corrected 'text' to 'choice_text' based on the model field name.
+        choices = list(poll.choices.values('id', 'choice_text', 'vote_count'))
+        return JsonResponse({'poll': poll.question, 'choices': choices, 'status': 'success'})
     
-    return render(request, 'vote_form.html', {'form': form, 'poll': poll})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
 
-@login_required(login_url='/login')
+@csrf_exempt
+@login_required
 def delete(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id)
-    if request.user == poll.author:
-        poll.delete()
-    return redirect('poll:home')
+    if request.method == "POST":  # Ensure the request method is POST
+        poll = get_object_or_404(Poll, pk=poll_id)
+        if request.user.is_superuser or request.user == poll.author:
+            poll.delete()
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'You are not authorized to delete this poll'}, status=403)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)   
 
-@login_required(login_url='/login')
+@csrf_exempt
+@login_required
 def ajax_poll_results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     choices = Choice.objects.filter(poll=poll)
@@ -95,6 +135,7 @@ def ajax_poll_results(request, poll_id):
 
     choices_data = [{'choice_text': choice.choice_text, 'vote_count': choice.vote_count} for choice in choices]
     data = {
+        'status': 'success',
         'author': poll.author.username,
         'poll': poll.question,
         'choices': choices_data
