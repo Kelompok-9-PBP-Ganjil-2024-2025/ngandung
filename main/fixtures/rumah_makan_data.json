@@ -1,0 +1,1702 @@
+[
+  {
+    "model": "main.rumahmakan",
+    "pk": 1,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BREW & CHEW",
+      "alamat": "JL. SUKABUMI NO.53",
+      "latitude": "-6.915369756",
+      "longitude": "107.6342868",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 2,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CAFE BALI",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.211-215",
+      "latitude": "-6.913448026",
+      "longitude": "107.6294417",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 3,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ANJIS COFFEE",
+      "alamat": "JL. BENGAWAN NO. 34",
+      "latitude": "-6.90892008",
+      "longitude": "107.6277107",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 4,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "HEADKLIN BARBER & COFFEE HOUSE",
+      "alamat": "JL. CIANJUR NO.12A",
+      "latitude": "-6.915895331",
+      "longitude": "107.632708",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 5,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "GARDEN COFFEE BDG",
+      "alamat": "JL. BENGAWAN NO.7A",
+      "latitude": "-6.912786983",
+      "longitude": "107.6326828",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 6,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BERASA CAFE",
+      "alamat": "JL JENDERAL AHMAD YANI NO.245",
+      "latitude": "-6.915114181",
+      "longitude": "107.6303387",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 7,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "LULA BAKERY & COFFEE",
+      "alamat": "JL. CITARUM NO.12",
+      "latitude": "-6.904739124",
+      "longitude": "107.6229333",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 8,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "JARDIN CAFE",
+      "alamat": "JL. CIMANUK NO.1A",
+      "latitude": "-6.905221933",
+      "longitude": "107.6201226",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 9,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "4EAT CAFE",
+      "alamat": "JL. PROGO NO.13A",
+      "latitude": "-6.904283524",
+      "longitude": "107.618396",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 10,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ROGER'S CAFE & LOUNGE",
+      "alamat": "JL . IR. H JUANDA NO.97",
+      "latitude": "-6.894450462",
+      "longitude": "107.6125616",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 11,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "PLEASE PLEASE PLEASE CAFE AND RESTO",
+      "alamat": "JL. PROGO NO.37",
+      "latitude": "-6.90404172",
+      "longitude": "107.6199855",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 12,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "HONGER CAFE",
+      "alamat": "JL. LOMBOK NO.47",
+      "latitude": "-6.906616773",
+      "longitude": "107.619895",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 13,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "LOY CAFE",
+      "alamat": "JL. BANDA NO.31",
+      "latitude": "-6.903945671",
+      "longitude": "107.6165275",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 14,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "FAREL PATISSERIE CAFE",
+      "alamat": "JL. BANDA NO.30",
+      "latitude": "-6.906669378",
+      "longitude": "107.6173154",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 15,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "KAHVE",
+      "alamat": "JL AMBON NO.14",
+      "latitude": "-6.907327239",
+      "longitude": "107.6186486",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 16,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "TAEUN COFFEE & WORKS",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.50",
+      "latitude": "-6.906001621",
+      "longitude": "107.6182124",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 17,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "2 GRAMS COFFEE AND MEALS",
+      "alamat": "JL. AMBON NO.16",
+      "latitude": "-6.907153273",
+      "longitude": "107.6188492",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 18,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "GIGGLEBOX CAFE AND RESTO",
+      "alamat": "JL. PROGO NO.33A",
+      "latitude": "-6.904264335",
+      "longitude": "107.6195944",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 19,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "KAKA CAFE",
+      "alamat": "JL. SURTAN TIRTAYASA NO.49",
+      "latitude": "-6.904790931",
+      "longitude": "107.6160763",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 20,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "PARIS VAN JAVA CAFE & RESTO SPECIALITY COFFEE",
+      "alamat": "JL. AMBON NO. 11",
+      "latitude": "-6.907228575",
+      "longitude": "107.6162975",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 21,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CHAPLIN'S CAFE BAR AND SHISA",
+      "alamat": "JL. DIPONEGORO N.26",
+      "latitude": "-6.90117062",
+      "longitude": "107.6214963",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 22,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "HERITAGE CAFE",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.61",
+      "latitude": "-6.905754678",
+      "longitude": "107.6164486",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 23,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "FOURPLAY CAFE & RESTO & BAR",
+      "alamat": "JL. CILAKI NO.65",
+      "latitude": "-6.903462571",
+      "longitude": "107.6220932",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 24,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BELLAMIE BOULANGERIE",
+      "alamat": "JL. CIHAPIT NO.35",
+      "latitude": "-6.906553475",
+      "longitude": "107.6236879",
+      "tahun": 2020,
+      "masakan_dari_mana": "dalam negeri",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 25,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SYDWIC",
+      "alamat": "JL. CILAKI NO.63",
+      "latitude": "-6.90355203",
+      "longitude": "107.6222235",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 26,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "THE PANASDALAM",
+      "alamat": "JL. AMBON NO.8A",
+      "latitude": "-6.907152426",
+      "longitude": "107.6181651",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 27,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "PAPATONG CAFETERIA",
+      "alamat": "JL. TAMAN CITARUM NO.15",
+      "latitude": "-6.903999922",
+      "longitude": "107.6212521",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 28,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BOBER CAFE",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.123",
+      "latitude": "-6.906975483",
+      "longitude": "107.6233981",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 29,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BUTTERCUP BOULANGERIE",
+      "alamat": "JL. IR. H. JUANDA NO.46",
+      "latitude": "-6.901082574",
+      "longitude": "107.6122701",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 30,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SEJIWA COFFEE",
+      "alamat": "JL. PROGO NO.15",
+      "latitude": "-6.904124122",
+      "longitude": "107.6186235",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 31,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "HUMMINGBIRD EATERY BANDUNG",
+      "alamat": "JL. PROGO NO.14",
+      "latitude": "-6.90473488",
+      "longitude": "107.6182882",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 32,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ROAD CAFE",
+      "alamat": "JL.CILAKI NO.41",
+      "latitude": "-6.903746324",
+      "longitude": "107.6239284",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 33,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SONOMA CAFE (SONOMA GOLD)",
+      "alamat": "JL. LOMBOK NO.29",
+      "latitude": "-6.908825781",
+      "longitude": "107.6186653",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 34,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "EVERJOY COFEEE & CAFE - IVORY HOTEL BANDUNG",
+      "alamat": "JL. BAHUREKSA NO.3",
+      "latitude": "-6.904795576",
+      "longitude": "107.6139074",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 35,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CAFE CISANGKUY",
+      "alamat": "JL. CISANGKUY NO. 68-56",
+      "latitude": "-6.901649078",
+      "longitude": "107.6212228",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 36,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BUIH KOPI",
+      "alamat": "JL. TRUNOJOYO NO. 40",
+      "latitude": "-6.902371032",
+      "longitude": "107.6142582",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 37,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "GERM CAFE",
+      "alamat": "JL. CILAKI NO.43",
+      "latitude": "-6.904759322",
+      "longitude": "107.6266993",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 38,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "DENNY'S COFFEE & TEA",
+      "alamat": "JL. TAMAN CIHAPIT NO.21A",
+      "latitude": "-6.907663881",
+      "longitude": "107.6218926",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 39,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "EATERS.COM CAFE",
+      "alamat": "JL. BENGAWAN NO. 82",
+      "latitude": "-6.90597098",
+      "longitude": "107.6269705",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 40,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "HOUSE OF TJIHAPIT",
+      "alamat": "JL. CIHAPIT NO.27",
+      "latitude": "-6.907706877",
+      "longitude": "107.6223458",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 41,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "TREA CAFE",
+      "alamat": "JL. TIKUKUR NO.36",
+      "latitude": "-6.897331423",
+      "longitude": "107.6224661",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 42,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "PIETRO COFFEE",
+      "alamat": "JL. TRUNOJOYO NO.11",
+      "latitude": "-6.904638773",
+      "longitude": "107.6132894",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 43,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "INFINITO CULINARY X DISCONNECT",
+      "alamat": "JL. H. WASID NO.11",
+      "latitude": "-6.89734233",
+      "longitude": "107.6157967",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 44,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "FIFTEEN CAFE",
+      "alamat": "JL. SUMATERA NO.15",
+      "latitude": "-6.916474777",
+      "longitude": "107.6133732",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 45,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "LE BISTROT CAFE",
+      "alamat": "JL. MERDEKA NO. 43",
+      "latitude": "-6.907623783",
+      "longitude": "107.609025",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 46,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SEMENTARA COFFEE",
+      "alamat": "JL. KEBON SIRIH NO.8",
+      "latitude": "-6.912305139",
+      "longitude": "107.6055472",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 47,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "EQUATOR COFFEE AND GALLERY",
+      "alamat": "JL. SULANJANA NO.32",
+      "latitude": "-6.898965968",
+      "longitude": "107.6104895",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 48,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "MYLOC COFFEE & CAFE",
+      "alamat": "JL. BRAGA NO.111",
+      "latitude": "-6.916380331",
+      "longitude": "107.6089728",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 49,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "THE SHADOWS CAFE",
+      "alamat": "JL. LINGGAWASTU NO. 11",
+      "latitude": "-6.902674621",
+      "longitude": "107.6053012",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 50,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "RUMPOET MUSIC & CAFE",
+      "alamat": "JL. BRAGA NO. 80",
+      "latitude": "-6.91635953",
+      "longitude": "107.6092504",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 51,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "PAKARANGAN CAFE",
+      "alamat": "JL. TERA NO28",
+      "latitude": "-6.915509627",
+      "longitude": "107.6124697",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 52,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "NINETIES CAFE",
+      "alamat": "JL. TEUKU UMAR NO.33A/60",
+      "latitude": "-6.891759617",
+      "longitude": "107.6171253",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 53,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SINIYU CAFE",
+      "alamat": "JL. SOKA NO. 28",
+      "latitude": "-6.91578358",
+      "longitude": "107.6278186",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 54,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CAFE BELIMBING",
+      "alamat": "JL. BELIMBING NO. 10",
+      "latitude": "-6.91133433",
+      "longitude": "107.6306058",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 55,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "MUCHO COFFEE CAFE & RESTO",
+      "alamat": "JL. ANGGREK NO. 42",
+      "latitude": "-6.912000727",
+      "longitude": "107.6293433",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 56,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CHINOOK CAFE AND RESTO",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.191",
+      "latitude": "-6.911270892",
+      "longitude": "107.6280181",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 57,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CHINGU CAFE",
+      "alamat": "JL. SAWUNGGALING NO.10",
+      "latitude": "-6.900925869",
+      "longitude": "107.6099907",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 58,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ZIE CAFE",
+      "alamat": "JL. VAN DEVENTER NO.14",
+      "latitude": "-6.916743731",
+      "longitude": "107.6160174",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 59,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BRAGA ART CAFE",
+      "alamat": "JL. BRAGA NO.68",
+      "latitude": "-6.91680293",
+      "longitude": "107.6093265",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 60,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "DACOSTA",
+      "alamat": "JL. SAWUNGGALING NO.13",
+      "latitude": "-6.900686138",
+      "longitude": "107.6093822",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 61,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CAFE PAOPA",
+      "alamat": "JL. CIUNGWANARA NO.12A",
+      "latitude": "-6.895296517",
+      "longitude": "107.6118671",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 62,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "LOVE UNIQORN CAFE",
+      "alamat": "JL. BENGAWAN NO.33",
+      "latitude": "-6.91118233",
+      "longitude": "107.6308539",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 63,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "VANDEL CAFE",
+      "alamat": "JL. SULANJANA NO.30",
+      "latitude": "-6.899300031",
+      "longitude": "107.6106885",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 64,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "88 GARAGE CAFE",
+      "alamat": "JL. JENDERAL AHMADA YANI NO.260",
+      "latitude": "-6.916349439",
+      "longitude": "107.6287887",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 65,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "KAMAIA CAFE",
+      "alamat": "JL. SUPRATMAN NO.102",
+      "latitude": "-6.901242331",
+      "longitude": "107.6268323",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 66,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "THE AIRPLANE CAFE",
+      "alamat": "JL. ACEH NO.44",
+      "latitude": "-6.907520524",
+      "longitude": "107.6089559",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 67,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "THE BANKTENDER CAFE",
+      "alamat": "JL. CIKUTRA BARAT NO.81",
+      "latitude": "-6.891940128",
+      "longitude": "107.6299911",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 68,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SEVENTH DOSE CAFE",
+      "alamat": "JL. DIPONEGORO NO. 6",
+      "latitude": "-6.900448424",
+      "longitude": "107.6131902",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 69,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "DAGO YUI CAFE",
+      "alamat": "JL. BADAK SINGA NO.2",
+      "latitude": "-6.897425183",
+      "longitude": "107.6119314",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 70,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "TRENDS CAFE & RESTO",
+      "alamat": "JL.PAHLAWAN NO.89",
+      "latitude": "-6.893759626",
+      "longitude": "107.6347231",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 71,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SUNDAY BOWL CEREAL CLUB",
+      "alamat": "JL. KEMUNING NO.8",
+      "latitude": "-6.91427603",
+      "longitude": "107.6274202",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 72,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "TIGA OUTDOOR CAFE",
+      "alamat": "JL.HASANUDIN NO.10",
+      "latitude": "-6.894779265",
+      "longitude": "107.6144849",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 73,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SHAKIRA CAFE BANDUNG",
+      "alamat": "JL. SURAPATI NO.187",
+      "latitude": "-6.898174674",
+      "longitude": "107.6315288",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 74,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BLACK GROUND CAFE & EATERY",
+      "alamat": "JL. BANCEUY NO.3",
+      "latitude": "-6.919504333",
+      "longitude": "107.6065083",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 75,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "VICTORIA BAKERY",
+      "alamat": "JL. PAGAR GUNUNG NO.2",
+      "latitude": "-6.896619069",
+      "longitude": "107.6151506",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 76,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "URBAN STORY",
+      "alamat": "JL. LINGGAWASTU NO. 8",
+      "latitude": "-6.902886119",
+      "longitude": "107.6056335",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 77,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "THE MILK BAR",
+      "alamat": "JL. SULTAN TIRTAYASA NO.27",
+      "latitude": "-6.903066772",
+      "longitude": "107.6149318",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 78,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SVBLIMINAL STUDIO & CAFE",
+      "alamat": "JL. WIRA ANGGUN",
+      "latitude": "-6.903509689",
+      "longitude": "107.6140458",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 79,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "GRIND JOE COFFEE",
+      "alamat": "JL. IR. H. JUANDA NO.69",
+      "latitude": "-6.900086531",
+      "longitude": "107.612147",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 80,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "OLD BEN'S DAGO",
+      "alamat": "JL. DIPONEGORO NO.3A",
+      "latitude": "-6.900116326",
+      "longitude": "107.613672",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 81,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BYRON SELECTIVE",
+      "alamat": "JL. PROGO NO.2",
+      "latitude": "-6.904564673",
+      "longitude": "107.6171207",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 82,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "YUMAJU COFFEE",
+      "alamat": "JL. MAULANA YUSUF NO.10",
+      "latitude": "-6.901272167",
+      "longitude": "107.6137441",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 83,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "U&KL KITCHEN",
+      "alamat": "JL TRUNOJOYO NO.4",
+      "latitude": "-6.906003621",
+      "longitude": "107.6129554",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 84,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "AMORE GELATO & COFFEE",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.69",
+      "latitude": "-6.905729829",
+      "longitude": "107.6180072",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 85,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "NAKED BROWN COFFEE & PAIRINGS",
+      "alamat": "JL. TRUNOJOYO NO.22",
+      "latitude": "-6.904294618",
+      "longitude": "107.6135164",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 86,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "PREANGER POINT AT CENTROPUNTO",
+      "alamat": "JL. TRUNOJOYO NO.58",
+      "latitude": "-6.901926585",
+      "longitude": "107.6155942",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 87,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "WHATEVER COFFEE AND BAR",
+      "alamat": "JL. DIPONEGORO NO.09",
+      "latitude": "-6.900087424",
+      "longitude": "107.6142172",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 88,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SALATRI 13 CAFE",
+      "alamat": "JL. SULTAN AGUNG NO.13",
+      "latitude": "-6.903957477",
+      "longitude": "107.6121629",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 89,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ETC STEAK",
+      "alamat": "JL. TRUNOJOYO NO.40",
+      "latitude": "-6.90219727",
+      "longitude": "107.6143717",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 90,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "CUPS (COFFEE & KITCHEN)",
+      "alamat": "JL. TRUNOJOYO NO.25",
+      "latitude": "-6.902269427",
+      "longitude": "107.6137674",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 91,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SMASH & SHAKE",
+      "alamat": "JL. SULANJANA NO.1",
+      "latitude": "-6.90001358",
+      "longitude": "107.6119308",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 92,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ALLURE CAFE",
+      "alamat": "JL. L. L. R. E. MARTADINATA NO.65",
+      "latitude": "-6.905377623",
+      "longitude": "107.617463",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 93,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "HAWAYU COFFEESHOP",
+      "alamat": "JL. RANGGAGADING NO.8",
+      "latitude": "-6.90246497",
+      "longitude": "107.6104826",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 94,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "UCOK DURIAN ASLI MEDAN",
+      "alamat": "JL. SULTAN TIRTAYASA NO. 24",
+      "latitude": "-6.903036877",
+      "longitude": "107.6138851",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 95,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "BLACKPEPPER RESTO & CAFE",
+      "alamat": "JL. MAULANA YUSUF NO.10",
+      "latitude": "-6.901341327",
+      "longitude": "107.6136514",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 96,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "ICUP SULTAN AGUNG",
+      "alamat": "JL. SULTAN AGUNG NO.7",
+      "latitude": "-6.904628373",
+      "longitude": "107.6116021",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 97,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SNACK AND STAY",
+      "alamat": "JL. PURNAWARMAN NO.39",
+      "latitude": "-6.905237525",
+      "longitude": "107.6092062",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 98,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "SPADAA KOFFIE",
+      "alamat": "JL. TERNATE NO.5",
+      "latitude": "-6.907480073",
+      "longitude": "107.614005",
+      "tahun": 2020,
+      "masakan_dari_mana": "semua",
+      "makanan_berat_ringan": "semua"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 99,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "TREE HOUSE CAFE BANDUNG",
+      "alamat": "JL. HASANUDIN NO.5",
+      "latitude": "-6.894432872",
+      "longitude": "107.6152094",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  },
+  {
+    "model": "main.rumahmakan",
+    "pk": 100,
+    "fields": {
+      "kode_provinsi": 32,
+      "nama_provinsi": "JAWA BARAT",
+      "bps_kode_kabupaten_kota": 3273,
+      "bps_nama_kabupaten_kota": "KOTA BANDUNG",
+      "nama_rumah_makan": "MARKA COFFEE & KITCHEN",
+      "alamat": "JL. TALAGA BODAS NO.32",
+      "latitude": "-6.928131395",
+      "longitude": "107.6214387",
+      "tahun": 2020,
+      "masakan_dari_mana": "luar negeri",
+      "makanan_berat_ringan": "ringan"
+    }
+  }
+]

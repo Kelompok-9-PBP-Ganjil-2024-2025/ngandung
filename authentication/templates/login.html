@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% block meta %}
 <title>Login to NGANDUNG</title>
 {% endblock meta %} {% block content %}
-<div class="login flex flex-row w-full bg-[#ff9900] h-screen text-white">
-	<div class="bg-[#111111] h-full w-1/2 max-w-[45rem] flex items-center justify-center flex-col space-y-8">
-		<p class="text-5xl font-extrabold">NG<span class='text-[#ff9900]'>ANDUNG<span></p>
+<div class="login flex flex-col md:flex-row w-full bg-[#ff9900] h-screen text-white">
+	<div class="bg-[#111111] h-full py-16 w-full md:w-1/2 max-w-[45rem] flex items-center justify-center flex-col space-y-8">
+		<p class="text-5xl font-extrabold"><span class='text-[#ff9900]'>NG</span>ANDUNG</p>
 
 		<h2 class="mt-6 text-center text-3xl font-extrabold">Login to your account</h2>
 
@@ -49,10 +49,10 @@
 			</div>
 		</form>
 
-		<p class="text-center">Dont have an account yet? <br /><a href="{% url 'authentication:register' %}" class='text-[#ff9900] underline underline-offset-3'>Register now</a></p>
+		<p class="text-center">Dont have an account yet? <br /><a href="{% url 'authentication:register' %}" class="text-[#ff9900] underline underline-offset-3">Register now</a></p>
 	</div>
 
-	<div class="flex-grow flex items-start">
+	<div class="flex-grow md:flex hidden items-start">
 		{% comment %} Can't use static somehow {% endcomment %}
 		<svg width="100%" viewBox="0 0 810 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<mask id="mask0_240_354" style="mask-type: luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="810" height="512">

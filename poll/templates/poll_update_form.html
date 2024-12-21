@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="min-h-screen bg-gray-50 max-h-[100vh] overflow-y-auto">
+    <div class="flex flex-col gap-y-2 justify-center items-center mt-20 sm:mt-32 mx-auto w-fit max-w-7xl bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+        <h3 class="font-bold text-2xl">Update Poll</h3>
+        <form method="post" class="flex flex-col">
+            {% csrf_token %}
+            <label for="question" class="font-semibold">Question</label>
+				<div class="relative mt-1">
+					<input id="question" name="question" type="text" required class="border-2 appearance-none relative block w-full px-3 py-2 border-[#202020] bg-[#ffffff] placeholder-gray-500 rounded-lg focus:outline-none focus:ring-[#0b79f7] focus:border-[#0b79f7] sm:text-sm" placeholder="Question" />
+					<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+				</div>
+            <br/>
+            <span> Is active  {{ poll_form.is_active }} </span>
+            <input type="submit" value="Submit" class="w-full rounded text-sm py-2 mt-2 font-bold text-white bg-[#FF9900] hover:bg-[#E48900] transition duration-300">
+            <input type="button" value="Back" onclick=window.location.replace("{% url 'poll:home' %}") class="w-full rounded text-sm py-2 mt-2 font-bold text-white bg-red-500 hover:bg-red-600 transition duration-300">
+        </form>
+    </div>
+</div>                                    
+{% endblock content %}   

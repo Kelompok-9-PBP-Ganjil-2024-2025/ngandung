@@ -1,0 +1,1 @@
+default_app_config = 'rating_toko.apps.RatingTokoConfig'
