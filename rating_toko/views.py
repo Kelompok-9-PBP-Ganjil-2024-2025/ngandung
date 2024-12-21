@@ -57,7 +57,6 @@ def get_all_ratings(request, id_rumah_makan):
 def add_rating_flutter(request):
     if request.method == "POST":
         data = json.loads(request.body)
-
         rating = data["rating"]
         review = data["review"]
         rumah_makan = RumahMakan.objects.get(pk=data["id_rumah_makan"])
@@ -78,6 +77,34 @@ def add_rating_flutter(request):
 
         return JsonResponse(
             {"message": "Rating added successfully", "status": "success"}, status=201
+        )
+    else:
+        return JsonResponse(
+            {"message": "Method not allowed", "status": "failed"}, status=405
+        )
+
+
+@csrf_exempt
+def update_rating_flutter(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        rating = Rating.objects.get(pk=data["id_rating"])
+        rating.rating = data["rating"]
+        rating.review = data["review"]
+        rating.save()
+
+        # Updating rating average
+        rumah_makan = RumahMakan.objects.get(pk=data["id_rumah_makan"])
+        ratings = Rating.objects.filter(rumah_makan=rumah_makan)
+        new_average_rating = 0
+        for r in ratings:
+            new_average_rating += r.rating
+        new_average_rating /= len(ratings)
+        rumah_makan.average_rating = new_average_rating
+        rumah_makan.save()
+
+        return JsonResponse(
+            {"message": "Rating updated successfully", "status": "success"}, status=200
         )
     else:
         return JsonResponse(

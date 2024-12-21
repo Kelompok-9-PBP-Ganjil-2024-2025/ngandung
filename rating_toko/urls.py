@@ -1,5 +1,5 @@
 from django.urls import path
-from rating_toko.views import get_all_toko_page, get_all_toko, get_all_ratings_page, get_all_ratings, add_rating, edit_rating, delete_rating, get_toko, get_user, add_rating_flutter
+from rating_toko.views import get_all_toko_page, get_all_toko, get_all_ratings_page, get_all_ratings, add_rating, edit_rating, delete_rating, get_toko, get_user, add_rating_flutter, update_rating_flutter
 
 app_name = "rating_toko"
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path("api/rating-toko/delete/<int:id_rating>/<int:id_rumah_makan>/", delete_rating, name="delete_rating"),
     # Specific toko page (Flutter)
     path("api/rating-toko/add-flutter/", add_rating_flutter, name="add_rating_flutter"),
+    path("api/rating-toko/update-flutter/", update_rating_flutter, name="update_rating_flutter"),
     # User
     path("api/user/<int:id_user>/", get_user, name="get_user"),
 ]
