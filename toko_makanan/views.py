@@ -56,40 +56,20 @@ def add_makanan_ajax(req):
         name = strip_tags(req.POST.get("name"))
         price = req.POST.get("price")
         toko_id = req.POST.get('toko_id')
-        
-        # Validasi input kosong
-        if not name or not price or not toko_id:
-            return JsonResponse({"error": "Semua field harus diisi."}, status=400)
 
-        # Validasi angka untuk price
-        try:
-            price = int(price)
-        except ValueError:
-            return JsonResponse({"error": "Harga harus berupa angka."}, status=400)
-
-        # Validasi toko (RumahMakan)
         try:
             toko = RumahMakan.objects.get(id=toko_id)
         except RumahMakan.DoesNotExist:
             return JsonResponse({"error": "Rumah Makan tidak ditemukan"}, status=400)
 
-        new_makanan = Makanan(
+        new_makanan = Makanan.object.create(
             name=name,
             price=price,
             rumah_makan=toko, 
         )
         new_makanan.save()
 
-        return JsonResponse(
-            {
-                "message": "Makanan berhasil ditambahkan",
-                "data" : {
-                    "id": new_makanan.id,
-                    "name": new_makanan.name,
-                    "price": new_makanan.price,
-                    "rumah_makan": toko.name,
-                }
-            }, status=201)
+        return JsonResponse({"message": "Makanan berhasil ditambahkan"}, status=201)
 
     except Exception as e:
         # Menangani error tak terduga
@@ -168,46 +148,57 @@ def get_list_rumahmakan(req):
     return JsonResponse(data, safe=False)
 #*=========================================================================================================================================
 @login_required(login_url='/login')
-@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
-@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
+@csrf_exempt
+def add_makanan_flutter(req):
+    if req.method == 'POST':
+        try:
+            data = json.loads(req.body)
+            print(f"Received data: {data}")  # Debugging log
+            rumah_makan = RumahMakan.objects.get(id=data['toko_id'])
+            new_makanan = Makanan.objects.create(
+                name=data['name'],
+                price=data['price'],
+                rumah_makan=rumah_makan,
+            )
+            new_makanan.save()
+            return JsonResponse({"status": "success"}, status=201)
+        except json.JSONDecodeError:
+            return JsonResponse({"status": "Invalid JSON"}, status=400)
+        except RumahMakan.DoesNotExist:
+            return JsonResponse({"status": "Rumah Makan tidak ditemukan"}, status=400)
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return JsonResponse({"status": f"Error: {str(e)}"}, status=500)
+    return JsonResponse({"status": "Method not allowed"}, status=405)
+#*=========================================================================================================================================
+@login_required(login_url='/login')
+@csrf_exempt
 def add_rumahmakan_flutter(req):
-    try :
-        kode_prov = strip_tags(req.POST.get("kode_provinsi"))
-        nama_prov = strip_tags(req.POST.get("nama_provinsi"))
-        bps_kode = strip_tags(req.POST.get("bps_kode_kabupaten_kota"))
-        bps_nama = strip_tags(req.POST.get("bps_nama_kabupaten_kota"))
-        rumah_makan_name = strip_tags(req.POST.get("nama_rumah_makan"))
-        address = strip_tags(req.POST.get("alamat"))
-        lat = strip_tags(req.POST.get("latitude"))
-        lon = strip_tags(req.POST.get("longitude"))
-        year = strip_tags(req.POST.get("tahun"))
-        masakan_dari = strip_tags(req.POST.get("masakan_dari_mana"))
-        jenis_makanan = strip_tags(req.POST.get("makanan_berat_ringan"))
-        
-        if not all([kode_prov, nama_prov, bps_kode, bps_nama, rumah_makan_name, address, lat, lon, year, masakan_dari, jenis_makanan]):
-            return JsonResponse({"error": "Semua field harus diisi."}, status=400)
-        
-        new_rumahmakan = RumahMakan(
-            kode_provinsi=kode_prov,
-            nama_provinsi=nama_prov,
-            bps_kode_kabupaten_kota=bps_kode,
-            bps_nama_kabupaten_kota=bps_nama,
-            nama_rumah_makan=rumah_makan_name,
-            alamat=address,
-            latitude=lat,
-            longitude=lon,
-            tahun=year, 
-            masakan_dari_mana=masakan_dari,
-            makanan_berat_ringan=jenis_makanan
-        )
-        new_rumahmakan.save()
-        
-        return JsonResponse(
-            {"message": "Makanan berhasil ditambahkan"}, status=201)
-        
-    except Exception as e:
-        # Menangani error tak terduga
-        return JsonResponse({"error": str(e)}, status=500)
+    if req.method == 'POST':
+        try:
+            data = json.loads(req.body)
+            new_rumahmakan = RumahMakan.objects.create(
+                kode_provinsi=data["kode_provinsi"],
+                nama_provinsi=data["nama_provinsi"],
+                bps_kode_kabupaten_kota=data["bps_kode_kabupaten_kota"],
+                bps_nama_kabupaten_kota=data["bps_nama_kabupaten_kota"],
+                nama_rumah_makan=data["nama_rumah_makan"],
+                alamat=data["alamat"],
+                latitude=data.get("latitude", 0.0),  # Default jika tidak ada
+                longitude=data.get("longitude", 0.0),  # Default jika tidak ada
+                tahun=data["tahun"],
+                masakan_dari_mana=data["masakan_dari_mana"],
+                makanan_berat_ringan=data["makanan_berat_ringan"]
+            )
+            new_rumahmakan.save()
+            return JsonResponse({"status": "success"}, status=201)
+        except json.JSONDecodeError:
+            return JsonResponse({"status": "Invalid JSON"}, status=400)
+        except KeyError as e:
+            return JsonResponse({"status": f"Missing field: {str(e)}"}, status=400)
+        except Exception as e:
+            return JsonResponse({"status": f"Error: {str(e)}"}, status=500)
+    return JsonResponse({"status": "Method not allowed"}, status=405)
 #*=========================================================================================================================================
 def get_detail_makanan(req, id):
     makanan = Makanan.objects.get(pk=id)
@@ -217,7 +208,10 @@ def get_detail_makanan(req, id):
     data = {
         'name' : name,
         'price': price,
-        'rumah_makan': rumah_makan,
+        'rumah_makan': {
+            'id': rumah_makan.id,
+            'name': rumah_makan.nama_rumah_makan,  # atau atribut lain yang relevan
+        },
     }
     return JsonResponse(data)
 #*=========================================================================================================================================
@@ -238,60 +232,73 @@ def get_detail_rumahmakan(req, id):
     }
     return JsonResponse(data)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
+@csrf_exempt
 def edit_makanan_flutter(req, id):
     try :
         makanan = Makanan.objects.get(pk=id)
         
         # Ambil data JSON dari request body
-        data = json.loads(req.body.decode('utf-8'))
-        nama = data.get("name", makanan.name)
-        harga = data.get("price", makanan.price)
-        rumah_makan_id = data.get("rumah_makan", makanan.rumah_makan.id if makanan.rumah_makan else None)
+        data = json.loads(req.body)
         
-        makanan.name = nama
-        makanan.price = harga
-        if rumah_makan_id:
-            rumah_makan = get_object_or_404(RumahMakan, id=rumah_makan_id)
-            makanan.rumah_makan = rumah_makan
+        makanan.name = data['name']
+        makanan.price = data['price']
+        rumah_makan = get_object_or_404(RumahMakan, id=data['toko_id'])
+        makanan.rumah_makan = rumah_makan
             
         makanan.save()
         
-        return JsonResponse({"success": True, "message": "Makanan berhasil diperbarui"}, status=200)
+        return JsonResponse({"status": "success"}, status=201)
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=400)
 #*=========================================================================================================================================
+@login_required(login_url='/login')
+@csrf_exempt
 def edit_rumah_makan_flutter(req, id):
+    print(id)
     try:
         rumah_makan = RumahMakan.objects.get(pk=id)
 
         # Ambil data JSON dari request body
-        data = json.loads(req.body.decode('utf-8'))
-        rumah_makan.kode_provinsi = data.get("kode_provinsi", rumah_makan.kode_provinsi)
-        rumah_makan.nama_provinsi = data.get("nama_provinsi", rumah_makan.nama_provinsi)
-        rumah_makan.bps_kode_kabupaten_kota = data.get("bps_kode", rumah_makan.bps_kode_kabupaten_kota)
-        rumah_makan.bps_nama_kabupaten_kota = data.get("bps_nama", rumah_makan.bps_nama_kabupaten_kota)
-        rumah_makan.nama_rumah_makan = data.get("nama_rumah_makan", rumah_makan.nama_rumah_makan)
-        rumah_makan.alamat = data.get("alamat", rumah_makan.alamat)
-        rumah_makan.latitude = data.get("latitude", rumah_makan.latitude)
-        rumah_makan.longitude = data.get("longitude", rumah_makan.longitude)
-        rumah_makan.tahun = data.get("tahun", rumah_makan.tahun)
-        rumah_makan.masakan_dari_mana = data.get("masakan_dari", rumah_makan.masakan_dari_mana)
-        rumah_makan.makanan_berat_ringan = data.get("jenis_makanan", rumah_makan.makanan_berat_ringan)
+        data = json.loads(req.body)
+            
+        rumah_makan.kode_provinsi = data["kode_provinsi"]
+        rumah_makan.nama_provinsi = data["nama_provinsi"]
+        rumah_makan.bps_kode_kabupaten_kota = data["bps_kode_kabupaten_kota"]
+        rumah_makan.bps_nama_kabupaten_kota = data["bps_nama_kabupaten_kota"]
+        rumah_makan.nama_rumah_makan = data["nama_rumah_makan"]
+        rumah_makan.alamat = data["alamat"]
+        rumah_makan.latitude = data["latitude"]
+        rumah_makan.longitude = data["longitude"]
+        rumah_makan.tahun = data["tahun"]
+        rumah_makan.masakan_dari_mana = data["masakan_dari_mana"]
+        rumah_makan.makanan_berat_ringan = data["makanan_berat_ringan"]
 
         rumah_makan.save()
 
-        return JsonResponse({"success": True, "message": "Rumah makan berhasil diperbarui"}, status=200)
+        return JsonResponse({"status": "success"}, status=201)
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=400)
 #*=========================================================================================================================================
+@csrf_exempt
+@login_required(login_url='/login/')
 def delete_makanan_flutter(req, id):
-    try :
-        makanan = Makanan.objects.get(pk=id)
-        makanan.delete()
-        return JsonResponse({"success": True, "message": "data makanan berhasil dihapus"}, status=200)
-    except Exception as e:
-        return JsonResponse({"success": False, "error": str(e)}, status=400)
+    if req.method == 'DELETE':
+        try:
+            print("masuk sini")
+            makanan = Makanan.objects.get(pk=id)
+            makanan.delete()
+            return JsonResponse({"success": True, "message": "Data makanan berhasil dihapus"},status=200,)
+        except Makanan.DoesNotExist:
+            return JsonResponse({"success": False, "error": "Data makanan tidak ditemukan"},status=404,)
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return JsonResponse({"success": False, "error": str(e)}, status=400)
+    else:
+        return JsonResponse({"success": False, "error": "Method not allowed"},status=405,)
 #*=========================================================================================================================================
+@csrf_exempt
+@login_required(login_url='/login')
 def delete_rumahmakan_flutter(req, id):
     try :
         rumahmakan = RumahMakan.objects.get(pk=id)

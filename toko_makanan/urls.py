@@ -15,6 +15,7 @@ urlpatterns = [
     path('makanan-json/', makanan_json, name='makanan_json'),
     path('detail-json/<int:id>/', rumahmakan_detail_json, name='rumahmakan_detail_json'),
     path('list-rumahmakan/', get_list_rumahmakan, name='get_list_rumahmakan'),
+    path('add-makanan-flutter/', add_makanan_flutter, name='add_makanan_flutter'),
     path('add-rumahmakan/', add_rumahmakan_flutter, name='add_rumahmakan_flutter'),
     path('get-detail-makanan/<int:id>/', get_detail_makanan, name='get_detail_makanan'),
     path('get-detail-rumahmakan/<int:id>/', get_detail_rumahmakan, name='get_detail_rumahmakan'),
