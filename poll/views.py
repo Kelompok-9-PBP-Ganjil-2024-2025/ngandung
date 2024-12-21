@@ -67,14 +67,17 @@ def create(request):
 @csrf_exempt
 @login_required
 def update(request, poll_id):
-    try:
-        poll = Poll.objects.get(pk=poll_id)
-        poll.is_active = not poll.is_active  # Toggle the is_active field
-        poll.save()
+    if request.method == 'POST':
+        try:
+            if not request.user.is_superuser or request.user != Poll.objects.get(pk=poll_id).author:
+                return JsonResponse({'status': 'error', 'message': 'You are not authorized to update this poll'}, status=403)
+            poll = Poll.objects.get(pk=poll_id)
+            poll.is_active = not poll.is_active  # Toggle the is_active field
+            poll.save()
 
-        return JsonResponse({'status': 'success'})
-    except Poll.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Poll not found'})
+            return JsonResponse({'status': 'success'})
+        except Poll.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Poll not found'})
 
 
 @csrf_exempt
