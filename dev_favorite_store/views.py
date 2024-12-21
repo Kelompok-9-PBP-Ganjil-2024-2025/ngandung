@@ -53,19 +53,6 @@ def tambah_ke_favorite(request, rumah_makan_id):
 
     return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
 
-# @login_required
-# def hapus_dari_favorit(request, toko_id):
-#     if request.method == 'POST':
-#         try:
-#             user_profile = get_object_or_404(UserProfile, user=request.user)
-#             toko = get_object_or_404(RumahMakan, id=toko_id)
-#             user_profile.favorit_toko.remove(toko)
-#             return JsonResponse({'status': 'success', 'message': 'Toko berhasil dihapus dari favorit.'}, status=200)
-#         except Exception as e:
-#             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
-#     else:
-#         return HttpResponseBadRequest('Invalid request method.')
-
 @login_required
 def hapus_dari_favorit(request, toko_id):
     if request.method == 'POST':
@@ -97,5 +84,36 @@ def daftar_favorit(request):
 
     # Render halaman dengan daftar toko favorit
     return render(request, 'daftar_favorit.html', {'favorit_toko': daftar_favorit_toko})
+
+
+def user_favorite_restaurants(request):
+    # Ambil data favorit berdasarkan user yang sedang login
+    user = request.user
+    favorites = Favorite.objects.filter(user=user).select_related('rumah_makan')  # Optimalkan query
+
+    # Buat list untuk menyimpan data JSON
+    data = []
+    for favorite in favorites:
+        rm = favorite.rumah_makan
+        data.append({
+            'id': favorite.id,
+            'rumah_makan': {
+                'id': rm.id,
+                'kode_provinsi': rm.kode_provinsi,
+                'nama_provinsi': rm.nama_provinsi,
+                'bps_kode_kabupaten_kota': rm.bps_kode_kabupaten_kota,
+                'bps_nama_kabupaten_kota': rm.bps_nama_kabupaten_kota,
+                'nama_rumah_makan': rm.nama_rumah_makan,
+                'alamat': rm.alamat,
+                'latitude': float(rm.latitude),  # Pastikan decimal ke float agar serializable
+                'longitude': float(rm.longitude),  # Pastikan decimal ke float agar serializable
+                'tahun': rm.tahun,
+                'masakan_dari_mana': rm.masakan_dari_mana,
+                'makanan_berat_ringan': rm.makanan_berat_ringan,
+            }
+        })
+
+    # Kembalikan data sebagai JSON
+    return JsonResponse(data, safe=False)
 
 
