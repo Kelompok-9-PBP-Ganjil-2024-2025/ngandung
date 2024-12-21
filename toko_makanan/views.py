@@ -210,7 +210,7 @@ def get_detail_makanan(req, id):
         'price': price,
         'rumah_makan': {
             'id': rumah_makan.id,
-            'name': rumah_makan.nama_rumah_makan,  # atau atribut lain yang relevan
+            'name': rumah_makan.nama_rumah_makan,  
         },
     }
     return JsonResponse(data)
@@ -282,27 +282,52 @@ def edit_rumah_makan_flutter(req, id):
 #*=========================================================================================================================================
 @csrf_exempt
 @login_required(login_url='/login/')
-def delete_makanan_flutter(req, id):
-    if req.method == 'DELETE':
+def delete_makanan_flutter(request, id):
+    if request.method == 'POST':
         try:
-            print("masuk sini")
             makanan = Makanan.objects.get(pk=id)
             makanan.delete()
-            return JsonResponse({"success": True, "message": "Data makanan berhasil dihapus"},status=200,)
+            return JsonResponse({
+                "success": True,
+                "message": "Data makanan berhasil dihapus"
+            }, status=200)
         except Makanan.DoesNotExist:
-            return JsonResponse({"success": False, "error": "Data makanan tidak ditemukan"},status=404,)
+            return JsonResponse({
+                "success": False,
+                "message": "Makanan tidak ditemukan"
+            }, status=404)
         except Exception as e:
-            print(f"Error: {str(e)}")
-            return JsonResponse({"success": False, "error": str(e)}, status=400)
-    else:
-        return JsonResponse({"success": False, "error": "Method not allowed"},status=405,)
+            return JsonResponse({
+                "success": False,
+                "message": str(e)
+            }, status=500)
+    return JsonResponse({
+        "success": False,
+        "message": "Method not allowed"
+    }, status=405)
 #*=========================================================================================================================================
 @csrf_exempt
 @login_required(login_url='/login')
 def delete_rumahmakan_flutter(req, id):
-    try :
-        rumahmakan = RumahMakan.objects.get(pk=id)
-        rumahmakan.delete()
-        return JsonResponse({"success": True, "message": "rumah makan berhasil dihapus"}, status=200)
-    except Exception as e:
-        return JsonResponse({"success": False, "error": str(e)}, status=400)
+    if req.method == 'POST':
+        try:
+            rumah_makan = RumahMakan.objects.get(pk=id)
+            rumah_makan.delete()
+            return JsonResponse({
+                "success": True,
+                "message": "Data makanan berhasil dihapus"
+            }, status=200)
+        except Makanan.DoesNotExist:
+            return JsonResponse({
+                "success": False,
+                "message": "Makanan tidak ditemukan"
+            }, status=404)
+        except Exception as e:
+            return JsonResponse({
+                "success": False,
+                "message": str(e)
+            }, status=500)
+    return JsonResponse({
+        "success": False,
+        "message": "Method not allowed"
+    }, status=405)
