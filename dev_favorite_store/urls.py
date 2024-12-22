@@ -9,5 +9,5 @@ urlpatterns = [
     path('daftar-favorit/', daftar_favorit, name='daftar_favorit'),
     path('api/user/favorites/', user_favorite_restaurants, name='user-favorites'),
     path('api/user/favorites/add/<int:rumah_makan_id>/', add_to_favorite, name='add_to_favorite'),
-    path('api/user/favorites/<int:favorite_id>/delete/', delete_favorite, name='delete_favorite'),
+    path('api/user/favorites/<int:rumah_makan_id>/delete/', delete_favorite, name='delete_favorite'),
 ]

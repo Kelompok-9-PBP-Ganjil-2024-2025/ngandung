@@ -81,6 +81,7 @@ def user_favorite_restaurants(request):
     data = []
     for favorite in favorites:
         rm = favorite.rumah_makan
+        makanan_terkait = Makanan.objects.filter(rumah_makan=rm).first()  # Ambil salah satu makanan
         data.append({
             'id': favorite.id,
             'rumah_makan': {
@@ -96,6 +97,10 @@ def user_favorite_restaurants(request):
                 'tahun': rm.tahun,
                 'masakan_dari_mana': rm.masakan_dari_mana,
                 'makanan_berat_ringan': rm.makanan_berat_ringan,
+                'makanan_terkait': {
+                    'id': makanan_terkait.id if makanan_terkait else None,
+                    'nama': makanan_terkait.name if makanan_terkait else None,
+                } if makanan_terkait else None,
             }
         })
 
@@ -104,26 +109,27 @@ def user_favorite_restaurants(request):
 # Hapus fav flutter
 @csrf_exempt
 @login_required
-def delete_favorite(request, favorite_id):
+def delete_favorite(request, rumah_makan_id):
     if request.method == 'POST':
         try:
-            favorite = Favorite.objects.get(id=favorite_id, user=request.user)
+            # Cari rumah makan favorit berdasarkan user dan rumah makan ID
+            favorite = Favorite.objects.get(
+                rumah_makan__id=rumah_makan_id, user=request.user
+            )
             favorite.delete()
             return JsonResponse({'message': 'Favorite deleted successfully'}, status=200)
         except Favorite.DoesNotExist:
             return JsonResponse({'error': 'Favorite not found'}, status=404)
     return JsonResponse({'error': 'Invalid method'}, status=405)
 
+
 # Tambah fav flutter
 @csrf_exempt
 @login_required
-def add_to_favorite(request):
+def add_to_favorite(request, rumah_makan_id):  # Tambahkan parameter rumah_makan_id
     if request.method == 'POST':
         try:
-            body = json.loads(request.body)
-            rumah_makan_id = body.get('rumah_makan_id')
-
-            if not rumah_makan_id:
+            if not rumah_makan_id:  # Cek apakah ID rumah makan tersedia
                 return JsonResponse({"status": "error", "message": "ID rumah makan tidak ditemukan"}, status=400)
 
             rumah_makan = get_object_or_404(RumahMakan, pk=rumah_makan_id)
@@ -136,8 +142,6 @@ def add_to_favorite(request):
             else:
                 return JsonResponse({"status": "exists", "message": "Restoran sudah ada di favorit"}, status=200)
 
-        except json.JSONDecodeError:
-            return JsonResponse({"status": "error", "message": "Bad JSON format"}, status=400)
         except Exception as e:
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
