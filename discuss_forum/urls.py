@@ -26,8 +26,6 @@ urlpatterns = [
 
     # API endpoints - Path spesifik terlebih dahulu
     path('api/current-user/', views.api_current_user, name='api_current_user'),
-    path('api/forum', views.api_forum_main, name='api_forum_main'),
-    path('api/<str:id>/', views.api_forum_by_id, name='api_forum_by_id'),
     path('create-forum-flutter/', views.api_create_forum_flutter, name='api_create_forum_flutter'),
     path('edit-forum-flutter/<uuid:id>/', views.api_edit_forum_flutter, name='api_edit_forum_flutter'),
     path('delete-forum-flutter/<uuid:id>/', views.api_delete_forum_flutter, name='api_delete_forum_flutter'),
@@ -39,4 +37,9 @@ urlpatterns = [
         'api/discussion/comments/<uuid:comment_id>/like/', 
         views.api_like_comment_flutter, 
         name='api_like_comment_flutter'
-    ),]
+    ),
+    path('api/search-forum/', views.api_search_forum, name='api_search_forum'),
+    path('api/forum', views.api_forum_main, name='api_forum_main'),
+    path('api/<str:id>/', views.api_forum_by_id, name='api_forum_by_id'),
+
+]

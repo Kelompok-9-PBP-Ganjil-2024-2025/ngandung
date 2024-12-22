@@ -649,3 +649,21 @@ def api_like_comment_flutter(request, comment_id):
             "status": "error",
             "message": str(e)
         }, status=500)
+    
+@csrf_exempt
+def api_search_forum(request):
+    """
+    Endpoint untuk mencari forum berdasarkan judul (title).
+    Parameter pencarian: ?q=...
+    Contoh: /api/search-forum/?q=mulyono
+    """
+    q = request.GET.get('q', '').strip()  # Ambil query dari parameter 'q'
+    
+    # Jika q kosong, kembalikan semua forum
+    if not q:
+        discussions = Discussion.objects.all()
+    else:
+        # Filter forum yang judulnya mengandung kata kunci
+        discussions = Discussion.objects.filter(title__icontains=q)
+    
+    return HttpResponse(serializers.serialize("json", discussions), content_type="application/json")
