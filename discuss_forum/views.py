@@ -191,8 +191,8 @@ def api_edit_forum_flutter(request, id):
         logger.debug("Forum tidak ditemukan.")
         return JsonResponse({"status": "error", "message": "Forum tidak ditemukan."}, status=404)
 
-    # Cek kepemilikan
-    if discussion.user != request.user:
+    # IZINKAN jika user adalah PEMILIK forum ATAU ADMIN (ID=1)
+    if discussion.user != request.user and request.user.id != 1:
         logger.debug("User tidak berhak mengedit forum ini.")
         return JsonResponse({"status": "error", "message": "Anda tidak berhak mengedit forum ini."}, status=403)
 
@@ -255,7 +255,7 @@ def api_delete_forum_flutter(request, id):
     discussion = get_object_or_404(Discussion, pk=id)
 
     # Cek kepemilikan
-    if discussion.user != request.user:
+    if discussion.user != request.user and request.user.id != 1:
         return JsonResponse({"status": "error", "message": "Anda tidak berhak menghapus forum ini."}, status=403)
 
     # Hapus forum
