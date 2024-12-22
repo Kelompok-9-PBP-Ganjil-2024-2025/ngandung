@@ -2,7 +2,6 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from toko_makanan.models import RumahMakan, Makanan
 
-
 class RumahMakanMakananTests(TestCase):
     def setUp(self):
         # Setup rumah makan
