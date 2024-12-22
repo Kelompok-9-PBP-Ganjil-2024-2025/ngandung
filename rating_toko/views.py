@@ -113,6 +113,36 @@ def update_rating_flutter(request):
 
 
 @csrf_exempt
+def delete_rating_flutter(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        rating = Rating.objects.get(pk=data["id_rating"])
+        rating.delete()
+
+        # Updating rating average
+        rumah_makan = RumahMakan.objects.get(pk=data["id_rumah_makan"])
+        ratings = Rating.objects.filter(rumah_makan=rumah_makan)
+        new_average_rating = 0
+        for r in ratings:
+            new_average_rating += r.rating
+        if len(ratings) != 0:
+            new_average_rating /= len(ratings)
+        else:
+            new_average_rating = 0
+        rumah_makan.average_rating = new_average_rating
+        rumah_makan.number_of_ratings -= 1
+        rumah_makan.save()
+
+        return JsonResponse(
+            {"message": "Rating deleted successfully", "status": "success"}, status=200
+        )
+    else:
+        return JsonResponse(
+            {"message": "Method not allowed", "status": "failed"}, status=405
+        )
+
+
+@csrf_exempt
 @require_POST
 @login_required(login_url="/login/")
 def add_rating(request):
