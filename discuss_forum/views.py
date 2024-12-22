@@ -270,15 +270,31 @@ def delete_forum_flutter(request, id):
         forum.delete()
         return JsonResponse({'status': 'success'})
 
-@csrf_exempt
-@login_required(login_url='/login/')
+@login_required
 def api_current_user(request):
-    if request.method == 'GET':
-        return JsonResponse({
-            'username': request.user.username,
-        }, status=200)
-    else:
-        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+    """
+    API endpoint untuk mendapatkan data pengguna saat ini.
+    URL: /api/current-user/
+    Metode: GET
+    Respon:
+    {
+        "status": "success",
+        "user": {
+            "id": 1,
+            "username": "user1",
+            ...
+        }
+    }
+    """
+    user = request.user
+    return JsonResponse({
+        "status": "success",
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            # Tambahkan field lain yang diperlukan
+        }
+    })
 
 
 
@@ -300,6 +316,28 @@ def discussion_main(request, id):
     }
 
     return render(request, "discussion.html", context)
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.user in comment.likes.all():
+        comment.likes.remove(request.user)
+        liked = False
+    else:
+        comment.likes.add(request.user)
+        liked = True
+    
+    # Menghitung total likes setelah perubahan
+    total_likes = comment.likes.count()
+    
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse({
+            'liked': liked,
+            'total_likes': total_likes
+        })
+    else:
+        # Redirect ke halaman diskusi yang sama jika bukan AJAX
+        return redirect(reverse('discuss_forum:discussion_main', args=[comment.discussion.id]))
 
 def api_discussion_main(request):
     data = Comment.objects.all()
@@ -429,27 +467,7 @@ def delete_comment(request, id):
     context = {'comment': comment}
     return render(request, "delete_comment.html", context)
 
-@login_required
-def like_comment(request, comment_id):
-    comment = get_object_or_404(Comment, id=comment_id)
-    if request.user in comment.likes.all():
-        comment.likes.remove(request.user)
-        liked = False
-    else:
-        comment.likes.add(request.user)
-        liked = True
-    
-    # Menghitung total likes setelah perubahan
-    total_likes = comment.likes.count()
-    
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return JsonResponse({
-            'liked': liked,
-            'total_likes': total_likes
-        })
-    else:
-        # Redirect ke halaman diskusi yang sama jika bukan AJAX
-        return redirect(reverse('discuss_forum:discussion_main', args=[comment.discussion.id]))
+
 
 @require_http_methods(["POST"])
 @login_required
@@ -552,3 +570,82 @@ def api_discussion_comments_by_forum_id(request, id):
         })
 
     return HttpResponse(json.dumps(serialized_comments), content_type='application/json')
+
+@csrf_exempt
+@require_POST
+@login_required
+def api_delete_comment_flutter(request, comment_id):
+    """
+    API endpoint untuk menghapus komentar tertentu.
+    URL: /api/discussion/comments/<comment_id>/delete/
+    Metode: POST
+    Payload: {}
+    """
+    try:
+        # Mengambil komentar berdasarkan ID atau mengembalikan 404 jika tidak ditemukan
+        comment = get_object_or_404(Comment, pk=comment_id)
+
+        # Memeriksa apakah pengguna yang meminta adalah pemilik komentar
+        if comment.user != request.user:
+            return JsonResponse({
+                "status": "error",
+                "message": "Anda tidak diizinkan untuk menghapus komentar ini."
+            }, status=403)
+
+        # Menghapus komentar
+        comment.delete()
+
+        return JsonResponse({
+            "status": "success",
+            "message": "Komentar berhasil dihapus."
+        }, status=200)
+
+    except Exception as e:
+        return JsonResponse({
+            "status": "error",
+            "message": str(e)
+        }, status=500)
+    
+
+@csrf_exempt  # Hanya untuk pengembangan; gunakan metode autentikasi yang lebih aman di produksi
+@require_POST
+@login_required
+def api_like_comment_flutter(request, comment_id):
+    """
+    API endpoint untuk memberikan atau menghapus like pada komentar tertentu.
+    URL: /api/discussion/comments/<comment_id>/like/
+    Metode: POST
+    Payload: {}
+    Respon:
+    {
+        "status": "success",
+        "liked": true/false,
+        "total_likes": <jumlah_like>
+    }
+    """
+    try:
+        # Mengambil komentar berdasarkan ID atau mengembalikan 404 jika tidak ditemukan
+        comment = get_object_or_404(Comment, pk=comment_id)
+
+        # Memeriksa apakah pengguna yang meminta sudah memberikan like
+        if request.user in comment.likes.all():
+            comment.likes.remove(request.user)
+            liked = False
+        else:
+            comment.likes.add(request.user)
+            liked = True
+
+        # Menghitung total likes setelah perubahan
+        total_likes = comment.likes.count()
+
+        return JsonResponse({
+            "status": "success",
+            "liked": liked,
+            "total_likes": total_likes
+        }, status=200)
+
+    except Exception as e:
+        return JsonResponse({
+            "status": "error",
+            "message": str(e)
+        }, status=500)
