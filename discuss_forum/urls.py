@@ -1,8 +1,15 @@
+# urls.py
 from django.urls import path
 from discuss_forum.views import (
-    api_create_forum,
+    api_create_comment_flutter,
+    api_create_forum_flutter,
+    api_current_user,
+    api_delete_forum_flutter,
+    api_discussion_comments_by_forum_id,
+    api_edit_forum_flutter,
     api_forum_by_id,
     api_forum_main,
+    delete_forum_flutter,
     forum_main, 
     add_forum_topic_ajax, 
     create_discussion_forum, 
@@ -44,7 +51,18 @@ urlpatterns = [
 
     path('edit-comment-ajax/<uuid:id>/', edit_comment_ajax, name='edit_comment_ajax'),
 
+
     path('api/forum', api_forum_main, name='api_forum_main'),
     path('api/<str:id>/', api_forum_by_id, name='api_forum_by_id'),
-    path('api/create-forum/', api_create_forum, name='api_create_forum'),
+    path('create-forum-flutter/', api_create_forum_flutter, name='api_create_forum_flutter'),
+    path('edit-forum-flutter/<uuid:id>/', api_edit_forum_flutter, name='api_create_forum_flutter'),
+    path('delete-forum-flutter/<uuid:id>/', delete_forum_flutter, name='delete_forum_flutter'),
+    path('api/current-user/', api_current_user, name='api_current_user'),
+
+
+
+
+    path('api/discussion/<uuid:id>/comments/', api_discussion_comments_by_forum_id, name='api_discussion_comments_by_forum_id'),
+
+    path('api/discussion/<uuid:discussion_id>/add_comment/', views.api_create_comment_flutter, name='api_create_comment_flutter'),
 ]

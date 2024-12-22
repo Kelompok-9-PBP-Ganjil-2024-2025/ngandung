@@ -1,3 +1,4 @@
+#views.py
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from discuss_forum.models import Discussion, Comment
 from discuss_forum.forms import DiscussionForm, CommentForm
@@ -10,7 +11,14 @@ from django.db.models import Count
 from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
-
+from django.db.models import F
+import logging
+from rest_framework import viewsets
+from .models import Comment
+from .serializers import CommentSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -37,24 +45,38 @@ import json
 from django.http import JsonResponse
 
 @csrf_exempt
-def api_create_forum(request):
+def api_create_forum_flutter(request):
     if request.method == 'POST':
+
         data = json.loads(request.body)
-
-        # Jika user belum login, misal assign default user atau tolak:
-        if request.user.is_anonymous:
-            return JsonResponse({"status": "error", "message": "User is not authenticated."}, status=401)
-
         new_forum = Discussion.objects.create(
             user=request.user,
             title=data["title"],
             content=data["content"]
         )
+
         new_forum.save()
 
         return JsonResponse({"status": "success"}, status=200)
     else:
-        return JsonResponse({"status": "error", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"status": "error"}, status=401)
+
+@csrf_exempt
+def api_edit_forum_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        new_forum = Discussion.objects.create(
+            user=request.user,
+            title=data["title"],
+            content=data["content"]
+        )
+
+        new_forum.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
 
 @require_POST
 @login_required
@@ -146,6 +168,67 @@ def edit_forum_ajax(request, id):
         return JsonResponse({'discussion': discussion_data}, status=200)
     else:
         return JsonResponse({'error': 'Title and content are required.'}, status=400)
+    
+
+logger = logging.getLogger(__name__)
+
+@csrf_exempt
+@require_http_methods(["POST"])
+@login_required(login_url='/login')
+def api_edit_forum_flutter(request, id):
+    logger.debug(f"Received edit request for forum ID: {id}")
+    
+    # Cek apakah user sudah login
+    if not request.user.is_authenticated:
+        logger.debug("User belum login.")
+        return JsonResponse({"status": "error", "message": "User belum login."}, status=403)
+
+    # Coba ambil data forum
+    try:
+        discussion = Discussion.objects.get(pk=id)
+        logger.debug(f"Forum ditemukan: {discussion.title}")
+    except Discussion.DoesNotExist:
+        logger.debug("Forum tidak ditemukan.")
+        return JsonResponse({"status": "error", "message": "Forum tidak ditemukan."}, status=404)
+
+    # Cek kepemilikan
+    if discussion.user != request.user:
+        logger.debug("User tidak berhak mengedit forum ini.")
+        return JsonResponse({"status": "error", "message": "Anda tidak berhak mengedit forum ini."}, status=403)
+
+    # Parse data JSON dari request body
+    try:
+        data = json.loads(request.body)
+        title = data.get('title', '').strip()
+        content = data.get('content', '').strip()
+        logger.debug(f"Data yang diterima: title={title}, content={content}")
+    except json.JSONDecodeError:
+        logger.debug("Data JSON tidak valid.")
+        return JsonResponse({"status": "error", "message": "Data JSON tidak valid."}, status=400)
+
+    if title and content:
+        # Update diskusi
+        discussion.title = title
+        discussion.content = content
+        discussion.save()
+        logger.debug("Forum berhasil diupdate.")
+
+        # Siapkan data untuk dikirim kembali dalam respons
+        discussion_data = {
+            'id': str(discussion.id),
+            'title': discussion.title,
+            'content': discussion.content,
+            'user': {
+                'id': discussion.user.id,
+                'username': discussion.user.username,
+            },
+            'date_created': discussion.date_created.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        return JsonResponse({'status': 'success', 'discussion': discussion_data}, status=200)
+    else:
+        logger.debug("Title dan content tidak lengkap.")
+        return JsonResponse({'status': 'error', 'message': 'Title and content are required.'}, status=400)
 
 @login_required
 def delete_forum(request, id):
@@ -160,6 +243,46 @@ def delete_forum(request, id):
     
     context = {'discussion': discussion}
     return render(request, "confirm_delete.html", context)
+
+@csrf_exempt
+@require_http_methods(["POST"])  # atau ["DELETE"], tergantung preferensi
+def api_delete_forum_flutter(request, id):
+    # Cek apakah user sudah login
+    if not request.user.is_authenticated:
+        return JsonResponse({"status": "error", "message": "User belum login."}, status=403)
+
+    # Coba ambil data forum
+    discussion = get_object_or_404(Discussion, pk=id)
+
+    # Cek kepemilikan
+    if discussion.user != request.user:
+        return JsonResponse({"status": "error", "message": "Anda tidak berhak menghapus forum ini."}, status=403)
+
+    # Hapus forum
+    discussion.delete()
+    return JsonResponse({"status": "success", "message": "Forum berhasil dihapus."}, status=200)
+
+@csrf_exempt
+@login_required(login_url='/login')
+def delete_forum_flutter(request, id):
+    if request.method == 'POST':
+        forum = get_object_or_404(Discussion, pk=id)
+        forum.delete()
+        return JsonResponse({'status': 'success'})
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def api_current_user(request):
+    if request.method == 'GET':
+        return JsonResponse({
+            'username': request.user.username,
+        }, status=200)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+
+
+
+
 
 
 
@@ -177,6 +300,14 @@ def discussion_main(request, id):
     }
 
     return render(request, "discussion.html", context)
+
+def api_discussion_main(request):
+    data = Comment.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def api_discussion_by_id(request, id):
+    data = Comment.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 # Jika Anda menambahkan fitur komentar
 @login_required
@@ -215,6 +346,46 @@ def create_discussion_forum(request):
 
     context = {'form': form}
     return render(request, "create_discuss_forum.html", context)
+
+@login_required
+@csrf_exempt  # Hanya untuk pengembangan; sebaiknya gunakan token CSRF atau metode autentikasi yang aman di produksi
+@require_POST
+def api_create_comment_flutter(request, discussion_id):
+    """
+    API endpoint untuk menambahkan komentar ke diskusi tertentu.
+    URL: /api/discussion/<discussion_id>/add_comment/
+    Metode: POST
+    Payload: {
+        "content": "Isi komentar",
+        "parent": "UUID-komentar-atasan (optional)"
+    }
+    """
+    content = request.POST.get("content")
+    parent_id = request.POST.get("parent")
+
+    if not content:
+        return JsonResponse({
+            "status": "error",
+            "message": "Content wajib diisi."
+        }, status=400)
+
+    discussion = get_object_or_404(Discussion, pk=discussion_id)
+
+    parent_comment = None
+    if parent_id:
+        parent_comment = get_object_or_404(Comment, pk=parent_id, discussion=discussion)
+
+    new_comment = Comment.objects.create(
+        discussion=discussion,
+        user=request.user,
+        content=content,
+        parent=parent_comment
+    )
+
+    return JsonResponse({
+        "status": "success",
+        "comment_id": str(new_comment.id)
+    }, status=201)
 
 def show_json(request):
     data = Discussion.objects.all()
@@ -341,3 +512,43 @@ def add_comment(request, id):
         'form': form,
     }
     return render(request, "discussion.html", context)
+
+
+def api_discussion_comments_by_forum_id(request, id):
+    """
+    Mengambil semua komentar (Comment) berdasarkan discussion/forum ID tertentu.
+    """
+    comments = Comment.objects.filter(discussion__id=id, parent__isnull=True).select_related('user').prefetch_related('replies').annotate(num_likes=Count('likes')).order_by('-num_likes', '-date_created')
+
+    # Serialisasi termasuk balasan
+    serialized_comments = []
+    for comment in comments:
+        serialized_comments.append({
+            'model': 'discuss_forum.comment',
+            'pk': str(comment.pk),
+            'fields': {
+                'discussion': str(comment.discussion.pk),
+                'user': comment.user.id,
+                'content': comment.content,
+                'parent': str(comment.parent.pk) if comment.parent else None,
+                'date_created': comment.date_created.isoformat(),
+                'likes': list(comment.likes.values_list('id', flat=True)),
+                'replies': [
+                    {
+                        'model': 'discuss_forum.comment',
+                        'pk': str(reply.pk),
+                        'fields': {
+                            'discussion': str(reply.discussion.pk),
+                            'user': reply.user.id,
+                            'content': reply.content,
+                            'parent': str(reply.parent.pk) if reply.parent else None,
+                            'date_created': reply.date_created.isoformat(),
+                            'likes': list(reply.likes.values_list('id', flat=True)),
+                        }
+                    }
+                    for reply in comment.replies.all()
+                ],
+            }
+        })
+
+    return HttpResponse(json.dumps(serialized_comments), content_type='application/json')
